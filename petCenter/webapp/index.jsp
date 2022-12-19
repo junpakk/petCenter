@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+<<<<<<< HEAD
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -11,4 +12,14 @@
 	
 	<a href="kmjSpringMemInsertForm.pc">회원가입</a>
 </body>
+=======
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+	</head>
+	<body>
+		<a href="mapTest1.pc">지도 레벨 바꾸기</a><br>
+		<a href="kSearchAndList.pc">동물병원찾기</a><br><br/><br/>
+	</body>
+>>>>>>> branch 'master' of https://github.com/junpakk/petCenter.git
 </html>
