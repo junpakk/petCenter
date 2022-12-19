@@ -7,8 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	Hello 연습중 연습중3 
-	
-	<a href="kmjSpringMemInsertForm.pc">회원가입</a>
+ㅎㅇㅎㅇ
 </body>
 </html>
