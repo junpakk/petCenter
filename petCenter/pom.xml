@@ -1,0 +1,179 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>petCenter</groupId>
+  <artifactId>petCenter</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>war</packaging>
+  
+  <properties>
+  	<org.springframework-version>4.3.16.RELEASE</org.springframework-version>
+  </properties>
+  
+  <dependencies>
+	  <!-- https://mvnrepository.com/artifact/org.springframework/spring-aop -->
+	  <dependency>
+	      <groupId>org.springframework</groupId>
+	      <artifactId>spring-aop</artifactId>
+	      <version>4.3.16.RELEASE</version>
+	  </dependency>
+	  
+	  <!-- https://mvnrepository.com/artifact/org.springframework/spring-beans -->
+	  <dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-beans</artifactId>
+		    <version>${org.springframework-version}</version>
+	  </dependency>
+  
+ 	  <!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
+	  <dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-context</artifactId>
+		    <version>${org.springframework-version}</version>
+	  </dependency>
+  
+      <!-- https://mvnrepository.com/artifact/org.springframework/spring-context-support -->
+	  <dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-context-support</artifactId>
+		    <version>${org.springframework-version}</version>
+	  </dependency>
+  
+     <!-- https://mvnrepository.com/artifact/org.springframework/spring-core -->
+	 <dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-core</artifactId>
+		    <version>${org.springframework-version}</version>
+	 </dependency>
+  
+     <!-- https://mvnrepository.com/artifact/org.springframework/spring-expression -->
+	 <dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-expression</artifactId>
+		    <version>${org.springframework-version}</version>
+	 </dependency>
+  
+     <!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
+	 <dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-jdbc</artifactId>
+		    <version>${org.springframework-version}</version>
+	 </dependency>
+  
+     <!-- https://mvnrepository.com/artifact/org.springframework/spring-tx -->
+	 <dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-tx</artifactId>
+		    <version>${org.springframework-version}</version>
+	 </dependency>
+  
+     <!-- https://mvnrepository.com/artifact/org.springframework/spring-web -->
+	 <dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-web</artifactId>
+		    <version>${org.springframework-version}</version>
+	 </dependency>
+  
+     <!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
+	 <dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-webmvc</artifactId>
+		    <version>${org.springframework-version}</version>
+	 </dependency>
+  
+     <!-- https://mvnrepository.com/artifact/org.springframework/spring-websocket -->
+	 <dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-websocket</artifactId>
+		    <version>${org.springframework-version}</version>
+	 </dependency>
+  
+     <!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
+	 <dependency>
+		    <groupId>org.mybatis</groupId>
+		    <artifactId>mybatis</artifactId>
+		    <version>3.2.4</version>
+	 </dependency>
+  
+     <!-- https://mvnrepository.com/artifact/org.mybatis/mybatis-spring -->
+	 <dependency>
+		    <groupId>org.mybatis</groupId>
+		    <artifactId>mybatis-spring</artifactId>
+		    <version>1.2.2</version>
+	 </dependency>
+  
+     <!-- https://mvnrepository.com/artifact/log4j/log4j -->
+	 <dependency>
+		    <groupId>log4j</groupId>
+		    <artifactId>log4j</artifactId>
+		    <version>1.2.17</version>
+	 </dependency>
+  
+     <!-- https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple -->
+	 <dependency>
+		    <groupId>com.googlecode.json-simple</groupId>
+		    <artifactId>json-simple</artifactId>
+		    <version>1.1</version>
+	 </dependency>
+  
+     <!-- https://mvnrepository.com/artifact/commons-logging/commons-logging -->
+	 <dependency>
+		    <groupId>commons-logging</groupId>
+		    <artifactId>commons-logging</artifactId>
+		    <version>1.1.2</version>
+	 </dependency>
+
+<!--  -->
+	
+	 <!-- https://mvnrepository.com/artifact/servlets.com/cos -->
+	 <dependency>
+		    <groupId>servlets.com</groupId>
+		    <artifactId>cos</artifactId>
+		    <version>05Nov2002</version>
+	 </dependency>
+	
+	
+	 <!-- https://mvnrepository.com/artifact/jstl/jstl -->
+	 <dependency>
+		    <groupId>jstl</groupId>
+		    <artifactId>jstl</artifactId>
+		    <version>1.1.2</version>
+	 </dependency>
+
+	
+	 <!-- https://mvnrepository.com/artifact/com.oracle.database.jdbc/ojdbc6 -->
+	 <dependency>
+		    <groupId>com.oracle.database.jdbc</groupId>
+		    <artifactId>ojdbc6</artifactId>
+		    <version>11.2.0.4</version>
+	 </dependency>
+
+	
+	 <!-- https://mvnrepository.com/artifact/taglibs/standard -->
+	 <dependency>
+		    <groupId>taglibs</groupId>
+		    <artifactId>standard</artifactId>
+		    <version>1.1.2</version>
+	 </dependency>
+  </dependencies>
+  
+  <build>
+    <sourceDirectory>src</sourceDirectory>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.1</version>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
+        </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>3.2.3</version>
+        <configuration>
+          <warSourceDirectory>webapp</warSourceDirectory>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>
