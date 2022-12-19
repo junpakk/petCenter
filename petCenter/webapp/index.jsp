@@ -2,13 +2,13 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-	Hello 연습중 연습중3 
-	
-	<a href="kmjSpringMemInsertForm.pc">회원가입</a>
-</body>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+	</head>
+	<body>
+	asdfasdfasdfasdfasdf
+		<a href="mapTest1.pc">지도 레벨 바꾸기</a><br>
+		<a href="kSearchAndList.pc">동물병원찾기</a><br><br/><br/>
+	</body>
 </html>
