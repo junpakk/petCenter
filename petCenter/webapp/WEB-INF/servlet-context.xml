@@ -13,7 +13,7 @@
 	<!-- JNDI(Java Naming and Directory Interface)는 디렉터리 서비스에서 제공하는 데이터 및 객체를 발견(discover)하고 참고(lookup)하기 위한 자바 API다. -->
 	<!-- name="jdbc/jndi_spring_orclPJB00" 이걸 찾아서 호출 -->
 	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
-		<property name="jndiName" value="java:comp/env/jdbc/jndi_spring_orclPJB00"/>
+		<property name="jndiName" value="java:comp/env/jdbc/jndi_spring_orclKHG00"/>
 	</bean>
 	
 	<!-- 마이바티스 쿼리문 찾아서 연결하기 -->
