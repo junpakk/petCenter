@@ -12,6 +12,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import main.pc.common.ChabunUtil;
+import main.pc.common.CommonUtils;
+import main.pc.common.chabun.service.ChabunUtilService;
 import main.pc.member.service.MemberService;
 import main.pc.member.vo.MemberVO;
 
@@ -25,8 +28,8 @@ public class MemberController {
 	private MemberService memberService;
 	
 	// 컨트롤러에서 채번 서비스 필드 오토 와이어드
-//	@Autowired(required=false)
-//	private ChabunService chabunService;
+	@Autowired(required=false)
+	private ChabunUtilService chabunUtilService;
 	
 	//인서트 폼 호출하기
 	@GetMapping("memInsertForm")
@@ -40,7 +43,7 @@ public class MemberController {
 	public String memInsert(HttpServletRequest req, MemberVO mvo, Model model) {
 		logger.info("memInsert 함수 진입 >>> :");
 		
-		String mnum = "0001";
+		String mnum = ChabunUtil.getMemberChabun("D", chabunUtilService.getChabunMember().getMnum());
 		logger.info("memInsert mnum >>> : " + mnum);
 		
 		// 회원번호
@@ -73,4 +76,53 @@ public class MemberController {
 		}
 		return "member/memInsertForm";
 	}
+	
+	@GetMapping("memSelectAll")
+	public String memSelectAll(MemberVO mvo, Model model) {
+		
+		// 페이징 처리
+		int pageSize = CommonUtils.MEM_PAGE_SIZE;
+		int groupSize = CommonUtils.MEM_GROUP_SIZE;
+		int curPage = CommonUtils.MEM_CUR_PAGE;
+		int totalCount = CommonUtils.MEM_TOTAL_COUNT;
+		
+		if(mvo.getCurPage() != null) {
+			curPage = Integer.parseInt(mvo.getCurPage());
+		}
+		
+		mvo.setPageSize(String.valueOf(pageSize));
+		mvo.setGroupSize(String.valueOf(groupSize));
+		mvo.setCurPage(String.valueOf(curPage));
+		mvo.setTotalCount(String.valueOf(totalCount));
+		
+		logger.info("mvo.getPageSize() >>> : " + mvo.getPageSize());
+		logger.info("mvo.getGroupSize() >>> : " + mvo.getGroupSize());
+		logger.info("mvo.getCurPage() >>> : " + mvo.getCurPage());
+		logger.info("mvo.getTotalCount() >>> : " + mvo.getTotalCount());
+		
+		logger.info("mvo.getSearchFilter() >>> : " + mvo.getSearchFilter());
+		logger.info("mvo.getKeyword() >>> : " + mvo.getKeyword());
+//		logger.info("mvo.getStartDate() >>> : " + mvo.getStartDate());
+//		logger.info("mvo.getEndDate() >>> : " + mvo.getEndDate());
+		
+		//셀렉트올 값을 listAll 에 담음
+		List<MemberVO> listAll = memberService.memSelectAll(mvo);
+		int nCnt = listAll.size();
+		
+		// 리스트의 사이즈가 0보다 클때 데이터를 담아 jsp로 이동
+		if(nCnt > 0) {
+			logger.info("khgMemberSelectAll nCnt >>> : " + nCnt);
+			
+			model.addAttribute("searchMVO", mvo);
+			model.addAttribute("listAll", listAll);
+			
+			return "member/memSelectAll";
+		}
+		logger.info("memSelectAll fail");
+		return "#";
+	}
+	
+	
+	
+	
 }
