@@ -71,14 +71,16 @@ public class MemberController {
 		int iCnt = memberService.memInsert(mvo);
 		if (iCnt > 0) {
 			logger.info("memInsert iCnt >>> : " + iCnt);
-			model.addAttribute("iCnt", iCnt);
-			return "member/memInsert";
+			model.addAttribute("cnt", iCnt);
+			model.addAttribute("result", "입력");
+			return "member/memResult";
 		}
-		return "member/memInsertForm";
+		return "member/memError";
 	}
 	
 	@GetMapping("memSelectAll")
 	public String memSelectAll(MemberVO mvo, Model model) {
+		logger.info("memSelectAll 함수 진입 >>> :");
 		
 		// 페이징 처리
 		int pageSize = CommonUtils.MEM_PAGE_SIZE;
@@ -119,10 +121,75 @@ public class MemberController {
 			return "member/memSelectAll";
 		}
 		logger.info("memSelectAll fail");
-		return "#";
+		return "member/memError";
 	}
 	
+	@PostMapping("memSelect")
+	public String memSelect(MemberVO mvo, Model model) {
+		logger.info("memSelect 함수 진입 >>> :");
+		
+		List<MemberVO> list = memberService.memSelect(mvo);
+		int nCnt = list.size();
+		
+		// 리스트의 사이즈가 1일때 데이터를 담아 jsp로 이동
+		if(nCnt == 1) {
+			logger.info("memSelect nCnt >>> : " + nCnt);
+			
+			model.addAttribute("list", list);
+			
+			return "member/memSelectForm";
+		}
+		logger.info("memSelect fail");
+		return "member/memError";
+	}
 	
+	@PostMapping("memUpdate")
+	public String memUpdate(HttpServletRequest req, MemberVO mvo, Model model) {
+		logger.info("memUpdate 함수 진입 >>> :");
+		
+		// 휴대폰
+		String mhp1 = req.getParameter("mhp1");
+		String mhp2 = req.getParameter("mhp2");
+		String mhp3 = req.getParameter("mhp3");
+		String mhp = mhp1.concat("-").concat(mhp2).concat("-").concat(mhp3);
+		mvo.setMhp(mhp);
+		// 이메일
+		String memail1 = req.getParameter("memail1");
+		String memail2 = req.getParameter("memail2");
+		String memail = memail1.concat("@").concat(memail2);
+		mvo.setMemail(memail);
+		// 기호동물
+		String[] mpetArr = req.getParameterValues("mpetArr");
+		String mpet = String.join(",", mpetArr);
+		mvo.setMpet(mpet);
+		// 자기소개
+		
+		int uCnt = memberService.memUpdate(mvo);
+		if (uCnt > 0) {
+			logger.info("memUpdate iCnt >>> : " + uCnt);
+			model.addAttribute("cnt", uCnt);
+			model.addAttribute("result", "수정");
+			return "member/memResult";
+		}
+		
+		logger.info("memUpdate fail");
+		return "member/memError";
+	}
 	
+	@PostMapping("memDelete")
+	public String memDelete(MemberVO mvo, Model model) {
+		logger.info("memDelete 함수 진입 >>> :");
+		
+		int dCnt = memberService.memDelete(mvo);
+		if (dCnt > 0) {
+			logger.info("memDelete iCnt >>> : " + dCnt);
+			model.addAttribute("cnt", dCnt);
+			model.addAttribute("result", "삭제");
+			return "member/memResult";
+		}
+		
+		logger.info("memDelete fail");
+		return "member/memError";
+	}
 	
 }

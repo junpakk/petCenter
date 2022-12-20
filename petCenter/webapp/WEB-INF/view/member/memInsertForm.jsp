@@ -175,8 +175,8 @@
 			<option value="018">018</option>
 			<option value="019">019</option>
 		</select>
-		- <input type="text" name="mhp2" id="mhp2" size="2"/>
-		- <input type="text" name="mhp3" id="mhp3" size="2"/>
+		- <input type="text" name="mhp2" id="mhp2" size="1"/>
+		- <input type="text" name="mhp3" id="mhp3" size="1"/>
 	</td>
 </tr>
 

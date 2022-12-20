@@ -10,6 +10,6 @@ public interface MemberDAO {
 	public List<MemberVO> memSelectAll(MemberVO mvo);
 	public List<MemberVO > memSelect(MemberVO mvo);
 	public List<MemberVO > memSelectForm(MemberVO mvo);
-	public int memupdate(MemberVO mvo);
+	public int memUpdate(MemberVO mvo);
 	public int memDelete(MemberVO mvo);
 }
