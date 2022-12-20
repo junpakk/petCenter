@@ -65,6 +65,12 @@ public class MemberController {
 		mvo.setMpet(mpet);
 		// 자기소개
 		
-		return "";
+		int iCnt = memberService.memInsert(mvo);
+		if (iCnt > 0) {
+			logger.info("memInsert iCnt >>> : " + iCnt);
+			model.addAttribute("iCnt", iCnt);
+			return "member/memInsert";
+		}
+		return "member/memInsertForm";
 	}
 }

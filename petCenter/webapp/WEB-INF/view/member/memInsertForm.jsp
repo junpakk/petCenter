@@ -125,10 +125,6 @@
 </thead>
 
 <tbody>
-<tr>
-	<td class="mem">이름</td>
-	<td><input type="text" name="mname" id="mname" /></td>
-</tr>
 
 <tr>
 	<td class="mem" id="notNull">아이디</td>
@@ -149,19 +145,8 @@
 </tr>
 
 <tr>
-	<td class="mem" >휴대폰</td>
-	<td>
-		<select name="mhp1" id="mhp1">
-			<option value="010" selected>010</option>
-			<option value="011">011</option>
-			<option value="016">016</option>
-			<option value="017">017</option>
-			<option value="018">018</option>
-			<option value="019">019</option>
-		</select>
-		- <input type="text" name="mhp2" id="mhp2" size="2"/>
-		- <input type="text" name="mhp3" id="mhp3" size="2"/>
-	</td>
+	<td class="mem">이름</td>
+	<td><input type="text" name="mname" id="mname" /></td>
 </tr>
 
 <tr>
@@ -176,6 +161,22 @@
 			<option value="daum.net" >daum.net</option>
 			<option value="kakao.com" >kakao.com</option>
 		</select>
+	</td>
+</tr>
+
+<tr>
+	<td class="mem" >휴대폰</td>
+	<td>
+		<select name="mhp1" id="mhp1">
+			<option value="010" selected>010</option>
+			<option value="011">011</option>
+			<option value="016">016</option>
+			<option value="017">017</option>
+			<option value="018">018</option>
+			<option value="019">019</option>
+		</select>
+		- <input type="text" name="mhp2" id="mhp2" size="2"/>
+		- <input type="text" name="mhp3" id="mhp3" size="2"/>
 	</td>
 </tr>
 

@@ -4,5 +4,5 @@ import main.pc.member.vo.MemberVO;
 
 public interface MemberDAO {
 
-	public int memInsert(MemberVO kvo);
+	public int memInsert(MemberVO mvo);
 }
