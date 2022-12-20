@@ -4,6 +4,6 @@
 
 <configuration>
 	<typeAliases>
-<!-- 		<typeAlias type="a.b.c.com.pjb.mem.vo.MemVO" alias="springvo"/> -->
+		<typeAlias type="main.pc.member.vo.MemberVO" alias="membervo"/>
 	</typeAliases>
 </configuration>
