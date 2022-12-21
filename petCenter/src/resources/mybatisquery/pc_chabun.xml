@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+          "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="main.pc.common.chabun.dao.ChabunUtilDAO">
+
+<!-- 멤버 -->
+<select id="getChabunMember" resultType="membervo">
+
+SELECT  
+        NVL(MAX(SUBSTR(A.MNUM, -4)), 0) + 1 AS MNUM
+FROM    PC_MEMBER A
+
+</select>
+
+</mapper>
