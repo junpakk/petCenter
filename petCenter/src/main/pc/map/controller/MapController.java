@@ -20,7 +20,22 @@ public class MapController {
 	public String kSearchAndList() {
 		logger.info("kSearchAndList 함수 진입 >>> ");
 		
-		return "map/kSearchAndList";
+		//return "map/kSearchAndList";
+		return "map/coord2addr";
 	}
+	
+	@GetMapping("marker")
+	public String marker() {
+		logger.info("marker 함수 진입 >>> ");
+		
+		return "map/marker";
+	}	
+	
+	@GetMapping("keySearch")
+	public String keySearch() {
+		logger.info("keySearch 함수 진입 >>> ");
+		
+		return "map/keySearch";
+	}	
 
 }

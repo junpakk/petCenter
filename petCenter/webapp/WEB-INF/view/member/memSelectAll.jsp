@@ -149,7 +149,7 @@
 			
 			if($(".mnum:checked").length == 1){
 				$("#memSelectAll").attr({
-					'action':'memUpdate.pc',
+					'action':'memSelect.pc',
 					'method':'POST',
 					'enctype':'application/x-www-form-urlencoded'
 				}).submit();
