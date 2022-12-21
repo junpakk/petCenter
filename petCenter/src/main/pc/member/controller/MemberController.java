@@ -49,24 +49,38 @@ public class MemberController {
 		
 		// 회원번호
 		mvo.setMnum(mnum);
+		logger.info("memInsert mvo.getMnum() >>> : " + mvo.getMnum());
+		
 		// 이름
+		
 		// 아이디
+		
 		// 비밀번호
+		
 		// 휴대폰
 		String mhp1 = req.getParameter("mhp1");
 		String mhp2 = req.getParameter("mhp2");
 		String mhp3 = req.getParameter("mhp3");
 		String mhp = mhp1.concat("-").concat(mhp2).concat("-").concat(mhp3);
 		mvo.setMhp(mhp);
+		logger.info("memInsert mvo.getMhp() >>> : " + mvo.getMhp());
 		// 이메일
 		String memail1 = req.getParameter("memail1");
 		String memail2 = req.getParameter("memail2");
 		String memail = memail1.concat("@").concat(memail2);
 		mvo.setMemail(memail);
+		logger.info("memInsert mvo.getMemail() >>> : " + mvo.getMemail());
+		
 		// 기호동물
 		String[] mpetArr = req.getParameterValues("mpetArr");
-		String mpet = String.join(",", mpetArr);
+		String mpet = "";
+		logger.info("memInsert mpetArr >>> : " + mpetArr);
+		
+		if(mpetArr != null && mpetArr.length > 0) {
+			mpet = String.join(",", mpetArr);
+		}
 		mvo.setMpet(mpet);
+		logger.info("memInsert mvo.getMpet() >>> : " + mvo.getMpet());
 		// 자기소개
 		
 		int iCnt = memberService.memInsert(mvo);
@@ -160,9 +174,16 @@ public class MemberController {
 		String memail = memail1.concat("@").concat(memail2);
 		mvo.setMemail(memail);
 		// 기호동물
+		
 		String[] mpetArr = req.getParameterValues("mpetArr");
-		String mpet = String.join(",", mpetArr);
+		String mpet = "";
+		logger.info("memInsert mpetArr >>> : " + mpetArr);
+		
+		if(mpetArr != null && mpetArr.length > 0) {
+			mpet = String.join(",", mpetArr);
+		}
 		mvo.setMpet(mpet);
+		
 		// 자기소개
 		
 		int uCnt = memberService.memUpdate(mvo);
