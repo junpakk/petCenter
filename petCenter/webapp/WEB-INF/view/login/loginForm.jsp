@@ -121,7 +121,7 @@
 		<table border="1" class="table table-bordered w-auto" align="center">
 			<thead>
 			<tr>
-				<td><h1 align="center">Pet Center Login</h1></td>
+				<td><h1 align="center">Login</h1></td>
 			</tr>
 			</thead>
 			<tr>

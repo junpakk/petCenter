@@ -3,11 +3,10 @@ package main.pc.common;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import main.pc.member.vo.MemberVO;
-
 public class K_Session {
 	
 	private static final String K_SESSION_ID = "KID";
+	private static final String K_SESSION_NUM = "KNUM";
 	
 //	private static K_Session kSession = null;
 //	public static K_Session getInstance() {
@@ -36,21 +35,20 @@ public class K_Session {
 		HttpSession hSession = hReq.getSession(false);
 		if (hSession != null) {
 			hSession.removeAttribute(K_SESSION_ID);
-			// 이 세션을 무효화한 다음 세션에 바인딩된 개체의 바인딩을 해제합니다.
+			hSession.removeAttribute(K_SESSION_NUM);
 			hSession.invalidate();
 		}
 	}
 	
 	
-	//public boolean setSession(final HttpServletRequest hReq, final String userID) {
-	public boolean setSession(final HttpServletRequest hReq, final MemberVO mvo) {
+	public boolean setSession(final HttpServletRequest hReq, final String userID, final String userNUM) {
 		
 		HttpSession hSession = hReq.getSession();
-		String k_session_val = ((MemberVO)hSession.getAttribute(K_SESSION_ID)).getMid();
+		String k_session_val = (String)hSession.getAttribute(K_SESSION_ID);
 		int nCnt = 0;
 		
 		if(k_session_val != null) {
-			boolean b1 = k_session_val.equals(mvo.getMid());
+			boolean b1 = k_session_val.equals(userID);
 			
 			if (b1) {
 				nCnt++;
@@ -67,7 +65,8 @@ public class K_Session {
 			
 			// void setAttribute(String name, Object value)
 			// 지정한 이름을 사용하여 이 세션에 개체를 바인딩합니다.
-			hSession.setAttribute(K_SESSION_ID, mvo);
+			hSession.setAttribute(K_SESSION_NUM, userNUM);
+			hSession.setAttribute(K_SESSION_ID, userID);
 			
 			// void setMaxInactiveInterval(int interval)
 			// 서블릿 컨테이너가 이 세션을 무효화할 때까지 
@@ -98,7 +97,7 @@ public class K_Session {
 			// Object getAttribute(String name)
 			// 이 세션에서 지정한 이름으로 바인딩된 개체를 반환하거나, 
 			// 이름으로 바인딩된 개체가 없는 경우 null을 반환합니다.
-			//strSession = ((MemberVO)hSession.getAttribute(K_SESSION_ID)).getMid();
+			strSession = (String)hSession.getAttribute(K_SESSION_ID);
 		}
 		
 		return strSession;

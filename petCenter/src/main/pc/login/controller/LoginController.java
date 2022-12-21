@@ -58,7 +58,7 @@ public class LoginController {
 				logger.info("loginCheck login >>> : 로그인 중 >>> : " + kID);
 				return "main/mainPage";
 			}else {
-				ks.setSession(req, mvo);
+				ks.setSession(req, listLogin.get(0).getMid(), listLogin.get(0).getMnum() );
 				logger.info("loginCheck login >>> : 세션부여 >>> : " + mvo.getMid());
 				return "main/mainPage";
 			}

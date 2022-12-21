@@ -29,15 +29,16 @@
 <%
 	String mnum = "";
 	String mid = "";
-	Object obj = session.getAttribute("KID");
+	Object objMnum = session.getAttribute("KNUM");
+	Object objMid = session.getAttribute("KID");
 	
-	if (obj != null) {
-		MemberVO lmvo = (MemberVO)obj;
-		mnum = lmvo.getMnum();
-		mid = lmvo.getMid();
+	if (objMnum != null) {
+		mnum = (String)objMnum;
+		mid = (String)objMid;
 %>
 	<p>
 		<%= mid %> 님 안녕하세요!! <br>
+		<%= mnum %> 님 안녕하세요!! <br>
 		<a href="logout.pc">로그아웃</a> | 
 		정보수정
 	</p>
