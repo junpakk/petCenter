@@ -7,24 +7,24 @@
 
 <insert id="productInsert" parameterType="productvo" >
 	
-	INSERT INTO SPRING_PRODUCT ( PNUM
-								,PNAME
-								,PPRICE
-								,PCATEGORY
-								,PDETAIL
-								,PPHOTO
-								,DELYN
-								,IDATE
-								,UDATE)
-            			VALUES(  #{pnum} 
-            					,#{pname} 
-            					,#{pprice} 
-            					,#{pcategory} 
-            					,#{pdetail} 
-            					,#{pphoto} 
-            					,'Y' 
-            					,SYSDATE 
-            					,SYSDATE)
+	INSERT INTO PC_PRODUCT ( PNUM
+							,PNAME
+							,PPRICE
+							,PCATEGORY
+							,PDETAIL
+							,PPHOTO
+							,DELYN
+							,IDATE
+							,UDATE)
+           			VALUES(  #{pnum} 
+           					,#{pname} 
+           					,#{pprice} 
+           					,#{pcategory} 
+           					,#{pdetail} 
+           					,#{pphoto} 
+           					,'Y' 
+           					,SYSDATE 
+           					,SYSDATE)
 </insert>
 
 

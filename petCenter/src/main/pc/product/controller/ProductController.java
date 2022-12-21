@@ -63,11 +63,12 @@ public class ProductController {
 		pvo.setPnum(pnum);
 		pvo.setPname(fu.getParameter("pname"));
 		pvo.setPprice(fu.getParameter("pprice"));
-		//카테고리 생각, 대분류+중분류 코드(문자열로 이어주기)
-		String pcategory = fu.getParameter("pcategory1") + fu.getParameter("pcategory2");
-		pvo.setPdetail(pcategory);
+		//카테고리 생각, 대분류(1강아지,2고양이)/중분류(1사료2간식3용품)
+		String pcategory = fu.getParameter("pcategory1").concat(fu.getParameter("pcategory2"));
+		pvo.setPcategory(pcategory);
 		pvo.setPdetail(fu.getParameter("pdetail"));
 		pvo.setPphoto(fu.getFileName("pphoto"));
+		logger.info("toString: "+ pvo.toString());
 		//서비스 호출
 		int nCnt = productService.productInsert(pvo);
 		logger.info("productInsert nCnt: "+ nCnt);
