@@ -13,4 +13,10 @@ FROM    PC_MEMBER A
 
 </select>
 
+<!-- 상품 -->
+<select id="getProductChabun" resultType="productvo">
+	SELECT	/*+ INDEX_DESC(A SYS_C0011066) */ NVL(MAX(SUBSTR(A.PNUM,-4)),0) + 1 PNUM 
+	FROM PC_PRODUCT A
+</select>
+
 </mapper>

@@ -5,5 +5,6 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="main.pc.member.vo.MemberVO" alias="membervo"/>
+		<typeAlias type="main.pc.product.vo.ProductVO" alias="productvo"/>
 	</typeAliases>
 </configuration>

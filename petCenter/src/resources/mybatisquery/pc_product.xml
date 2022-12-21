@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+          "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+          
+<mapper namespace="main.pc.product.dao.ProductDAO">
+
+<insert id="productInsert" parameterType="productvo" >
+	
+	INSERT INTO SPRING_PRODUCT ( PNUM
+								,PNAME
+								,PPRICE
+								,PCATEGORY
+								,PDETAIL
+								,PPHOTO
+								,DELYN
+								,IDATE
+								,UDATE)
+            			VALUES(  #{pnum} 
+            					,#{pname} 
+            					,#{pprice} 
+            					,#{pcategory} 
+            					,#{pdetail} 
+            					,#{pphoto} 
+            					,'Y' 
+            					,SYSDATE 
+            					,SYSDATE)
+</insert>
+
+
+</mapper>

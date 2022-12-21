@@ -25,7 +25,7 @@ public class ProductController {
 	
 	//채번서비스 DI
 	@Autowired(required=false)
-	private ChabunUtilService chabunService;
+	private ChabunUtilService chabunUtilService;
 	
 	//상품서비스 DI
 	@Autowired(required=false)
@@ -38,49 +38,44 @@ public class ProductController {
 		return "product/productInsertForm";
 	}
 	
-//	//상품 등록
-//	@RequestMapping(value="productInsert", method=RequestMethod.POST)
-//	public String productInsert(HttpServletRequest req) {
-//		logger.info("productInsert() 진입: ");
-//		
-//		//채번
-//		String pnum = ChabunUtil.getProductChabun("D", chabunService.getProductChabun().getPnum());
-//		logger.info("pnum: "+ pnum);
-//		
-//		//이미지 업로드, 이미지 사이즈 새로 만들어서 수정해야할수도 있음
-//		FileUploadUtil fu = new FileUploadUtil(  CommonUtils.PRODUCT_IMG_UPLOAD_PATH
-//												,CommonUtils.IMG_FILE_SIZE
-//												,CommonUtils.EN_CODE);
-//				
-//		//이미지 파일 원본 사이즈
-//		boolean bool = fu.imgfileUpload(req);
-//		logger.info("productInsert bool: "+ bool);
-//		
-//		//넘어온 데이터 FileUploadUtil로 바이너리형태를 넘길 수 있게끔 바꿔서 pvo에 초기화
-//		ProductVO pvo = null;
-//		pvo = new ProductVO();
-//		
-//		pvo.setPnum(pnum);
-//		pvo.setPid(fu.getParameter("pid"));
-//		pvo.setPname(fu.getParameter("pname"));
-//		pvo.setPcompany(fu.getParameter("pcompany"));
-//		
-//		pvo.setPfile(fu.getFileName("pfile"));
-//		
-//		pvo.setPcnt(fu.getParameter("pcnt"));
-//		pvo.setPprice(fu.getParameter("pprice"));
-//		pvo.setPdesc(fu.getParameter("pdesc"));
-//		
-//		
-//		//서비스 호출
-//		int nCnt = productService.productInsert(pvo);
-//		logger.info("productInsert nCnt: "+ nCnt);
-//		
-//		if(nCnt>0) {
-//			return "product/productInsert";
-//		}
-//		return "product/productInsertForm";
-//	}//end of productInsert
+	//상품 등록
+	@RequestMapping(value="productInsert", method=RequestMethod.POST)
+	public String productInsert(HttpServletRequest req) {
+		logger.info("productInsert() 진입: ");
+		
+		//채번
+		String pnum = ChabunUtil.getProductChabun("D", chabunUtilService.getProductChabun().getPnum());
+		logger.info("pnum: "+ pnum);
+		
+		//이미지 업로드, 이미지 사이즈 새로 만들어서 수정해야할수도 있음
+		FileUploadUtil fu = new FileUploadUtil(  CommonUtils.PRODUCT_IMG_UPLOAD_PATH
+												,CommonUtils.PRODUCT_IMG_FILE_SIZE
+												,CommonUtils.PRODUCT_EN_CODE);
+				
+		//이미지 파일 원본 사이즈
+		boolean bool = fu.imgfileUpload(req);
+		logger.info("productInsert bool: "+ bool);
+		
+		//넘어온 데이터 FileUploadUtil로 바이너리형태를 넘길 수 있게끔 바꿔서 pvo에 초기화
+		ProductVO pvo = null;
+		pvo = new ProductVO();
+		
+		pvo.setPnum(pnum);
+		pvo.setPname(fu.getParameter("pname"));
+		pvo.setPprice(fu.getParameter("pprice"));
+		//카테고리 생각, 대분류+중분류 코드(문자열로 이어주기)
+		String pcategory = fu.getParameter("pcategory1") + fu.getParameter("pcategory2");
+		pvo.setPdetail(pcategory);
+		pvo.setPdetail(fu.getParameter("pdetail"));
+		pvo.setPphoto(fu.getFileName("pphoto"));
+		//서비스 호출
+		int nCnt = productService.productInsert(pvo);
+		logger.info("productInsert nCnt: "+ nCnt);
+		if(nCnt > 0) {
+			return "product/productInsertForm";
+		}
+		return "product/productInsertForm";
+	}//end of productInsert
 	
 //	//상품목록 페이지 조회
 //	@RequestMapping(value="productSelectAll", method=RequestMethod.GET)
