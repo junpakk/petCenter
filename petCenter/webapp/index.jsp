@@ -7,6 +7,8 @@
 		<title>Insert title here</title>
 	</head>
 	<body>
+		<a href="mainPage.pc">메인페이지</a><br>
+		<a href="logout.pc">로그아웃</a><br>
 		<a href="memInsertForm.pc">회원가입</a><br>
 		<a href="memSelectAll.pc">회원목록</a><br>
 		<a href="mapTest1.pc">지도 레벨 바꾸기</a><br>
