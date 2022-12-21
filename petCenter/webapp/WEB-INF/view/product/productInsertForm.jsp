@@ -33,24 +33,34 @@
 	</tr>
 	<tr>
 		<td>상품번호</td>		
-		<td><input type="text" name="pnum" id="pnum" style="width:150px" readonly></td>
+		<td><input type="text" name="pnum" id="pnum" placeholder="상품번호" readonly></td>
 	</tr>
 	<tr>
 		<td>상품이름</td>
-		<td><input type="text" name="pname" id="pname" style="width:300px"></td>
+		<td><input type="text" name="pname" id="pname" placeholder="상품이름"> </td>
 	</tr>
 	<tr>
 		<td>상품가격</td>
-		<td><input type="text" name="pprice" id="pprice" style="width:300px"></td>
+		<td><input type="text" name="pprice" id="pprice" placeholder="상품가격"> </td>
 	</tr>
 	<tr>
 		<td>상품카테고리</td>
-		<td><input type="text" name="pcategory" id="pcategory" style="width:80px"></td>
+		<td>
+			<select name="pcategory1" id="pcategory1" style="width:80px">
+				<option value="1">강아지</option>
+				<option value="2">고양이</option>
+			</select>
+			<select name="pcategory2" id="pcategory2" style="width:80px">
+				<option value="1">사료</option>
+				<option value="2">간식</option>
+				<option value="3">용품</option>
+			</select>
+		</td>
 	</tr>
 	<tr>
 		<td>상품설명</td>
 		<td>
-		<textarea name="pdetail" id="pdetail" cols="50" rows="10" style="resize: none; width: 500px;"></textarea>
+		<textarea name="pdetail" id="pdetail" cols="50" rows="10" style="resize: none;" placeholder="상품설명"></textarea>
 		</td>
 	</tr>
 	<tr>
