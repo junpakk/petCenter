@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import main.pc.common.chabun.dao.ChabunUtilDAO;
 import main.pc.member.vo.MemberVO;
+import main.pc.product.vo.ProductVO;
 
 @Service
 @Transactional
@@ -22,6 +23,14 @@ public class ChabunUtilServiceImpl implements ChabunUtilService {
 		// TODO Auto-generated method stub
 		logger.info("getChabunMember() 함수 진입 >>> : ");
 		return chabunUtilDAO.getChabunMember();
+	}
+
+	//상품
+	@Override
+	public ProductVO getProductChabun() {
+		// TODO Auto-generated method stub
+		logger.info("getProductChabun() 함수 진입: ");
+		return chabunUtilDAO.getProductChabun();
 	}
 
 }

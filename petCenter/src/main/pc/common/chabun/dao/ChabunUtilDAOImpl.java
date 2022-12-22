@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import main.pc.member.vo.MemberVO;
+import main.pc.product.vo.ProductVO;
 
 @Repository
 public class ChabunUtilDAOImpl implements ChabunUtilDAO {
@@ -20,6 +21,14 @@ public class ChabunUtilDAOImpl implements ChabunUtilDAO {
 		// TODO Auto-generated method stub
 		logger.info("getChabunMember() 함수 진입 >>> : ");
 		return sqlSession.selectOne("getChabunMember");
+	}
+
+	//상품
+	@Override
+	public ProductVO getProductChabun() {
+		// TODO Auto-generated method stub
+		logger.info("getProductChabun() 함수 진입 >>> : ");
+		return sqlSession.selectOne("getProductChabun");
 	}
 
 }

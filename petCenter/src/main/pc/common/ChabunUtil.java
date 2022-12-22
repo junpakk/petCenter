@@ -3,6 +3,8 @@ package main.pc.common;
 public abstract class ChabunUtil {
 
 	public static final String BIZ_GUBUN_M = "M";	// 멤버
+	public static final String BIZ_GUBUN_P = "P";	// 상품
+	
 	
 	//s
 	public static String numPad(String t, String c) {
@@ -16,6 +18,11 @@ public abstract class ChabunUtil {
 	// 멤버
 	public static String getMemberChabun(String type, String memNum) {
 		return BIZ_GUBUN_M.concat(ChabunUtil.numPad(type, memNum));
+	}
+	
+	// 상품
+	public static String getProductChabun(String type, String productNum) {
+		return BIZ_GUBUN_P.concat(ChabunUtil.numPad(type, productNum));
 	}
 	
 }

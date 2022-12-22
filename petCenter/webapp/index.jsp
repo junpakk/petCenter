@@ -15,11 +15,13 @@
 		<a href="#">테스트2</a><br>
 		<a href="marker.pc">테스트3</a><br>
 		<a href="keySearch.pc">테스트4</a><br>
-		
+
 		<h4>산책로확인</h4>
 		<hr>
 
+
 		<hr>
+
 		<a href="mainPage.pc">메인페이지</a><br>
 		<a href="logout.pc">로그아웃</a><br>
 		<a href="memInsertForm.pc">회원가입</a><br>

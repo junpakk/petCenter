@@ -47,8 +47,8 @@ public class FileUploadUtil {
 			//logger.info("imgfileUpload mphoto >>> : " + mr.getParameter("mphoto"));//데이터 경로 test -> null, 이 로그때문에 오류발생
 			//MultipartRequest(req, filePath, imgfileSize, encodeType, new FileRename()) 인스턴스 끝나면 데이터저장 끝
 			mr = new MultipartRequest(req, filePath, imgfileSize, encodeType, new FileRename());
-			logger.info("imgfileUpload mname mr >>> : " + mr.getParameter("mname"));//데이터 경로 test -> 테스트2
-			logger.info("imgfileUpload mphoto mr >>> : " + mr.getFilesystemName("mphoto"));//데이터 경로 test -> 04 (2).png
+			//logger.info("imgfileUpload mname mr >>> : " + mr.getParameter("mname"));//데이터 경로 test -> 테스트2
+			//logger.info("imgfileUpload mphoto mr >>> : " + mr.getFilesystemName("mphoto"));//데이터 경로 test -> 04 (2).png
 			
 			logger.info("mr: "+ mr);
 			bool = true;
