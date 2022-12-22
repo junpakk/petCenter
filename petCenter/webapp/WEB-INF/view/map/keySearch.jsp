@@ -93,10 +93,12 @@
 		
 		
 		// 마커를 클릭하면 장소명을 표출할 인포윈도우 입니다
+		/*
 		var infowindow = new kakao.maps.InfoWindow({
 			zIndex: 1,
 			removable: true
 		});
+		*/
 		
 		var mapContainer = document.getElementById('map'); // 지도를 표시할 div
 		var mapOption = {
@@ -171,14 +173,9 @@
 		        // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
 		        map.setBounds(bounds);
 
-		        var level = map.getLevel();
-		        console.log("level >>> ", level);
-		        map.setLevel(level+1);			        
-		        
-		        //const res_lat = document.getElementById('result-lat').value;
-		        //const res_lon = document.getElementById('result-lon').value;		        
-		        //map.setCenter(new kakao.maps.LatLng(res_lat, res_lon));
-		        //map.setLevel(4);
+		        //var level = map.getLevel();
+		        //console.log("level >>> ", level);
+		        //map.setLevel(level+1);			        
 		        
 		    } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
 
