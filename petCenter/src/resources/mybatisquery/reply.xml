@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+          "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="main.pc.reply.dao.ReplyDAO">
+
+<insert id="replyInsert" parameterType="replyvo" >
+ 
+	INSERT INTO PC_REPLY( 	
+								BRNUM, 
+								MNUM, 
+								MID,
+								BCNUM,
+	                           	BRCONTENT,  
+	                           	DELYN,
+	                           	IDATE,
+	                           	UDATE
+	                        ) 
+	                  VALUES
+	                  		( 	
+	                  			#{brnum},
+	                  			#{mnum},
+	                  			#{mid}, 
+	                  			#{bcnum},
+	                          	#{brcontent},  
+	                          	'Y',
+	                          	SYSDATE,
+	                          	SYSDATE
+	                        )
+</insert>
+
+
+<select id="replySelectAll" parameterType="replyvo" resultType="replyvo">
+	
+		SELECT 	A.BRNUM 		BRNUM
+			   ,A.MNUM  		MNUM
+		       ,A.MID 	 		MID
+		       ,A.BCNUM  		BCNUM
+		       ,A.BRCONTENT 	BRCONTENT	   
+	           ,A.UDATE 		UDATE
+		FROM 	PC_REPLY A
+		WHERE 	DELETEYN = 'Y' 
+		AND 	A.BCNUM = #{bcnum}
+		ORDER BY 1 DESC
+</select>
+
+<update id="replyDelete" parameterType="replyvo">
+	
+	UPDATE 	PC_REPLY 
+	SET 	DELETEYN = 'N', 
+			UDATE = SYSDATE
+	WHERE 	DELYN = 'Y' 
+	AND 	BRNUM = #{brnum}
+	
+</update>
+
+
+
+</mapper>         	  

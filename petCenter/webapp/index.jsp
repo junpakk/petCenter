@@ -10,5 +10,7 @@
 	Hello 연습중 연습중3 
 	
 	<a href="kmjSpringMemInsertForm.pc">회원가입</a>
+	<a href="replyForm.pc">댓글</a>
+	replyForm
 </body>
 </html>
