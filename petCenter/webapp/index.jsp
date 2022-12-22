@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<<<<<<< HEAD
+
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -10,17 +10,8 @@
 <body>
 	Hello 연습중 연습중3 
 	
-	<a href="kmjSpringMemInsertForm.pc">회원가입</a>
-	<a href="replyForm.pc">댓글</a>
-	replyForm
-</body>
-=======
-	<head>
-		<meta charset="UTF-8">
-		<title>Insert title here</title>
-	</head>
-	<body>
 
+		<a href="replyForm.pc">댓글</a>
 		<h3>지도 테스트</h3>
 		<hr>
 		<h4>동물병원찾기</h4>
@@ -43,5 +34,5 @@
 		<a href="productInsertForm.pc">상품등록폼</a><br/>
 
 	</body>
->>>>>>> branch 'master' of https://github.com/junpakk/petCenter.git
+
 </html>
