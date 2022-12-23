@@ -47,7 +47,7 @@
 				{lat:37.38405085646203, lon:127.13139945202627},
 				{lat:37.384580466347664, lon:127.12911947355579},
 				{lat:37.38520314785883, lon:127.12822285188255},
-				{lat:37.386245010039936, lon:127.12712931689654},
+				{lat:37.386245010039936, lon:127.12712931689654}
 			];
 		</script>
 	</head>
@@ -55,52 +55,65 @@
 		<div id="map" style="width:1000px;height:900px;"></div>  
 		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e2a549944561293fdf3d307b172230ec"></script>
 		<script>
+		
+		//이동좌표를 저장할 리스트
+		var paths = [];
+		//테스트용 좌표이동을 위한 오프셋
+		var shift = 0;
+		//선을 그릴 객체 참조변수
+		var polyline;
+		const INTERVAL = 500;
+		//지도 범위 재설정 변수
+		var bounds;
+		
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
 		    mapOption = { 
-		        //center: new kakao.maps.LatLng(37.384875128912206, 127.12318057520164), // 지도의 중심좌표
-		        center: new kakao.maps.LatLng(33.452344169439975, 126.56878163224233), // 지도의 중심좌표
+		        center: new kakao.maps.LatLng(37.384875128912206, 127.12318057520164), // 지도의 중심좌표
 		        level: 3 // 지도의 확대 레벨
 		    };
 		
 		var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 
-		var polyline = new kakao.maps.Polyline({
+		//선을 그릴 객체 생성
+		polyline = new kakao.maps.Polyline({
 		    map: map,
-		    path: [
-		        new kakao.maps.LatLng(33.452344169439975, 126.56878163224233),
-		        new kakao.maps.LatLng(33.452739313807456, 126.5709308145358),
-		        new kakao.maps.LatLng(33.45178067090639, 126.5726886938753) 
-		    ],
-		    strokeWeight: 3,
+		    strokeWeight: 7,
 		    strokeColor: '#FF00FF',
 		    strokeOpacity: 1,
 		    strokeStyle: 'solid'
-		});		
+		});				
 		
-		/*		
-        // 클릭한 위치를 기준으로 선을 생성하고 지도위에 표시합니다
-        clickLine = new kakao.maps.Polyline({
-            map: map, // 선을 표시할 지도입니다 
-            path: [clickPosition], // 선을 구성하는 좌표 배열입니다 클릭한 위치를 넣어줍니다
-            strokeWeight: 3, // 선의 두께입니다 
-            strokeColor: '#db4040', // 선의 색깔입니다
-            strokeOpacity: 1, // 선의 불투명도입니다 0에서 1 사이값이며 0에 가까울수록 투명합니다
-            strokeStyle: 'solid' // 선의 스타일입니다
-        });
+		//INTERVAL 간격으로 경로표시 콜백함수 호출
+		var timerId = setInterval(displayCallback, INTERVAL);
 		
+		function displayCallback() {
 
-		
-		setInterval(displayHello, 1000);
-
-function displayHello() {
-  document.getElementById("demo").innerHTML += "Hello";
-}
-		
-		
-		*/
-		
-		
-		
+			console.log("shift / lodata.length >>> ", shift, lodata.length);
+			
+			if(shift >= lodata.length){
+				clearInterval(timerId);
+				return false;
+			}
+			
+			paths.push(new kakao.maps.LatLng(lodata[shift].lat, lodata[shift].lon));
+			
+			bounds = new kakao.maps.LatLngBounds();
+			for(let i=0; i<paths.length; i++){
+				bounds.extend(paths[i]);
+			}
+			
+			map.setBounds(bounds);
+			
+			
+			shift += 1;
+			
+			if(polyline){
+				polyline.setMap(null);
+				polyline.setPath(paths);
+				polyline.setMap(map);
+			}
+		  
+		}
 		</script>
 	
 	</body>
