@@ -4,7 +4,10 @@
 
 <configuration>
 	<typeAliases>
+		<typeAlias type="main.pc.reply.vo.ReplyVO" alias="replyvo"/>
+		<typeAlias type="main.pc.like.vo.LikeVO" alias="likevo"/>
 		<typeAlias type="main.pc.member.vo.MemberVO" alias="membervo"/>
 		<typeAlias type="main.pc.product.vo.ProductVO" alias="productvo"/>
+
 	</typeAliases>
 </configuration>

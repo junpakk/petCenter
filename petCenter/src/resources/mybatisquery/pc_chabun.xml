@@ -19,4 +19,14 @@ FROM    PC_MEMBER A
 	FROM PC_PRODUCT A
 </select>
 
+<!-- 댓글 -->
+<select id="getReplyChabun" resultType="replyvo">
+	SELECT  /*+ INDEX_DESC(A SYS_C0011185) */ NVL(MAX(SUBSTR(A.BRNUM, -4)), 0) + 1  BRNUM FROM PC_REPLY A
+</select>
+
+<!-- 좋아요 -->
+<select id="getLikeChabun" resultType="likevo">
+	SELECT  /*+ INDEX_DESC(A SYS_C0011193) */ NVL(MAX(SUBSTR(A.BLNUM, -4)), 0) + 1  BLNUM FROM PC_LIKE A
+</select>
+
 </mapper>

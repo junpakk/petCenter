@@ -2,12 +2,16 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title>Insert title here</title>
-	</head>
-	<body>
 
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	Hello 연습중 연습중3 
+	
+
+		<a href="replyForm.pc">댓글</a>
 		<h3>지도 테스트</h3>
 		<hr>
 		<h4>동물병원찾기</h4>
@@ -31,4 +35,5 @@
 		<a href="productSelectAll.pc">상품전체목록페이지</a><br/>
 
 	</body>
+
 </html>
