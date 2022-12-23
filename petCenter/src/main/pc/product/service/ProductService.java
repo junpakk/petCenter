@@ -7,5 +7,6 @@ import main.pc.product.vo.ProductVO;
 public interface ProductService {
 
 	int productInsert(ProductVO pvo);//상품등록
+	List<ProductVO> productSelectAll(ProductVO pvo);//상품전체조회
 
 }

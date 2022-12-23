@@ -28,13 +28,13 @@ public class ProductServiceImpl implements ProductService {
 		return productDAO.productInsert(pvo);
 	}
 
-//	//상품 전체조회, S
-//	@Override
-//	public List<ProductVO> productSelectAll(ProductVO pvo) {
-//		// TODO Auto-generated method stub
-//		logger.info("productSelectAll() 진입: ");
-//		return productDAO.productSelectAll(pvo);
-//	}
+	//상품 전체조회, S
+	@Override
+	public List<ProductVO> productSelectAll(ProductVO pvo) {
+		// TODO Auto-generated method stub
+		logger.info("productSelectAll() 진입: ");
+		return productDAO.productSelectAll(pvo);
+	}
 //
 //	//상품 선택조회, S
 //	@Override

@@ -78,11 +78,11 @@ public class ProductController {
 		return "product/productInsertForm";
 	}//end of productInsert
 	
-//	//상품목록 페이지 조회
-//	@RequestMapping(value="productSelectAll", method=RequestMethod.GET)
-//	public String productSelectAll(ProductVO pvo, Model model) {
-//		logger.info("productSelectAll() 진입: ");
-//		
+	//상품 전체목록 조회
+	@RequestMapping(value="productSelectAll", method=RequestMethod.GET)
+	public String productSelectAll(ProductVO pvo, Model model) {
+		logger.info("productSelectAll() 진입: ");
+		
 //		//페이지처리
 //		int pageSize = CommonUtils.PRODUCT_PAGE_SIZE;
 //		int groupSize = CommonUtils.PRODUCT_GROUP_SIZE;
@@ -102,18 +102,18 @@ public class ProductController {
 //		logger.info("productSelectAll pvo.getGroupSize() : " + pvo.getGroupSize());
 //		logger.info("productSelectAll pvo.getCurPage() : " + pvo.getCurPage());
 //		logger.info("productSelectAll pvo.getTotalCount() : " + pvo.getTotalCount());
-//		
-//		//서비스 호출
-//		List<ProductVO> listAll = productService.productSelectAll(pvo);
-//		if(listAll.size() > 0) {
-//			logger.info("listAll.size(): "+ listAll.size());
-//			
+		
+		//서비스 호출
+		List<ProductVO> listAll = productService.productSelectAll(pvo);
+		if(listAll.size() > 0) {
+			logger.info("listAll.size(): "+ listAll.size());
+			
 //			model.addAttribute("pagingPVO", pvo);//페이징 정보
-//			model.addAttribute("listAll", listAll);//상품 정보
-//			return "product/productSelectAll";
-//		}
-//		return "product/productInsertForm";
-//	}//end of productSelectAll
+			model.addAttribute("listAll", listAll);//상품 정보
+			return "product/productSelectAll";
+		}
+		return "index";
+	}//end of productSelectAll
 	
 //	//상품 조회
 //	@RequestMapping(value="productSelect", method=RequestMethod.GET)
