@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import main.pc.common.EncryptSHA;
 import main.pc.common.K_Session;
 import main.pc.login.service.LoginService;
 import main.pc.member.vo.MemberVO;
@@ -41,8 +42,11 @@ public class LoginController {
 	public String loginCheck(HttpServletRequest req, MemberVO mvo) {
 		logger.info("loginCheck 함수 진입 >>> : ");
 		
-		logger.info("loginCheck mvo.getMid()" + mvo.getMid());
-		logger.info("loginCheck mvo.getMpw()" + mvo.getMpw());
+		logger.info("loginCheck mvo.getMid() >>> : " + mvo.getMid());
+		
+		String mpw = EncryptSHA.encryptSHA256(mvo.getMpw());
+		mvo.setMpw(mpw);
+		logger.info("loginCheck mvo.getMpw() >>> : " + mvo.getMpw());
 		
 		List<MemberVO> listLogin = loginService.loginCheck(mvo);
 		

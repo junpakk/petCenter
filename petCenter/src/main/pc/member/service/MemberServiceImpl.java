@@ -61,4 +61,10 @@ public class MemberServiceImpl implements MemberService {
 		return memberDAO.memDelete(mvo);
 	}
 
+	@Override
+	public List<MemberVO> memIdCheck(MemberVO mvo) {
+		// TODO Auto-generated method stub
+		return memberDAO.memIdCheck(mvo);
+	}
+
 }
