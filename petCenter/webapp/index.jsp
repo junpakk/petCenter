@@ -17,6 +17,7 @@
 		<a href="keySearch.pc">테스트4</a><br>
 
 		<h4>산책로확인</h4>
+		<a href="walktest.pc">테스트5</a><br>
 		<hr>
 
 
