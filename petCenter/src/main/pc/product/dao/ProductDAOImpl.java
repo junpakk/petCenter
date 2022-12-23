@@ -34,13 +34,12 @@ public class ProductDAOImpl implements ProductDAO {
 		return sqlSession.selectList("productSelectAll", pvo);
 	}
 	
-//
-//	//상품 선택 조회, S
-//	@Override
-//	public List<ProductVO> productSelect(ProductVO pvo) {
-//		// TODO Auto-generated method stub
-//		logger.info("productSelect() 진입: ");
-//		return sqlSession.selectList("productSelect", pvo);
-//	}
+	//상품조회, S
+	@Override
+	public List<ProductVO> productSelect(ProductVO pvo) {
+		// TODO Auto-generated method stub
+		logger.info("productSelect() 진입: ");
+		return sqlSession.selectList("productSelect", pvo);
+	}
 
 }

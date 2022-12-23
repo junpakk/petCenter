@@ -8,7 +8,6 @@ public interface ProductDAO {
 
 	int productInsert(ProductVO pvo);//상품등록
 	List<ProductVO> productSelectAll(ProductVO pvo);//상품 전체조회, S
-//
-//	List<ProductVO> productSelect(ProductVO pvo);//상품 선택조회, S
+	List<ProductVO> productSelect(ProductVO pvo);//상품조회, S
 
 }

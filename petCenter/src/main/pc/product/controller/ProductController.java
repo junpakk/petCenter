@@ -115,22 +115,23 @@ public class ProductController {
 		return "index";
 	}//end of productSelectAll
 	
-//	//상품 조회
-//	@RequestMapping(value="productSelect", method=RequestMethod.GET)
-//	public String productSelect(ProductVO pvo, Model model) {
-//		logger.info("productSelect() 진입: ");
-//		
-//		//상품번호 확인하기
-//		logger.info("pvo.getPnum(): "+ pvo.getPnum());
-//		
-//		//서비스 호출
-//		List<ProductVO> list = productService.productSelect(pvo);
-//		if(list.size() > 0) {
-//			logger.info("list.size(): "+ list.size());
-//			model.addAttribute("list", list);
-//			return "product/productSelect";
-//		}
-//		return "product/productSelectAll";
-//	}
+	//상품 조회
+	@RequestMapping(value="productSelect", method=RequestMethod.GET)
+	public String productSelect(ProductVO pvo, Model model) {
+		logger.info("productSelect() 진입: ");
+		
+		//상품번호 확인하기
+		logger.info("pvo.getPnum(): "+ pvo.getPnum());
+		logger.info("pvo.toString(): "+ pvo.toString());
+		
+		//서비스 호출
+		List<ProductVO> list = productService.productSelect(pvo);
+		if(list.size() > 0) {
+			logger.info("list.size(): "+ list.size());
+			model.addAttribute("list", list);
+			return "product/productSelect";
+		}
+		return "product/productSelectAll";
+	}
 
 }

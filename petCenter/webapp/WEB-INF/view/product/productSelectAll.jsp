@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 
 <%@ page import="main.pc.product.vo.ProductVO" %> 
+<%@ page import="main.pc.common.NumUtil" %>
+<%@ page import="main.pc.common.CommonUtils" %>
 <%@ page import="java.util.List" %>  
 
 <%@ page import=" org.apache.log4j.LogManager" %>
@@ -33,6 +35,7 @@ getAttribute()의 경우 setAttribute()속성을 통한 설정이 없으면 무�
 	List<ProductVO> list = (List<ProductVO>)obj;
 	int nCnt = list.size();
 	logger.info("list.size(): "+ list.size());
+	
 %>
 
 <!DOCTYPE html>
@@ -52,8 +55,8 @@ getAttribute()의 경우 setAttribute()속성을 통한 설정이 없으면 무�
 
 tbody {
   display: inline-block;
-  width: 250px;
-  height: 300px;
+/*   width: 250px; */
+/*   height: 300px; */
   padding: 5px;
   border: 1px solid none;    
   background-color: none; 
@@ -62,71 +65,97 @@ tbody {
 table {
 	align: center;
 }
-	
+
+ul	{
+	list-style:none;
+}
 </style>
 </head>
 <body>
 <h3 align="center">PetCenter가 추천하는 내 아이 취향저격 상품</h3>
 <form name="productList" id="productList">
-<table border="1">
+<table border="1" align="center">
 
 	<thead>
 		<tr>
-			<th>사료 간식 용품 카테고리</th>
+			<th>
+				<ul>
+				    <li>
+				      <button class="" id="pc11">사료</button><!-- 카테고리 11 --><!-- 일단 강아지 페이지만 -->
+				      <button class="" id="pc12">간식</button><!-- 카테고리 12 -->
+				      <button class="" id="pc13">용품</button><!-- 카테고리 13 -->
+				    </li>
+	  			</ul>
+			</th>
 		</tr>
 	</thead>
-
-<%
-	String pnum = "";
-	String pprice = "";
 	
-	for(int i=0; i<nCnt; i++){
-		ProductVO pvo  = list.get(i);
-		pnum = pvo.getPnum();
-		pprice = pvo.getPprice();
-// 		pprice = NumUtil.comma(pprice);//',' 제거
+	
+<%
+	String pname = "";	
+	String pprice = "";
+	String pphoto = "";
+	String pphotoPath = "";
+	String pnum = "";
+	
+// 	for(int i=0; i<list.size(); i++){
+	for(int i=0; i<16; i++){
+// 		ProductVO pvo  = list.get(i);
+		ProductVO pvo  = list.get(0);
 		
+		pname = pvo.getPname();
+		pprice = pvo.getPprice();
+		pprice = NumUtil.comma(pprice);//',' 추가
+		pphoto = pvo.getPphoto();
+		pphotoPath = CommonUtils.PRODUCT_IMG_UPLOAD_PATH;
+		pnum = pvo.getPnum();
+	
 		//페이징 세팅
 // 		pageSize = Integer.parseInt(pagingPVO.getPageSize());
 // 		groupSize = Integer.parseInt(pagingPVO.getGroupSize());
 // 		curPage = Integer.parseInt(pagingPVO.getCurPage());
 // 		totalCount = Integer.parseInt(pvo.getTotalCount());
 %>
-<%
-	for(i=0; i<4; i++){
-%>
-	<tbody>
+	<td>
+		<table>
 			<tr>
 				<td>
-					<a>
-						사진 및 상세보기링크<img src=""/>
+<%-- 					<button type="submit" id="btnPphoto" onclick="findSelect('<%= pnum %>')"> --%>
+<%-- 						<img src="/petCenter/fileupload/product/<%= pphoto %>"/> --%>
+<!-- 					</button> -->
+
+					<a href="productSelect.pc?pnum=<%= pnum %>">
+						<img src="/petCenter/fileupload/product/<%= pphoto %>"/>
+ 					</a>
+				</td>
+			</tr>
+			<tr>
+				<td align="right">
+					<a href="#">
+						<img src="/petCenter/img/icon/cart.png" width="30px" height="30px"/>
 					</a>
 				</td>
 			</tr>
 			<tr>
 				<td>
-					우측 장바구니 버튼
+					<%= pname %>
 				</td>
 			</tr>
 			<tr>
 				<td>
-					좌측메뉴명
+					가격: <%= pprice %> 원
 				</td>
 			</tr>
-			<tr>
-				<td>
-					좌측 가격(원)
-				</td>
-			</tr>
-	</tbody>
+		</table>
+	</td>
 <%
-	}
-%>
-	
-<%
+		if(i%4 == 3){
+			out.println("</tr>");
+		}
 	}//end of for
 %>
-
+</table>
+<table>	
 	<tfoot>
 	<!-- <tr> -->
 	<!-- 	<td colspan="3"> -->

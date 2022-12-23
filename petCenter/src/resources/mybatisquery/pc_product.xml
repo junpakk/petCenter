@@ -5,6 +5,7 @@
           
 <mapper namespace="main.pc.product.dao.ProductDAO">
 
+<!-- 상품등록 -->
 <insert id="productInsert" parameterType="productvo" >
 	
 	INSERT INTO PC_PRODUCT ( PNUM
@@ -27,6 +28,7 @@
            					,SYSDATE)
 </insert>
 
+<!-- 상품 전체조회 -->
 <select id="productSelectAll" parameterType="productvo" resultType="productvo">	
 <!-- 	SELECT * FROM ( -->
 		SELECT 	A.PNUM 		PNUM
@@ -46,6 +48,24 @@
 <!-- 		ORDER BY 1 DESC   -->
 		<!--  ? : 현재 페이지 : curPage -->
 <!-- 	) WHERE pageSize = #{curPage} -->
+</select>
+
+<!-- 상품조회 -->
+<select id="productSelect" parameterType="productvo" resultType="productvo">
+	
+		SELECT 	A.PNUM 		PNUM
+		       ,A.PNAME 	PNAME
+		       ,A.PPRICE 	PPRICE
+		       ,A.PCATEGORY PCATEGORY
+		       ,A.PDETAIL 	PDETAIL
+		       ,A.PPHOTO 	PPHOTO
+		       ,A.DELYN 	DELYN
+		       ,TO_CHAR(A.IDATE, 'YYYY-MM-DD') 	IDATE
+		       ,TO_CHAR(A.UDATE, 'YYYY-MM-DD') 	UDATE
+		FROM 	PC_PRODUCT A
+		WHERE 	A.DELYN = 'Y'
+		AND     A.PNUM = #{pnum}
+		
 </select>
 
 
