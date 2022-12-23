@@ -7,13 +7,19 @@
 		<title>선의 거리 계산하기</title>
 		<style>
 			.dot {overflow:hidden;float:left;width:12px;height:12px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/mini_circle.png');}    
-			.dotOverlay {position:relative;bottom:10px;border-radius:6px;border: 1px solid #ccc;border-bottom:2px solid #ddd;float:left;font-size:12px;padding:5px;background:#fff;}
+			.dotOverlay {position:relative;bottom:10px;border-radius:6px;border: 1px solid #ccc;border-bottom:2px solid #ddd;float:left;font-size:20px;font-weight:bold;padding:5px;background:#fff;}
 			.dotOverlay:nth-of-type(n) {border:0; box-shadow:0px 1px 2px #888;}    
 			.number {font-weight:bold;color:#ee6152;}
 			.dotOverlay:after {content:'';position:absolute;margin-left:-6px;left:50%;bottom:-8px;width:11px;height:8px;background:url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white_small.png')}
 			.distanceInfo {position:relative;top:5px;left:5px;list-style:none;margin:0;}
 			.distanceInfo .label {display:inline-block;width:50px;}
 			.distanceInfo:after {content:none;}
+			
+			#menu_wrap {position:absolute;top:0;left:0;bottom:0;width:250px;height:80px;margin:10px 0 30px 10px;padding:5px;overflow-y:auto;background:rgba(255, 255, 255, 0.7);z-index: 1;font-size:35px;font-weight:bold;border-radius: 10px;}
+			.bg_white {background:#FF0000;}
+			#menu_wrap .timeDisplay{text-align: center;}
+			#map {width:1000px;height:900px;}
+			
 		</style>
 		<script type="text/javascript">
 			//테스트용 위치 데이터		
@@ -49,10 +55,54 @@
 				{lat:37.38520314785883, lon:127.12822285188255},
 				{lat:37.386245010039936, lon:127.12712931689654}
 			];
+
+	        var hoursLabel = document.getElementById("hours");
+	        var minutesLabel = document.getElementById("minutes");
+	        var secondsLabel = document.getElementById("seconds");
+	        var totalSeconds = 0;
+
+	        function setTime(){
+	            
+	        	totalSeconds = totalSeconds + 1;
+	            secondsLabel.innerHTML = pad(totalSeconds%60);
+	            minutesLabel.innerHTML = pad(parseInt(totalSeconds/60));
+	            hoursLabel.innerHTML = pad(parseInt(totalSeconds/(60*60)));
+	        }
+
+	        function pad(val)
+	        {
+	            var valString = val + "";
+	            if(valString.length < 2)
+	            {
+	                return "0" + valString;
+	            }
+	            else
+	            {
+	                return valString;
+	            }
+	        }			
+			
 		</script>
 	</head>
 	<body>
-		<div id="map" style="width:1000px;height:900px;"></div>  
+		<div id="map"></div>
+	    <div id="menu_wrap" class="bg_white">
+	        <div class="timeDisplay">
+				<label id="hours">00</label>
+				<label class="colon">:</label>
+				<label id="minutes">00</label>
+				<label class="colon">:</label>
+				<label id="seconds">00</label>
+	        </div>
+	    </div>
+	    <div>
+	    	<button type="button" id="start">산책시작</button>
+	    	<button type="button" id="hold">산책멈춤</button>
+	    	<button type="button" id="restart">산책계속</button>
+	    	<button type="button" id="stop">산책끝</button>
+	    	
+	    </div>
+		    
 		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e2a549944561293fdf3d307b172230ec"></script>
 		<script>
 		
@@ -62,9 +112,29 @@
 		var shift = 0;
 		//선을 그릴 객체 참조변수
 		var polyline;
-		const INTERVAL = 500;
+		const INTERVAL = 1000;
 		//지도 범위 재설정 변수
 		var bounds;
+		//거리를 나타날 오버레이
+		var distanceOverlay;
+		//거리표시 시간함수 id
+		var timerId;
+		//타이머 표시 함수
+		var timerTid;
+
+        var hoursLabel = document.getElementById("hours");
+        var minutesLabel = document.getElementById("minutes");
+        var secondsLabel = document.getElementById("seconds");
+        var totalSeconds = 0;
+
+        function setTime(){
+            
+        	totalSeconds = totalSeconds + 1;
+            secondsLabel.innerHTML = pad(totalSeconds%60);
+            minutesLabel.innerHTML = pad(parseInt(totalSeconds/60));
+            hoursLabel.innerHTML = pad(parseInt(totalSeconds/(60*60)));
+        }		
+		
 		
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
 		    mapOption = { 
@@ -83,15 +153,108 @@
 		    strokeStyle: 'solid'
 		});				
 		
-		//INTERVAL 간격으로 경로표시 콜백함수 호출
-		var timerId = setInterval(displayCallback, INTERVAL);
+		var startBtn = document.getElementById("start");
+		startBtn.addEventListener("click", function(){
+			//INTERVAL 간격으로 경로표시 콜백함수 호출
+			if(!timerId){
+				timerId = setInterval(displayCallback, INTERVAL);
+				console.log("path count start >>> ", timerId);
+			}
+
+			totalSeconds = 0;
+            secondsLabel.innerHTML = "00";
+            minutesLabel.innerHTML = "00";
+            hoursLabel.innerHTML = "00";			
+
+	    	if(distanceOverlay){
+		        distanceOverlay.setMap(null);
+		        distanceOverlay = null;			    		
+	    	}
+
+			if(polyline){
+				polyline.setMap(null);
+				polyline.setPath(paths);	    	
+			}            
+            
+			if(!timerTid){
+				timerTid = setInterval(setTime, 1000);
+				console.log("count start >>> ", timerTid);
+			}
+		});
+		
+		var restartBtn = document.getElementById("restart");
+		restartBtn.addEventListener("click", function(){
+			//INTERVAL 간격으로 경로표시 콜백함수 호출
+			if(!timerId){
+				timerId = setInterval(displayCallback, INTERVAL);
+				console.log("path count start >>> ", timerId);
+			}
+			
+			if(!timerTid){
+				timerTid = setInterval(setTime, 1000);
+				console.log("count start >>> ", timerTid);
+			}
+		});
+		
+		var holdBtn = document.getElementById("hold");
+		holdBtn.addEventListener("click", function(){
+			
+			if(timerId){
+				clearInterval(timerId);
+				timerId = null;
+				console.log("path count hold >>> ", );
+			}
+
+			if(timerTid){
+				clearInterval(timerTid);
+				timerTid = null;
+				console.log("count hold >>> ");
+			}			
+		});
+		
+		var stopBtn = document.getElementById("stop");
+		stopBtn.addEventListener("click", function(){
+			
+			if(timerId){
+				clearInterval(timerId);
+				timerId = null;
+				console.log("path count stop >>> ");
+			}
+			
+			if(timerTid){
+				clearInterval(timerTid);
+				timerTid = null;
+				console.log("count stop >>> ");
+			}						
+			
+// 	    	if(distanceOverlay){
+// 		        distanceOverlay.setMap(null);
+// 		        distanceOverlay = null;			    		
+// 	    	}
+
+// 			if(polyline){
+// 				polyline.setMap(null);
+// 				polyline.setPath(paths);	    	
+// 			}
+			shift = 0;
+	    	paths = [];
+		});
 		
 		function displayCallback() {
 
 			console.log("shift / lodata.length >>> ", shift, lodata.length);
 			
 			if(shift >= lodata.length){
-				clearInterval(timerId);
+				if(timerId){
+					clearInterval(timerId);
+					timerId = null;
+				}
+				if(timerTid){
+					clearInterval(timerTid);
+					timerTid = null;
+				}						
+				shift = 0;
+				paths = [];
 				return false;
 			}
 			
@@ -102,15 +265,38 @@
 				bounds.extend(paths[i]);
 			}
 			
+			//지도 범위를 재설정
 			map.setBounds(bounds);
-			
 			
 			shift += 1;
 			
 			if(polyline){
 				polyline.setMap(null);
 				polyline.setPath(paths);
+
+				var distance = Math.round(polyline.getLength());
+				console.log("distance >>> ", distance);
+				contents = '<div class="dotOverlay">총거리 <span class="number">' + distance + '</span> m</div>'; // 커스텀오버레이에 추가될 내용입니다
+				
 				polyline.setMap(map);
+				
+			    if (distance > 0) {
+			    	//이미 오버레이가 있으면 지웁니다.
+			    	if(distanceOverlay){
+				        distanceOverlay.setMap(null);
+				        distanceOverlay = null;			    		
+			    	}
+			        // 클릭한 지점까지의 그려진 선의 총 거리를 표시할 커스텀 오버레이를 생성합니다
+			        distanceOverlay = new kakao.maps.CustomOverlay({
+			            content: contents,
+			            position: paths[paths.length-1],
+			            yAnchor: 1,
+			            zIndex: 2
+			        });
+			
+			        // 지도에 표시합니다
+			        distanceOverlay.setMap(map);
+			    }				
 			}
 		  
 		}
