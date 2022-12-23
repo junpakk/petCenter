@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public abstract class DateFormatUtil {
-
+	
 	public static String ymdFormat() {
 		return new SimpleDateFormat("yyMMdd").format(new Date());
 	}
@@ -21,3 +21,4 @@ public abstract class DateFormatUtil {
 	}
 	
 }
+

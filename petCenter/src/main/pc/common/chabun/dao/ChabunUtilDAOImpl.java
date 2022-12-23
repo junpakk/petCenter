@@ -6,13 +6,16 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+
+import main.pc.like.vo.LikeVO;
+import main.pc.reply.vo.ReplyVO;
 import main.pc.member.vo.MemberVO;
 import main.pc.product.vo.ProductVO;
 
 @Repository
 public class ChabunUtilDAOImpl implements ChabunUtilDAO {
-	Logger logger = LogManager.getLogger(getClass());
-	
+	Logger logger = LogManager.getLogger(ChabunUtilDAOImpl.class);
+
 	@Autowired(required=false)
 	private SqlSessionTemplate sqlSession;
 	
@@ -29,6 +32,23 @@ public class ChabunUtilDAOImpl implements ChabunUtilDAO {
 		// TODO Auto-generated method stub
 		logger.info("getProductChabun() 함수 진입 >>> : ");
 		return sqlSession.selectOne("getProductChabun");
+
+	}
+	@Override
+	public ReplyVO getReplyChabun() {
+		// TODO Auto-generated method stub
+		logger.info("getReplyChabun 함수 진입");
+		
+		return sqlSession.selectOne("getReplyChabun");
+	
 	}
 
+	@Override
+	public LikeVO getLikeChabun() {
+		// TODO Auto-generated method stub
+		logger.info("getLikeChabun 함수 진입");
+		
+		return sqlSession.selectOne("getLikeChabun");
+
+	}
 }
