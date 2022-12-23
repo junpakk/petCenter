@@ -139,8 +139,27 @@ public class MemberController {
 		return "member/memError";
 	}
 	
-	@PostMapping("memSelect")
+	@GetMapping("memSelect")
 	public String memSelect(MemberVO mvo, Model model) {
+		logger.info("memSelect 함수 진입 >>> :");
+		
+		List<MemberVO> list = memberService.memSelect(mvo);
+		int nCnt = list.size();
+		
+		// 리스트의 사이즈가 1일때 데이터를 담아 jsp로 이동
+		if(nCnt == 1) {
+			logger.info("memSelect nCnt >>> : " + nCnt);
+			
+			model.addAttribute("list", list);
+			
+			return "member/memSelect";
+		}
+		logger.info("memSelect fail");
+		return "member/memError";
+	}
+	
+	@PostMapping("memSelectForm")
+	public String memSelectForm(MemberVO mvo, Model model) {
 		logger.info("memSelect 함수 진입 >>> :");
 		
 		List<MemberVO> list = memberService.memSelect(mvo);
@@ -157,6 +176,8 @@ public class MemberController {
 		logger.info("memSelect fail");
 		return "member/memError";
 	}
+	
+	
 	
 	@PostMapping("memUpdate")
 	public String memUpdate(HttpServletRequest req, MemberVO mvo, Model model) {
