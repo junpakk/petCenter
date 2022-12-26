@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+          "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="main.pc.fair.dao.FairDAO">
+
+<insert id="fairInsert" parameterType="fairvo" >
+ 
+	INSERT INTO PC_FAIR( 	
+								BFNUM, 
+								BFNAME, 
+								BFDATE,
+								BFPLACE,
+	                           	BFPHOTO,  
+	                           	DELYN,
+	                           	IDATE,
+	                           	UDATE
+	                        ) 
+	                  VALUES
+	                  		( 	
+	                  			#{bfnum},
+	                  			#{bfname},
+	                  			#{bfdate}, 
+	                  			#{bfplace},
+	                          	#{bfphoto},  
+	                          	'Y',
+	                          	SYSDATE,
+	                          	SYSDATE
+	                        )
+</insert>
+
+
+<select id="fairSelectAll" resultType="fairvo">
+	
+		SELECT 	A.BFNUM 		BFNUM
+			   ,A.BFNAME  		BFNAME
+		       ,A.BFDATE 	 	BFDATE
+		       ,A.BFPLACE  		BFPLACE
+		       ,A.BFPHOTO 		BFPHOTO	   
+	           ,A.UDATE 		UDATE
+		FROM 	PC_FAIR A
+		WHERE 	DELYN = 'Y' 
+		ORDER BY 1
+</select>
+
+<update id="fairDelete" parameterType="fairvo">
+	
+	UPDATE 	PC_FAIR 
+	SET 	DELYN = 'N', 
+			UDATE = SYSDATE
+	WHERE 	DELYN = 'Y' 
+	AND 	BFNUM = #{bfnum}
+	
+</update>
+
+
+
+</mapper>         	  

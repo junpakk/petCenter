@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import main.pc.common.chabun.dao.ChabunUtilDAO;
-
+import main.pc.fair.vo.FairVO;
 import main.pc.like.vo.LikeVO;
 import main.pc.reply.vo.ReplyVO;
 import main.pc.member.vo.MemberVO;
@@ -51,6 +51,13 @@ public class ChabunUtilServiceImpl implements ChabunUtilService {
 		logger.info("getProductChabun() 함수 진입: ");
 		return chabunUtilDAO.getProductChabun();
 
+	}
+	// 박람회
+	@Override
+	public FairVO getFairChabun() {
+		// TODO Auto-generated method stub
+		logger.info("getFairChabun() 함수 진입: ");
+		return chabunUtilDAO.getFairChabun();
 	}
 
 

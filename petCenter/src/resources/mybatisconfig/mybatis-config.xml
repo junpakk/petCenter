@@ -8,6 +8,7 @@
 		<typeAlias type="main.pc.like.vo.LikeVO" alias="likevo"/>
 		<typeAlias type="main.pc.member.vo.MemberVO" alias="membervo"/>
 		<typeAlias type="main.pc.product.vo.ProductVO" alias="productvo"/>
+		<typeAlias type="main.pc.fair.vo.FairVO" alias="fairvo"/>
 
 	</typeAliases>
 </configuration>

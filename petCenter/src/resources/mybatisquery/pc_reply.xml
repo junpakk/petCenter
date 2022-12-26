@@ -39,7 +39,7 @@
 		       ,A.BRCONTENT 	BRCONTENT	   
 	           ,A.UDATE 		UDATE
 		FROM 	PC_REPLY A
-		WHERE 	DELETEYN = 'Y' 
+		WHERE 	DELYN = 'Y' 
 		AND 	A.BCNUM = #{bcnum}
 		ORDER BY 1 DESC
 </select>
@@ -47,7 +47,7 @@
 <update id="replyDelete" parameterType="replyvo">
 	
 	UPDATE 	PC_REPLY 
-	SET 	DELETEYN = 'N', 
+	SET 	DELYN = 'N', 
 			UDATE = SYSDATE
 	WHERE 	DELYN = 'Y' 
 	AND 	BRNUM = #{brnum}

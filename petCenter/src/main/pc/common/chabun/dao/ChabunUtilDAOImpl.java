@@ -6,7 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-
+import main.pc.fair.vo.FairVO;
 import main.pc.like.vo.LikeVO;
 import main.pc.reply.vo.ReplyVO;
 import main.pc.member.vo.MemberVO;
@@ -50,5 +50,13 @@ public class ChabunUtilDAOImpl implements ChabunUtilDAO {
 		
 		return sqlSession.selectOne("getLikeChabun");
 
+	}
+
+	@Override
+	public FairVO getFairChabun() {
+		// TODO Auto-generated method stub
+		logger.info("getFairChabun 함수 진입");
+		
+		return sqlSession.selectOne("getFairChabun");
 	}
 }
