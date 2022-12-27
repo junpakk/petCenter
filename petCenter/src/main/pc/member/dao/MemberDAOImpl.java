@@ -59,4 +59,10 @@ public class MemberDAOImpl implements MemberDAO {
 		return sqlSession.update("memDelete", mvo);
 	}
 
+	@Override
+	public List<MemberVO> memIdCheck(MemberVO mvo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("memIdCheck", mvo);
+	}
+
 }

@@ -36,6 +36,13 @@ public class MapController {
 		logger.info("keySearch 함수 진입 >>> ");
 		
 		return "map/keySearch";
+	}
+
+	@GetMapping("walktest")
+	public String walktest() {
+		logger.info("walktest 함수 진입 >>> ");
+		
+		return "map/walktest2";
 	}	
 
 }

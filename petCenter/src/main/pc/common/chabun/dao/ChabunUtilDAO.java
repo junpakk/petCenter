@@ -1,5 +1,6 @@
 package main.pc.common.chabun.dao;
 
+
 import main.pc.fair.vo.FairVO;
 import main.pc.like.vo.LikeVO;
 import main.pc.reply.vo.ReplyVO;

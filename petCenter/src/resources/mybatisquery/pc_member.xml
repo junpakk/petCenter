@@ -36,6 +36,17 @@
 
 </insert>
 
+<!-- 아이디 중복 체크 쿼리문 -->
+<select id="memIdCheck" parameterType="membervo" resultType="membervo">
+
+SELECT  A.MID           AS MID
+FROM    PC_MEMBER A
+WHERE   A.DELYN      = 'Y'
+AND     A.MID           = #{mid}
+
+</select>
+
+
 <!-- 전체조회 페이징 서칭 -->
 <select id="memSelectAll" resultType="membervo">
 

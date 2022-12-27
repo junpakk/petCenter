@@ -11,9 +11,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import main.pc.common.ChabunUtil;
 import main.pc.common.CommonUtils;
+import main.pc.common.EncryptSHA;
 import main.pc.common.chabun.service.ChabunUtilService;
 import main.pc.member.service.MemberService;
 import main.pc.member.vo.MemberVO;
@@ -56,6 +58,8 @@ public class MemberController {
 		// 아이디
 		
 		// 비밀번호
+		String mpw = EncryptSHA.encryptSHA256(mvo.getMpw());
+		mvo.setMpw(mpw);
 		
 		// 휴대폰
 		String mhp1 = req.getParameter("mhp1");
@@ -91,6 +95,24 @@ public class MemberController {
 			return "member/memResult";
 		}
 		return "member/memError";
+	}
+	
+	@PostMapping("memIdCheck")
+	@ResponseBody
+	public Object memIdCheck(MemberVO mvo) {
+		logger.info("khgIdCheck() 함수 진입 >>> : ");
+		logger.info("khgIdCheck() kmvo.getMid() >>> : " + mvo.getMid());
+		
+		List<MemberVO> list = memberService.memIdCheck(mvo);
+		logger.info("khgMemberIdCheck list.size() >>> : " + list.size());
+		
+		String msg = "";
+		if (list.size() == 0) {msg = "ID_YES";}
+		else {
+			msg = "ID_NO";
+			logger.info("중복 아이디 >>> : " + list.get(0).getMid());
+		}
+		return msg;
 	}
 	
 	@GetMapping("memSelectAll")
@@ -139,8 +161,27 @@ public class MemberController {
 		return "member/memError";
 	}
 	
-	@PostMapping("memSelect")
+	@GetMapping("memSelect")
 	public String memSelect(MemberVO mvo, Model model) {
+		logger.info("memSelect 함수 진입 >>> :");
+		
+		List<MemberVO> list = memberService.memSelect(mvo);
+		int nCnt = list.size();
+		
+		// 리스트의 사이즈가 1일때 데이터를 담아 jsp로 이동
+		if(nCnt == 1) {
+			logger.info("memSelect nCnt >>> : " + nCnt);
+			
+			model.addAttribute("list", list);
+			
+			return "member/memSelect";
+		}
+		logger.info("memSelect fail");
+		return "member/memError";
+	}
+	
+	@PostMapping("memSelectForm")
+	public String memSelectForm(MemberVO mvo, Model model) {
 		logger.info("memSelect 함수 진입 >>> :");
 		
 		List<MemberVO> list = memberService.memSelect(mvo);
@@ -157,6 +198,8 @@ public class MemberController {
 		logger.info("memSelect fail");
 		return "member/memError";
 	}
+	
+	
 	
 	@PostMapping("memUpdate")
 	public String memUpdate(HttpServletRequest req, MemberVO mvo, Model model) {

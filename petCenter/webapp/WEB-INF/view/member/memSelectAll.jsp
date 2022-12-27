@@ -135,7 +135,7 @@
 			if($(".mnum:checked").length == 1){
 				$("#memSelectAll").attr({
 					'action':'memSelect.pc',
-					'method':'POST',
+					'method':'GET',
 					'enctype':'application/x-www-form-urlencoded'
 				}).submit();
 			}else{
@@ -149,7 +149,7 @@
 			
 			if($(".mnum:checked").length == 1){
 				$("#memSelectAll").attr({
-					'action':'memSelect.pc',
+					'action':'memSelectForm.pc',
 					'method':'POST',
 					'enctype':'application/x-www-form-urlencoded'
 				}).submit();
@@ -178,7 +178,7 @@
 
 <style type="text/css">
 
-	.tt {
+	.tt, .head {
 		text-align: center;
 	}
 	
@@ -213,13 +213,13 @@
 </tr>
 
 <tr>
-	<th></th>
-	<th>회원번호</th>
-	<th>아이디</th>
-	<th>이름</th>
-	<th>핸드폰</th>
-	<th>이메일</th>
-	<th>등록일</th>
+	<th class="head"></th>
+	<th class="head">회원번호</th>
+	<th class="head">아이디</th>
+	<th class="head">이름</th>
+	<th class="head">핸드폰</th>
+	<th class="head">이메일</th>
+	<th class="head">등록일</th>
 </tr>
 </thead>
 

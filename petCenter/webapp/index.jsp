@@ -21,6 +21,7 @@
 		<a href="keySearch.pc">테스트4</a><br>
 
 		<h4>산책로확인</h4>
+		<a href="walktest.pc">테스트5</a><br>
 		<hr>
 
 
@@ -32,6 +33,7 @@
 		<a href="memSelectAll.pc">회원목록</a><br>
 		<hr>
 		<a href="productInsertForm.pc">상품등록폼</a><br/>
+		<a href="productSelectAll.pc">상품전체목록페이지</a><br/>
 
 	</body>
 

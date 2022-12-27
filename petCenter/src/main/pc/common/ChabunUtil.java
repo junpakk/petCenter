@@ -37,9 +37,11 @@ public abstract class ChabunUtil {
 	public static String getProductChabun(String type, String productNum) {
 		return BIZ_GUBUN_P.concat(ChabunUtil.numPad(type, productNum));
 	}
+
 	// 박람회
 	public static String getFairChabun(String type, String productNum) {
 		return BIZ_GUBUN_BF.concat(ChabunUtil.numPad(type, productNum));
 	}
+
 
 }

@@ -22,10 +22,19 @@
 <script type="text/javascript">
 	alert("javascript");
 	
+	var boolId = false;
+	var boolPw = false;
+	
 	$(document).ready(function() {
 		alert("jQuery");
 		
 		// 아이디 중복체크, 올바른 아이디
+		$("#midbtn").on("click", function(){
+			console.log("idCheck >>> : ");
+			
+			let mid = $("#mid").val();
+			idcheck(mid);
+		});
 		
 		// 비밀번호 체크, 올바른 비밀번호
 		$("#pwCheck").click(function(){
@@ -34,27 +43,7 @@
 			var mpw = $("#mpw").val();
 			var mpw_r = $("#mpw_r").val();
 			
-			if(mpw.length < 8 && mpw_r.length < 8){
-				alert("비밀번호는 8자리 이상!!!");
-				$("#mpw").val('');
-				$("#mpw_r").val('');
-				return false;
-			}
-			
-			if(mpw == mpw_r){
-				alert("비밀번호가 같습니다.");
-				$("#mpw").prop('readOnly', true);
-				$("#mpw_r").prop('readOnly', true);
-				$("#mpw").css('background-color', 'Bisque');
-				$("#mpw_r").css('background-color', 'Bisque');
-				return true;
-			}else{
-				alert("비밀번호가 다릅니다.");
-				$("#mpw").val('');
-				$("#mpw_r").val('');
-				$("#mpw").focus();
-				return false;
-			}
+			pwcheck(mpw, mpw_r);
 		});
 		
 		// 이메일
@@ -92,6 +81,21 @@
 		// 폼태그 데이터 컨트롤러에 보내기
 		$("#btn").on("click", function() {
 			
+			if (!boolId){
+				alert("올바른 아이디를 입력해주세요");
+				$("#mid_condi").attr("hidden", false);
+				return false;
+			}
+			if (!boolPw){
+				alert("올바른 비밀번호를 입력해주세요");
+				$("#mpw_condi").attr("hidden", false);
+				return false;
+			}
+			if ($("#memail1").val() == "" || $("#memail2").val() == ""){
+				alert("올바른 이메일 입력해주세요");
+				return false;
+			}
+			
 			$("#memForm").attr({
 				'action':'memInsert.pc',
 				'method':'POST',
@@ -101,11 +105,89 @@
 		});
 	});
 	
+	function idcheck(idVal) {
+		
+		const CHECK_ID = /^[a-zA-Z0-9]{5,20}/;
+		
+		if (!CHECK_ID.test(idVal)){
+			alert("올바른 아이디를 입력해주세요");
+			$("#mid_condi").attr("hidden", false);
+			return false;
+		}
+		
+		let idCheckURL = "memIdCheck.pc";
+		let reqType = "POST";
+		let dataParam = {mid: idVal,};
+		console.log("idCheckURL >>> : " + idCheckURL);
+		console.log("reqType >>> : " + reqType);
+		console.log("dataParam.kid >>> : " + dataParam.kid);
+	
+		$.ajax({
+			url: idCheckURL,
+			type: reqType,
+			data: dataParam,
+			success: whenSuccess,
+			error: whenError
+		});
+	
+		function whenSuccess(resData){
+// 			alert("whenSuccess resData >>> : " + resData);
+			if ("ID_YES" == resData){
+				alert("사용가능한 아이디입니다");
+				$("#mid").css('background-color', 'Bisque');
+				$("#mid").prop('readOnly', 'true');
+				$("#mpw").focus();
+				$("#mid_condi").attr("hidden", true);
+				boolId = true;
+			}else if("ID_NO" == resData){
+				alert("이미 사용중인 아이디입니다");
+				$("#mid").val('');
+				$("#mid").focus();
+				$("#mid_condi").attr("hidden", false);
+			}
+		}
+		function whenError(e){
+			alert("e >>> : " + e.responseText);
+		}
+	}
+	
+	function pwcheck(pwVal, pwVal_r) {
+		
+		//const CHECK_PW = /^[a-zA-Z0-9]{8,20}/;
+		const CHECK_PW = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()])[A-Za-z\d!@#$%^&*()]{8,20}$/;
+			
+		if (!CHECK_PW.test(pwVal)){
+			alert("올바른 비밀번호를 입력해주세요");
+			$("#mpw_condi").attr("hidden", false);
+			return false;
+		}
+		
+		if(pwVal == pwVal_r){
+			alert("비밀번호가 같습니다.");
+			$("#mpw").prop('readOnly', true);
+			$("#mpw_r").prop('readOnly', true);
+			$("#mpw").css('background-color', 'Bisque');
+			$("#mpw_r").css('background-color', 'Bisque');
+			$("#mpw_condi").attr("hidden", true);
+			boolPw = true;
+			return true;
+		}else{
+			alert("비밀번호가 다릅니다.");
+			$("#mpw").val('');
+			$("#mpw_r").val('');
+			$("#mpw").focus();
+			$("#mpw_condi").attr("hidden", false);
+			return false;
+		}
+		
+	}
+	
+	
 </script>
 
 <style type="text/css">
 
-	.mem{ text-align: center;}
+	.align-middle{ text-align: center;}
 	#notNull{ color: red; }
 	
 </style>
@@ -115,7 +197,7 @@
 <div id="container">
 
 <form name="memForm" id="memForm">
-<table class="table table-sm table-bordered w-auto" align="center">
+<table class="table table-bordered w-auto" align="center">
 <thead>
 <tr>
 	<td colspan="2">
@@ -127,33 +209,34 @@
 <tbody>
 
 <tr>
-	<td class="mem" id="notNull">아이디</td>
+	<td class="align-middle" id="notNull">아이디</td>
 	<td>
-		<input type="text" name="mid" id="mid" placeholder="아이디체크"  />
+		<input type="text" name="mid" id="mid" placeholder="아이디" maxlength="20" />
 		<input type="button" name="midbtn" id="midbtn" value="아이디확인" class="btn btn-success btn-sm" />
-<!-- 		<span id="midchange" style="color:red">8자이상입력</span> -->
+		<br><span id="mid_condi" style="color:red" hidden>&nbsp;&nbsp;5~20자 영문 또는 숫자</span>
 	</td>
 </tr>
 
 <tr>
-	<td class="mem" id="notNull">비밀번호</td>
+	<td class="align-middle" id="notNull">비밀번호</td>
 	<td>
-		<input type="text" name="mpw" id="mpw" placeholder="8 ~ 20자리"  /><br/>
-		<input type="text" id="mpw_r" name="mpw_r" placeholder="영문 숫자 특수문자"  />
+		<input type="text" name="mpw" id="mpw" placeholder="8 ~ 20자리" maxlength="20" /><br/><br>
+		<input type="text" id="mpw_r" name="mpw_r" placeholder="영문 숫자 특수문자" maxlength="20" />
 		<input type="button" value="비밀번호확인" id="pwCheck" class="btn btn-success btn-sm"/><br/>
+		<span id="mpw_condi"style="color:Red;" hidden>8~20자 영문, 숫자, 특수문자</span>
 	</td>
 </tr>
 
 <tr>
-	<td class="mem">이름</td>
+	<td class="align-middle">이름</td>
 	<td><input type="text" name="mname" id="mname" /></td>
 </tr>
 
 <tr>
-	<td class="mem" id="notNull">이메일</td>
+	<td class="align-middle" id="notNull">이메일</td>
 	<td>
 		<input type="text" name="memail1" id="memail1" style="width:150px" />
-		@ <input type="text" name="memail2" id="memail2" style="width:100px" placeholder="직접입력"/>
+		@ <input type="text" name="memail2" id="memail2" style="width:100px" placeholder="직접입력" />
 		<select name="memail3" id="memail3" style="width:100px; margin-right:10px">
 			<option value="1" selected>직접입력</option>
 			<option value="naver.com" >naver.com</option>
@@ -161,11 +244,12 @@
 			<option value="daum.net" >daum.net</option>
 			<option value="kakao.com" >kakao.com</option>
 		</select>
+		<span id="memail_condi"style="color:Red;" hidden>필수정보</span>
 	</td>
 </tr>
 
 <tr>
-	<td class="mem" >휴대폰</td>
+	<td class="align-middle" >휴대폰</td>
 	<td>
 		<select name="mhp1" id="mhp1">
 			<option value="010" selected>010</option>
@@ -175,13 +259,13 @@
 			<option value="018">018</option>
 			<option value="019">019</option>
 		</select>
-		- <input type="text" name="mhp2" id="mhp2" size="1"/>
-		- <input type="text" name="mhp3" id="mhp3" size="1"/>
+		- <input type="text" name="mhp2" id="mhp2" maxlength="4" size="1"/>
+		- <input type="text" name="mhp3" id="mhp3" maxlength="4" size="1"/>
 	</td>
 </tr>
 
 <tr>
-	<td class="mem">기호동물</td>
+	<td class="align-middle">기호동물</td>
 	<td>
 		<input type="checkbox" name="mpetArr" value="mp0" />강아지
 		<input type="checkbox" name="mpetArr" value="mp1" />고양이
@@ -189,7 +273,7 @@
 </tr>
 
 <tr>
-	<td class="mem">자기소개</td>
+	<td class="align-middle">자기소개</td>
 	<td>
 		<textarea name="minfo" id="minfo" rows="5" cols="49" placeholder="자기소개글 작성해주세요"></textarea>
 	</td>

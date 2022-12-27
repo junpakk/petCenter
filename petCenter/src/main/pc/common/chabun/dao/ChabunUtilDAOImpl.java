@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+
 import main.pc.fair.vo.FairVO;
 import main.pc.like.vo.LikeVO;
 import main.pc.reply.vo.ReplyVO;
