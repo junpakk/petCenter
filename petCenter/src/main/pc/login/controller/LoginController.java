@@ -8,6 +8,7 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -79,5 +80,28 @@ public class LoginController {
 		
 		return "main/mainPage";
 	}
+	
+	// 아이디 찾기 ==================================================
+	
+	@GetMapping("idFindForm")
+	public String idFindForm() {
+		logger.info("idFindForm 함수 진입 >>> : ");
+		return "login/idFind";
+	}
+	
+	// 아이디찾기 인증번호
+	@GetMapping("idFindAuthnum")
+	public String idFindAuthnum(HttpServletRequest req, MemberVO mvo, Model model) {
+		logger.info("idFindAuthnum 함수 진입 >>> : ");
+		
+		
+		
+		
+		
+		return "";
+	}
+	
+	// 아이디 찾기 ==================================================
+	
 	
 }

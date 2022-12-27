@@ -76,9 +76,9 @@ public abstract class EncryptSHA {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		String s = EncryptSHA.encryptSHA256("1234");
+		String s = EncryptSHA.encryptSHA256("qwer1234!@#$");
 		logger.info("SHA-256 >>> : " + s);
-		String ss = "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4";
+		String ss = "adb2b265835955b6637e50945d7a92ab7bd9160fa2e3705d0384b5eb9d177d40";
 		logger.info("ss.length() >>> : " + ss.length());
 		
 		boolean b = s.equals(ss);

@@ -115,7 +115,8 @@
 	
 </style>
 </head>
-<body class="container">
+<body>
+<div class="container">
 <div class="div1 mt-5">
 	<form name="loginForm" id="loginForm">
 		<table border="1" class="table table-bordered w-auto" align="center">
@@ -135,12 +136,12 @@
 					<button type="button" class="btn btn-primary" id="loginBtn" style="width:208px;">로그인</button>
 				</td>
 			</tr>
-<!-- 			<tr> -->
-<!-- 				<td style="text-align:center;"> -->
-<!-- 					<a href="javascript:alert('준비중입니다')"><font size="2">아이디찾기</font></a> |  -->
-<!-- 					<a href="#pwFindForm.khg"><font size="2">비밀번호찾기</font></a> -->
-<!-- 				</td> -->
-<!-- 			</tr> -->
+			<tr>
+				<td style="text-align:center;">
+					<a href="idFindForm.pc"><font size="2">아이디찾기</font></a> | 
+					<a href="#pwFindForm.khg"><font size="2">비밀번호찾기</font></a>
+				</td>
+			</tr>
 			<tr>
 				<td>
 					<a href="javascript:kakaoLoginApi()">
@@ -154,6 +155,7 @@
 			
 		</table>
 	</form>
+</div>
 </div>
 </body>
 </html>

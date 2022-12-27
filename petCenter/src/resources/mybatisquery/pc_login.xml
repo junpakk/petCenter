@@ -17,4 +17,17 @@
 
 </select>
 
+<!-- 아이디 찾기 이메일 체크 -->
+<select id="emailCntCheck" parameterType="membervo" resultType="membervo">
+	
+	SELECT
+			 A.MNAME		AS	MNAME
+			,A.MEMAIL		AS	MEMAIL
+	FROM     PC_MEMBER A
+	WHERE	 A.DELYN		=	'Y'
+	AND		 A.MNAME		=	#{mname}
+	AND		 A.MEMAIL		=	#{memail}
+	
+</select>
+
 </mapper>

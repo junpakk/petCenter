@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import main.pc.login.dao.LoginDAO;
+import main.pc.login.vo.TempAuthVO;
 import main.pc.member.vo.MemberVO;
 
 @Service
@@ -23,6 +24,30 @@ public class LoginServiceImpl implements LoginService {
 	public List<MemberVO> loginCheck(MemberVO mvo) {
 		// TODO Auto-generated method stub
 		return loginDAO.loginCheck(mvo);
+	}
+
+	@Override
+	public List<MemberVO> emailCntCheck(MemberVO mvo) {
+		// TODO Auto-generated method stub
+		return loginDAO.emailCntCheck(mvo);
+	}
+
+	@Override
+	public int tempAuthInsert(TempAuthVO avo) {
+		// TODO Auto-generated method stub
+		return loginDAO.tempAuthInsert(avo);
+	}
+
+	@Override
+	public List<MemberVO> idFind(MemberVO mvo) {
+		// TODO Auto-generated method stub
+		return loginDAO.idFind(mvo);
+	}
+
+	@Override
+	public List<MemberVO> idFindAuthnum(MemberVO mvo) {
+		// TODO Auto-generated method stub
+		return loginDAO.idFindAuthnum(mvo);
 	}
 
 }

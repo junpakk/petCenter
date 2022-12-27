@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import main.pc.login.vo.TempAuthVO;
 import main.pc.member.vo.MemberVO;
 
 @Repository
@@ -21,6 +22,30 @@ public class LoginDAOImpl implements LoginDAO {
 	public List<MemberVO> loginCheck(MemberVO mvo) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("loginCheck", mvo);
+	}
+
+	@Override
+	public List<MemberVO> emailCntCheck(MemberVO mvo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("emailCntCheck", mvo);
+	}
+
+	@Override
+	public int tempAuthInsert(TempAuthVO avo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public List<MemberVO> idFind(MemberVO mvo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<MemberVO> idFindAuthnum(MemberVO mvo) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

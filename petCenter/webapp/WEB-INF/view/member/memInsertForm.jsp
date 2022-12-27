@@ -32,18 +32,18 @@
 		$("#midbtn").on("click", function(){
 			console.log("idCheck >>> : ");
 			
-			let mid = $("#mid").val();
-			idcheck(mid);
+			//let mid = $("#mid").val();
+			idcheck();
 		});
 		
 		// 비밀번호 체크, 올바른 비밀번호
 		$("#pwCheck").click(function(){
 			console.log(" pwCheck 함수 진입");
 			
-			var mpw = $("#mpw").val();
-			var mpw_r = $("#mpw_r").val();
+			//var mpw = $("#mpw").val();
+			//var mpw_r = $("#mpw_r").val();
 			
-			pwcheck(mpw, mpw_r);
+			pwcheck();
 		});
 		
 		// 이메일
@@ -92,7 +92,7 @@
 				return false;
 			}
 			if ($("#memail1").val() == "" || $("#memail2").val() == ""){
-				alert("올바른 이메일 입력해주세요");
+				alert("올바른 이메일을 입력해주세요");
 				return false;
 			}
 			
@@ -105,8 +105,9 @@
 		});
 	});
 	
-	function idcheck(idVal) {
+	function idcheck() {
 		
+		let idVal = $("#mid").val();
 		const CHECK_ID = /^[a-zA-Z0-9]{5,20}/;
 		
 		if (!CHECK_ID.test(idVal)){
@@ -151,7 +152,10 @@
 		}
 	}
 	
-	function pwcheck(pwVal, pwVal_r) {
+	function pwcheck() {
+		
+		var pwVal = $("#mpw").val();
+		var pwVal_r = $("#mpw_r").val();
 		
 		//const CHECK_PW = /^[a-zA-Z0-9]{8,20}/;
 		const CHECK_PW = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()])[A-Za-z\d!@#$%^&*()]{8,20}$/;
@@ -244,7 +248,7 @@
 			<option value="daum.net" >daum.net</option>
 			<option value="kakao.com" >kakao.com</option>
 		</select>
-		<span id="memail_condi"style="color:Red;" hidden>필수정보</span>
+		<span id="memail_condi"style="color:Red;" hidden>필수입력정보</span>
 	</td>
 </tr>
 
