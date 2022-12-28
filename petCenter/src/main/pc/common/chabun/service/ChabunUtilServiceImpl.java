@@ -10,6 +10,7 @@ import main.pc.common.chabun.dao.ChabunUtilDAO;
 
 import main.pc.fair.vo.FairVO;
 import main.pc.like.vo.LikeVO;
+import main.pc.map.vo.MapVO;
 import main.pc.reply.vo.ReplyVO;
 import main.pc.member.vo.MemberVO;
 import main.pc.product.vo.ProductVO;
@@ -61,5 +62,11 @@ public class ChabunUtilServiceImpl implements ChabunUtilService {
 		return chabunUtilDAO.getFairChabun();
 	}
 
+	@Override
+	public MapVO getMapChabun() {
+		logger.info("getMapChabun() 함수 진입: ");
+		return chabunUtilDAO.getMapChabun();
+	}
 
+	
 }

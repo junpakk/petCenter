@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import main.pc.fair.vo.FairVO;
 import main.pc.like.vo.LikeVO;
+import main.pc.map.vo.MapVO;
 import main.pc.reply.vo.ReplyVO;
 import main.pc.member.vo.MemberVO;
 import main.pc.product.vo.ProductVO;
@@ -60,4 +61,12 @@ public class ChabunUtilDAOImpl implements ChabunUtilDAO {
 		
 		return sqlSession.selectOne("getFairChabun");
 	}
+	
+	@Override
+	public MapVO getMapChabun() {
+		// TODO Auto-generated method stub
+		logger.info("getMapChabun 함수 진입");
+		
+		return sqlSession.selectOne("getMapChabun");
+	}	
 }

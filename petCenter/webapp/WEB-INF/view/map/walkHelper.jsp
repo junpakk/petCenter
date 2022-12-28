@@ -15,12 +15,13 @@
 			.distanceInfo .label {display:inline-block;width:50px;}
 			.distanceInfo:after {content:none;}
 			
-			#menu_wrap {position:absolute;top:0;left:0;bottom:0;width:250px;height:80px;margin:10px 0 30px 10px;padding:5px;overflow-y:auto;background:rgba(255, 255, 255, 0.7);z-index: 1;font-size:35px;font-weight:bold;border-radius: 10px;}
+			#menu_wrap {position:absolute;top:280px;left:730px;bottom:0;width:250px;height:60px;margin:10px 0 30px 10px;padding:5px;overflow-y:auto;background:rgba(255, 255, 255, 0.7);z-index: 1;font-size:40px;font-weight:bold;border-radius: 10px;}
 			.bg_white {background:#FF0000;}
 			#menu_wrap .timeDisplay{text-align: center;}
 			#map {width:1000px;height:900px;}
 			
 		</style>
+		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 		<script type="text/javascript">
 			//테스트용 위치 데이터		
 			const lodata = [
@@ -96,14 +97,15 @@
 	        </div>
 	    </div>
 	    <div>
+	    	<input type="text" name="mid" id="mid" placeholder="아이디"/>	    
 	    	<button type="button" id="start">산책시작</button>
-	    	<button type="button" id="hold">산책멈춤</button>
-	    	<button type="button" id="restart">산책계속</button>
-	    	<button type="button" id="stop">산책끝</button>
+	    	<button type="button" id="stop">산책종료</button>
+	    	<button type="button" id="reset">초기화</button>
 	    	
 	    </div>
 		    
 		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e2a549944561293fdf3d307b172230ec"></script>
+		
 		<script>
 		
 		//이동좌표를 저장할 리스트
@@ -121,6 +123,8 @@
 		var timerId;
 		//타이머 표시 함수
 		var timerTid;
+		//이용자 아이디
+		var mid;
 
         var hoursLabel = document.getElementById("hours");
         var minutesLabel = document.getElementById("minutes");
@@ -155,17 +159,12 @@
 		
 		var startBtn = document.getElementById("start");
 		startBtn.addEventListener("click", function(){
-			//INTERVAL 간격으로 경로표시 콜백함수 호출
-			if(!timerId){
-				timerId = setInterval(displayCallback, INTERVAL);
-				console.log("path count start >>> ", timerId);
-			}
-
-			totalSeconds = 0;
-            secondsLabel.innerHTML = "00";
-            minutesLabel.innerHTML = "00";
-            hoursLabel.innerHTML = "00";			
-
+			mid = $("#mid").val();
+			if(mid === null || typeof(mid) === "undefined" || mid === ""){
+				alert("아이디를 기입해주세요");
+				return false;
+			}			
+			//지도위 오버레이와 선을 지운다
 	    	if(distanceOverlay){
 		        distanceOverlay.setMap(null);
 		        distanceOverlay = null;			    		
@@ -174,42 +173,29 @@
 			if(polyline){
 				polyline.setMap(null);
 				polyline.setPath(paths);	    	
-			}            
-            
-			if(!timerTid){
-				timerTid = setInterval(setTime, 1000);
-				console.log("count start >>> ", timerTid);
-			}
-		});
-		
-		var restartBtn = document.getElementById("restart");
-		restartBtn.addEventListener("click", function(){
-			//INTERVAL 간격으로 경로표시 콜백함수 호출
-			if(!timerId){
-				timerId = setInterval(displayCallback, INTERVAL);
-				console.log("path count start >>> ", timerId);
 			}
 			
-			if(!timerTid){
-				timerTid = setInterval(setTime, 1000);
-				console.log("count start >>> ", timerTid);
-			}
-		});
-		
-		var holdBtn = document.getElementById("hold");
-		holdBtn.addEventListener("click", function(){
-			
+			//타이머 초기화 재설정
 			if(timerId){
 				clearInterval(timerId);
 				timerId = null;
-				console.log("path count hold >>> ", );
 			}
+			timerId = setInterval(displayCallback, INTERVAL);
 
 			if(timerTid){
 				clearInterval(timerTid);
 				timerTid = null;
-				console.log("count hold >>> ");
-			}			
+			}
+			totalSeconds = 0;
+            secondsLabel.innerHTML = "00";
+            minutesLabel.innerHTML = "00";
+            hoursLabel.innerHTML = "00";				
+
+			shift = 0;
+	    	paths = [];            
+            
+			timerTid = setInterval(setTime, 1000);
+
 		});
 		
 		var stopBtn = document.getElementById("stop");
@@ -218,26 +204,51 @@
 			if(timerId){
 				clearInterval(timerId);
 				timerId = null;
-				console.log("path count stop >>> ");
 			}
-			
+
 			if(timerTid){
 				clearInterval(timerTid);
 				timerTid = null;
-				console.log("count stop >>> ");
-			}						
+			}
 			
-// 	    	if(distanceOverlay){
-// 		        distanceOverlay.setMap(null);
-// 		        distanceOverlay = null;			    		
-// 	    	}
+			alert("산책이 종료되었습니다");
+		});
+		
+		var resetBtn = document.getElementById("reset");
+		resetBtn.addEventListener("click", function(){
+			
+			//지도위 오버레이와 선을 지운다
+	    	if(distanceOverlay){
+		        distanceOverlay.setMap(null);
+		        distanceOverlay = null;			    		
+	    	}
 
-// 			if(polyline){
-// 				polyline.setMap(null);
-// 				polyline.setPath(paths);	    	
-// 			}
+			if(polyline){
+				polyline.setMap(null);
+				polyline.setPath(paths);	    	
+			}
+			
+			//타이머 초기화 재설정
+			if(timerId){
+				clearInterval(timerId);
+				timerId = null;
+			}
+
+			if(timerTid){
+				clearInterval(timerTid);
+				timerTid = null;
+			}
+			totalSeconds = 0;
+            secondsLabel.innerHTML = "00";
+            minutesLabel.innerHTML = "00";
+            hoursLabel.innerHTML = "00";				
+			
+            document.getElementById("mid").textContent = "";
+            
 			shift = 0;
 	    	paths = [];
+
+	    	location.reload();
 		});
 		
 		function displayCallback() {
@@ -259,6 +270,32 @@
 			}
 			
 			paths.push(new kakao.maps.LatLng(lodata[shift].lat, lodata[shift].lon));
+			
+			let walkURL = "walkInsert.pc";
+			let reqType = "POST";
+			let sLat = lodata[shift].lat+"";
+			let sLon = lodata[shift].lon+"";
+			let dataParam = {
+					mid:mid,
+					maplat:sLat,
+					maplon:sLon
+			};
+			
+			$.ajax({
+				url : walkURL,
+				type : reqType,
+				data : dataParam,
+				success : function(d){
+					if("IYES" === d){
+						console.log("입력되었습니다");
+					}else if("INO" == d){
+						console.log("입력이 되지 않았습니다");
+					}
+				},
+				error : function(e){
+					console.log("e >>> "+e.responseText);
+				}
+			});
 			
 			bounds = new kakao.maps.LatLngBounds();
 			for(let i=0; i<paths.length; i++){

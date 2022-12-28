@@ -7,7 +7,7 @@ public abstract class ChabunUtil {
 	public static final String BIZ_GUBUN_BR = "BR"; // 댓글
 	public static final String BIZ_GUBUN_BL = "BL"; // 좋아요
 	public static final String BIZ_GUBUN_BF = "BF"; // 박람회
-	
+	public static final String BIZ_GUBUM_MP = "MP"; // 좋아요	
 	
 	
 	public static String numPad(String t, String c) {
@@ -42,6 +42,9 @@ public abstract class ChabunUtil {
 	public static String getFairChabun(String type, String productNum) {
 		return BIZ_GUBUN_BF.concat(ChabunUtil.numPad(type, productNum));
 	}
-
+	// 맵
+	public static String getMapChabun(String type, String productNum) {
+		return BIZ_GUBUM_MP.concat(ChabunUtil.numPad(type, productNum));
+	}
 
 }

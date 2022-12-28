@@ -15,13 +15,14 @@
 		<h3>지도 테스트</h3>
 		<hr>
 		<h4>동물병원찾기</h4>
-		<a href="mapTest1.pc">테스트1</a><br>
+		<a href="mapTest1.pc">테스트1(지도레벨)</a><br>
 		<a href="#">테스트2</a><br>
-		<a href="marker.pc">테스트3</a><br>
-		<a href="keySearch.pc">테스트4</a><br>
+		<a href="marker.pc">테스트3(위경도확인)</a><br>
+		<a href="keySearch.pc">동물병원찾기</a><br>
 
 		<h4>산책로확인</h4>
-		<a href="walktest.pc">테스트5</a><br>
+		<a href="walkHelper.pc">산책도우미</a><br>
+		<a href="walkHistory.pc">지난산책로</a><br>
 		<hr>
 
 

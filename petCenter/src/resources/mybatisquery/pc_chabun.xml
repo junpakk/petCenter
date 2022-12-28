@@ -33,4 +33,9 @@ FROM    PC_MEMBER A
 <select id="getFairChabun" resultType="fairvo">
 	SELECT  /*+ INDEX_DESC(A SYS_C0011080) */ NVL(MAX(SUBSTR(A.BFNUM, -4)), 0) + 1  BFNUM FROM PC_FAIR A
 </select>
+
+<!-- 맵 -->
+<select id="getMapChabun" resultType="mapvo">
+	SELECT  /*+ INDEX_DESC(A SYS_C0011193) */ NVL(MAX(SUBSTR(A.MAPNUM, -4)), 0) + 1  MAPNUM FROM PC_MAP A
+</select>
 </mapper>

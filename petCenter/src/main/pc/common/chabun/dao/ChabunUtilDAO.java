@@ -3,6 +3,7 @@ package main.pc.common.chabun.dao;
 
 import main.pc.fair.vo.FairVO;
 import main.pc.like.vo.LikeVO;
+import main.pc.map.vo.MapVO;
 import main.pc.reply.vo.ReplyVO;
 import main.pc.member.vo.MemberVO;
 import main.pc.product.vo.ProductVO;
@@ -14,6 +15,7 @@ public interface ChabunUtilDAO {
 	public ReplyVO getReplyChabun();
 	public LikeVO getLikeChabun();
 	public FairVO getFairChabun();
+	public MapVO getMapChabun();//맵
 
 
 }
