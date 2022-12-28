@@ -33,19 +33,20 @@ public class LoginDAOImpl implements LoginDAO {
 	@Override
 	public int tempAuthInsert(TempAuthVO avo) {
 		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.insert("tempAuthInsert", avo);
 	}
 
+	@Override
+	public List<TempAuthVO> idFindAuthnum(TempAuthVO avo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("idFindAuthnum", avo);
+	}
+	
 	@Override
 	public List<MemberVO> idFind(MemberVO mvo) {
 		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectList("idFind", mvo);
 	}
 
-	@Override
-	public List<MemberVO> idFindAuthnum(MemberVO mvo) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }

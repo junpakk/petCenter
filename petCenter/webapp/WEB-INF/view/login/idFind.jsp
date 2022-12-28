@@ -24,7 +24,7 @@
 			$.get(url
 				,{"mname" : mnameVal, "memail" : memailVal}
 				,function(data){
-					alert(data);
+					//alert(data);
 					var sVal = $(data).find("result").text();
 					alert(sVal);
 					

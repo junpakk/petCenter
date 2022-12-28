@@ -39,15 +39,14 @@ public class LoginServiceImpl implements LoginService {
 	}
 
 	@Override
+	public List<TempAuthVO> idFindAuthnum(TempAuthVO avo) {
+		// TODO Auto-generated method stub
+		return loginDAO.idFindAuthnum(avo);
+	}
+
+	@Override
 	public List<MemberVO> idFind(MemberVO mvo) {
 		// TODO Auto-generated method stub
 		return loginDAO.idFind(mvo);
 	}
-
-	@Override
-	public List<MemberVO> idFindAuthnum(MemberVO mvo) {
-		// TODO Auto-generated method stub
-		return loginDAO.idFindAuthnum(mvo);
-	}
-
 }

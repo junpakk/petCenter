@@ -11,6 +11,6 @@ public interface LoginDAO {
 	
 	public List<MemberVO> emailCntCheck(MemberVO mvo);
 	public int tempAuthInsert(TempAuthVO avo);
+	public List<TempAuthVO> idFindAuthnum(TempAuthVO avo);
 	public List<MemberVO> idFind(MemberVO mvo);
-	public List<MemberVO> idFindAuthnum(MemberVO mvo);
 }

@@ -8,12 +8,12 @@
 <select id="loginCheck" resultType="membervo">
 
 	SELECT
-			 A.MNUM		AS	MNUM
-			,A.MID		AS	MID
-	FROM     PC_MEMBER A
-	WHERE	 A.DELYN	=	'Y'
-	AND		 A.MID		=	#{mid}
-	AND		 A.MPW		=	#{mpw}
+			A.MNUM			AS	MNUM
+		   ,A.MID			AS	MID
+	FROM	PC_MEMBER A
+	WHERE	A.DELYN			=	'Y'
+	AND		A.MID			=	#{mid}
+	AND		A.MPW			=	#{mpw}
 
 </select>
 
@@ -21,13 +21,63 @@
 <select id="emailCntCheck" parameterType="membervo" resultType="membervo">
 	
 	SELECT
-			 A.MNAME		AS	MNAME
-			,A.MEMAIL		AS	MEMAIL
-	FROM     PC_MEMBER A
-	WHERE	 A.DELYN		=	'Y'
-	AND		 A.MNAME		=	#{mname}
-	AND		 A.MEMAIL		=	#{memail}
+			A.MNAME			AS	MNAME
+		   ,A.MEMAIL		AS	MEMAIL
+	FROM	PC_MEMBER A
+	WHERE	A.DELYN			=	'Y'
+	AND		A.MNAME			=	#{mname}
+	AND		A.MEMAIL		=	#{memail}
 	
 </select>
 
+<!-- 인증번호 인서트 -->
+<insert id="tempAuthInsert" parameterType="tempauthvo">
+	
+	<selectKey keyProperty="anum" resultType="String" order="BEFORE">
+		SELECT NVL(MAX(TO_NUMBER(TRIM(ANUM))), 0) + 1 FROM PC_TEMPAUTH
+	</selectKey>
+	INSERT INTO PC_TEMPAUTH (
+								ANUM
+							   ,AUTHNUM
+							   ,MEMAIL
+							   ,IDATE
+	)
+					VALUES (
+								#{anum}
+							   ,#{authnum}
+							   ,#{memail}
+							   ,SYSDATE
+	)
+</insert>
+
+<!-- 인증번호 셀렉트 -->
+<select id="idFindAuthnum" parameterType="tempauthvo" resultType="tempauthvo">
+
+	SELECT
+			A.AUTHNUM		AS	AUTHNUM
+		   ,A.MEMAIL		AS	MEMAIL
+	FROM	PC_TEMPAUTH A
+	WHERE	A.AUTHNUM		=	#{authnum}
+	AND		A.MEMAIL		=	#{memail}
+
+</select>
+
+<!-- 아이디 찾기 -->
+<select id="idFind" parameterType="membervo" resultType="membervo">
+
+	SELECT
+			A.MID			AS	MID
+		   ,TO_CHAR(TO_DATE(A.IDATE), 'YYYY-MM-DD')		AS	IDATE
+	FROM	PC_MEMBER A
+	WHERE	A.DELYN			=	'Y'
+	AND		A.MNAME			=	#{mname}
+	AND		A.MEMAIL		=	#{memail}
+
+</select>
+
 </mapper>
+
+
+
+
+
