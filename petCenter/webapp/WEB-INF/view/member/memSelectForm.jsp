@@ -131,8 +131,8 @@
 		});
 		
 		
-		// 폼태그 데이터 컨트롤러에 보내기
-		$("#btn").on("click", function() {
+		// 폼태그 데이터 컨트롤러에 보내기 수정
+		$("#updateBtn").on("click", function() {
 			
 			$("#memForm").attr({
 				'action':'memUpdate.pc',
@@ -142,6 +142,16 @@
 			
 		});
 		
+		// 폼태그 데이터 컨트롤러에 보내기 탈퇴
+		$("#deleteBtn").on("click", function() {
+			
+			$("#memForm").attr({
+				'action':'memDelete.pc',
+				'method':'POST',
+				'enctype':'application/x-www-form-urlencoded'
+			}).submit();
+			
+		});
 		
 	});
 	
@@ -149,7 +159,7 @@
 
 <style type="text/css">
 
-	.mem{ text-align: center;}
+	.align-middle{ text-align: center;}
 	#notNull{ color: red; }
 	
 </style>
@@ -171,7 +181,7 @@
 <tbody>
 
 <tr>
-	<td class="mem" id="notNull">아이디</td>
+	<td class="align-middle" id="notNull">아이디</td>
 	<td>
 		<input type="hidden" name="mnum" id="mnum" />
 		<input type="text" name="mid" id="mid" readonly />
@@ -179,7 +189,7 @@
 </tr>
 
 <tr>
-	<td class="mem" id="notNull">비밀번호</td>
+	<td class="align-middle" id="notNull">비밀번호</td>
 	<td>
 		<input type="text" name="mpw" id="mpw" placeholder="8 ~ 20자리"  /><br/>
 		<input type="text" id="mpw_r" name="mpw_r" placeholder="영문 숫자 특수문자"  />
@@ -188,12 +198,12 @@
 </tr>
 
 <tr>
-	<td class="mem">이름</td>
+	<td class="align-middle">이름</td>
 	<td><input type="text" name="mname" id="mname" readonly/></td>
 </tr>
 
 <tr>
-	<td class="mem" id="notNull">이메일</td>
+	<td class="align-middle" id="notNull">이메일</td>
 	<td>
 		<input type="text" name="memail1" id="memail1" style="width:150px" />
 		@ <input type="text" name="memail2" id="memail2" style="width:100px" placeholder="직접입력"/>
@@ -208,7 +218,7 @@
 </tr>
 
 <tr>
-	<td class="mem" >휴대폰</td>
+	<td class="align-middle" >휴대폰</td>
 	<td>
 		<select name="mhp1" id="mhp1">
 			<option value="010" selected>010</option>
@@ -224,7 +234,7 @@
 </tr>
 
 <tr>
-	<td class="mem">기호동물</td>
+	<td class="align-middle">기호동물</td>
 	<td>
 		<input type="checkbox" name="mpetArr" class="mpetArr" value="mp0" />강아지
 		<input type="checkbox" name="mpetArr" class="mpetArr" value="mp1" />고양이
@@ -232,7 +242,7 @@
 </tr>
 
 <tr>
-	<td class="mem">자기소개</td>
+	<td class="align-middle">자기소개</td>
 	<td>
 		<textarea name="minfo" id="minfo" rows="5" cols="49" placeholder="자기소개글 작성해주세요"><%= minfo %></textarea>
 	</td>
@@ -243,7 +253,8 @@
 <tfoot>
 <tr >
 	<td colspan="2">
-		<button type="button" id="btn" class="btn btn-primary btn-lg">수정하기</button>
+		<button type="button" id="updateBtn" class="btn btn-primary btn-lg">수정하기</button>
+		<button type="button" id="btn" class="btn btn-danger btn-lg">탈퇴하기</button>
 <!-- 		<button type="reset">다시 </button> -->
 	</td>
 </tr>

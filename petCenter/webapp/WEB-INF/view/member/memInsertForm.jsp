@@ -113,6 +113,7 @@
 		if (!CHECK_ID.test(idVal)){
 			alert("올바른 아이디를 입력해주세요");
 			$("#mid_condi").attr("hidden", false);
+			boolId = false;
 			return false;
 		}
 		
@@ -145,6 +146,7 @@
 				$("#mid").val('');
 				$("#mid").focus();
 				$("#mid_condi").attr("hidden", false);
+				boolId = false;
 			}
 		}
 		function whenError(e){
@@ -163,6 +165,7 @@
 		if (!CHECK_PW.test(pwVal)){
 			alert("올바른 비밀번호를 입력해주세요");
 			$("#mpw_condi").attr("hidden", false);
+			boolPw = false;
 			return false;
 		}
 		
@@ -181,6 +184,7 @@
 			$("#mpw_r").val('');
 			$("#mpw").focus();
 			$("#mpw_condi").attr("hidden", false);
+			boolPw = false;
 			return false;
 		}
 		
@@ -224,8 +228,8 @@
 <tr>
 	<td class="align-middle" id="notNull">비밀번호</td>
 	<td>
-		<input type="text" name="mpw" id="mpw" placeholder="8 ~ 20자리" maxlength="20" /><br/><br>
-		<input type="text" id="mpw_r" name="mpw_r" placeholder="영문 숫자 특수문자" maxlength="20" />
+		<input type="password" name="mpw" id="mpw" placeholder="8 ~ 20자리" maxlength="20" /><br/><br>
+		<input type="password" id="mpw_r" name="mpw_r" placeholder="영문 숫자 특수문자" maxlength="20" />
 		<input type="button" value="비밀번호확인" id="pwCheck" class="btn btn-success btn-sm"/><br/>
 		<span id="mpw_condi"style="color:Red;" hidden>8~20자 영문, 숫자, 특수문자</span>
 	</td>
