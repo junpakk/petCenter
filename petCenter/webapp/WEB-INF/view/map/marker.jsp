@@ -7,7 +7,7 @@
 	    <title>클릭한 위치에 마커 표시하기</title>
 	</head>
 	<body>
-		<div id="map" style="width:100%;height:350px;"></div>
+		<div id="map" style="width:1200px;height:700px;"></div>
 		<p><em>지도를 클릭해주세요!</em></p> 
 		<div id="clickLatlng"></div>
 		
@@ -39,8 +39,7 @@
 			    // 마커 위치를 클릭한 위치로 옮깁니다
 			    marker.setPosition(latlng);
 			    
-			    var message = '클릭한 위치는 ' + latlng.getLat() + ' 이고, ';
-			    message += '경도는 ' + latlng.getLng() + ' 입니다';
+			    var message = "{lat:"+latlng.getLat() + ', lon:'+latlng.getLng()+"},";
 			    
 			    var resultDiv = document.getElementById('clickLatlng'); 
 			    resultDiv.innerHTML = message;

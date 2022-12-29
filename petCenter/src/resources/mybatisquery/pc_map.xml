@@ -6,20 +6,22 @@
 
 <insert id="walkInsert" parameterType="mapvo" >
  
-	INSERT INTO PC_MAP (MAPNUM, MID, MAPLAT, MAPLON, DELYN, IDATE, UDATE)
+	INSERT INTO PC_MAP (MAPNUM, MID, MAPLAT, MAPLON, MAPLAPS, DELYN, IDATE, UDATE)
             				VALUES(	#{mapnum, jdbcType=VARCHAR}, 
 	            					#{mid, jdbcType=VARCHAR}, 
 	            					#{maplat, jdbcType=VARCHAR},  	 
 	            					#{maplon, jdbcType=VARCHAR},
+	            					#{maplaps, jdbcType=VARCHAR},
 	            					'Y', 
 	            					SYSDATE,
 	            					SYSDATE)
 
-<!-- 	INSERT INTO PC_MAP (MAPNUM, MID, MAPLAT, MAPLON, DELYN, IDATE, UDATE) -->
+<!-- 	INSERT INTO PC_MAP (MAPNUM, MID, MAPLAT, MAPLON, MAPLAPS, DELYN, IDATE, UDATE) -->
 <!--             				VALUES(	#{mapnum, jdbcType=VARCHAR},  -->
 <!-- 	            					#{mid, jdbcType=VARCHAR},  -->
 <!-- 	            					#{maplat, jdbcType=VARCHAR},  	  -->
 <!-- 	            					#{maplon, jdbcType=VARCHAR}, -->
+<!-- 	            					#{maplaps, jdbcType=VARCHAR}, -->
 <!-- 	            					'Y',  -->
 <!-- 	            					NOW(), -->
 <!-- 	            					NOW()) -->
@@ -33,6 +35,7 @@
 				,A.MID						MID
 				,A.MAPLAT					MAPLAT
 				,A.MAPLON					MAPLON
+				,A.MAPLAPS					MAPLAPS
 				,A.DELYN				DELYN
 				,TO_CHAR(TO_DATE(A.IDATE), 'YYYY-MM-DD')	IDATE
 				,TO_CHAR(TO_DATE(A.UDATE), 'YYYY-MM-DD')	UDATE

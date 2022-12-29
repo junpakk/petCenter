@@ -131,7 +131,6 @@
 		.container{
 			width:700px;
 			margin:0 auto;
-			border:1px solid #ccc;
 		}
 		</style>		
 			
@@ -141,7 +140,7 @@
 		<h3>지난산책로보기</h3>
 		<form name="mapHisSearchForm" id="mapHisSearchForm">
 			
-			<input type="text" id="mid" name="mid" placeholder="아이디" required><br>
+			<input type="text" id="mid" name="mid" placeholder="아이디" required>&nbsp;&nbsp;
 			
 			<input type="text" id="startDate" name="startDate" size="12" placeholder="시작일" required>
 			<input type="button" value="달력" onclick="$('#startDate').datepicker('show');" /> - 
@@ -159,7 +158,7 @@
 		<h3>지난산책로삭제</h3>
 		<form name="mapHistoryForm" id="mapHistoryForm">
 			
-			<input type="text" id="memberid" name="memberid" placeholder="아이디" required><br>
+			<input type="text" id="memberid" name="memberid" placeholder="아이디" required>&nbsp;&nbsp;
 			
 			<input type="text" id="sDate" name="sDate" size="12" placeholder="시작일" required>
 			<input type="button" value="달력" onclick="$('#sDate').datepicker('show');" /> - 

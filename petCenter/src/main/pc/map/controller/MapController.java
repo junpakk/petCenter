@@ -30,7 +30,7 @@ public class MapController {
 	// 컨트롤러에서 채번 서비스 필드 오토 와이어드
 	@Autowired(required=false)
 	private ChabunUtilService chabunUtilService;	
-	
+/*	
 	//테스트1 지도레벨테스트
 	@GetMapping("mapTest1")
 	public String mapTest1() {
@@ -38,6 +38,7 @@ public class MapController {
 		
 		return "map/mapTest1";
 	}
+*/	
 /*
 	@GetMapping("kSearchAndList")
 	public String kSearchAndList() {
@@ -46,7 +47,8 @@ public class MapController {
 		//return "map/kSearchAndList";
 		return "map/coord2addr";
 	}
-*/	
+*/
+
 	//테스트3 지도 위경도확인 테스트
 	@GetMapping("marker")
 	public String marker() {
@@ -54,7 +56,7 @@ public class MapController {
 		
 		return "map/marker";
 	}	
-	
+
 	//동물병원찾기
 	@GetMapping("keySearch")
 	public String keySearch() {
@@ -127,7 +129,7 @@ public class MapController {
 			return "map/walkHisSrch";
 		}
 		
-		return "#";
+		return "map/walkHistory";
 		
 	}
 	

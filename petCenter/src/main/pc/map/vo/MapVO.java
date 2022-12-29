@@ -6,6 +6,7 @@ public class MapVO {
 	private String mid;
 	private String maplat;
 	private String maplon;
+	private String maplaps;
 	private String delyn;
 	private String idate;
 	private String udate;
@@ -25,12 +26,13 @@ public class MapVO {
 		// TODO Auto-generated constructor stub
 	}
 
-	public MapVO(String mapnum, String mid, String maplat, String maplon, String delyn, String idate, String udate) {
+	public MapVO(String mapnum, String mid, String maplat, String maplon, String maplaps, String delyn, String idate, String udate) {
 
 		this.mapnum = mapnum;
 		this.mid = mid;
 		this.maplat = maplat;
 		this.maplon = maplon;
+		this.maplaps = maplaps;
 		this.delyn = delyn;
 		this.idate = idate;
 		this.udate = udate;
@@ -38,7 +40,7 @@ public class MapVO {
 
 	
 	
-	public MapVO(String mapnum, String mid, String maplat, String maplon, String delyn, String idate, String udate,
+	public MapVO(String mapnum, String mid, String maplat, String maplon, String maplaps, String delyn, String idate, String udate,
 			String pageSize, String groupSize, String curPage, String totalCount, String searchFilter, String keyword,
 			String startDate, String endDate) {
 		super();
@@ -46,6 +48,7 @@ public class MapVO {
 		this.mid = mid;
 		this.maplat = maplat;
 		this.maplon = maplon;
+		this.maplaps = maplaps;
 		this.delyn = delyn;
 		this.idate = idate;
 		this.udate = udate;
@@ -70,6 +73,10 @@ public class MapVO {
 	public String getMaplon() {
 		return maplon;
 	}
+	
+	public String getMaplaps() {
+		return maplaps;
+	}
 
 	public String getDelyn() {
 		return delyn;
@@ -93,6 +100,10 @@ public class MapVO {
 
 	public void setMaplon(String maplon) {
 		this.maplon = maplon;
+	}
+	
+	public void setMaplaps(String maplaps) {
+		this.maplaps = maplaps;
 	}
 
 	public void setDelyn(String delyn) {
@@ -183,7 +194,7 @@ public class MapVO {
 
 	@Override
 	public String toString() {
-		return "MapVO [mapnum=" + mapnum + ", mid=" + mid + ", maplat=" + maplat + ", maplon=" + maplon + ", delyn=" + delyn + ", idate="
+		return "MapVO [mapnum=" + mapnum + ", mid=" + mid + ", maplat=" + maplat + ", maplon=" + maplon + ", maplaps=" + maplaps + ", delyn=" + delyn + ", idate="
 				+ idate + ", udate=" + udate + "]";
 	}
 	

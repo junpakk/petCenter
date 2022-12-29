@@ -13,7 +13,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>walkHistorySearch</title>
+		<title>산책로조회</title>
 		<style>
 			.dot {overflow:hidden;float:left;width:12px;height:12px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/mini_circle.png');}    
 			.dotOverlay {position:relative;bottom:10px;border-radius:6px;border: 1px solid #ccc;border-bottom:2px solid #ddd;float:left;font-size:20px;font-weight:bold;padding:5px;background:#fff;}
@@ -24,42 +24,74 @@
 			.distanceInfo .label {display:inline-block;width:50px;}
 			.distanceInfo:after {content:none;}
 			
-			#menu_wrap {position:absolute;top:280px;left:730px;bottom:0;width:250px;height:60px;margin:10px 0 30px 10px;padding:5px;overflow-y:auto;background:rgba(255, 255, 255, 0.7);z-index: 1;font-size:40px;font-weight:bold;border-radius: 10px;}
+			#menu_wrap {width:400px;background:rgba(255, 255, 255, 0.7);font-size:20px;font-weight:bold;border:1px solid #0000;margin-left: auto; margin-right: auto;margin-bottom:5px;}
 			.bg_white {background:#FF0000;}
-			#menu_wrap .timeDisplay{text-align: center;}
 			#map {width:700px;height:600px;}
-			
+
+			ul{list-style:none;padding-left:40px;}
 		</style>		
 		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+		<script src="/petCenter/resources/js/mapUtil.js"></script>
+
+<!-- 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"> -->
+<!-- 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
+<!-- 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script> -->
+<!-- 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>		 -->
+
 		<script type="text/javascript">
 			var paths = [];
 		</script>
+
 		
 	</head>
 	<body>
-	<h3>walkHistorySearch</h3>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e2a549944561293fdf3d307b172230ec"></script>
-	<div id="map"></div>
-	<div class="container" >
+	<div class="container">
+    <div id="menu_wrap" class="bg_white">
+		<div class="timeDisplay">
+			<ul>
+				<li>
+					산책한날 <label id="wdate"></label>
+				</li>
+				<li>		
+					걸린시간 
+					<label id="hours">00</label>
+					<label class="colon">시간</label>
+					<label id="minutes">00</label>
+					<label class="colon">분</label>
+					<label id="seconds">00</label>
+					<label class="colon">초</label>
+				</li>
+			</ul>
+		</div>
+    </div>
+	<div id="map" style="margin-left: auto; margin-right: auto;border:5px double #000;border-radius: 10px;"></div>
+	<br>
+
 	<% request.setCharacterEncoding("UTF-8"); %>
 	<%
 		Logger logger = LogManager.getLogger(this.getClass());
 		logger.info("walkHisSrch.jsp >>> ");
 	%>
 
-		<table border="1" class="table-sm table-striped table-hover table-bordered" style="width:700px;">
+<!-- 		<table class="table-sm table-striped table-hover table-bordered" style="width:700px;text-align:center;margin-left: auto; margin-right: auto;font-size:0.9em;"> -->
+		<table style="width:700px;text-align:center;margin-left: auto; margin-right: auto;font-size:0.9em;border:1px solid #ccc;border-radius: 10px;">
+<!-- 		<table border="1"> -->
 			<thead>
 				<tr>
-					<th><input type="checkbox" id="chk0" name="chk0" class="chk0"></th>
+					<th style="display:none;"><input type="checkbox" id="chk0" name="chk0" class="chk0" style="display:none;"></th>
 					<th>맵번호</th>
 					<th>아이디</th>
 					<th>위도</th>
 					<th>경도</th>
+					<th>경과시간</th>
 					<th>산책일</th>
 				</tr>
 			</thead>
 			<%
 				int totalCount = 0;
+				int totalLaps = 0;
+				String walkDate = "";
 			
 				Object obj = request.getAttribute("mList");
 				if(obj == null) {return;}
@@ -67,6 +99,12 @@
 				List<MapVO> mlist = (List<MapVO>)obj;
 				logger.info("blist.size() >>> "+mlist.size());
 				if(mlist.size() > 0){
+					
+					MapVO _mvo = mlist.get(mlist.size()-1);
+					totalLaps = Integer.parseInt(_mvo.getMaplaps());
+					walkDate = String.valueOf(_mvo.getIdate());
+					System.out.println("time >>> "+walkDate);
+					
 					for(int i=0; i<mlist.size(); i++){
 						MapVO mvo = mlist.get(i);
 						
@@ -79,20 +117,21 @@
 			</script>
 			<tbody>
 				<tr>
-					<td>
-						<input type="checkbox" id="mapnum" name="mapnum" class="mapnum" value=<%= mvo.getMapnum() %>>
+					<td style="display:none;">
+						<input type="checkbox" id="mapnum" name="mapnum" class="mapnum" value=<%= mvo.getMapnum() %> style="display:none;">
 					</td>
 					<td><%=mvo.getMapnum() %></td>
 					<td><%=mvo.getMid() %></td>
 					<td><%=mvo.getMaplat() %></td>
 					<td><%=mvo.getMaplon() %></td>
+					<td><%=mvo.getMaplaps() %></td>
 					<td><%=mvo.getIdate() %></td>
 				</tr>
 				<%
 					}
 				%>
 				<tr>
-					<td colspan="6">
+					<td colspan="7">
 						<jsp:include page="mapPaging.jsp" flush="true">
 							<jsp:param name="url" value="walkHisSrch.pc"/>
 							<jsp:param name="str" value="mid=${paging.mid}&startDate=${paging.startDate}&endDate=${paging.endDate}"/>
@@ -118,15 +157,6 @@
 		</table>
 	</div>		
 
-    <div id="menu_wrap" class="bg_white">
-        <div class="timeDisplay">
-			<label id="hours">00</label>
-			<label class="colon">:</label>
-			<label id="minutes">00</label>
-			<label class="colon">:</label>
-			<label id="seconds">00</label>
-        </div>
-    </div>
 <!--     <div> -->
 <!--     	<input type="text" name="mid" id="mid" placeholder="아이디"/>	     -->
 <!--     	<button type="button" id="start">산책시작</button> -->
@@ -146,11 +176,12 @@
 	//거리를 나타날 오버레이
 	var distanceOverlay;
 
-	var hoursLabel = document.getElementById("hours");
-	var minutesLabel = document.getElementById("minutes");
-	var secondsLabel = document.getElementById("seconds");
-	var totalSeconds = 0;
-	
+	var totalSeconds = <%=totalLaps%>;
+    $("#seconds").text(pad(totalSeconds%60));
+    $("#minutes").text(pad(parseInt(totalSeconds/60)));
+    $("#hours").text(pad(parseInt(totalSeconds/(60*60))));	
+    $("#wdate").text("<%=walkDate%>");
+    
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
 	    mapOption = { 
 	        center: new kakao.maps.LatLng(37.384875128912206, 127.12318057520164), // 지도의 중심좌표
@@ -162,10 +193,11 @@
 	//선을 그릴 객체 생성
 	polyline = new kakao.maps.Polyline({
 	    map: map,
+	    endArrow: true,
 	    strokeWeight: 7,
-	    strokeColor: '#FF00FF',
+	    strokeColor: '#EE0000',
 	    strokeOpacity: 1,
-	    strokeStyle: 'solid'
+	    strokeStyle: 'dashed'
 	});				
 
 	bounds = new kakao.maps.LatLngBounds();
@@ -204,10 +236,6 @@
 	        distanceOverlay.setMap(map);
 	    }				
 	}	
-	
-
-	
-
 	</script>
 
 		
