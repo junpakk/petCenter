@@ -8,7 +8,7 @@
 </head>
 <body>
 <%
-	String authnumStr = "메일을 확인하고 인증번호를 입력하세요";
+	String authnumStr = "메일을 확인하고 임시비밀번호를 입력하세요";
 	System.out.println("emailCheck >>> : " + authnumStr);
 %>
 <?xml version='1.0' encoding='UTF-8'?>

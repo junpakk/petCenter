@@ -5,7 +5,8 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="main.pc.member.vo.MemberVO" alias="membervo"/>
-		<typeAlias type="main.pc.login.vo.TempAuthVO" alias="tempauthvo"/>
+		<typeAlias type="main.pc.login.vo.IdFindVO" alias="idfindvo"/>
+		<typeAlias type="main.pc.login.vo.PwFindVO" alias="pwfindvo"/>
 		
 		<typeAlias type="main.pc.product.vo.ProductVO" alias="productvo"/>
 		

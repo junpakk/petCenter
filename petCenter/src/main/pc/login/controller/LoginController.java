@@ -17,7 +17,8 @@ import main.pc.common.GoogleAuthumMail;
 import main.pc.common.K_Session;
 import main.pc.common.PasswordUtil;
 import main.pc.login.service.LoginService;
-import main.pc.login.vo.TempAuthVO;
+import main.pc.login.vo.IdFindVO;
+import main.pc.login.vo.PwFindVO;
 import main.pc.member.vo.MemberVO;
 
 @Controller
@@ -103,8 +104,8 @@ public class LoginController {
 		if (emailCnt.size() == 1) {
 			String authnum = PasswordUtil.tempPW(8);
 			
-			TempAuthVO avo = null;
-			avo = new TempAuthVO();
+			IdFindVO avo = null;
+			avo = new IdFindVO();
 			avo.setAuthnum(authnum);
 			avo.setMemail(mvo.getMemail());
 			int nCnt = loginService.tempAuthInsert(avo);
@@ -123,14 +124,14 @@ public class LoginController {
 	
 	// 아이디 찾아서 받기
 	@PostMapping("idFind")
-	public String idFind(MemberVO mvo, TempAuthVO avo, Model model) {
+	public String idFind(MemberVO mvo, IdFindVO avo, Model model) {
 		logger.info("idFind 함수 진입 >>> : ");
 		logger.info("idFind avo.getAuthnum() >>> : " + avo.getAuthnum());
 		logger.info("idFind avo.getMemail() >>> : " + avo.getMemail());
 		logger.info("idFind mvo.getMname() >>> : " + mvo.getMname());
 		
 		// 아이디 인증 번호 확인
-		List<TempAuthVO> authnumFind = loginService.idFindAuthnum(avo);
+		List<IdFindVO> authnumFind = loginService.idFindAuthnum(avo);
 		
 		if (authnumFind.size() == 1) {
 			
@@ -147,5 +148,67 @@ public class LoginController {
 	
 	// 아이디 찾기 ==================================================
 	
+	// 패스워드 찾기 ==================================================
+	
+	@GetMapping("pwFindForm")
+	public String pwFindForm() {
+		logger.info("pwFindForm 함수 진입 >>> : ");
+		return "login/pwFind";
+	}
+	
+	// 아이디찾기 인증번호
+	@GetMapping("pwFindAuthnum")
+	public String pwFindAuthnum(HttpServletRequest req, MemberVO mvo, Model model) {
+		logger.info("pwFindAuthnum 함수 진입 >>> : ");
+		
+		// 이메일 체크 서비스 호출
+		List<MemberVO> emailCnt = loginService.emailCntCheckPW(mvo);
+		
+		if (emailCnt.size() == 1) {
+			String temppw = PasswordUtil.tempPW(8);
+			
+			PwFindVO pvo = null;
+			pvo = new PwFindVO();
+			pvo.setPpw(temppw);
+			pvo.setMid(mvo.getMid());
+			pvo.setMemail(mvo.getMemail());
+			
+			int nCnt = loginService.tempPwInsert(pvo);
+			
+			if (nCnt == 1) {
+				
+				String resiveMail = pvo.getMemail();
+				String sendMsg = "임시 비밀번호 :::: " + pvo.getPpw();
+				GoogleAuthumMail gam = new GoogleAuthumMail();
+				gam.authumMail(resiveMail, sendMsg);
+				return "login/emailCheckPW";
+			}
+		}
+		return "login/pwFind";
+	}
+		
+	// 아이디 찾아서 받기
+	@PostMapping("pwFind")
+	public String pwFind(MemberVO mvo, PwFindVO pvo, Model model) {
+		logger.info("idFind 함수 진입 >>> : ");
+		logger.info("idFind avo.getAuthnum() >>> : " + pvo.getPpw());
+		logger.info("idFind avo.getMemail() >>> : " + pvo.getMemail());
+		logger.info("idFind mvo.getMname() >>> : " + mvo.getMid());
+		
+		// 임시 비밀번호 확인
+		List<PwFindVO> authnumFind = loginService.pwFindAuthnum(pvo);
+		
+		if (authnumFind.size() == 1) {
+			
+			// 임시비밀번호 확인했을때 새 비번 입력사이트 이동
+//				model.addAttribute("mid", mvo.getMid());
+//				model.addAttribute("memail", pvo.getMemail());
+			return "member/memPasswordInsert";
+			
+		}
+		return "login/idFind";
+	}
+	
+	// 패스워드 찾기 ==================================================
 	
 }

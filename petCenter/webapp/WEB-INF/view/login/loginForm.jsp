@@ -20,8 +20,8 @@
 %>
 <script>
 	alert("로그인중입니다");
-// 	location.href="/petCenter/mainPage.pc";
-	location.href="/petCenter/index.jsp";
+	location.href="/petCenter/mainPage.pc";
+// 	location.href="/petCenter/index.jsp";
 </script>
 <%
 	}
@@ -140,7 +140,7 @@
 				<td style="text-align:center;">
 					<a href="memInsertForm.pc"><font size="2">회원가입</font></a> | 
 					<a href="idFindForm.pc"><font size="2">아이디찾기</font></a> | 
-					<a href="#pwFindForm.pc"><font size="2">비밀번호찾기</font></a>
+					<a href="pwFindForm.pc"><font size="2">비밀번호찾기</font></a>
 				</td>
 			</tr>
 			<tr>

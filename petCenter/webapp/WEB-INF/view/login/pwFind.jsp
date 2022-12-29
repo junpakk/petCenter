@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>PET CENTER IDFIND</title>
+<title>PET CENTER PWFIND</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js"></script>
@@ -17,12 +17,12 @@
 		$("#mcomfirm").on("click", function(){
 			console.log("mcomfirm >>> : ");
 			
-			let url = "idFindAuthnum.pc";
-			let mnameVal = $("#mname").val();
+			let url = "pwFindAuthnum.pc";
+			let midVal = $("#mid").val();
 			let memailVal = $("#memail").val();
 			
 			$.get(url
-				,{"mname" : mnameVal, "memail" : memailVal}
+				,{"mid" : midVal, "memail" : memailVal}
 				,function(data){
 					//alert(data);
 					var sVal = $(data).find("result").text();
@@ -33,11 +33,11 @@
 		});
 		
 		// 폼태그 데이터 콘트롤러에 보내기
-		$("#idbtn").on("click", function(){
+		$("#pwbtn").on("click", function(){
 			console.log("idbtn >>> : ");
 			
-			$('#idForm').attr({
-				'action':'idFind.pc',
+			$('#pwForm').attr({
+				'action':'pwFind.pc',
 				'method':'POST',
 				'enctype':'application/x-www-form-urlencoded'
 			}).submit();
@@ -58,33 +58,33 @@
 </head>
 <body>
 <div class="container">
-	<form name="idForm" id="idForm">
+	<form name="pwForm" id="pwForm">
 		<table border="1" class="table table-bordered w-auto" align="center">
 			<thead>
 				<tr>
-					<td colspan="2"><h1 align="center">IdFind</h1></td>
+					<td colspan="2"><h1 align="center">PwFind</h1></td>
 				</tr>
 			</thead>
 			
 			<tbody>
 				<tr>
-					<td class="align-middle">이름</td>
-					<td><input type="text" name="mname" id="mname" style="width:200px;"></td>
+					<td class="align-middle">아이디</td>
+					<td><input type="text" name="mid" id="mid" style="width:200px;"></td>
 				</tr>
 				
 				<tr>
 					<td class="align-middle">이메일</td>
 					<td>
 						<input type="text" name="memail" id="memail" style="width:200px;">
-						&nbsp;&nbsp;<button type="button" id="mcomfirm" class="btn btn-success btn-sm">인증번호받기</button>
+						&nbsp;&nbsp;<button type="button" id="mcomfirm" class="btn btn-success btn-sm">임시비밀번호 받기</button>
 					</td>
 				</tr>
 				
 				<tr>
-					<td class="align-middle">인증번호</td>
+					<td class="align-middle">임시비밀번호</td>
 					<td>
-						<input type="text" name="authnum" id="authnum" style="width:200px;" placeholder="인증번호  8자리 숫자 입력">
-						&nbsp;&nbsp;<button type="button" id="idbtn" class="btn btn-success btn-sm">&nbsp;아이디&nbsp;&nbsp;찾기&nbsp;</button>
+						<input type="text" name="ppw" id="ppw" style="width:200px;" placeholder="임시비밀번호  8자리 숫자 입력">
+						&nbsp;&nbsp;<button type="button" id="pwbtn" class="btn btn-success btn-sm">&nbsp;비밀번호&nbsp;&nbsp;바꾸기&nbsp;</button>
 					</td>
 				</tr>
 			</tbody>

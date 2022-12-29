@@ -172,6 +172,13 @@
 				alert("삭제할 멤버 하나를 선택하세요 !!!");
 			}
 		});
+		
+		// SALL
+		$(document).on("click", "#selectAllBtn", function(){
+			alert("selectAllBtn >>> : click() ");
+			location.href="memSelectAll.pc";
+		});
+		
 	});
 	
 </script>
@@ -209,6 +216,7 @@
 <!-- 		<input type="text" id="endDate" name="endDate" size="10" placeholder="종료일" > -->
 		<input type="button" id="searchBtn" name="searchBtn" class="btn btn-primary btn-sm" value="검색">
 		<input type="reset" id="resetBtn" name="resetBtn" class="btn btn-secondary btn-sm" value="리셋">
+		<input type="button" id="selectAllBtn" name="selectAllBtn" class="btn btn-success btn-sm" value="전체조회">
 	</td>
 </tr>
 
