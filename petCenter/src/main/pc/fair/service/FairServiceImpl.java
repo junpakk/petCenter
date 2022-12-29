@@ -40,4 +40,11 @@ public class FairServiceImpl implements FairService {
 		return fairDAO.fairDelete(fvo);
 	}
 
+	@Override
+	public List<FairVO> fairSelect(FairVO fvo) {
+		// TODO Auto-generated method stub
+		logger.info("fairSelect() 진입: ");
+		return fairDAO.fairSelect(fvo);
+	}
+
 }

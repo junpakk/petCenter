@@ -12,4 +12,6 @@ public interface FairService {
 
 	public int fairDelete(FairVO fvo);
 
+	public List<FairVO> fairSelect(FairVO fvo);
+
 }

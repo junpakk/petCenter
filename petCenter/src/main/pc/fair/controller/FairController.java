@@ -35,17 +35,15 @@ public class FairController {
 	
 	
 	// 박람회 인서트 폼
-	@PostMapping("fairInsertForm")
-	@ResponseBody
+	@GetMapping("fairInsertForm")
+
 	public String fairInsertForm() {
 		logger.info("fairInsertForm 함수 진입");
-			logger.info("fairInsertForm() 진입: ");
 			return "fair/fairInsertForm";
 		}
 	
 	// 박람회 등록
 		@PostMapping("fairInsert")
-		@ResponseBody
 		public String fairInsert(HttpServletRequest req) {
 			logger.info("fairInsert 함수 진입");
 			
@@ -56,9 +54,9 @@ public class FairController {
 			
 			
 			//이미지 업로드
-			FileUploadUtil fu = new FileUploadUtil(  CommonUtils.PRODUCT_IMG_UPLOAD_PATH
-													,CommonUtils.PRODUCT_IMG_FILE_SIZE
-													,CommonUtils.PRODUCT_EN_CODE);
+			FileUploadUtil fu = new FileUploadUtil(  CommonUtils.FAIR_IMG_UPLOAD_PATH
+													,CommonUtils.FAIR_IMG_FILE_SIZE
+													,CommonUtils.FAIR_EN_CODE);
 					
 			//이미지 파일 원본 사이즈
 			boolean bool = fu.imgfileUpload(req);
@@ -79,20 +77,19 @@ public class FairController {
 			if(nCnt > 0) {
 				return "fair/fairSelectAll";
 			}
-			return "fair/fairInsert";
+			return "fair/fairSelectAll";
 		}
 	
 	
 	
 	// 박람회 조회
-	@GetMapping("fairInsert")
-	@ResponseBody
-	public String FairSelectAll(FairVO fvo, Model model) {
-		logger.info("FairSelectAll 함수 진입");
+	@GetMapping("fairSelectAll")
+	public String fairSelectAll(FairVO fvo, Model model) {
+		logger.info("fairSelectAll 함수 진입");
 		
 		List<FairVO> fairAll = fairService.fairSelectAll(fvo);
 		int nCnt = fairAll.size();
-		logger.info("FairSelectAll nCnt : " + nCnt);
+		logger.info("fairSelectAll nCnt : " + nCnt);
 		
 		if (nCnt > 0) {
 			model.addAttribute("fairAll", fairAll);
@@ -103,9 +100,23 @@ public class FairController {
 		
 	}
 	
+	// 게시글 내용보기  
+		@GetMapping("fairSelect")
+		public String fairSelect(FairVO fvo, Model model) {
+			logger.info("fairSelect 함수 진입");
+						
+			// 서비스 호출
+			List<FairVO> listS = fairService.fairSelect(fvo);		
+			if (listS.size() == 1) { 
+										
+				model.addAttribute("listS", listS);
+				return "fair/fairSelect";
+			}		
+			return "fair/fairSelectAll";
+		}
+	
 	// 박람회 삭제
 	@GetMapping("fairDelete")
-	@ResponseBody
 	public String fairDelete(FairVO fvo, Model model) {
 		logger.info("fairDelete 함수 진입 ");
 		

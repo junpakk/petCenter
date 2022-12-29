@@ -53,6 +53,18 @@
 	
 </update>
 
+<select id="fairSelect" resultType="fairvo">
+	
+		SELECT 	A.BFNUM 		BFNUM
+			   ,A.BFNAME  		BFNAME
+		       ,A.BFDATE 	 	BFDATE
+		       ,A.BFPLACE  		BFPLACE
+		       ,A.BFPHOTO 		BFPHOTO	   
+	           ,A.UDATE 		UDATE
+		FROM 	PC_FAIR A
+		WHERE 	DELYN = 'Y' 
+		AND		A.BFNUM		= #{bfnum}
+</select>
 
 
 </mapper>         	  

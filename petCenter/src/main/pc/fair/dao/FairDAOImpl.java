@@ -39,4 +39,11 @@ public class FairDAOImpl implements FairDAO {
 		return sqlSession.update("fairDelete", fvo);
 	}
 
+	@Override
+	public List<FairVO> fairSelect(FairVO fvo) {
+		// TODO Auto-generated method stub
+		logger.info("fairSelect() 진입: ");
+		return sqlSession.selectList("fairSelect", fvo);
+	}
+
 }

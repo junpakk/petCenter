@@ -11,7 +11,9 @@
 	Hello 연습중 연습중3 
 	
 
-		<a href="replyForm.pc">댓글</a>
+		<a href="replyForm.pc">댓글</a><br>
+		<a href="fairInsertForm.pc">박람회 인서트</a><br>
+		<a href="fairSelectAll.pc">박람회 전체조회</a><br>
 		<h3>지도 테스트</h3>
 		<hr>
 		<h4>동물병원찾기</h4>
