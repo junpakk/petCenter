@@ -138,14 +138,15 @@
 			</tr>
 			<tr>
 				<td style="text-align:center;">
+					<a href="memInsertForm.pc"><font size="2">회원가입</font></a> | 
 					<a href="idFindForm.pc"><font size="2">아이디찾기</font></a> | 
-					<a href="#pwFindForm.khg"><font size="2">비밀번호찾기</font></a>
+					<a href="#pwFindForm.pc"><font size="2">비밀번호찾기</font></a>
 				</td>
 			</tr>
 			<tr>
 				<td>
 					<a href="javascript:kakaoLoginApi()">
-						<img height="51" width="208" src="/petCenter/img/img_login/kakao.jpg"/>
+						<img height="51" width="208" src="/petCenter/img/login/kakao.jpg"/>
 					</a>
 					<input type="hidden" name="snstype" id="snstype" />
 					<input type="hidden" name="snsid" id="snsid" />

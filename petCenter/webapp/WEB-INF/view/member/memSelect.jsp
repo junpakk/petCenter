@@ -79,7 +79,7 @@
 
 <style type="text/css">
 
-	.mem{ text-align: center;}
+	.align-middle{ text-align: center;}
 /* 	#notNull{ color: red; } */
 	
 </style>
@@ -101,7 +101,7 @@
 <tbody>
 
 <tr>
-	<td class="mem" id="notNull">아이디</td>
+	<td class="align-middle" id="notNull">아이디</td>
 	<td>
 		<input type="hidden" name="mnum" id="mnum" value="<%= mnum %>"/>
 		<%= mid %>
@@ -109,34 +109,34 @@
 </tr>
 
 <tr>
-	<td class="mem">이름</td>
+	<td class="align-middle">이름</td>
 	<td><%= mname %></td>
 </tr>
 
 <tr>
-	<td class="mem" id="notNull">이메일</td>
+	<td class="align-middle" id="notNull">이메일</td>
 	<td>
 		<%= memail %>
 	</td>
 </tr>
 
 <tr>
-	<td class="mem" >휴대폰</td>
+	<td class="align-middle" >휴대폰</td>
 	<td>
 		<%= mhp %>
 	</td>
 </tr>
 
 <tr>
-	<td class="mem">기호동물</td>
+	<td class="align-middle">기호동물</td>
 	<td>
 		<%= mpet %>
 	</td>
 </tr>
 
 <tr>
-	<td class="mem">자기소개</td>
-	<td>
+	<td class="align-middle">자기소개</td>
+	<td style="width:420px;">
 		<%= minfo %>
 	</td>
 </tr>

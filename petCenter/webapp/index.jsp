@@ -8,8 +8,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-		<a href="replyForm.pc">댓글</a>
-		<hr>
+
+		<a href="replyForm.pc">댓글</a><br>
+		<a href="fairInsertForm.pc">박람회 인서트</a><br>
+		<a href="fairSelectAll.pc">박람회 전체조회</a><br>
+		
 		<h4>동물병원찾기</h4>
 <!-- 		<a href="mapTest1.pc">테스트1(지도레벨)</a><br> -->
 <!-- 		<a href="#">테스트2</a><br> -->

@@ -48,6 +48,7 @@
 	<p>
 		<a href="loginForm.pc" >로그인</a> |
 		<a href="memInsertForm.pc" >회원가입</a>
+		
 	</p>
 <%
 	}
