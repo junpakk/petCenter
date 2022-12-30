@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+          "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="main.pc.map.dao.MapDAO">
+
+<insert id="walkInsert" parameterType="mapvo" >
+ 
+	INSERT INTO PC_MAP (MAPNUM, MID, MAPLAT, MAPLON, MAPLAPS, DELYN, IDATE, UDATE)
+            				VALUES(	#{mapnum, jdbcType=VARCHAR}, 
+	            					#{mid, jdbcType=VARCHAR}, 
+	            					#{maplat, jdbcType=VARCHAR},  	 
+	            					#{maplon, jdbcType=VARCHAR},
+	            					#{maplaps, jdbcType=VARCHAR},
+	            					'Y', 
+	            					SYSDATE,
+	            					SYSDATE)
+
+<!-- 	INSERT INTO PC_MAP (MAPNUM, MID, MAPLAT, MAPLON, MAPLAPS, DELYN, IDATE, UDATE) -->
+<!--             				VALUES(	#{mapnum, jdbcType=VARCHAR},  -->
+<!-- 	            					#{mid, jdbcType=VARCHAR},  -->
+<!-- 	            					#{maplat, jdbcType=VARCHAR},  	  -->
+<!-- 	            					#{maplon, jdbcType=VARCHAR}, -->
+<!-- 	            					#{maplaps, jdbcType=VARCHAR}, -->
+<!-- 	            					'Y',  -->
+<!-- 	            					NOW(), -->
+<!-- 	            					NOW()) -->
+</insert>
+
+<select id="walkHisSrch" parameterType="mapvo" resultType="mapvo">
+
+	SELECT	 *
+	FROM (
+		SELECT 	 A.MAPNUM					MAPNUM
+				,A.MID						MID
+				,A.MAPLAT					MAPLAT
+				,A.MAPLON					MAPLON
+				,A.MAPLAPS					MAPLAPS
+				,A.DELYN				DELYN
+				,TO_CHAR(TO_DATE(A.IDATE), 'YYYY-MM-DD')	IDATE
+				,TO_CHAR(TO_DATE(A.UDATE), 'YYYY-MM-DD')	UDATE
+				
+				,CEIL(ROW_NUMBER() OVER(ORDER BY A.MAPNUM)/#{pageSize}) pageSize
+				,COUNT(A.MAPNUM) OVER() AS totalCount
+		FROM	PC_MAP A
+		WHERE	A.DELYN = 'Y'
+		AND MID = #{mid}
+		<if test="startDate != null and startDate != '' and endDate != null and endDate != ''">
+			<![CDATA[ AND TO_CHAR(TO_DATE(A.UDATE), 'YYYY-MM-DD')
+				>= TO_CHAR(TO_DATE(#{startDate, jdbcType=VARCHAR}), 'YYYY-MM-DD')]]>
+			<![CDATA[ AND TO_CHAR(TO_DATE(A.UDATE), 'YYYY-MM-DD')
+				<= TO_CHAR(TO_DATE(#{endDate, jdbcType=VARCHAR}), 'YYYY-MM-DD')]]>
+		</if>
+		ORDER BY 1
+		) WHERE pageSize = #{curPage}
+		
+</select>
+
+<update id="walkHisDel" parameterType="mapvo">
+
+	UPDATE PC_MAP
+		SET  DELYN	= 'N',
+			 UDATE	= SYSDATE
+	WHERE
+	    DELYN = 'Y'
+	AND MID = #{mid}
+	<if test="startDate != null and startDate != '' and endDate != null and endDate != ''">
+		<![CDATA[ AND TO_CHAR(TO_DATE(UDATE), 'YYYY-MM-DD')
+			>= TO_CHAR(TO_DATE(#{startDate, jdbcType=VARCHAR}), 'YYYY-MM-DD')]]>
+		<![CDATA[ AND TO_CHAR(TO_DATE(UDATE), 'YYYY-MM-DD')
+			<= TO_CHAR(TO_DATE(#{endDate, jdbcType=VARCHAR}), 'YYYY-MM-DD')]]>
+	</if>	
+	
+</update>	
+
+</mapper>         	  

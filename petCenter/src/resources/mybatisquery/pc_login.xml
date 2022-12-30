@@ -8,13 +8,126 @@
 <select id="loginCheck" resultType="membervo">
 
 	SELECT
-			 A.MNUM		AS	MNUM
-			,A.MID		AS	MID
-	FROM     PC_MEMBER A
-	WHERE	 A.DELYN	=	'Y'
-	AND		 A.MID		=	#{mid}
-	AND		 A.MPW		=	#{mpw}
+			A.MNUM			AS	MNUM
+		   ,A.MID			AS	MID
+	FROM	PC_MEMBER A
+	WHERE	A.DELYN			=	'Y'
+	AND		A.MID			=	#{mid}
+	AND		A.MPW			=	#{mpw}
 
 </select>
 
+<!-- 아이디 찾기 이메일 체크 -->
+<select id="emailCntCheck" parameterType="membervo" resultType="membervo">
+	
+	SELECT
+			A.MNAME			AS	MNAME
+		   ,A.MEMAIL		AS	MEMAIL
+	FROM	PC_MEMBER A
+	WHERE	A.DELYN			=	'Y'
+	AND		A.MNAME			=	#{mname}
+	AND		A.MEMAIL		=	#{memail}
+	
+</select>
+
+<!-- 인증번호 인서트 -->
+<insert id="tempAuthInsert" parameterType="idfindvo">
+	
+	<selectKey keyProperty="anum" resultType="String" order="BEFORE">
+		SELECT NVL(MAX(TO_NUMBER(TRIM(ANUM))), 0) + 1 FROM PC_IDFIND
+	</selectKey>
+	INSERT INTO PC_IDFIND  (
+								ANUM
+							   ,AUTHNUM
+							   ,MEMAIL
+							   ,IDATE
+	)
+					VALUES (
+								#{anum}
+							   ,#{authnum}
+							   ,#{memail}
+							   ,SYSDATE
+	)
+</insert>
+
+<!-- 인증번호 셀렉트 -->
+<select id="idFindAuthnum" parameterType="idfindvo" resultType="idfindvo">
+
+	SELECT
+			A.AUTHNUM		AS	AUTHNUM
+		   ,A.MEMAIL		AS	MEMAIL
+	FROM	PC_IDFIND A
+	WHERE	A.AUTHNUM		=	#{authnum}
+	AND		A.MEMAIL		=	#{memail}
+
+</select>
+
+<!-- 아이디 찾기 -->
+<select id="idFind" parameterType="membervo" resultType="membervo">
+
+	SELECT
+			A.MID			AS	MID
+		   ,TO_CHAR(TO_DATE(A.IDATE), 'YYYY-MM-DD')		AS	IDATE
+	FROM	PC_MEMBER A
+	WHERE	A.DELYN			=	'Y'
+	AND		A.MNAME			=	#{mname}
+	AND		A.MEMAIL		=	#{memail}
+
+</select>
+
+<!-- 비밀번호 찾기 이메일 체크 -->
+<select id="emailCntCheckPW" parameterType="membervo" resultType="membervo">
+	
+	SELECT
+			A.MID			AS	MID
+		   ,A.MEMAIL		AS	MEMAIL
+	FROM	PC_MEMBER A
+	WHERE	A.DELYN			=	'Y'
+	AND		A.MID			=	#{mid}
+	AND		A.MEMAIL		=	#{memail}
+	
+</select>
+
+<!-- 임시비밀번호 인서트 -->
+<insert id="tempPwInsert" parameterType="pwfindvo">
+	
+	<selectKey keyProperty="pnum" resultType="String" order="BEFORE">
+		SELECT NVL(MAX(TO_NUMBER(TRIM(PNUM))), 0) + 1 FROM PC_PWFIND
+	</selectKey>
+	INSERT INTO PC_PWFIND  (
+								PNUM
+							   ,PPW
+							   ,MID
+							   ,MEMAIL
+							   ,IDATE
+	)
+					VALUES (
+								#{pnum}
+							   ,#{ppw}
+							   ,#{mid}
+							   ,#{memail}
+							   ,SYSDATE
+	)
+</insert>
+
+<!-- 임시비밀번호 셀렉트 -->
+<select id="pwFindAuthnum" parameterType="pwfindvo" resultType="pwfindvo">
+
+	SELECT
+			A.PPW			AS	PPW
+		   ,A.MID			AS	MID
+		   ,A.MEMAIL		AS	MEMAIL
+	FROM	PC_PWFIND A
+	WHERE	A.PPW			=	#{ppw}
+	AND		A.MID			=	#{mid}
+	AND		A.MEMAIL		=	#{memail}
+
+</select>
+
+
 </mapper>
+
+
+
+
+

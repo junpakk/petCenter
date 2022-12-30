@@ -26,12 +26,21 @@ FROM    PC_MEMBER A
 
 <!-- 댓글 -->
 <select id="getReplyChabun" resultType="replyvo">
-	SELECT  /*+ INDEX_DESC(A SYS_C0011185) */ NVL(MAX(SUBSTR(A.BRNUM, -4)), 0) + 1  BRNUM FROM PC_REPLY A
+	SELECT  /*+ INDEX_DESC(A SYS_C0011071) */ NVL(MAX(SUBSTR(A.BRNUM, -4)), 0) + 1  BRNUM FROM PC_REPLY A
 </select>
 
 <!-- 좋아요 -->
 <select id="getLikeChabun" resultType="likevo">
-	SELECT  /*+ INDEX_DESC(A SYS_C0011193) */ NVL(MAX(SUBSTR(A.BLNUM, -4)), 0) + 1  BLNUM FROM PC_LIKE A
+	SELECT  /*+ INDEX_DESC(A SYS_C0011074) */ NVL(MAX(SUBSTR(A.BLNUM, -4)), 0) + 1  BLNUM FROM PC_LIKE A
 </select>
 
+<!-- 박람회 -->
+<select id="getFairChabun" resultType="fairvo">
+	SELECT  /*+ INDEX_DESC(A SYS_C0011080) */ NVL(MAX(SUBSTR(A.BFNUM, -4)), 0) + 1  BFNUM FROM PC_FAIR A
+</select>
+
+<!-- 맵 -->
+<select id="getMapChabun" resultType="mapvo">
+	SELECT  /*+ INDEX_DESC(A SYS_C0011193) */ NVL(MAX(SUBSTR(A.MAPNUM, -4)), 0) + 1  MAPNUM FROM PC_MAP A
+</select>
 </mapper>

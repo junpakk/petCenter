@@ -72,7 +72,7 @@ public class LikeController {
 			
 			
 			List<LikeVO> listCnt = likeService.likeSelect(lvo);
-			logger.info("kmjLikecnt_2 listCnt >>> : " + listCnt);
+			logger.info("kmjLikecnt_2 listCnt : " + listCnt);
 			
 			int nCnt = 0;
 			if (listCnt !=null && listCnt.size() > 0) {

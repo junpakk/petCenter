@@ -6,11 +6,13 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import main.pc.cart.vo.CartVO;
+import main.pc.fair.vo.FairVO;
 import main.pc.like.vo.LikeVO;
+import main.pc.map.vo.MapVO;
 import main.pc.reply.vo.ReplyVO;
 import main.pc.member.vo.MemberVO;
 import main.pc.product.vo.ProductVO;
+import main.pc.cart.vo.CartVO;
 
 @Repository
 public class ChabunUtilDAOImpl implements ChabunUtilDAO {
@@ -59,4 +61,19 @@ public class ChabunUtilDAOImpl implements ChabunUtilDAO {
 		logger.info("getCartChabun 함수 진입: ");
 		return sqlSession.selectOne("getCartChabun");
 	}
+	@Override
+	public FairVO getFairChabun() {
+		// TODO Auto-generated method stub
+		logger.info("getFairChabun 함수 진입");
+		
+		return sqlSession.selectOne("getFairChabun");
+	}
+	
+	@Override
+	public MapVO getMapChabun() {
+		// TODO Auto-generated method stub
+		logger.info("getMapChabun 함수 진입");
+		
+		return sqlSession.selectOne("getMapChabun");
+	}	
 }

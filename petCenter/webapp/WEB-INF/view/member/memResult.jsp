@@ -21,7 +21,7 @@
 </head>
 <script type="text/javascript">
 	alert("<%= cnt %>건 <%= result %> 되었습니다.");
- 	location.href="memSelectAll.pc";
+ 	location.href="mainPage.pc";
 </script>
 <body>
 ${ cnt }건 ${ result } 되었습니다.

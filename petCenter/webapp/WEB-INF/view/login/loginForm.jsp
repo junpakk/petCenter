@@ -20,8 +20,8 @@
 %>
 <script>
 	alert("로그인중입니다");
-// 	location.href="/petCenter/mainPage.pc";
-	location.href="/petCenter/index.jsp";
+	location.href="/petCenter/mainPage.pc";
+// 	location.href="/petCenter/index.jsp";
 </script>
 <%
 	}
@@ -115,7 +115,8 @@
 	
 </style>
 </head>
-<body class="container">
+<body>
+<div class="container">
 <div class="div1 mt-5">
 	<form name="loginForm" id="loginForm">
 		<table border="1" class="table table-bordered w-auto" align="center">
@@ -135,16 +136,17 @@
 					<button type="button" class="btn btn-primary" id="loginBtn" style="width:208px;">로그인</button>
 				</td>
 			</tr>
-<!-- 			<tr> -->
-<!-- 				<td style="text-align:center;"> -->
-<!-- 					<a href="javascript:alert('준비중입니다')"><font size="2">아이디찾기</font></a> |  -->
-<!-- 					<a href="#pwFindForm.khg"><font size="2">비밀번호찾기</font></a> -->
-<!-- 				</td> -->
-<!-- 			</tr> -->
+			<tr>
+				<td style="text-align:center;">
+					<a href="memInsertForm.pc"><font size="2">회원가입</font></a> | 
+					<a href="idFindForm.pc"><font size="2">아이디찾기</font></a> | 
+					<a href="pwFindForm.pc"><font size="2">비밀번호찾기</font></a>
+				</td>
+			</tr>
 			<tr>
 				<td>
 					<a href="javascript:kakaoLoginApi()">
-						<img height="51" width="208" src="/petCenter/img/img_login/kakao.jpg"/>
+						<img height="51" width="208" src="/petCenter/img/login/kakao.jpg"/>
 					</a>
 					<input type="hidden" name="snstype" id="snstype" />
 					<input type="hidden" name="snsid" id="snsid" />
@@ -154,6 +156,7 @@
 			
 		</table>
 	</form>
+</div>
 </div>
 </body>
 </html>

@@ -68,8 +68,9 @@
 	</head>
 	<body>
 		<div class="map_wrap">
-			<div id="map" style="width:1000px;height:800px;"></div>
-		    <div id="menu_wrap" class="bg_white">
+			<div id="map" style="width:1000px;height:800px;margin-left: auto; margin-right: auto;border:5px double #000;border-radius: 10px;"></div>
+			<br>
+		    <div id="menu_wrap" class="bg_white" style="text-align:center;">
 		        <div class="option">
 		            <div>
 		                키워드 : <input type="text" value="동물병원" id="keyword" size="15">

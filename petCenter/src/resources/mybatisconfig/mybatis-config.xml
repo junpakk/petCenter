@@ -7,10 +7,18 @@
 		<setting name="jdbcTypeForNull" value="NULL"/>
 	</settings>
 	<typeAliases>
+		<typeAlias type="main.pc.member.vo.MemberVO" alias="membervo"/>
+		<typeAlias type="main.pc.login.vo.IdFindVO" alias="idfindvo"/>
+		<typeAlias type="main.pc.login.vo.PwFindVO" alias="pwfindvo"/>
+		
+		
+		<typeAlias type="main.pc.fair.vo.FairVO" alias="fairvo"/>
 		<typeAlias type="main.pc.reply.vo.ReplyVO" alias="replyvo"/>
 		<typeAlias type="main.pc.like.vo.LikeVO" alias="likevo"/>
-		<typeAlias type="main.pc.member.vo.MemberVO" alias="membervo"/>
 		<typeAlias type="main.pc.product.vo.ProductVO" alias="productvo"/>
 		<typeAlias type="main.pc.cart.vo.CartVO" alias="cartvo"/>
+		<typeAlias type="main.pc.calendar.vo.CalendarVO" alias="calendarVO"/>
+		
+		<typeAlias type="main.pc.map.vo.MapVO" alias="mapvo"/>
 	</typeAliases>
 </configuration>
