@@ -19,6 +19,11 @@ FROM    PC_MEMBER A
 	FROM PC_PRODUCT A
 </select>
 
+<select id="getCartChabun" resultType="cartvo">
+	SELECT  /*+ INDEX_DESC(A SYS_C0011066) */ NVL(MAX(SUBSTR(A.CNUM,-4)),0) + 1 CNUM
+	FROM PC_CART A
+</select>
+
 <!-- 댓글 -->
 <select id="getReplyChabun" resultType="replyvo">
 	SELECT  /*+ INDEX_DESC(A SYS_C0011185) */ NVL(MAX(SUBSTR(A.BRNUM, -4)), 0) + 1  BRNUM FROM PC_REPLY A

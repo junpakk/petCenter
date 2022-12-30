@@ -6,7 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-
+import main.pc.cart.vo.CartVO;
 import main.pc.like.vo.LikeVO;
 import main.pc.reply.vo.ReplyVO;
 import main.pc.member.vo.MemberVO;
@@ -50,5 +50,13 @@ public class ChabunUtilDAOImpl implements ChabunUtilDAO {
 		
 		return sqlSession.selectOne("getLikeChabun");
 
+	}
+
+	//카트
+	@Override
+	public CartVO getCartChabun() {
+		// TODO Auto-generated method stub
+		logger.info("getCartChabun 함수 진입: ");
+		return sqlSession.selectOne("getCartChabun");
 	}
 }

@@ -13,6 +13,11 @@ public class ProductVO {
 	private String udate;
 	
 	
+	
+	public ProductVO() {
+	}
+	
+	
 	//getter
 	public String getPnum() {
 		return pnum;

@@ -4,6 +4,7 @@ public abstract class ChabunUtil {
 
 	public static final String BIZ_GUBUN_M = "M";	// 멤버
 	public static final String BIZ_GUBUN_P = "P";	// 상품
+	public static final String BIZ_GUBUN_C = "C";	// 카트
 	public static final String BIZ_GUBUM_BR = "BR"; // 댓글
 	public static final String BIZ_GUBUM_BL = "BL"; // 좋아요
 	
@@ -35,6 +36,10 @@ public abstract class ChabunUtil {
 	// 상품
 	public static String getProductChabun(String type, String productNum) {
 		return BIZ_GUBUN_P.concat(ChabunUtil.numPad(type, productNum));
+	}
+	// 카트
+	public static String getCartChabun(String type, String cartNum) {
+		return BIZ_GUBUN_C.concat(ChabunUtil.numPad(type, cartNum));
 	}
 	
 

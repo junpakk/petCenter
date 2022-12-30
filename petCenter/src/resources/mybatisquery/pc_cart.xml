@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+          "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+          
+<mapper namespace="main.pc.cart.dao.CartDAO">
+
+<!-- 상품등록 -->
+<insert id="cartInsert" parameterType="cartvo" >
+	
+	INSERT INTO PC_CART ( 	 CNUM
+							,MNUM
+							,CNAME
+							,CCNT
+							,CPRICE
+							,CPHOTO
+							,DELYN
+							,IDATE
+							,UDATE)
+           			VALUES(  #{cnum} 
+           					,#{mnum, jdbcType=VARCHAR} 
+           					,#{cname} 
+           					,#{ccnt} 
+           					,#{cprice} 
+           					,#{cphoto, jdbcType=VARCHAR} 
+           					,'Y' 
+           					,SYSDATE  
+           					,SYSDATE)
+</insert>
+
+<select id="cartSelectAll" parameterType="cartvo" resultType="cartvo">
+
+	SELECT   A.CNUM		CNUM
+			,A.MNUM		MNUM
+			,A.CNAME	CNAME
+			,CCNT
+			,CPRICE
+			,CPHOTO
+			,DELYN
+			,IDATE
+			,UDATE
+	FROM	PC_CART A
+	WHERE	A.DELYN = 'Y'
+	AND		A.MNUM	= #{mnum}
+
+</select>
+
+</mapper>

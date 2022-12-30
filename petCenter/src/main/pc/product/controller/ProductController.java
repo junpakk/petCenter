@@ -83,32 +83,11 @@ public class ProductController {
 	public String productSelectAll(ProductVO pvo, Model model) {
 		logger.info("productSelectAll() 진입: ");
 		
-//		//페이지처리
-//		int pageSize = CommonUtils.PRODUCT_PAGE_SIZE;
-//		int groupSize = CommonUtils.PRODUCT_GROUP_SIZE;
-//		int curPage = CommonUtils.PRODUCT_CUR_PAGE;
-//		int totalCount = CommonUtils.PRODUCT_TOTAL_COUNT;
-//		
-//		if(pvo.getCurPage() != null) {
-//			curPage = Integer.parseInt(pvo.getCurPage());
-//		}
-//		
-//		pvo.setPageSize(String.valueOf(pageSize));
-//		pvo.setGroupSize(String.valueOf(groupSize));
-//		pvo.setCurPage(String.valueOf(curPage));
-//		pvo.setTotalCount(String.valueOf(totalCount));
-//		
-//		logger.info("productSelectAll pvo.getPageSize() : " + pvo.getPageSize());
-//		logger.info("productSelectAll pvo.getGroupSize() : " + pvo.getGroupSize());
-//		logger.info("productSelectAll pvo.getCurPage() : " + pvo.getCurPage());
-//		logger.info("productSelectAll pvo.getTotalCount() : " + pvo.getTotalCount());
-		
 		//서비스 호출
 		List<ProductVO> listAll = productService.productSelectAll(pvo);
 		if(listAll.size() > 0) {
 			logger.info("listAll.size(): "+ listAll.size());
 			
-//			model.addAttribute("pagingPVO", pvo);//페이징 정보
 			model.addAttribute("listAll", listAll);//상품 정보
 			return "product/productSelectAll";
 		}

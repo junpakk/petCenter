@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import main.pc.cart.vo.CartVO;
 import main.pc.common.chabun.dao.ChabunUtilDAO;
 
 import main.pc.like.vo.LikeVO;
@@ -51,6 +52,14 @@ public class ChabunUtilServiceImpl implements ChabunUtilService {
 		logger.info("getProductChabun() 함수 진입: ");
 		return chabunUtilDAO.getProductChabun();
 
+	}
+	
+	//카트
+	@Override
+	public CartVO getCartChabun() {
+		// TODO Auto-generated method stub
+		logger.info("getCartChabun() 함수 진입: ");
+		return chabunUtilDAO.getCartChabun();
 	}
 
 

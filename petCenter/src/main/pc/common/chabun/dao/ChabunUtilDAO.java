@@ -1,5 +1,6 @@
 package main.pc.common.chabun.dao;
 
+import main.pc.cart.vo.CartVO;
 import main.pc.like.vo.LikeVO;
 import main.pc.reply.vo.ReplyVO;
 import main.pc.member.vo.MemberVO;
@@ -9,8 +10,8 @@ public interface ChabunUtilDAO {
 
 	public MemberVO getChabunMember();
 	public ProductVO getProductChabun();//상품
+	public CartVO getCartChabun();// 카트
 	public ReplyVO getReplyChabun();
 	public LikeVO getLikeChabun();
-
-
+	
 }

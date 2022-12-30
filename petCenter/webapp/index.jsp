@@ -10,7 +10,6 @@
 <body>
 	Hello 연습중 연습중3 
 	
-
 		<a href="replyForm.pc">댓글</a>
 		<h3>지도 테스트</h3>
 		<hr>
@@ -34,7 +33,7 @@
 		<hr>
 		<a href="productInsertForm.pc">상품등록폼</a><br/>
 		<a href="productSelectAll.pc">상품전체목록페이지</a><br/>
-
+		<a href="cartSelectAll.pc?mnum=M0001">카트전체목록페이지 M0001 테스트</a><br/>
 	</body>
 
 </html>
