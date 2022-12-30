@@ -85,7 +85,7 @@ public class LoginController {
 		return "main/mainPage";
 	}
 	
-	// 아이디 찾기 ==================================================
+	// 아이디 찾기 ================================================== start
 	
 	@GetMapping("idFindForm")
 	public String idFindForm() {
@@ -95,7 +95,7 @@ public class LoginController {
 	
 	// 아이디찾기 인증번호
 	@GetMapping("idFindAuthnum")
-	public String idFindAuthnum(HttpServletRequest req, MemberVO mvo, Model model) {
+	public String idFindAuthnum(MemberVO mvo) {
 		logger.info("idFindAuthnum 함수 진입 >>> : ");
 		
 		// 이메일 체크 서비스 호출
@@ -146,9 +146,9 @@ public class LoginController {
 		return "login/idFind";
 	}
 	
-	// 아이디 찾기 ==================================================
+	// 아이디 찾기 ================================================== end
 	
-	// 패스워드 찾기 ==================================================
+	// 패스워드 찾기 ================================================== start
 	
 	@GetMapping("pwFindForm")
 	public String pwFindForm() {
@@ -158,7 +158,7 @@ public class LoginController {
 	
 	// 아이디찾기 인증번호
 	@GetMapping("pwFindAuthnum")
-	public String pwFindAuthnum(HttpServletRequest req, MemberVO mvo, Model model) {
+	public String pwFindAuthnum(MemberVO mvo) {
 		logger.info("pwFindAuthnum 함수 진입 >>> : ");
 		
 		// 이메일 체크 서비스 호출
@@ -209,11 +209,11 @@ public class LoginController {
 		return "login/idFind";
 	}
 	
-	// 패스워드 찾기 ==================================================
+	// 패스워드 찾기 ================================================== end
 	
-	// 카카오 로그인 ==================================================
+	// 카카오 로그인 ================================================== start
 	@PostMapping("kakaoLogin")
-	public String kakaoLogin(MemberVO mvo, Model model) {
+	public String kakaoLogin(HttpServletRequest req, MemberVO mvo) {
 		logger.info("kakaoLogin 함수 진입 >>> : ");
 		
 		logger.info("kakaoLogin mvo.getSnstype() >>> : " + mvo.getSnstype());
@@ -221,7 +221,7 @@ public class LoginController {
 		logger.info("kakaoLogin mvo.getSnsemail() >>> : " + mvo.getSnsemail());
 		
 		// sns 입력시 기존 not null 컬럼을 처리하기 
-		String mid = "kakao : " + mvo.getSnstype();
+		String mid = "kakao : " + mvo.getSnsid();
 		String mpw = EncryptSHA.encryptSHA256(EncryptSHA.encryptSHA256(PasswordUtil.tempPW(8)));
 		String memail = mvo.getSnsemail();
 		
@@ -233,11 +233,47 @@ public class LoginController {
 		mvo.setMpw(mpw);
 		mvo.setMemail(memail);
 		
+		List<MemberVO> kList = loginService.kakaoLogin(mvo);
+		int kCnt = kList.size();
+		logger.info("kakaoLogin kCnt >>> : " + kCnt);
+		int insertCnt = 0;
+		
+		if(kCnt == 0) {// 셀렉트 0 -> 회원아님 -> 회원가입
+			insertCnt = loginService.kakaoInsert(mvo);
+			logger.info("kakaoLogin insertCnt >>> : " + insertCnt);
+			
+			// 회원가입후 다시 셀렉트
+			kList = loginService.kakaoLogin(mvo);
+			kCnt = kList.size();
+			logger.info("kakaoLogin kCnt after >>> : " + kCnt);
+		}
+		
+		if (kCnt == 1) {
+			
+			K_Session ks = K_Session.getInstance();
+			String kID = ks.getSession(req);
+			
+			logger.info("kakaoLogin kID >>> : " + kID);
+			
+			if (kID != null && kID.equals(kList.get(0).getMid())) {
+				logger.info("loginCheck login >>> : 로그인 중 >>> : " + kID);
+				return "main/mainPage";
+			}else {
+				ks.setSession(req, kList.get(0).getMid(), kList.get(0).getMnum() );
+				logger.info("loginCheck login >>> : 세션부여 >>> : " + mvo.getMid());
+				return "main/mainPage";
+			}
+		}
 		
 		logger.info("kakaoLogin() >>> : 로그인실패");
 		return "login/loginForm";
 	}
 	
-	// 카카오 로그인 ==================================================
+	// 카카오 로그인 ================================================== end
 	
+	// 네이버 로그인 ================================================== start
+	
+	
+	
+	// 네이버 로그인 ================================================== end
 }

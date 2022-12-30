@@ -34,7 +34,8 @@
 <insert id="tempAuthInsert" parameterType="idfindvo">
 	
 	<selectKey keyProperty="anum" resultType="String" order="BEFORE">
-		SELECT NVL(MAX(TO_NUMBER(TRIM(ANUM))), 0) + 1 FROM PC_IDFIND
+		SELECT	LPAD(NVL(MAX(TO_NUMBER(TRIM(ANUM))), 0) + 1, 4, '0')
+		FROM	PC_IDFIND
 	</selectKey>
 	INSERT INTO PC_IDFIND  (
 								ANUM
@@ -92,7 +93,8 @@
 <insert id="tempPwInsert" parameterType="pwfindvo">
 	
 	<selectKey keyProperty="pnum" resultType="String" order="BEFORE">
-		SELECT NVL(MAX(TO_NUMBER(TRIM(PNUM))), 0) + 1 FROM PC_PWFIND
+		SELECT	LPAD(NVL(MAX(TO_NUMBER(TRIM(PNUM))), 0) + 1, 4, '0')
+		FROM	PC_PWFIND
 	</selectKey>
 	INSERT INTO PC_PWFIND  (
 								PNUM
@@ -123,6 +125,65 @@
 	AND		A.MEMAIL		=	#{memail}
 
 </select>
+
+<!-- 카카오 아이디 조회 / 로그인 -->
+<select id="kakaoLogin" parameterType="membervo" resultType="membervo">
+
+	SELECT	 A.MNUM			AS	MNUM
+			,A.MID			AS	MID
+			,A.SNSTYPE		AS	SNSTYPE
+			,A.SNSID		AS	SNSID
+			,A.SNSEMAIL		AS	SNSEMAIL
+	FROM	 PC_MEMBER A
+	WHERE	 A.SNSTYPE		=	#{snstype}
+	AND		 A.SNSID		= 	#{snsid}
+
+</select>
+
+<!-- 카카오 인서트 -->
+<insert id="kakaoInsert" parameterType="membervo">
+
+	<selectKey keyProperty="mnum" resultType="String" order="BEFORE">
+		SELECT 'M' ||
+		TO_CHAR(SYSDATE, 'YYYYMMDD') ||
+		LPAD(NVL(MAX(SUBSTR(MNUM, -4)), 0 ) + 1, 4, '0')
+		FROM PC_MEMBER
+	</selectKey>
+	
+	INSERT INTO PC_MEMBER (
+		 MNUM
+		,MNAME
+		,MID
+		,MPW
+		,MHP
+		,MEMAIL
+		,MPET
+		,MINFO
+		,SNSTYPE
+		,SNSID
+		,SNSEMAIL
+		,DELYN
+		,IDATE
+		,UDATE
+	)
+	VALUES (
+		 #{ mnum }
+		,#{ mname, jdbcType=VARCHAR }
+		,#{ mid }
+		,#{ mpw }
+		,#{ mhp, jdbcType=VARCHAR }
+		,#{ memail }
+		,#{ mpet, jdbcType=VARCHAR }
+		,#{ minfo, jdbcType=VARCHAR }
+		,#{ snstype, jdbcType=VARCHAR }
+		,#{ snsid, jdbcType=VARCHAR }
+		,#{ snsemail, jdbcType=VARCHAR }
+		,'Y'
+		,SYSDATE
+		,SYSDATE
+	)
+	
+</insert>
 
 
 </mapper>
