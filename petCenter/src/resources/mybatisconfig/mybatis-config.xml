@@ -13,6 +13,7 @@
 		<typeAlias type="main.pc.fair.vo.FairVO" alias="fairvo"/>
 		<typeAlias type="main.pc.reply.vo.ReplyVO" alias="replyvo"/>
 		<typeAlias type="main.pc.like.vo.LikeVO" alias="likevo"/>
+		<typeAlias type="main.pc.calendar.vo.CalendarVO" alias="calendarVO"/>
 		
 		<typeAlias type="main.pc.map.vo.MapVO" alias="mapvo"/>
 		

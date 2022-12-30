@@ -40,6 +40,9 @@
 		<%= mid %> 님 안녕하세요!! <br>
 		<%= mnum %> 님 안녕하세요!! <br>
 		<a href="logout.pc">로그아웃</a> | 
+		<a href="calendar.pc" >캘린더</a> |
+		<a href="memInsertForm.pc" >회원가입</a>
+		<a href="memInsertForm.pc" >회원가입</a>
 		정보수정
 	</p>
 <% 
