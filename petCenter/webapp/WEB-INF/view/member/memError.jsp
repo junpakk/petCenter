@@ -18,7 +18,7 @@
 </head>
 <script type="text/javascript">
 	alert("에러가 발생하였습니다");
-	location.href="memSelectAll.pc";
+	location.href="mainPage.pc";
 </script>
 <body>
 에러가 발생하였습니다

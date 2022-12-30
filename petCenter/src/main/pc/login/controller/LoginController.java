@@ -187,13 +187,13 @@ public class LoginController {
 		return "login/pwFind";
 	}
 		
-	// 아이디 찾아서 받기
+	// 임시 비밀번호 찾아서 받기
 	@PostMapping("pwFind")
-	public String pwFind(MemberVO mvo, PwFindVO pvo, Model model) {
-		logger.info("idFind 함수 진입 >>> : ");
-		logger.info("idFind avo.getAuthnum() >>> : " + pvo.getPpw());
-		logger.info("idFind avo.getMemail() >>> : " + pvo.getMemail());
-		logger.info("idFind mvo.getMname() >>> : " + mvo.getMid());
+	public String pwFind(PwFindVO pvo, Model model) {
+		logger.info("pwFind 함수 진입 >>> : ");
+		logger.info("pwFind pvo.getAuthnum() >>> : " + pvo.getPpw());
+		logger.info("pwFind pvo.getMemail() >>> : " + pvo.getMemail());
+		logger.info("pwFind pvo.getMid() >>> : " + pvo.getMid());
 		
 		// 임시 비밀번호 확인
 		List<PwFindVO> authnumFind = loginService.pwFindAuthnum(pvo);
@@ -201,14 +201,43 @@ public class LoginController {
 		if (authnumFind.size() == 1) {
 			
 			// 임시비밀번호 확인했을때 새 비번 입력사이트 이동
-//				model.addAttribute("mid", mvo.getMid());
-//				model.addAttribute("memail", pvo.getMemail());
-			return "member/memPasswordInsert";
+			model.addAttribute("mid", pvo.getMid());
+			model.addAttribute("memail", pvo.getMemail());
+			return "member/memPwUpdateForm";
 			
 		}
 		return "login/idFind";
 	}
 	
 	// 패스워드 찾기 ==================================================
+	
+	// 카카오 로그인 ==================================================
+	@PostMapping("kakaoLogin")
+	public String kakaoLogin(MemberVO mvo, Model model) {
+		logger.info("kakaoLogin 함수 진입 >>> : ");
+		
+		logger.info("kakaoLogin mvo.getSnstype() >>> : " + mvo.getSnstype());
+		logger.info("kakaoLogin mvo.getSnsid() >>> : " + mvo.getSnsid());
+		logger.info("kakaoLogin mvo.getSnsemail() >>> : " + mvo.getSnsemail());
+		
+		// sns 입력시 기존 not null 컬럼을 처리하기 
+		String mid = "kakao : " + mvo.getSnstype();
+		String mpw = EncryptSHA.encryptSHA256(EncryptSHA.encryptSHA256(PasswordUtil.tempPW(8)));
+		String memail = mvo.getSnsemail();
+		
+		logger.info("kakaoLogin mid >>> : " + mid);
+		logger.info("kakaoLogin mpw >>> : " + mpw);
+		logger.info("kakaoLogin memail >>> : " + memail);
+		
+		mvo.setMid(mid);
+		mvo.setMpw(mpw);
+		mvo.setMemail(memail);
+		
+		
+		logger.info("kakaoLogin() >>> : 로그인실패");
+		return "login/loginForm";
+	}
+	
+	// 카카오 로그인 ==================================================
 	
 }

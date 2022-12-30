@@ -64,15 +64,25 @@
 						console.log("k_email >>> : " + k_email);
 						console.log("k_nickname >>> : " + k_nickname);
 						
-						kakaoLogin(k_id, k_email);
+						$("#snstype").val('01');
+						$("#snsid").val(k_id);
+						$("#snsemail").val(k_email);
+						
+						kakaoLogin();
 					}
 				});
 			}
 		});
 	}
 	
-	function kakaoLogin(k_id, k_email) {
+	function kakaoLogin() {
 		alert("kakaoLogin >>> : " + k_id + " : " + k_email);
+		
+		$('#loginForm').attr({
+			'action':'kakaoLogin.pc',
+			'method':'POST',
+			'enctype':'application/x-www-form-urlencoded'
+		}).submit();
 		
 // 		location.href="/khgSpring/kakaoLogin.khg?snstype=01&snsid="+k_id+"&snsemail="+k_email;
 		
@@ -102,6 +112,12 @@
 	
 	//카카오 로그인 ====================================================
 	
+	function moveFocus(next){
+		if(event.keyCode==13){
+			document.getElementById(next).focus();
+		}
+	}
+		
 </script>
 <style type="text/css">
 	
@@ -126,10 +142,10 @@
 			</tr>
 			</thead>
 			<tr>
-				<td><input type="text" name="mid" id="mid" style="width:208px;"></td>
+				<td><input type="text" name="mid" id="mid" style="width:208px;" onkeydown=moveFocus("mpw")></td>
 			</tr>
 			<tr>
-				<td><input type="password" name="mpw" id="mpw" style="width:208px;"></td>
+				<td><input type="password" name="mpw" id="mpw" style="width:208px;" onkeydown=moveFocus("loginBtn")></td>
 			</tr>
 			<tr>
 				<td>

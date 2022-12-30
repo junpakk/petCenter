@@ -153,6 +153,16 @@
 			
 		});
 		
+		// 폼태그 데이터 컨트롤러에 보내기 비밀번호수정
+		$("#pwUpdate").on("click", function() {
+			
+			$("#memForm").attr({
+				'action':'memPwCheck.pc',
+				'method':'POST',
+				'enctype':'application/x-www-form-urlencoded'
+			}).submit();
+			
+		});
 	});
 	
 </script>
@@ -191,9 +201,9 @@
 <tr>
 	<td class="align-middle" id="notNull">비밀번호</td>
 	<td>
-		<input type="text" name="mpw" id="mpw" placeholder="8 ~ 20자리"  /><br/>
-		<input type="text" id="mpw_r" name="mpw_r" placeholder="영문 숫자 특수문자"  />
-		<input type="button" value="비밀번호확인" id="pwCheck" class="btn btn-success btn-sm"/><br/>
+<!-- 		<input type="text" name="mpw" id="mpw" placeholder="8 ~ 20자리"  /><br/> -->
+<!-- 		<input type="text" id="mpw_r" name="mpw_r" placeholder="영문 숫자 특수문자"  /> -->
+		<input type="button" value="비밀번호변경" id="pwUpdate" class="btn btn-success btn-sm"/><br/>
 	</td>
 </tr>
 

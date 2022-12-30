@@ -120,6 +120,30 @@ AND     A.MID           = #{mid}
 
 </update>
 
+<!-- 현재비밀번호 체크 -->
+<select id="memPwCheck" parameterType="membervo" resultType="membervo">
 
+	SELECT
+			A.MPW			AS	MPW
+		   ,A.MID			AS	MID
+		   ,A.MEMAIL		AS	MEMAIL
+	FROM	PC_MEMBER A
+	WHERE	A.MPW			=	#{mpw}
+	AND		A.MID			=	#{mid}
+	AND		A.MEMAIL		=	#{memail}
+
+</select>
+
+<!-- 비밀번호 업데이트 쿼리문 -->
+<update id="memPwUpdate" parameterType="membervo">
+
+	UPDATE   PC_MEMBER
+	SET      MPW          = #{ mpw }
+	        ,UDATE        = SYSDATE
+	WHERE    DELYN        = 'Y'
+	AND      MID          = #{ mid }
+	AND      MEMAIL       = #{ memail }
+
+</update>
 
 </mapper>

@@ -65,13 +65,20 @@
 		alert("jQuery");
 		
 		// 폼태그 데이터 컨트롤러에 보내기
-		$("#btn").on("click", function() {
+		$("#btnUpdate").on("click", function() {
 			
 			$("#memForm").attr({
 				'action':'memSelectForm.pc',
 				'method':'POST',
 				'enctype':'application/x-www-form-urlencoded'
 			}).submit();
+		});
+		
+		// 폼태그 데이터 컨트롤러에 보내기
+		$("#btnCalendar").on("click", function() {
+			
+			location.href="calendar.pc";
+			
 		});
 	});
 	
@@ -146,7 +153,8 @@
 <tfoot>
 <tr >
 	<td colspan="2">
-		<button type="button" id="btn" class="btn btn-primary btn-lg">수정하기</button>
+		<button type="button" id="btnUpdate" class="btn btn-primary btn-lg">수정하기</button>
+		<button type="button" id="btnCalendar" class="btn btn-info btn-lg">일정관리</button>
 <!-- 		<button type="reset">다시 </button> -->
 	</td>
 </tr>
