@@ -12,6 +12,9 @@ public abstract class ChabunUtil {
 	public static final String BIZ_GUBUN_BF = "BF"; // 박람회
 	public static final String BIZ_GUBUM_MP = "MP"; // 좋아요	
 	
+	public static final String BIZ_GUBUN_BC 	= "BC"; 
+	public static final String BIZ_GUBUN_Z 	= "Z"; 
+	
 	
 	public static String numPad(String t, String c) {
 		
@@ -53,6 +56,14 @@ public abstract class ChabunUtil {
 	// 맵
 	public static String getMapChabun(String type, String productNum) {
 		return BIZ_GUBUM_MP.concat(ChabunUtil.numPad(type, productNum));
+	}
+	
+	public static String getCommunityChabun(String type, String memNum) {
+		// TODO Auto-generated method stub
+		return BIZ_GUBUN_BC.concat(ChabunUtil.numPad(type, memNum));
+	}
+	public static String getZangChabun(String type, String memNum) {		
+		return BIZ_GUBUN_Z.concat(ChabunUtil.numPad(type, memNum));
 	}
 
 }

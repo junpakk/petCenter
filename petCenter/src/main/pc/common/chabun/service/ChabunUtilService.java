@@ -3,11 +3,12 @@ package main.pc.common.chabun.service;
 import main.pc.member.vo.MemberVO;
 import main.pc.product.vo.ProductVO;
 import main.pc.cart.vo.CartVO;
-
+import main.pc.community.vo.CommunityVO;
 import main.pc.fair.vo.FairVO;
 import main.pc.like.vo.LikeVO;
 import main.pc.map.vo.MapVO;
 import main.pc.reply.vo.ReplyVO;
+import main.pc.zang.vo.ZangVO;
 
 public interface ChabunUtilService {
 
@@ -18,5 +19,9 @@ public interface ChabunUtilService {
 	public CartVO getCartChabun();//카트
 	public FairVO getFairChabun();//박람회
 	public MapVO getMapChabun();//맵
+	
+	public ZangVO getZangChabun();
+
+	public CommunityVO getCommunityChabun();
 
 }

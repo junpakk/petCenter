@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+          "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+          
+<mapper namespace="main.pc.zang.dao.ZangDAO">
+
+<insert id="petzangInsert" parameterType="zangvo" >
+ 
+	INSERT INTO PC_ZANG (
+								bznum
+								,bzc
+								,mid
+								,bztitle
+								,bzcontent
+								,delyn
+								,idate
+								,udate)
+            			VALUES( 
+            					#{bznum, jdbcType=VARCHAR }, 
+            					#{bzc, jdbcType=VARCHAR }, 
+            					#{mid, jdbcType=VARCHAR }, 
+            					#{bztitle, jdbcType=VARCHAR }, 
+            					#{bzcontent, jdbcType=VARCHAR }, 
+            					         					
+            					'Y', 
+            					SYSDATE, 
+            					SYSDATE)
+</insert>
+<select id="petzangSelectAll" parameterType="zangvo" resultType="zangvo">
+	SELECT 
+	A.BZNUM AS BZNUM
+	,A.BZC AS BZC
+	,A.MID AS MID
+	,A.BZTITLE AS BZTITLE
+	,A.BZCONTENT AS BZCONTENT
+	FROM PC_ZANG A
+	WHERE A.DELYN='Y'
+</select>
+<update id="petzangDelete" parameterType="zangvo" >
+	UPDATE PC_ZANG
+		SET 
+	
+			DELYN = 'N'
+			
+		WHERE BZNUM = #{bznum, jdbcType=VARCHAR}
+</update>
+<select id="petzangSelect" parameterType="zangvo" resultType="zangvo">
+	SELECT
+		A.BZNUM AS BZNUM
+		,A.BZC AS BZC
+		,A.MID AS MID
+		,A.BZTITLE AS BZTITLE
+		,A.BZCONTENT AS BZCONTENT
+		FROM PC_ZANG A
+		WHERE A.BZNUM = #{bznum}
+		
+</select>
+<update id="petzangUpdate" parameterType="zangvo" >
+	UPDATE PC_ZANG
+		SET 
+	
+			BZCONTENT = #{bzcontent}
+			,UDATE = SYSDATE
+			
+		WHERE DELYN='Y'
+		AND BZNUM = #{bznum}
+</update>
+</mapper>

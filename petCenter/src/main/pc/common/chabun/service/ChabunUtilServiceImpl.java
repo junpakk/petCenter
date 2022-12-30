@@ -8,11 +8,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import main.pc.cart.vo.CartVO;
 import main.pc.common.chabun.dao.ChabunUtilDAO;
-
+import main.pc.community.vo.CommunityVO;
 import main.pc.fair.vo.FairVO;
 import main.pc.like.vo.LikeVO;
 import main.pc.map.vo.MapVO;
 import main.pc.reply.vo.ReplyVO;
+import main.pc.zang.vo.ZangVO;
 import main.pc.member.vo.MemberVO;
 import main.pc.product.vo.ProductVO;
 
@@ -77,6 +78,15 @@ public class ChabunUtilServiceImpl implements ChabunUtilService {
 		logger.info("getMapChabun() 함수 진입: ");
 		return chabunUtilDAO.getMapChabun();
 	}
-
+	@Override
+	public ZangVO getZangChabun() {
+		// TODO Auto-generated method stub
+		return chabunUtilDAO.getZangChabun();
+	}
+	@Override
+	public CommunityVO getCommunityChabun() {
+		// TODO Auto-generated method stub
+		return chabunUtilDAO.getCommunityChabun();
+	}
 	
 }
