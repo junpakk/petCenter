@@ -206,7 +206,7 @@ public class LoginController {
 			return "member/memPwUpdateForm";
 			
 		}
-		return "login/idFind";
+		return "login/pwFind";
 	}
 	
 	// 패스워드 찾기 ================================================== end
