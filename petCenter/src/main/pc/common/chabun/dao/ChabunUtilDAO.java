@@ -8,6 +8,7 @@ import main.pc.map.vo.MapVO;
 import main.pc.reply.vo.ReplyVO;
 import main.pc.zang.vo.ZangVO;
 import main.pc.member.vo.MemberVO;
+import main.pc.order.vo.OrderVO;
 import main.pc.product.vo.ProductVO;
 
 public interface ChabunUtilDAO {
@@ -15,6 +16,8 @@ public interface ChabunUtilDAO {
 	public MemberVO getChabunMember();
 	public ProductVO getProductChabun();//상품
 	public CartVO getCartChabun();// 카트
+	public OrderVO getOrderChabun();//오더
+	
 	public ReplyVO getReplyChabun();
 	public LikeVO getLikeChabun();
 	
@@ -24,6 +27,5 @@ public interface ChabunUtilDAO {
 	public ZangVO getZangChabun();
 
 	public CommunityVO getCommunityChabun();
-
 
 }

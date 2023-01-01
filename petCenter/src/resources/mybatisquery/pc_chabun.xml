@@ -18,10 +18,15 @@ FROM    PC_MEMBER A
 	SELECT	/*+ INDEX_DESC(A SYS_C0011066) */ NVL(MAX(SUBSTR(A.PNUM,-4)),0) + 1 PNUM 
 	FROM PC_PRODUCT A
 </select>
-
+<!-- 카트 -->
 <select id="getCartChabun" resultType="cartvo">
 	SELECT  /*+ INDEX_DESC(A SYS_C0011066) */ NVL(MAX(SUBSTR(A.CNUM,-4)),0) + 1 CNUM
 	FROM PC_CART A
+</select>
+<!-- 오더  -->
+<select id="getOrderChabun" resultType="ordervo">
+	SELECT  /*+ INDEX_DESC(A SYS_C0011066) */ NVL(MAX(SUBSTR(A.ONUM,-4)),0) + 1 ONUM
+	FROM PC_Order A
 </select>
 
 <!-- 댓글 -->

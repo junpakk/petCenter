@@ -12,6 +12,7 @@ import main.pc.map.vo.MapVO;
 import main.pc.reply.vo.ReplyVO;
 import main.pc.zang.vo.ZangVO;
 import main.pc.member.vo.MemberVO;
+import main.pc.order.vo.OrderVO;
 import main.pc.product.vo.ProductVO;
 import main.pc.cart.vo.CartVO;
 import main.pc.community.vo.CommunityVO;
@@ -30,14 +31,6 @@ public class ChabunUtilDAOImpl implements ChabunUtilDAO {
 		return sqlSession.selectOne("getChabunMember");
 	}
 
-	//상품
-	@Override
-	public ProductVO getProductChabun() {
-		// TODO Auto-generated method stub
-		logger.info("getProductChabun() 함수 진입 >>> : ");
-		return sqlSession.selectOne("getProductChabun");
-
-	}
 	@Override
 	public ReplyVO getReplyChabun() {
 		// TODO Auto-generated method stub
@@ -56,6 +49,13 @@ public class ChabunUtilDAOImpl implements ChabunUtilDAO {
 
 	}
 
+	//상품
+	@Override
+	public ProductVO getProductChabun() {
+		// TODO Auto-generated method stub
+		logger.info("getProductChabun() 함수 진입 >>> : ");
+		return sqlSession.selectOne("getProductChabun");
+	}
 	//카트
 	@Override
 	public CartVO getCartChabun() {
@@ -63,6 +63,14 @@ public class ChabunUtilDAOImpl implements ChabunUtilDAO {
 		logger.info("getCartChabun 함수 진입: ");
 		return sqlSession.selectOne("getCartChabun");
 	}
+	//오더
+	@Override
+	public OrderVO getOrderChabun() {
+		// TODO Auto-generated method stub
+		logger.info("getOrderChabun 함수 진입: ");
+		return sqlSession.selectOne("getOrderChabun");
+	}
+	
 	@Override
 	public FairVO getFairChabun() {
 		// TODO Auto-generated method stub
@@ -89,4 +97,5 @@ public class ChabunUtilDAOImpl implements ChabunUtilDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("getCommunityChabun");
 	}
+
 }

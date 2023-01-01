@@ -33,16 +33,56 @@
 	SELECT   A.CNUM		CNUM
 			,A.MNUM		MNUM
 			,A.CNAME	CNAME
-			,CCNT
-			,CPRICE
-			,CPHOTO
-			,DELYN
-			,IDATE
-			,UDATE
+			,A.CCNT		CCNT
+			,A.CPRICE	CPRICE
+			,A.CPHOTO	CPHOTO
+			,A.DELYN	DELYN
+			,A.IDATE	IDATE
+			,A.UDATE	UDATE
 	FROM	PC_CART A
 	WHERE	A.DELYN = 'Y'
 	AND		A.MNUM	= #{mnum}
 
 </select>
+
+<update id="cartDelete" parameterType="cartvo" >
+ 
+		UPDATE 	 PC_CART 
+		SET 	 DELYN = 'N' 
+				,UDATE = SYSDATE 			
+		WHERE CNUM = #{cnum} 
+	
+</update>
+
+<!-- foreach -->
+<select id="cartSelect" parameterType="cartvo" resultType="cartvo">
+
+		SELECT   A.CNUM		CNUM
+				,A.MNUM		MNUM
+				,A.CNAME	CNAME
+				,A.CCNT		CCNT
+				,A.CPRICE	CPRICE
+				,A.CPHOTO	CPHOTO
+				,A.DELYN	DELYN
+				,TO_CHAR(A.IDATE, 'YYYY-MM-DD')	IDATE
+				,TO_CHAR(A.UDATE, 'YYYY-MM-DD')	UDATE
+		FROM	PC_CART A
+		WHERE	A.DELYN = 'Y'
+<!-- 		AND		A.MNUM	= #{mnum} -->
+		AND 	A.CNUM	IN
+	<foreach collection="list" item="item" index="index" separator="," open="(" close=")">
+		#{item.cnum} 	
+	</foreach>
+</select>
+
+<!-- foreach -->
+<update id="cartDeleteArray" parameterType="cartvo" >
+	<foreach collection="list" item="item" index="index" separator=";" open="DECLARE BEGIN" close="; END;"> 
+		UPDATE 	PC_CART 
+		SET 	DELYN = 'N' 
+			   ,UDATE = SYSDATE 			
+		WHERE CNUM = #{item.cnum} 
+	</foreach>
+</update>
 
 </mapper>

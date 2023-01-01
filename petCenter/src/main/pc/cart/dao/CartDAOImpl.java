@@ -1,5 +1,6 @@
 package main.pc.cart.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -27,41 +28,42 @@ public class CartDAOImpl implements CartDAO {
 
 	//회원병 장바구니 S
 	@Override
-	public List<CartVO> cartSelectAll(String mnum) {
+	public List<CartVO> cartSelectAll(CartVO cvo) {
 		// TODO Auto-generated method stub
 		logger.info("cartSelectAll() 진입: ");
-		return sqlSession.selectList("cartSelectAll", mnum);
+		return sqlSession.selectList("cartSelectAll", cvo);
 	}
 
+	
+	//한건 클릭 삭제
+	@Override
+	public int cartDelete(CartVO cvo) {
+		// TODO Auto-generated method stub
+		logger.info("cartDelete() 진입: ");
+		return sqlSession.update("cartDelete", cvo);
+	}
+
+	//장바구니 목록 선택해서 가져오기, S, 리스트 데이터 들고와서 리스트로 가져오기
+	@Override
+	public List<CartVO> cartSelect(ArrayList<CartVO> list) {
+		// TODO Auto-generated method stub
+		logger.info("cartSelect() 진입: ");
+		return sqlSession.selectList("cartSelect", list);
+	}
+
+	//장바구니 선택삭제, 전체삭제
+	@Override
+	public int cartDeleteArray(ArrayList<CartVO> listDel) {
+		// TODO Auto-generated method stub
+		logger.info("cartDeleteArray() 진입: ");
+		return sqlSession.update("cartDeleteArray", listDel);
+	}
+	
 //	@Override
 //	public List<CartVO> cartSelectAll(CartVO cvo) {
 //		// TODO Auto-generated method stub
 //		logger.info("cartSelectAll() 진입: ");
 //		return sqlSession.selectList("cartSelectAll", cvo);
-//	}
-//
-//	//한건 클릭 삭제
-//	@Override
-//	public int cartDelete(CartVO cvo) {
-//		// TODO Auto-generated method stub
-//		logger.info("cartDelete() 진입: ");
-//		return sqlSession.update("cartDelete", cvo);
-//	}
-//
-//	//선택삭제, 전체삭제
-//	@Override
-//	public int cartDeleteArray(ArrayList<CartVO> list) {
-//		// TODO Auto-generated method stub
-//		logger.info("cartDeleteArray() 진입: ");
-//		return sqlSession.update("cartDeleteArray", list);
-//	}
-//
-//	//장바구니 목록 선택해서 가져오기, S, 리스트데이터 들고와서 리스트로 가져오기
-//	@Override
-//	public List<CartVO> cartSelect(ArrayList<CartVO> list) {
-//		// TODO Auto-generated method stub
-//		logger.info("cartSelect() 진입: ");
-//		return sqlSession.selectList("cartSelect", list);
 //	}
 
 }

@@ -17,6 +17,7 @@
 		<typeAlias type="main.pc.like.vo.LikeVO" alias="likevo"/>
 		<typeAlias type="main.pc.product.vo.ProductVO" alias="productvo"/>
 		<typeAlias type="main.pc.cart.vo.CartVO" alias="cartvo"/>
+		<typeAlias type="main.pc.order.vo.OrderVO" alias="ordervo"/>
 		<typeAlias type="main.pc.calendar.vo.CalendarVO" alias="calendarVO"/>
 		
 		<typeAlias type="main.pc.map.vo.MapVO" alias="mapvo"/>

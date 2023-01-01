@@ -14,15 +14,6 @@
 	Logger logger = LogManager.getLogger(this.getClass());
 	logger.info("productSelectAll.jsp 진입: ");
 	
-	//페이징 세팅
-// 	int pageSize = 0;
-// 	int groupSize = 0;
-// 	int curPage = 0;
-// 	int totalCount = 0;
-	
-// 	Object objPaging = request.getAttribute("pagingPVO");//페이징
-// 	ProductVO pagingPVO = (ProductVO)objPaging;
-	
 /*
 일단 가장 큰 차이점은 둘의 리턴 타입이다.
 getParameter()메서드의 경우 String타입을 리턴,
@@ -55,8 +46,6 @@ getAttribute()의 경우 setAttribute()속성을 통한 설정이 없으면 무�
 
 tbody {
   display: inline-block;
-/*   width: 250px; */
-/*   height: 300px; */
   padding: 5px;
   border: 1px solid none;    
   background-color: none; 
@@ -64,6 +53,7 @@ tbody {
 
 table {
 	align: center;
+	
 }
 
 ul	{
@@ -109,23 +99,13 @@ ul	{
 		pphoto = pvo.getPphoto();
 		pphotoPath = CommonUtils.PRODUCT_IMG_UPLOAD_PATH;
 		pnum = pvo.getPnum();
-	
-		//페이징 세팅
-// 		pageSize = Integer.parseInt(pagingPVO.getPageSize());
-// 		groupSize = Integer.parseInt(pagingPVO.getGroupSize());
-// 		curPage = Integer.parseInt(pagingPVO.getCurPage());
-// 		totalCount = Integer.parseInt(pvo.getTotalCount());
 %>
 	<td>
 		<table>
 			<tr>
 				<td>
-<%-- 					<button type="submit" id="btnPphoto" onclick="findSelect('<%= pnum %>')"> --%>
-<%-- 						<img src="/petCenter/fileupload/product/<%= pphoto %>"/> --%>
-<!-- 					</button> -->
-
 					<a href="productSelect.pc?pnum=<%= pnum %>">
-						<img src="/petCenter/fileupload/product/<%= pphoto %>"/>
+						<img width="280px" height="280px" src="/petCenter/fileupload/product/<%= pphoto %>"/>
  					</a>
 				</td>
 			</tr>
@@ -157,18 +137,6 @@ ul	{
 </table>
 <table>	
 	<tfoot>
-	<!-- <tr> -->
-	<!-- 	<td colspan="3"> -->
-	<%-- 		<jsp:include page="productPaging.jsp" flush="true"> --%>
-	<%-- 			<jsp:param name="url" value="productSelectAll.pjb"/> --%>
-	<%-- 			<jsp:param name="str" value=""/> --%>
-	<%-- 			<jsp:param name="pageSize" value="<%=pageSize%>"/> --%>
-	<%-- 			<jsp:param name="groupSize" value="<%=groupSize%>"/> --%>
-	<%-- 			<jsp:param name="curPage" value="<%=curPage%>"/> --%>
-	<%-- 			<jsp:param name="totalCount" value="<%=totalCount%>"/> --%>
-	<%-- 		</jsp:include> --%>
-	<!-- 	</td> -->
-	<!-- </tr> -->
 	</tfoot>
 </table>
 </form>

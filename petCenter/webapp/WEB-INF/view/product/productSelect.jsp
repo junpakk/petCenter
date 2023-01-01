@@ -80,14 +80,14 @@
 		  position: relative;
 		  width: 500px;
 		  height: 500px;
-		  border: 3px solid blue;
+		  border: 1px solid black;
 	}
 	
 	div.c, .d{
 		  position: relative;
 		  width: 500px;
 		  height: 200px;
-		  border: 3px solid blue;
+		  border: 1px solid black;
 	}
 	
 	div.b1{
@@ -98,7 +98,7 @@
 		left: 50px;
 		width: 400px;
 		height: 80px;
-		border: 3px solid blue;
+		border: 1px solid black;
 	}
 	
 	div.b2{
@@ -106,7 +106,7 @@
 		  left: 50px;
 		  width: 400px;
 		  height: 60px;
-		  border: 3px solid blue;
+		  border: 1px solid black;
 	}
 	
 </style>
@@ -174,7 +174,16 @@
 	$('#cartBtn').click(function(){
 		//console.log("#cartBtn 클릭: ");
 		if(confirm("해당 상품을 장바구니에 담으시겠습니까?")){
-			 //console.log("주문");
+			const cCnt = document.getElementById("cCnt").innerText;
+			alert("cCnt: "+ cCnt);
+					
+			location.href="cartInsert.pc?pname=<%= pname %>&pprice=<%= pprice %>&pphoto=<%= pphoto %>&ccnt="+cCnt;		
+		}
+	});
+	
+	$('#orderBtn').click(function(){
+		//console.log("#orderBtn 클릭: ");
+		if(confirm("해당 상품을 주문하시겠습니까?")){
 			const cCnt = document.getElementById("cCnt").innerText;
 			alert("cCnt: "+ cCnt);
 					

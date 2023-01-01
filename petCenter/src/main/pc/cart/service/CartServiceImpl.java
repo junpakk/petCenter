@@ -1,5 +1,6 @@
 package main.pc.cart.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.LogManager;
@@ -29,12 +30,36 @@ public class CartServiceImpl implements CartService {
 	}
 
 	@Override
-	public List<CartVO> cartSelectAll(String mnum) {
+	public List<CartVO> cartSelectAll(CartVO cvo) {
 		// TODO Auto-generated method stub
 		logger.info("cartSelectAll() 진입: ");
-		return cartDAO.cartSelectAll(mnum);
+		return cartDAO.cartSelectAll(cvo);
 	}
 
+	//한건 클릭 삭제
+	@Override
+	public int cartDelete(CartVO cvo) {
+		// TODO Auto-generated method stub
+		logger.info("cartDelete() 진입: ");
+		return cartDAO.cartDelete(cvo);
+	}
+
+	//장바구니 목록 선텍해서 가져오기, S
+	@Override
+	public List<CartVO> cartSelect(ArrayList<CartVO> list) {
+		// TODO Auto-generated method stub
+		logger.info("cartSelect() 진입: ");
+		return cartDAO.cartSelect(list);
+	}
+
+	//장바구니 목록 삭제
+	@Override
+	public int cartDeleteArray(ArrayList<CartVO> listDel) {
+		// TODO Auto-generated method stub
+		logger.info("cartDeleteArray() 진입: ");
+		return cartDAO.cartDeleteArray(listDel);
+	}
+	
 //	@Override
 //	public List<CartVO> cartSelectAll(CartVO cvo) {
 //		// TODO Auto-generated method stub
@@ -42,27 +67,5 @@ public class CartServiceImpl implements CartService {
 //		return cartDAO.cartSelectAll(cvo);
 //	}
 //
-//	//한건 클릭 삭제
-//	@Override
-//	public int cartDelete(CartVO cvo) {
-//		// TODO Auto-generated method stub
-//		logger.info("cartDelete() 진입: ");
-//		return cartDAO.cartDelete(cvo);
-//	}
-//
-//	@Override
-//	public int cartDeleteArray(ArrayList<CartVO> list) {
-//		// TODO Auto-generated method stub
-//		logger.info("cartDeleteArray() 진입: ");
-//		return cartDAO.cartDeleteArray(list);
-//	}
-//
-//	//장바구니 목록 선태해서 가져오기, S
-//	@Override
-//	public List<CartVO> cartSelect(ArrayList<CartVO> list) {
-//		// TODO Auto-generated method stub
-//		logger.info("cartSelect() 진입: ");
-//		return cartDAO.cartSelect(list);
-//	}
 
 }

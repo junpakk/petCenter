@@ -75,9 +75,9 @@ public class CartController {
 		logger.info("cartSelectAll() 진입: ");
 		logger.info("cvo.getMnum(): "+ cvo.getMnum());
 		
-		String mnum = cvo.getMnum();
+		cvo.setMnum(cvo.getMnum());
 
-		List<CartVO> listAll = cartService.cartSelectAll(mnum);
+		List<CartVO> listAll = cartService.cartSelectAll(cvo);
 		if(listAll.size() > 0) {
 			logger.info("listAll.size(): "+ listAll.size());
 			model.addAttribute("listAll", listAll);
@@ -86,30 +86,20 @@ public class CartController {
  		return "cart/cartSelectAll";
 	}
 	
-//	@GetMapping("/cartInsert2")
-//	public String cartInsert() {
-//		logger.info("cartInsert() 진입: ");
-//		
-//		
-//		
-//		return "cart/cartInsert";
-//	}
-	
-	
-	
-	//장바구니 정보 세션처리
-//	@RequestMapping(value="cartProcess", method=RequestMethod.GET)
-//	public String cartProcess(Model model, ProductVO pvo) {
-//		logger.info("kioskCartProcess.pjb 진입: ");
-//		
-//		String name = pvo.getPname();
-//		String price = pvo.getPprice();
-////		String photo = pvo.getPphoto();
-//		logger.info("name: "+ name);
-//		logger.info("price: "+ price);
-////		logger.info("photo: "+ photo);
-//		
-//		return "cart/cartProcess";
-//	}
-
+	//한건 클릭 삭제
+	@RequestMapping(value="cartDelete", method=RequestMethod.GET)
+	public String cartDelete(CartVO cvo, HttpServletRequest req) {
+		logger.info("cartDelete() 함수 진입: ");
+		
+		cvo.setCnum(req.getParameter("cnum"));
+		cvo.setMnum(req.getParameter("mnum"));
+		logger.info("cvo.getCnum(): "+ cvo.getCnum());
+		logger.info("cvo.getMnum(): "+ cvo.getMnum());
+		
+		int nCnt = cartService.cartDelete(cvo);
+		if(nCnt > 0) {
+			logger.info("한건 클릭 삭제를 처리합니다, nCnt: "+ nCnt);
+		}
+		return "cart/cartDelete";
+	}
 }

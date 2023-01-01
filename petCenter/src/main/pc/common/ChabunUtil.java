@@ -6,6 +6,7 @@ public abstract class ChabunUtil {
 	
 	public static final String BIZ_GUBUN_P = "P";	// 상품
 	public static final String BIZ_GUBUN_C = "C";	// 카트
+	public static final String BIZ_GUBUN_O = "O";	// 오더
 	
 	public static final String BIZ_GUBUN_BR = "BR"; // 댓글
 	public static final String BIZ_GUBUN_BL = "BL"; // 좋아요
@@ -47,6 +48,10 @@ public abstract class ChabunUtil {
 	public static String getCartChabun(String type, String cartNum) {
 		return BIZ_GUBUN_C.concat(ChabunUtil.numPad(type, cartNum));
 	}
+	// 오더
+	public static String getOrderChabun(String type, String oNum) {
+		return BIZ_GUBUN_O.concat(ChabunUtil.numPad(type, oNum));
+	}
 	
 
 	// 박람회
@@ -65,5 +70,6 @@ public abstract class ChabunUtil {
 	public static String getZangChabun(String type, String memNum) {		
 		return BIZ_GUBUN_Z.concat(ChabunUtil.numPad(type, memNum));
 	}
+	
 
 }

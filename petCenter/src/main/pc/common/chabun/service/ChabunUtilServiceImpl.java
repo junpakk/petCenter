@@ -15,6 +15,7 @@ import main.pc.map.vo.MapVO;
 import main.pc.reply.vo.ReplyVO;
 import main.pc.zang.vo.ZangVO;
 import main.pc.member.vo.MemberVO;
+import main.pc.order.vo.OrderVO;
 import main.pc.product.vo.ProductVO;
 
 @Service
@@ -56,13 +57,19 @@ public class ChabunUtilServiceImpl implements ChabunUtilService {
 		return chabunUtilDAO.getProductChabun();
 
 	}
-	
 	//카트
 	@Override
 	public CartVO getCartChabun() {
 		// TODO Auto-generated method stub
 		logger.info("getCartChabun() 함수 진입: ");
 		return chabunUtilDAO.getCartChabun();
+	}
+	//오더
+	@Override
+	public OrderVO getOrderChabun() {
+		// TODO Auto-generated method stub
+		logger.info("getOrderChabun() 함수 진입: ");
+		return chabunUtilDAO.getOrderChabun();
 	}
 	
 	// 박람회
@@ -88,5 +95,6 @@ public class ChabunUtilServiceImpl implements ChabunUtilService {
 		// TODO Auto-generated method stub
 		return chabunUtilDAO.getCommunityChabun();
 	}
+
 	
 }
