@@ -14,4 +14,7 @@ public interface MemberService {
 	public int memDelete(MemberVO mvo);
 	
 	public List<MemberVO> memIdCheck(MemberVO mvo);
+	
+	public List<MemberVO> memPwCheck(MemberVO mvo);
+	public int memPwUpdate(MemberVO mvo);
 }

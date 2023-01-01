@@ -18,4 +18,7 @@ public interface LoginService {
 	public List<MemberVO> emailCntCheckPW(MemberVO mvo);
 	public int tempPwInsert(PwFindVO pvo);
 	public List<PwFindVO> pwFindAuthnum(PwFindVO pvo);
+	
+	public List<MemberVO> kakaoLogin(MemberVO mvo);
+	public int kakaoInsert(MemberVO mvo);
 }

@@ -75,5 +75,19 @@ public class LoginDAOImpl implements LoginDAO {
 		return sqlSession.selectList("pwFindAuthnum", pvo);
 	}
 
+	@Override
+	public List<MemberVO> kakaoLogin(MemberVO mvo) {
+		// TODO Auto-generated method stub
+		logger.info("kakaoLogin 함수 진입 >>> : ");
+		return sqlSession.selectList("kakaoLogin", mvo);
+	}
+
+	@Override
+	public int kakaoInsert(MemberVO mvo) {
+		// TODO Auto-generated method stub
+		logger.info("kakaoInsert 함수 진입 >>> : ");
+		return sqlSession.insert("kakaoInsert", mvo);
+	}
+
 
 }

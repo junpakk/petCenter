@@ -64,7 +64,22 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public List<MemberVO> memIdCheck(MemberVO mvo) {
 		// TODO Auto-generated method stub
+		logger.info("memIdCheck() 함수 진입 >>> : ");
 		return memberDAO.memIdCheck(mvo);
+	}
+
+	@Override
+	public List<MemberVO> memPwCheck(MemberVO mvo) {
+		// TODO Auto-generated method stub
+		logger.info("memPwCheck() 함수 진입 >>> : ");
+		return memberDAO.memPwCheck(mvo);
+	}
+
+	@Override
+	public int memPwUpdate(MemberVO mvo) {
+		// TODO Auto-generated method stub
+		logger.info("memPwUpdate() 함수 진입 >>> : ");
+		return memberDAO.memPwUpdate(mvo);
 	}
 
 }

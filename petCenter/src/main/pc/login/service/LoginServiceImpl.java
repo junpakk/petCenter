@@ -76,4 +76,18 @@ public class LoginServiceImpl implements LoginService {
 		logger.info("pwFindAuthnum 함수 진입 >>> : ");
 		return loginDAO.pwFindAuthnum(pvo);
 	}
+
+	@Override
+	public List<MemberVO> kakaoLogin(MemberVO mvo) {
+		// TODO Auto-generated method stub
+		logger.info("kakaoLogin 함수 진입 >>> : ");
+		return null;
+	}
+
+	@Override
+	public int kakaoInsert(MemberVO mvo) {
+		// TODO Auto-generated method stub
+		logger.info("kakaoInsert 함수 진입 >>> : ");
+		return 0;
+	}
 }

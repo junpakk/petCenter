@@ -231,7 +231,7 @@ public class MemberController {
 		
 		int uCnt = memberService.memUpdate(mvo);
 		if (uCnt > 0) {
-			logger.info("memUpdate iCnt >>> : " + uCnt);
+			logger.info("memUpdate uCnt >>> : " + uCnt);
 			model.addAttribute("cnt", uCnt);
 			model.addAttribute("result", "수정");
 			return "member/memResult";
@@ -247,7 +247,7 @@ public class MemberController {
 		
 		int dCnt = memberService.memDelete(mvo);
 		if (dCnt > 0) {
-			logger.info("memDelete iCnt >>> : " + dCnt);
+			logger.info("memDelete dCnt >>> : " + dCnt);
 			model.addAttribute("cnt", dCnt);
 			model.addAttribute("result", "삭제");
 			return "member/memResult";
@@ -257,4 +257,73 @@ public class MemberController {
 		return "member/memError";
 	}
 	
+	//=======================비밀번호 변경=======================
+	// 현재 비밀번호 체크 페이지 이동
+	@PostMapping("memPwCheck")
+	public String memPwCheck(HttpServletRequest req, MemberVO mvo, Model model) {
+		logger.info("memPwCheck 함수 진입 >>> :");
+		
+		String memail1 = req.getParameter("memail1");
+		String memail2 = req.getParameter("memail2");
+		String memail = memail1.concat("@").concat(memail2);
+		mvo.setMemail(memail);
+		
+		logger.info("memPwCheck mvo.getMid() >>> :" + mvo.getMid());
+		logger.info("memPwCheck mvo.getMemail() >>> :" + mvo.getMemail());
+		
+		model.addAttribute("mid", mvo.getMid());
+		model.addAttribute("memail", mvo.getMemail());
+		
+		return "member/memPwCheck";
+	}
+	
+	// 비밀번호 변경 폼
+	@PostMapping("memPwUpdateForm")
+	public String memPwUpdateForm(MemberVO mvo, Model model) {
+		logger.info("memPwUpdateForm 함수 진입 >>> :");
+		
+		logger.info("memPwUpdateForm mvo.getMpw() >>> :" + mvo.getMpw());
+		
+		String mpw = EncryptSHA.encryptSHA256(mvo.getMpw());
+		mvo.setMpw(mpw);
+		
+		logger.info("memPwUpdateForm mvo.getMid() >>> :" + mvo.getMid());
+		logger.info("memPwUpdateForm mvo.getMemail() >>> :" + mvo.getMemail());
+		logger.info("memPwUpdateForm mvo.getMpw() >>> :" + mvo.getMpw());
+		
+		List<MemberVO> list = memberService.memPwCheck(mvo);
+		if (list.size() == 1) {
+			model.addAttribute("mid", mvo.getMid());
+			model.addAttribute("memail", mvo.getMemail());
+			return "member/memPwUpdateForm";
+		}
+		
+		return "member/memError";
+	}
+	
+	// 비밀번호 업데이트
+	@PostMapping("memPwUpdate")
+	public String memPwUpdate(MemberVO mvo, Model model) {
+		logger.info("memPwUpdate 함수 진입 >>> :");
+		
+		logger.info("memPwUpdate mvo.getMpw() >>> :" + mvo.getMpw());
+		
+		String mpw = EncryptSHA.encryptSHA256(mvo.getMpw());
+		mvo.setMpw(mpw);
+		
+		logger.info("memPwUpdate mvo.getMid() >>> :" + mvo.getMid());
+		logger.info("memPwUpdate mvo.getMemail() >>> :" + mvo.getMemail());
+		logger.info("memPwUpdate mvo.getMpw() >>> :" + mvo.getMpw());
+		
+		int uCnt = memberService.memPwUpdate(mvo);
+		if (uCnt > 0) {
+			logger.info("memPwUpdate uCnt >>> : " + uCnt);
+			model.addAttribute("cnt", uCnt);
+			model.addAttribute("result", "비밀번호수정");
+			return "member/memResult";
+		}
+		
+		return "member/memError";
+	}
+	//=======================비밀번호 변경=======================
 }
