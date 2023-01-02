@@ -47,6 +47,7 @@ FROM    PC_MEMBER A
 <!-- 맵 -->
 <select id="getMapChabun" resultType="mapvo">
 	SELECT  /*+ INDEX_DESC(A SYS_C0011193) */ NVL(MAX(SUBSTR(A.MAPNUM, -4)), 0) + 1  MAPNUM FROM PC_MAP A
+<!-- 	SELECT  /*+ INDEX_DESC(A SYS_C0011193) */ IFNULL(MAX(SUBSTR(A.MAPNUM, -4)), 0) + 1  MAPNUM FROM PC_MAP A -->
 </select>
 
 <select id="getCommunityChabun" resultType="communityvo">
