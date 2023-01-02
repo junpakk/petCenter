@@ -27,14 +27,11 @@
 
 <insert id="likeInsert" parameterType="likevo" >
  
-	INSERT INTO PC_LIKE (	BLNUM, MNUM, BCNUM, 
-									LIKEY, HATE, 									
+	INSERT INTO PC_LIKE (	BLNUM, MNUM, BCNUM, 								
 									DELYN, IDATE)
             				VALUES(	#{blnum}, 
 	            					#{mnum}, 
-	            					#{bcnum},  	 
-	            					#{likey},
-	            					#{hate},           				 				
+	            					#{bcnum},  	        				 				
 	            					'Y', 
 	            					SYSDATE)
 </insert>

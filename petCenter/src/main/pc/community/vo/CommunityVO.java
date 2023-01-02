@@ -10,11 +10,36 @@ public class CommunityVO {
 	 private String idate;
 	 private String udate;
 	 
+	 private String blnum;
+	 private String likey;
+	 private String hate;
+	 
+	 
 	 public CommunityVO() {
 			
 		}
 	 
-	 public String getBcnum() {
+	 
+
+	public CommunityVO(String bcnum, String bcc, String mid, String bctitle, String bccontent, String delyn,
+			String idate, String udate, String blnum, String likey, String hate) {
+
+		this.bcnum = bcnum;
+		this.bcc = bcc;
+		this.mid = mid;
+		this.bctitle = bctitle;
+		this.bccontent = bccontent;
+		this.delyn = delyn;
+		this.idate = idate;
+		this.udate = udate;
+		this.blnum = blnum;
+		this.likey = likey;
+		this.hate = hate;
+	}
+
+
+
+	public String getBcnum() {
 		return bcnum;
 	}
 
@@ -78,20 +103,46 @@ public class CommunityVO {
 		this.udate = udate;
 	}
 
+
+
+	public String getBlnum() {
+		return blnum;
+	}
+
+
+
+	public String getLikey() {
+		return likey;
+	}
+
+
+
+	public String getHate() {
+		return hate;
+	}
+
+
+
+	public void setBlnum(String blnum) {
+		this.blnum = blnum;
+	}
+
+
+
+	public void setLikey(String likey) {
+		this.likey = likey;
+	}
+
+
+
+	public void setHate(String hate) {
+		this.hate = hate;
+	}
+
 	
 
-	public CommunityVO(String bcnum, String bcc, String mid, String bctitle, String bccontent, String delyn,
-			String idate, String udate) {
-		
-		this.bcnum = bcnum;
-		this.bcc = bcc;
-		this.mid = mid;
-		this.bctitle = bctitle;
-		this.bccontent = bccontent;
-		this.delyn = delyn;
-		this.idate = idate;
-		this.udate = udate;
-	}
+
+
 	
 		
 }
