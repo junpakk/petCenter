@@ -19,7 +19,7 @@ public class GoogleAuthumMail {
 	public void authumMail(String resiveMail, String sendMsg) {
 		logger.info("authumMail() 함수 진입");
 		
-		String mailSubject = "임시 인증번호 메일입니다.";
+		String mailSubject = "Pet Center 임시 인증번호 메일입니다.";
 		sendMsg = "<h2 style='color:blue'> " + sendMsg + " </h2>";
 		logger.info("resiveMail >>> : " + resiveMail);
 		logger.info("sendMsg >>> : " + sendMsg);

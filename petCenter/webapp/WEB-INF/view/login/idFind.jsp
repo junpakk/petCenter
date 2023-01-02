@@ -83,7 +83,7 @@
 				<tr>
 					<td class="align-middle">인증번호</td>
 					<td>
-						<input type="text" name="authnum" id="authnum" style="width:200px;" placeholder="인증번호  6자리 숫자 입력">
+						<input type="text" name="authnum" id="authnum" style="width:200px;" placeholder="인증번호  8자리 숫자 입력">
 						&nbsp;&nbsp;<button type="button" id="idbtn" class="btn btn-success btn-sm">&nbsp;아이디&nbsp;&nbsp;찾기&nbsp;</button>
 					</td>
 				</tr>

@@ -65,4 +65,16 @@ public class MemberDAOImpl implements MemberDAO {
 		return sqlSession.selectList("memIdCheck", mvo);
 	}
 
+	@Override
+	public List<MemberVO> memPwCheck(MemberVO mvo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("memPwCheck", mvo);
+	}
+
+	@Override
+	public int memPwUpdate(MemberVO mvo) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("memPwUpdate", mvo);
+	}
+
 }

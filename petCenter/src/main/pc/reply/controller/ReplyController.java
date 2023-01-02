@@ -2,6 +2,8 @@ package main.pc.reply.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,13 +40,17 @@ public class ReplyController {
 	// 댓글 등록
 	@PostMapping("replyInsert")
 	@ResponseBody
-	public String replyInsert(ReplyVO rvo) {
+	public String replyInsert(ReplyVO rvo, HttpSession session) {
 		logger.info("replyInsert 함수 진입");
+		
+		
 		
 		// 채번
 		String brnum = ChabunUtil.getReplyChabun("D", chabunUtilService.getReplyChabun().getBrnum());
 		logger.info("replyInsert brnum : " + brnum);
-		
+		rvo.setMid((String)session.getAttribute("KID"));
+		rvo.setMnum((String)session.getAttribute("KNUM"));
+		rvo.setBcnum((String)session.getAttribute("BCNUM"));
 		rvo.setBrnum(brnum);
 		
 		int nCnt = replyService.replyInsert(rvo);
@@ -84,14 +90,19 @@ public class ReplyController {
 	// 댓글 삭제
 		@PostMapping("replyDelete")
 		@ResponseBody
-		public String replyDelete(ReplyVO rvo) {
+		public String replyDelete(ReplyVO rvo, HttpSession session) {
 			logger.info("replyDelete rvo.getBrnum() : " + rvo.getBrnum());
+			
+			String num = (String)session.getAttribute("KNUM");
 			
 			int nCnt = replyService.replyDelete(rvo);
 			logger.info("replyDelete nCnt : " + nCnt);
 			
 			if (1 ==nCnt) {
-				return "GOOD";
+				if(num == rvo.getMnum()) {
+					return "GOOD";
+				}
+					return "BAD";
 			}else {
 				return "BAD";
 			}

@@ -18,7 +18,7 @@
 <%
 
 	Logger logger = LogManager.getLogger(getClass());
-	logger.info("khgMemberPaging.jsp 진입");
+	logger.info("memPaging.jsp 진입");
 	
 	/************************************
 	전달해야 할 변수
@@ -105,17 +105,17 @@
 	//이전 그룹이 존재 할 때
 	if(curGroup > 0){
 %>
-	<a class="arrow" href="<%=url %>?<%=str %>curPage=1">
-		<img src="/khgSpring/img/img_arrow/left_end.png" height="25px" width="25px">
+	<a class="arrow" href="<%=url %>?<%=str %>curPage=1" style="text-decoration-line: none;">
+		<img src="/petCenter/img/map/arrowLeft.png" height="25px" width="25px">
 	</a>&nbsp;&nbsp;&nbsp;
-	<a class="arrow" href="<%=url %>?<%=str %>curPage=<%=linkPage%>">
-		<img src="/khgSpring/img/img_arrow/left_arrow.png" height="25px" width="25px">
+	<a class="arrow" href="<%=url %>?<%=str %>curPage=<%=linkPage%>" style="text-decoration-line: none;">
+		<img src="/petCenter/img/map/arrowLeft1.png" height="25px" width="25px">
 	</a>&nbsp;&nbsp;&nbsp;
 <%
 	}else{// 이전그룹이 없을 때
 %>
-	<img src="/khgSpring/img/img_arrow/left_end.png" height="25px" width="25px">&nbsp;&nbsp;&nbsp;
-	<img src="/khgSpring/img/img_arrow/left_arrow.png" height="25px" width="25px">&nbsp;&nbsp;&nbsp;
+	<img src="/petCenter/img/map/arrowLeft.png" height="25px" width="25px">&nbsp;&nbsp;&nbsp;
+	<img src="/petCenter/img/map/arrowLeft1.png" height="25px" width="25px">&nbsp;&nbsp;&nbsp;
 <%
 	}
 	
@@ -159,19 +159,19 @@
 		logger.info("다음 그룹이 있는 경우 linkPage >>> : " + linkPage);
 		logger.info("다음 그룹이 있는 경우 pageCount >>> : " + pageCount);
 %>
-		<a class="arrow" href="<%=url %>?<%=str %>curPage=<%=linkPage%>">
-			<img src="/khgSpring/img/img_arrow/right_arrow.png" height="25px" width="25px">
+		<a class="arrow" href="<%=url %>?<%=str %>curPage=<%=linkPage%>" style="text-decoration-line: none;">
+			<img src="/petCenter/img/map/arrowRight1.png" height="25px" width="25px">
 		</a>&nbsp;&nbsp;&nbsp;
-		<a class="arrow" href="<%=url %>?<%=str %>curPage=<%=pageCount%>">
-			<img src="/khgSpring/img/img_arrow/right_end.png" height="25px" width="25px">
+		<a class="arrow" href="<%=url %>?<%=str %>curPage=<%=pageCount%>" style="text-decoration-line: none;">
+			<img src="/petCenter/img/map/arrowRight.png" height="25px" width="25px">
 		</a>&nbsp;&nbsp;&nbsp;
 <%
 	}else{ // 다음 그룹이 없을 때
 		logger.info("다음 그룹이 없는 경우 linkPage >>> : " + linkPage);
 		logger.info("다음 그룹이 없는 경우 pageCount >>> : " + pageCount);
 %>
-	<img src="/khgSpring/img/img_arrow/right_arrow.png" height="25px" width="25px">&nbsp;&nbsp;&nbsp;
-	<img src="/khgSpring/img/img_arrow/right_end.png" height="25px" width="25px">&nbsp;&nbsp;&nbsp;
+	<img src="/petCenter/img/map/arrowRight1.png" height="25px" width="25px">&nbsp;&nbsp;&nbsp;
+	<img src="/petCenter/img/map/arrowRight.png" height="25px" width="25px">&nbsp;&nbsp;&nbsp;
 <%
 	}
 %>

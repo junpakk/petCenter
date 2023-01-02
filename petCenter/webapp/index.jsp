@@ -8,6 +8,10 @@
 <title>Insert title here</title>
 </head>
 <body>
+	Hello 연습중 연습중3 
+	
+		<h3>지도 테스트</h3>
+		<hr>
 
 		<a href="replyForm.pc">댓글</a><br>
 		<a href="fairInsertForm.pc">박람회 인서트</a><br>
@@ -32,7 +36,12 @@
 		<hr>
 		<a href="productInsertForm.pc">상품등록폼</a><br/>
 		<a href="productSelectAll.pc">상품전체목록페이지</a><br/>
-
+		<a href="cartSelectAll.pc?mnum=M0001">카트전체목록페이지 M0001 테스트</a><br/>
+		
+		<a href="communitySelectAll.pc">1</a><br>
+		<a href="communityInsertForm.pc">2</a><br>
+		<a href="zangInsertForm.pc">3</a><br>
+		<a href="petzangSelectAll.pc">4</a><br>
 	</body>
 
 </html>

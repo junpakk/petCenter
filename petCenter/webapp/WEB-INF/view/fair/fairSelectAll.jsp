@@ -18,10 +18,8 @@
 		
 			// 사전등록
 			$(document).on("click", "#selectBtn", function(){
-				alert("등록");
+
 				let num = $(this).val();
-				alert(num);
-				
 				$("#bfnum").val(num);
 				
 				if ($('#bfnum').val() != "BF2212290001" ){
@@ -78,7 +76,6 @@
 								<%=fvo.getBfname() %><br>
 								<p style="font-size:13px"><%=fvo.getBfdate() %><br>
 									<%=fvo.getBfplace() %></p><br>
-<%-- 								<input type="hidden" name="bfnum" id="bfnum" value="<%=fvo.getBfnum() %>" > --%>
 								<button type="button" id="selectBtn" value="<%=fvo.getBfnum() %>" style="width:225pt;height:20pt;">사전등록 바로가기</button>
 							</td>
 						</tr>

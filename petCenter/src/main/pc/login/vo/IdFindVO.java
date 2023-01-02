@@ -1,14 +1,14 @@
 package main.pc.login.vo;
 
-public class TempAuthVO {
+public class IdFindVO {
 
 	private String anum;
 	private String authnum;
 	private String memail;
 	private String idate;
-	public TempAuthVO() {
+	public IdFindVO() {
 	}
-	public TempAuthVO(String anum, String authnum, String memail, String idate) {
+	public IdFindVO(String anum, String authnum, String memail, String idate) {
 		this.anum = anum;
 		this.authnum = authnum;
 		this.memail = memail;
