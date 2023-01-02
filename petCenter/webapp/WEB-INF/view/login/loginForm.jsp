@@ -1,5 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<%@ page import="java.net.URLEncoder" %>
+<%@ page import="java.security.SecureRandom" %>
+<%@ page import="java.math.BigInteger" %>
+<%
+	//네이버 로그인
+	String clientId = "F2JhUJ5_BUtYEkqpaC9U";//애플리케이션 클라이언트 아이디값";
+	String redirectURI = URLEncoder.encode("http://localhost:8088/petCenter/naverCallback.pc", "UTF-8");
+	
+	SecureRandom random = new SecureRandom();
+	String state = new BigInteger(130, random).toString();
+	
+	String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code";
+		   apiURL += "&client_id=" + clientId;
+		   apiURL += "&redirect_uri=" + redirectURI;
+		   apiURL += "&state=" + state;
+	System.out.println("apiURL >>> : " + apiURL);
+	session.setAttribute("state", state);
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,6 +65,7 @@
 	});
 	
 	//카카오 로그인 ====================================================
+	
 	window.Kakao.init('92dade31e34446d79aa0404eb6817dbe');
 	function kakaoLoginApi() {
 		alert("kakaoLoginApi >>> : ");
@@ -67,6 +88,7 @@
 						$("#snstype").val('01');
 						$("#snsid").val(k_id);
 						$("#snsemail").val(k_email);
+						$("#mname").val(k_nickname);
 						
 						kakaoLogin();
 					}
@@ -76,7 +98,7 @@
 	}
 	
 	function kakaoLogin() {
-		alert("kakaoLogin >>> : " + k_id + " : " + k_email);
+		alert("kakaoLogin >>> : ");
 		
 		$('#loginForm').attr({
 			'action':'kakaoLogin.pc',
@@ -107,7 +129,6 @@
 // 			alert("e >>> : " + e.responseText);
 // 		}
 		
-		
 	}
 	
 	//카카오 로그인 ====================================================
@@ -117,7 +138,7 @@
 			document.getElementById(next).focus();
 		}
 	}
-		
+	
 </script>
 <style type="text/css">
 	
@@ -161,12 +182,17 @@
 			</tr>
 			<tr>
 				<td>
-					<a href="javascript:kakaoLoginApi()">
-						<img height="51" width="208" src="/petCenter/img/login/kakao.jpg"/>
-					</a>
 					<input type="hidden" name="snstype" id="snstype" />
 					<input type="hidden" name="snsid" id="snsid" />
 					<input type="hidden" name="snsemail" id="snsemail" />
+					<input type="hidden" name="mname" id="mname" />
+					<a href="javascript:kakaoLoginApi()">
+						<img height="51" width="208" src="/petCenter/img/login/kakao.jpg"/>
+					</a>
+					<br><br>
+					<a href="<%= apiURL %>">
+						<img height="51" width="208" src="/petCenter/img/login/naver.PNG"/>
+					</a>
 				</td>
 			</tr>
 			

@@ -19,6 +19,6 @@ public interface LoginService {
 	public int tempPwInsert(PwFindVO pvo);
 	public List<PwFindVO> pwFindAuthnum(PwFindVO pvo);
 	
-	public List<MemberVO> kakaoLogin(MemberVO mvo);
-	public int kakaoInsert(MemberVO mvo);
+	public List<MemberVO> snsLogin(MemberVO mvo);
+	public int snsInsert(MemberVO mvo);
 }
