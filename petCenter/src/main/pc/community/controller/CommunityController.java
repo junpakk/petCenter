@@ -3,6 +3,7 @@ package main.pc.community.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,6 +27,8 @@ public class CommunityController {
 	//communityInsertForm.pc
 	@GetMapping("communityInsertForm")
 	public String communityInsertForm() {
+		
+	
 		
 		return "community/communityInsertForm";
 	}
@@ -165,5 +168,21 @@ public class CommunityController {
 			
 			
 		}
+		
+		//게시판 보기
+				@GetMapping("communitySelectForm")
+				public String petcommunitySelectForm( CommunityVO covo, Model m) {
+					
+					List<CommunityVO> list = communityService.petcommunitySelect(covo);
+					int nCnt = list.size();
+					
+					if(nCnt>0) {
+						m.addAttribute("listSel", list);
+						return "community/communitySelectForm";
+						
+					}
+					return "community/communitySelectAll";
+					
+				}
 		
 }

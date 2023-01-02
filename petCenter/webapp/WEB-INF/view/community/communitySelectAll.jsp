@@ -71,6 +71,21 @@
 				"enctype":"application/x-www-form-urlencoded"
 			}).submit();
 			
+		});
+			
+			
+			$("#viewBtn").on("click", function() {
+				
+			
+				if($(".bcnum:checked").length == 0) {
+					return;
+				}
+				$("#selectForm").attr({
+					"action":"communitySelectForm.pc",
+					"method":"GET",
+					"enctype":"application/x-www-form-urlencoded"
+				}).submit();	
+			
 			
 		});
 		
@@ -128,6 +143,7 @@ if(nCnt>0) {
 <input type="button" value="조회" id="sBtn"/>
 <input type="button" value="삭제" id="dBtn"/>
 <input type="button" value="수정" id="ssBtn"/>
+<input type="button" value="보기" id="viewBtn"/>
 </td>
 </table>
 </form>
