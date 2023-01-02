@@ -11,8 +11,8 @@ public class CommunityVO {
 	 private String udate;
 	 
 	 private String blnum;
-	 private String likey;
-	 private String hate;
+	 private int likey;
+	 private int hate;
 	 
 	 
 	 public CommunityVO() {
@@ -22,7 +22,7 @@ public class CommunityVO {
 	 
 
 	public CommunityVO(String bcnum, String bcc, String mid, String bctitle, String bccontent, String delyn,
-			String idate, String udate, String blnum, String likey, String hate) {
+			String idate, String udate, String blnum, int likey, int hate) {
 
 		this.bcnum = bcnum;
 		this.bcc = bcc;
@@ -111,13 +111,13 @@ public class CommunityVO {
 
 
 
-	public String getLikey() {
+	public int getLikey() {
 		return likey;
 	}
 
 
 
-	public String getHate() {
+	public int getHate() {
 		return hate;
 	}
 
@@ -129,13 +129,13 @@ public class CommunityVO {
 
 
 
-	public void setLikey(String likey) {
+	public void setLikey(int likey) {
 		this.likey = likey;
 	}
 
 
 
-	public void setHate(String hate) {
+	public void setHate(int hate) {
 		this.hate = hate;
 	}
 

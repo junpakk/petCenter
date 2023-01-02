@@ -174,20 +174,20 @@ public class CommunityController {
 		}
 		
 		//게시판 보기
-				@GetMapping("communitySelectForm")
-				public String petcommunitySelectForm(CommunityVO covo, Model m) {
-					
-					List<CommunityVO> list = communityService.petcommunitySelect(covo);
-					int nCnt = list.size();
-					logger.info("petcommunitySelectForm  : " + covo.getLikey());
-					
-					if(nCnt>0) {
-						m.addAttribute("listS", list);
-						return "community/communitySelectForm";
-						
-					}
-					return "community/communitySelectAll";
-					
-				}
+		@GetMapping("communitySelectForm")
+		public String petcommunitySelectForm(CommunityVO covo, Model m) {
+			
+			List<CommunityVO> list = communityService.petcommunitySelect(covo);
+			int nCnt = list.size();
+
+			if(nCnt>0) {
+				m.addAttribute("listS", list);
+
+				return "community/communitySelectForm";
+				
+			}
+			return "community/communitySelectAll";
+			
+		}
 		
 }

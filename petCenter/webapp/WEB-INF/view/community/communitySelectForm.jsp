@@ -2,11 +2,16 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.List"%>
 <%@ page import="main.pc.community.vo.CommunityVO"%>
+<%@ page import="org.apache.log4j.LogManager" %>
+<%@ page import="org.apache.log4j.Logger" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<%
+	Logger logger = LogManager.getLogger(this.getClass());
+%>
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
 
@@ -20,11 +25,11 @@
 		
 		// like_1 버튼 
 		$(document).on("click", "#like_1", function(e){
-			
+			alert($(this).val());
 			let boardLikeURL = "like1.pc";
 			let reqType = "GET";
 			let dataParam = {
-				like1: $(this).val(),
+				likey: $(this).val(),
 				mnum: $("mnum").val(),
 				bcnum: $("bcnum").val(),
 			};		
@@ -34,14 +39,18 @@
 				url: boardLikeURL,
 				type: reqType,								
 				data: dataParam,	            
-				success: whenSuccess				
+				success: whenSuccess,		
+				error: error1
 			});
 			
 			function whenSuccess(resData){
 				alert("resData : " + resData);
 				console.log("resData : " + resData);			
 				$("#disp_cnt_recom").text(resData).val();				
-			}	
+			}
+			function error1(e){
+				console.log(":" + e.responseText);
+			}
 			
 		});
 		
@@ -92,6 +101,8 @@ CommunityVO covo = null;
 if(i == 1) { 
 	 covo = list.get(0);
 	bcnum = covo.getBcnum();
+	
+
 }
 %>
 <form action="sForm" id="sForm" name="sForm">
@@ -130,13 +141,19 @@ if(i == 1) {
 </tr>
 <tr>
 	<td>
-		<button type="button" class="like_1" name="like_1" id="like_1">추천
-		<p><img src='/petCenter/img/like/heart.png' style='width:12px; margin:3px 3px 0 0;'>
-		<span id="disp_cnt_recom"><%= covo.getLikey() %></span></p></button>
+		<button type="button" class="like_1" name="like_1" id="like_1" value="<%= covo.getLikey()%>">추천
+			<p>	
+				<img src='/petCenter/img/like/heart.png' style='width:12px; margin:3px 3px 0 0;'>
+				<span id="disp_cnt_recom"><%= covo.getLikey() %></span>
+			</p>
+		</button>
 		
 		<button type="button" class="like_2" name="like_2" id="like_2">반대
-		<p><img src='/petCenter/img/like/thumb_rev.png' style='width:12px; margin:3px 3px 0 0;'>
-		<span id="disp_cnt_stop"><%= covo.getHate() %></span></p></button>
+			<p>
+				<img src='/petCenter/img/like/thumb_rev.png' style='width:12px; margin:3px 3px 0 0;'>
+				<span id="disp_cnt_stop"><%= covo.getHate() %></span>
+			</p>
+		</button>
 
 
 
