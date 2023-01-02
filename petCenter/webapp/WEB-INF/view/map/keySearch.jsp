@@ -4,6 +4,7 @@
 <html>
 	<head>
 	    <meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
 	    <title>키워드로 장소검색하기</title>
 	    <style>
 			.info{font-size:20px;}
