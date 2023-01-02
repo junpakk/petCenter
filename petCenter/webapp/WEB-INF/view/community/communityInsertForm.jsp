@@ -1,15 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
-	alert("��ũ��Ʈ���� >>> : ");
+	alert("스크립트진입 >>> : ");
 	$(document).ready(function() {
-		alert("������������ >>> : ");
+		alert("제이쿼리진입 >>> : ");
 		$("#fBtn").on("click", function() {
 			$("#Form").attr({
 				"action":"communityInsert.pc",
@@ -21,35 +21,39 @@
 		
 	});
 	</script>
+	<%
+	String mid = (String)session.getAttribute("KID");
+	
+	%>
 </head>
 <body>
-<h3>Ŀ�´�Ƽ�Է���</h3>
+<h3>커뮤니티입력폼</h3>
 <form action="Form" id="Form" name="Form">
 <table border="1" align="center">
 <tr>
-<td>�۹�ȣ</td>
+<td>글번호</td>
 <td><input type="text" id="bcnum" name="bcnum" readonly/></td>
 </tr>
 <tr>
-<td>��ī�װ���</td>
+<td>글카테고리</td>
 <td><input type="text" id="bcc" name="bcc"/></td>
 </tr>
 <tr>
-<td>ȸ�����̵�</td>
-<td><input type="text" id="mid" name="mid"/></td>
+<td>회원아이디</td>
+<td><input id="mid" name="mid" value="<%=mid %>"/></td>
 </tr>
 <tr>
-<td>������</td>
+<td>글제목</td>
 <td><input type="text" id="bctitle" name="bctitle"/></td>
 </tr>
 <tr>
-<td>�۳���</td>
+<td>글내용</td>
 <td><input type="text" id="bccontent" name="bccontent"/></td>
 </tr>
 
 <tr>
 <td colspan="2">
-<input type="button" id="fBtn" name="fBtn" value="�Է�"/>
+<input type="button" id="fBtn" name="fBtn" value="입력"/>
 </td>
 </tr>
 

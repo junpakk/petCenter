@@ -51,7 +51,6 @@
 			UDATE = SYSDATE
 	WHERE 	DELYN = 'Y' 
 	AND 	BRNUM = #{brnum}
-	AND		BMNUM = #{bmnum}
 	
 </update>
 

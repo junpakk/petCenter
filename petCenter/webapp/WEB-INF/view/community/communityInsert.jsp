@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>µğºñ°¬³ªÈ®ÀÎÇÏ¼¼¿ä</title>
+<meta charset="UTF-8">
+<title>ë””ë¹„ê°”ë‚˜í™•ì¸í•˜ì„¸ìš”</title>
 </head>
 <body>
 <script type="text/javascript">
-location.href = "/pet/communitySelectAll.pc";
+location.href = "/petCenter/communitySelectAll.pc";
 </script>
 
 </body>
