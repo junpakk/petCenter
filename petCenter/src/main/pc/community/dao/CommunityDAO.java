@@ -6,14 +6,14 @@ import main.pc.community.vo.CommunityVO;
 
 public interface CommunityDAO {
 
-	int petcommunityInsert(CommunityVO covo);
+	public int petcommunityInsert(CommunityVO covo);
 
-	List<CommunityVO> petcommunitySelectAll();
+	public List<CommunityVO> petcommunitySelectAll();
 
-	int petcommunityDelete(CommunityVO covo);
+	public int petcommunityDelete(CommunityVO covo);
 
-	List<CommunityVO> petcommunitySelect(CommunityVO covo);
+	public List<CommunityVO> petcommunitySelect(CommunityVO covo);
 
-	int petcommunityUpdate(CommunityVO covo);
+	public int petcommunityUpdate(CommunityVO covo);
 
 }

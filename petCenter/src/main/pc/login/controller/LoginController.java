@@ -1,11 +1,22 @@
 package main.pc.login.controller;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -206,7 +217,7 @@ public class LoginController {
 			return "member/memPwUpdateForm";
 			
 		}
-		return "login/idFind";
+		return "login/pwFind";
 	}
 	
 	// 패스워드 찾기 ================================================== end
@@ -233,17 +244,17 @@ public class LoginController {
 		mvo.setMpw(mpw);
 		mvo.setMemail(memail);
 		
-		List<MemberVO> kList = loginService.kakaoLogin(mvo);
+		List<MemberVO> kList = loginService.snsLogin(mvo);
 		int kCnt = kList.size();
 		logger.info("kakaoLogin kCnt >>> : " + kCnt);
 		int insertCnt = 0;
 		
 		if(kCnt == 0) {// 셀렉트 0 -> 회원아님 -> 회원가입
-			insertCnt = loginService.kakaoInsert(mvo);
+			insertCnt = loginService.snsInsert(mvo);
 			logger.info("kakaoLogin insertCnt >>> : " + insertCnt);
 			
 			// 회원가입후 다시 셀렉트
-			kList = loginService.kakaoLogin(mvo);
+			kList = loginService.snsLogin(mvo);
 			kCnt = kList.size();
 			logger.info("kakaoLogin kCnt after >>> : " + kCnt);
 		}
@@ -272,8 +283,161 @@ public class LoginController {
 	// 카카오 로그인 ================================================== end
 	
 	// 네이버 로그인 ================================================== start
+	@GetMapping("naverCallback")
+	public String naverCallback() {
+		logger.info("naverCallback 함수 진입 >>> : ");
+		return "login/naverCallback";
+	}
 	
-	
-	
+	@GetMapping("naverLogin")
+	public String naverLogin(HttpServletRequest req, Model model) {
+		logger.info("naverLogin 함수 진입 성공 >>> : ");
+
+		String access_token = (String) req.getAttribute("access_token");
+		logger.info("naverLogin access_token >>> : " + access_token);
+		
+		String token = access_token;
+		String header = "Bearer " + token;
+		String apiURL = "https://openapi.naver.com/v1/nid/me";
+		Map<String, String> requestHeaders = new HashMap<>();
+		requestHeaders.put("Authorization", header);
+		String responseBody = get(apiURL, requestHeaders);
+		logger.info("responseBody >>> : " + responseBody);
+		//위에 값을 콘솔로 찍어본다. name 값이 유니코드인데 
+		// 브라우저에서 자동으로 변환해서 읽고 json simple 라이브러리가 변환해준다.
+		
+		JSONObject jobj = new JSONObject();
+		JSONParser parser = new JSONParser();
+		MemberVO mvo = new MemberVO();
+		
+		String snsid = "";
+		String snsemail = "";
+		String mname = "";
+		String mhp = "";
+		
+		try {
+			jobj = (JSONObject)parser.parse(responseBody);
+			
+			// resultCode가 00이고 message success이면 실행
+			String resultcode = (String)jobj.get("resultcode");
+			String message = (String)jobj.get("message");
+			
+			//여기서 response가 json객체 안에 json객체
+			jobj = (JSONObject)jobj.get("response");
+			
+			snsid = (String)jobj.get("id");
+			snsemail = (String)jobj.get("email");
+			mname = (String)jobj.get("name");
+			mhp = (String)jobj.get("mobile");
+			
+			logger.info("naverLogin id >>> : " + snsid);
+			logger.info("naverLogin email >>> : " + snsemail);
+			logger.info("naverLogin name >>> : " + mname);
+			logger.info("naverLogin phone >>> : " + mhp);
+			
+		}catch(Exception e) {
+			logger.info("네이버 로그인 실패" + e.getMessage());
+			return "login/loginForm";
+		}
+		
+		// sns 입력시 기존 not null 컬럼을 처리하기 
+		String mid = "naver : " + snsid;
+		String mpw = EncryptSHA.encryptSHA256(EncryptSHA.encryptSHA256(PasswordUtil.tempPW(8)));
+		String memail = snsemail;
+		
+		logger.info("kakaoLogin mid >>> : " + mid);
+		logger.info("kakaoLogin mpw >>> : " + mpw);
+		logger.info("kakaoLogin memail >>> : " + memail);
+		
+		mvo.setSnstype("02");
+		mvo.setSnsid(snsid);
+		mvo.setSnsemail(snsemail);
+		
+		mvo.setMid(mid);
+		mvo.setMpw(mpw);
+		mvo.setMemail(memail);
+		mvo.setMhp(mhp);
+		mvo.setMname(mname);
+		
+		List<MemberVO> nList = loginService.snsLogin(mvo);
+		int kCnt = nList.size();
+		logger.info("kakaoLogin kCnt >>> : " + kCnt);
+		int insertCnt = 0;
+		
+		if(kCnt == 0) {// 셀렉트 0 -> 회원아님 -> 회원가입
+			insertCnt = loginService.snsInsert(mvo);
+			logger.info("kakaoLogin insertCnt >>> : " + insertCnt);
+			
+			// 회원가입후 다시 셀렉트
+			nList = loginService.snsLogin(mvo);
+			kCnt = nList.size();
+			logger.info("kakaoLogin kCnt after >>> : " + kCnt);
+		}
+		
+		if (kCnt == 1) {
+			
+			K_Session ks = K_Session.getInstance();
+			String kID = ks.getSession(req);
+			
+			logger.info("kakaoLogin kID >>> : " + kID);
+			
+			if (kID != null && kID.equals(nList.get(0).getMid())) {
+				logger.info("loginCheck login >>> : 로그인 중 >>> : " + kID);
+				return "main/mainPage";
+			}else {
+				ks.setSession(req, nList.get(0).getMid(), nList.get(0).getMnum() );
+				logger.info("loginCheck login >>> : 세션부여 >>> : " + mvo.getMid());
+				return "main/mainPage";
+			}
+		}
+		
+		logger.info("naverLogin() >>> : 로그인실패");
+		return "login/loginForm";
+	}
 	// 네이버 로그인 ================================================== end
+	
+	public static String get(String apiUrl, Map<String, String> requestHeaders) {
+		HttpURLConnection con = connect(apiUrl);
+		try {
+			con.setRequestMethod("GET");
+			for (Map.Entry<String, String> header : requestHeaders.entrySet()) {
+				con.setRequestProperty(header.getKey(), header.getValue());
+			}
+			int responseCode = con.getResponseCode();
+			if (responseCode == HttpURLConnection.HTTP_OK) { // 정상 호출
+				return readBody(con.getInputStream());
+			} else { // 에러 발생
+				return readBody(con.getErrorStream());
+			}
+		} catch (IOException e) {
+			throw new RuntimeException("API 요청과 응답 실패", e);
+		} finally {
+			con.disconnect();
+		}
+	}
+
+	public static HttpURLConnection connect(String apiUrl) {
+		try {
+			URL url = new URL(apiUrl);
+			return (HttpURLConnection) url.openConnection();
+		} catch (MalformedURLException e) {
+			throw new RuntimeException("API URL이 잘못되었습니다 >>> : " + apiUrl, e);
+		} catch (IOException e) {
+			throw new RuntimeException("연결이 실패했습니다 >>> : " + apiUrl, e);
+		}
+	}
+	
+	public static String readBody(InputStream body) {
+		InputStreamReader streamReader = new InputStreamReader(body);
+		try (BufferedReader lineReader = new BufferedReader(streamReader)) {
+			StringBuilder responseBody = new StringBuilder();
+			String line;
+			while ((line = lineReader.readLine()) != null) {
+				responseBody.append(line);
+			}
+			return responseBody.toString();
+		} catch (IOException e) {
+			throw new RuntimeException("API 응답을 읽는데 실패했습니다. >>> : ", e);
+		}
+	}	
 }

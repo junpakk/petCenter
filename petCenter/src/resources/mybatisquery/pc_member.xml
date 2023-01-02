@@ -89,6 +89,7 @@ AND     A.MID           = #{mid}
 	            ,A.DELYN                AS DELYN
 	            ,TO_CHAR(TO_DATE(A.IDATE), 'YYYY-MM-DD')  AS IDATE
 		        ,TO_CHAR(TO_DATE(A.UDATE), 'YYYY-MM-DD')  AS UDATE
+		        ,A.SNSTYPE              AS SNSTYPE
 	FROM    	 PC_MEMBER A
 	WHERE   	 A.DELYN  		= 'Y'
 	AND     	 A.MNUM         = #{mnum}

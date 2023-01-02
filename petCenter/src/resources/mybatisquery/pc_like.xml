@@ -27,14 +27,11 @@
 
 <insert id="likeInsert" parameterType="likevo" >
  
-	INSERT INTO PC_LIKE (	BLNUM, MNUM, BCNUM, 
-									LIKEY, HATE, 									
+	INSERT INTO PC_LIKE (	BLNUM, MNUM, BCNUM, 								
 									DELYN, IDATE)
             				VALUES(	#{blnum}, 
 	            					#{mnum}, 
-	            					#{bcnum},  	 
-	            					#{likey},
-	            					#{hate},           				 				
+	            					#{bcnum},  	        				 				
 	            					'Y', 
 	            					SYSDATE)
 </insert>
@@ -43,7 +40,7 @@
 <update id="likeUpdate" parameterType="likevo" >
     
 	UPDATE 	PC_LIKE 
-	   SET  LIKEY = LIKEY + 1
+	   SET  LIKEY = #{likey}
 		   ,IDATE = SYSDATE
 	 WHERE  MNUM = #{mnum}
 	 AND    BCNUM = #{bcnum}	 
@@ -53,7 +50,7 @@
 <update id="hateUpdate" parameterType="likevo" >
     
 	UPDATE 	PC_LIKE 
-	   SET  HATE = HATE + 1
+	   SET  HATE = #{hate} + 1
 		   ,IDATE = SYSDATE
 	 WHERE  MNUM = #{mnum}
 	 AND    BCNUM = #{bcnum}	 

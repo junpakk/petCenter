@@ -5,6 +5,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +22,8 @@ import java.util.List;
 
 @Controller
 public class CommunityController {
+	Logger logger = LogManager.getLogger(getClass());
+	
 	@Autowired(required=false)
 	private ChabunUtilService chabunUtilService;	
 	@Autowired(required=false)
@@ -170,19 +174,20 @@ public class CommunityController {
 		}
 		
 		//게시판 보기
-				@GetMapping("communitySelectForm")
-				public String petcommunitySelectForm( CommunityVO covo, Model m) {
-					
-					List<CommunityVO> list = communityService.petcommunitySelect(covo);
-					int nCnt = list.size();
-					
-					if(nCnt>0) {
-						m.addAttribute("listSel", list);
-						return "community/communitySelectForm";
-						
-					}
-					return "community/communitySelectAll";
-					
-				}
+		@GetMapping("communitySelectForm")
+		public String petcommunitySelectForm(CommunityVO covo, Model m) {
+			
+			List<CommunityVO> list = communityService.petcommunitySelect(covo);
+			int nCnt = list.size();
+
+			if(nCnt>0) {
+				m.addAttribute("listS", list);
+
+				return "community/communitySelectForm";
+				
+			}
+			return "community/communitySelectAll";
+			
+		}
 		
 }
