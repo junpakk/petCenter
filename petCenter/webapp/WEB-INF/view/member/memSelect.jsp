@@ -22,13 +22,15 @@
 	
 	String mnum = mvo.getMnum();
 	
-	String mname = mvo.getMname();
+	String mname = "";
+	if(mvo.getMname() != null) mname = mvo.getMname();
 	
 	String mid = mvo.getMid();
 	
 	String mpw = mvo.getMpw();
 	
-	String mhp = mvo.getMhp();
+	String mhp = "";
+	if(mvo.getMhp() != null) mhp = mvo.getMhp();
 	
 	String memail = mvo.getMemail();
 	
@@ -45,7 +47,8 @@
 		mpet = "없음";
 	}
 	
-	String minfo = mvo.getMinfo();
+	String minfo = "";
+	if(mvo.getMinfo() != null) minfo = mvo.getMinfo();
 %>
 <!DOCTYPE html>
 <html>

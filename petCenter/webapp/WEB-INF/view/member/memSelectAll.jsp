@@ -248,20 +248,27 @@
 		
 		for (int i=0; i < list.size(); i++){
 			MemberVO mvo = list.get(i);
-			
+			String mnum = mvo.getMnum();
+			String mid = mvo.getMid();
+			String mname = "";
+			if(mvo.getMname() != null) mname = mvo.getMname();
+			String mhp = "";
+			if(mvo.getMhp() != null) mhp = mvo.getMhp();
+			String memail = mvo.getMemail();
+			String idate = mvo.getIdate();
 %>
 <tbody>
 <tr>
 	<td class="tt">
 		<input type="checkbox" id="mnum" name="mnum" class="mnum" 
-				value="<%= mvo.getMnum() %>" />
+				value="<%= mnum %>" />
 	</td>
-	<td class="tt"><%= mvo.getMnum() %></td>
-	<td class="tt"><%= mvo.getMid() %></td>
-	<td class="tt"><%= mvo.getMname() %></td>
-	<td class="tt"><%= mvo.getMhp() %></td>
-	<td class="tt"><%= mvo.getMemail() %></td>
-	<td class="tt"><%= mvo.getIdate() %></td>
+	<td class="tt"><%= mnum %></td>
+	<td class="tt"><%= mid %></td>
+	<td class="tt"><%= mname %></td>
+	<td class="tt"><%= mhp %></td>
+	<td class="tt"><%= memail %></td>
+	<td class="tt"><%= idate %></td>
 </tr>
 </tbody>
 <%
