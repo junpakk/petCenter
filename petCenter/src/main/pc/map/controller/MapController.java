@@ -159,11 +159,11 @@ public class MapController {
 		String msg = "INO";
 		
 		//DB가 mysql일 경우 
-		String[] mapnum_a = (chabunUtilService.getMapChabun().getMapnum()).split("\\.");
-		String mapnum = ChabunUtil.getMapChabun("D", mapnum_a[0]);
+//		String[] mapnum_a = (chabunUtilService.getMapChabun().getMapnum()).split("\\.");
+//		String mapnum = ChabunUtil.getMapChabun("D", mapnum_a[0]);
 
 		//DB가 oracle일 경우
-		//String mapnum = ChabunUtil.getMapChabun("D", chabunUtilService.getMapChabun().getMapnum());
+		String mapnum = ChabunUtil.getMapChabun("D", chabunUtilService.getMapChabun().getMapnum());
 		mvo.setMapnum(mapnum);
 		logger.info(mvo.toString());
 		

@@ -6,16 +6,6 @@
 
 <insert id="walkInsert" parameterType="mapvo" >
  
-<!-- 	INSERT INTO PC_MAP (MAPNUM, MID, MAPLAT, MAPLON, MAPLAPS, DELYN, IDATE, UDATE) -->
-<!--             				VALUES(	#{mapnum, jdbcType=VARCHAR},  -->
-<!-- 	            					#{mid, jdbcType=VARCHAR},  -->
-<!-- 	            					#{maplat, jdbcType=VARCHAR},  	  -->
-<!-- 	            					#{maplon, jdbcType=VARCHAR}, -->
-<!-- 	            					#{maplaps, jdbcType=VARCHAR}, -->
-<!-- 	            					'Y',  -->
-<!-- 	            					SYSDATE, -->
-<!-- 	            					SYSDATE) -->
-
 	INSERT INTO PC_MAP (MAPNUM, MID, MAPLAT, MAPLON, MAPLAPS, DELYN, IDATE, UDATE)
             				VALUES(	#{mapnum, jdbcType=VARCHAR}, 
 	            					#{mid, jdbcType=VARCHAR}, 
@@ -23,8 +13,18 @@
 	            					#{maplon, jdbcType=VARCHAR},
 	            					#{maplaps, jdbcType=VARCHAR},
 	            					'Y', 
-	            					NOW(),
-	            					NOW())
+	            					SYSDATE,
+	            					SYSDATE)
+
+<!-- 	INSERT INTO PC_MAP (MAPNUM, MID, MAPLAT, MAPLON, MAPLAPS, DELYN, IDATE, UDATE) -->
+<!--             				VALUES(	#{mapnum, jdbcType=VARCHAR},  -->
+<!-- 	            					#{mid, jdbcType=VARCHAR},  -->
+<!-- 	            					#{maplat, jdbcType=VARCHAR},  	  -->
+<!-- 	            					#{maplon, jdbcType=VARCHAR}, -->
+<!-- 	            					#{maplaps, jdbcType=VARCHAR}, -->
+<!-- 	            					'Y',  -->
+<!-- 	            					NOW(), -->
+<!-- 	            					NOW()) -->
 </insert>
 
 <select id="walkHisSrch" parameterType="mapvo" resultType="mapvo">
