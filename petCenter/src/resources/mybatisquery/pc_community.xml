@@ -54,6 +54,7 @@ SELECT A.BCNUM AS BCNUM
 		WHERE	A.BCNUM = B.BCNUM(+)
 		AND		A.DELYN = 'Y'
 		AND		A.BCNUM = #{bcnum}
+		
 
 </select>
 <update id="petcommunityUpdate" parameterType="communityvo" >
