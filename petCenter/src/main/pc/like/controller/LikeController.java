@@ -35,7 +35,7 @@ public class LikeController {
 		
 		String blnum = ChabunUtil.getLikeChabun("D", chabunUtilService.getLikeChabun().getBlnum());
 		logger.info("like1 blnum : " + blnum);
-		lvo.setLikey(req.getParameter("likey"));
+		//lvo.setLikey(req.getParameter("likey"));
 		logger.info("like1 Likey : " + lvo.getLikey());
 		logger.info("like1 Mnum : " + lvo.getMnum());
 		logger.info("like1 Bcnum : " + lvo.getBcnum());
@@ -80,7 +80,10 @@ public class LikeController {
 		
 			String blnum = ChabunUtil.getLikeChabun("D", chabunUtilService.getLikeChabun().getBlnum());
 			logger.info("hate1 blnum : " + blnum);
-
+			logger.info("hate1 Hate : " + lvo.getHate());
+			logger.info("hate1 Mnum : " + lvo.getMnum());
+			logger.info("hate1 Bcnum : " + lvo.getBcnum());
+			
 			lvo.setBlnum(blnum);
 			
 			List<LikeVO> listCnt = likeService.likeSelect(lvo);
@@ -88,6 +91,7 @@ public class LikeController {
 			
 			int nCnt = 0;
 			if (listCnt !=null && listCnt.size() > 0) {
+				lvo.setHate(String.valueOf(Integer.parseInt(lvo.getHate())+1));
 				nCnt = likeService.hateUpdate(lvo);
 				logger.info("hate1 nCnt : " + nCnt);			
 			}else {
