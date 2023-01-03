@@ -4,71 +4,99 @@
           
 <mapper namespace="main.pc.community.dao.CommunityDAO">
 
-<insert id="petcommunityInsert" parameterType="communityvo" >
- 
-	INSERT INTO PC_COMMUNITY (
-								bcnum
-								,bcc
-								,mid
-								,bctitle
-								,bccontent
-								,delyn
-								,idate
-								,udate)
-            			VALUES( 
-            					#{bcnum}, 
-            					#{bcc}, 
-            					#{mid}, 
-            					#{bctitle}, 
-            					#{bccontent}, 
-            					         					
-            					'Y', 
-            					SYSDATE, 
-            					SYSDATE)
-</insert>
-<select id="petcommunitySelectAll" parameterType="communityvo" resultType="communityvo" >
-SELECT A.BCNUM AS BCNUM
-		,A.BCC AS BCC
-		,A.MID AS MID
-		,A.BCTITLE AS BCTITLE
-		,A.BCCONTENT AS BCCONTENT
-		FROM PC_COMMUNITY A
-		WHERE A.DELYN='Y' 
-</select>
-<update id="petcommunityDelete" parameterType="communityvo" >
-UPDATE PC_COMMUNITY
-SET DELYN='N'
+	<insert id="petcommunityInsert" parameterType="communityvo" >
+	 
+		INSERT INTO PC_COMMUNITY (
+									bcnum
+									,bcc
+									,mid
+									,bctitle
+									,bccontent
+									,delyn
+									,idate
+									,udate)
+	            			VALUES( 
+	            					#{bcnum}, 
+	            					#{bcc}, 
+	            					#{mid}, 
+	            					#{bctitle}, 
+	            					#{bccontent}, 
+	            					         					
+	            					'Y', 
+	            					SYSDATE, 
+	            					SYSDATE)
+	</insert>
+	
+	<select id="petcommunitySelectAll" parameterType="communityvo" resultType="communityvo" >
 
-WHERE BCNUM = #{bcnum}
-</update>
-<select id="petcommunitySelect" parameterType="communityvo" resultType="communityvo">
-SELECT A.BCNUM AS BCNUM
-		,A.BCC AS BCC
-		,A.MID AS MID
-		,A.BCTITLE AS BCTITLE
-		,A.BCCONTENT AS BCCONTENT
-		,B.BLNUM 	AS	BLNUM
-	    ,B.LIKEY	AS	LIKEY
-		,B.HATE		AS	HATE  
-		FROM PC_COMMUNITY A, PC_LIKE B
-		WHERE	A.BCNUM = B.BCNUM(+)
-		AND		A.DELYN = 'Y'
-		AND		A.BCNUM = #{bcnum}
+		SELECT	 *
+		FROM (
+			SELECT 	 A.BCNUM			BCNUM
+					,A.BCC				BCC
+					,A.MID				MID
+					,A.BCTITLE			BCTITLE
+					,A.BCCONTENT		BCCONTENT
+					,A.DELYN			DELYN
+					,TO_CHAR(TO_DATE(A.IDATE), 'YYYY-MM-DD')	IDATE
+					,TO_CHAR(TO_DATE(A.UDATE), 'YYYY-MM-DD')	UDATE
+					
+					,CEIL(ROW_NUMBER() OVER(ORDER BY A.BCNUM)/#{pageSize}) pageSize
+					,COUNT(A.BCNUM) OVER() AS totalCount
+			FROM	PC_COMMUNITY A
+			WHERE	A.DELYN = 'Y'
+			<if test="searchFilter=='key_01'">
+				<![CDATA[ AND A.BCC LIKE '%' || #{keyword, jdbcType=VARCHAR} || '%']]>
+			</if>
+			<if test="searchFilter=='key_02'">
+				<![CDATA[ AND A.BCTITLE LIKE '%' || #{keyword, jdbcType=VARCHAR} || '%']]>
+			</if>
+			<if test="startDate != null and startDate != '' and endDate != null and endDate != ''">
+				<![CDATA[ AND TO_CHAR(TO_DATE(A.UDATE), 'YYYY-MM-DD')
+					>= TO_CHAR(TO_DATE(#{startDate, jdbcType=VARCHAR}), 'YYYY-MM-DD')]]>
+				<![CDATA[ AND TO_CHAR(TO_DATE(A.UDATE), 'YYYY-MM-DD')
+					<= TO_CHAR(TO_DATE(#{endDate, jdbcType=VARCHAR}), 'YYYY-MM-DD')]]>
+			</if>
+			ORDER BY 1
+			) WHERE pageSize = #{curPage}
 
-</select>
-<update id="petcommunityUpdate" parameterType="communityvo" >
-UPDATE PC_COMMUNITY
-						SET	
-							
-							
-							
-							BCCONTENT = #{bccontent}
-							
-							
-							,UDATE = SYSDATE
-					WHERE DELYN = 'Y'
-					AND BCNUM = #{bcnum}
-
-
-</update>
+	</select>
+	
+	<update id="petcommunityDelete" parameterType="communityvo" >
+	UPDATE PC_COMMUNITY
+	SET DELYN='N'
+	
+	WHERE BCNUM = #{bcnum}
+	</update>
+	
+	<select id="petcommunitySelect" parameterType="communityvo" resultType="communityvo">
+	SELECT A.BCNUM AS BCNUM
+			,A.BCC AS BCC
+			,A.MID AS MID
+			,A.BCTITLE AS BCTITLE
+			,A.BCCONTENT AS BCCONTENT
+			,B.BLNUM 	AS	BLNUM
+		    ,B.LIKEY	AS	LIKEY
+			,B.HATE		AS	HATE  
+			FROM PC_COMMUNITY A, PC_LIKE B
+			WHERE	A.BCNUM = B.BCNUM(+)
+			AND		A.DELYN = 'Y'
+			AND		A.BCNUM = #{bcnum}
+	
+	</select>
+	
+	<update id="petcommunityUpdate" parameterType="communityvo" >
+	UPDATE PC_COMMUNITY
+							SET	
+								
+								
+								
+								BCCONTENT = #{bccontent}
+								
+								
+								,UDATE = SYSDATE
+						WHERE DELYN = 'Y'
+						AND BCNUM = #{bcnum}
+	
+	
+	</update>
 </mapper>
