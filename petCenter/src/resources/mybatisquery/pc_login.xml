@@ -127,7 +127,7 @@
 </select>
 
 <!-- 카카오 아이디 조회 / 로그인 -->
-<select id="kakaoLogin" parameterType="membervo" resultType="membervo">
+<select id="snsLogin" parameterType="membervo" resultType="membervo">
 
 	SELECT	 A.MNUM			AS	MNUM
 			,A.MID			AS	MID
@@ -141,11 +141,11 @@
 </select>
 
 <!-- 카카오 인서트 -->
-<insert id="kakaoInsert" parameterType="membervo">
+<insert id="snsInsert" parameterType="membervo">
 
 	<selectKey keyProperty="mnum" resultType="String" order="BEFORE">
 		SELECT 'M' ||
-		TO_CHAR(SYSDATE, 'YYYYMMDD') ||
+		TO_CHAR(SYSDATE, 'YYMMDD') ||
 		LPAD(NVL(MAX(SUBSTR(MNUM, -4)), 0 ) + 1, 4, '0')
 		FROM PC_MEMBER
 	</selectKey>

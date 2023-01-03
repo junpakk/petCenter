@@ -17,6 +17,17 @@
 		$("#mcomfirm").on("click", function(){
 			console.log("mcomfirm >>> : ");
 			
+			let idVal = $("#mid").val();
+			const CHECK_ID = /^[a-zA-Z0-9]{5,20}/;
+			
+			if (!CHECK_ID.test(idVal)){
+				alert("올바른 아이디를 입력해주세요");
+				$("#mid_condi").attr("hidden", false);
+				return false;
+			}else{
+				$("#mid_condi").attr("hidden", true);
+			}
+			
 			let url = "pwFindAuthnum.pc";
 			let midVal = $("#mid").val();
 			let memailVal = $("#memail").val();
@@ -69,7 +80,8 @@
 			<tbody>
 				<tr>
 					<td class="align-middle">아이디</td>
-					<td><input type="text" name="mid" id="mid" style="width:200px;"></td>
+					<td><input type="text" name="mid" id="mid" style="width:200px;">
+					<br><span id="mid_condi" style="color:red" hidden>&nbsp;&nbsp;5~20자 영문 또는 숫자</span></td>
 				</tr>
 				
 				<tr>

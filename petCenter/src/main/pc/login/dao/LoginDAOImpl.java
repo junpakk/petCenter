@@ -76,17 +76,17 @@ public class LoginDAOImpl implements LoginDAO {
 	}
 
 	@Override
-	public List<MemberVO> kakaoLogin(MemberVO mvo) {
+	public List<MemberVO> snsLogin(MemberVO mvo) {
 		// TODO Auto-generated method stub
-		logger.info("kakaoLogin 함수 진입 >>> : ");
-		return sqlSession.selectList("kakaoLogin", mvo);
+		logger.info("snsLogin 함수 진입 >>> : ");
+		return sqlSession.selectList("snsLogin", mvo);
 	}
 
 	@Override
-	public int kakaoInsert(MemberVO mvo) {
+	public int snsInsert(MemberVO mvo) {
 		// TODO Auto-generated method stub
-		logger.info("kakaoInsert 함수 진입 >>> : ");
-		return sqlSession.insert("kakaoInsert", mvo);
+		logger.info("snsInsert 함수 진입 >>> : ");
+		return sqlSession.insert("snsInsert", mvo);
 	}
 
 

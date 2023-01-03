@@ -5,10 +5,14 @@ import java.util.List;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import main.pc.like.dao.LikeDAO;
 import main.pc.like.vo.LikeVO;
 
+@Service
+@Transactional
 public class LikeServiceImpl implements LikeService {
 	Logger logger = LogManager.getLogger(LikeServiceImpl.class);
 	

@@ -2,6 +2,7 @@ package main.pc.reply.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.LogManager;
@@ -40,7 +41,7 @@ public class ReplyController {
 	// 댓글 등록
 	@PostMapping("replyInsert")
 	@ResponseBody
-	public String replyInsert(ReplyVO rvo, HttpSession session) {
+	public String replyInsert(HttpServletRequest req, ReplyVO rvo, HttpSession session) {
 		logger.info("replyInsert 함수 진입");
 		
 		
@@ -50,7 +51,7 @@ public class ReplyController {
 		logger.info("replyInsert brnum : " + brnum);
 		rvo.setMid((String)session.getAttribute("KID"));
 		rvo.setMnum((String)session.getAttribute("KNUM"));
-		rvo.setBcnum((String)session.getAttribute("BCNUM"));
+		rvo.setBcnum(req.getParameter("bcnum"));
 		rvo.setBrnum(brnum);
 		
 		int nCnt = replyService.replyInsert(rvo);
@@ -79,8 +80,9 @@ public class ReplyController {
 			String s0 = _rvo.getBrnum();
 			String s1 = _rvo.getMid();
 			String s2 = _rvo.getBrcontent();
-			String s3 = _rvo.getIdate();
-			ss = s0+","+s1+","+s2+","+s3;
+			String s3 = _rvo.getUdate();
+			String s4 = _rvo.getMnum();
+			ss = s0+","+s1+","+s2+","+s3+","+s4;
 			listStr += ss+"&";
 			
 		}
@@ -93,16 +95,12 @@ public class ReplyController {
 		public String replyDelete(ReplyVO rvo, HttpSession session) {
 			logger.info("replyDelete rvo.getBrnum() : " + rvo.getBrnum());
 			
-			String num = (String)session.getAttribute("KNUM");
+	
 			
 			int nCnt = replyService.replyDelete(rvo);
-			logger.info("replyDelete nCnt : " + nCnt);
-			
+
 			if (1 ==nCnt) {
-				if(num == rvo.getMnum()) {
 					return "GOOD";
-				}
-					return "BAD";
 			}else {
 				return "BAD";
 			}

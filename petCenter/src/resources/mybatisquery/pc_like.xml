@@ -9,7 +9,6 @@
 		SELECT 	A.BLNUM 	BLNUM	
 		FROM 	PC_LIKE A
 		WHERE 	A.DELYN = 'Y' 
-		AND     A.MNUM = #{mnum}	
 		AND     A.BCNUM = #{bcnum}
 		
 </select>
@@ -19,7 +18,6 @@
 		SELECT 	*
 		FROM 	PC_LIKE A
 		WHERE 	A.DELYN = 'Y' 
-		AND     A.MNUM = #{mnum}	
 		AND     A.BCNUM = #{bcnum}
 		
 </select>
@@ -27,14 +25,11 @@
 
 <insert id="likeInsert" parameterType="likevo" >
  
-	INSERT INTO PC_LIKE (	BLNUM, MNUM, BCNUM, 
-									LIKEY, HATE, 									
+	INSERT INTO PC_LIKE (	BLNUM, MNUM, BCNUM, 								
 									DELYN, IDATE)
             				VALUES(	#{blnum}, 
 	            					#{mnum}, 
-	            					#{bcnum},  	 
-	            					#{likey},
-	            					#{hate},           				 				
+	            					#{bcnum},  	        				 				
 	            					'Y', 
 	            					SYSDATE)
 </insert>
@@ -43,20 +38,19 @@
 <update id="likeUpdate" parameterType="likevo" >
     
 	UPDATE 	PC_LIKE 
-	   SET  LIKEY = LIKEY + 1
+	   SET  LIKEY = #{likey}
 		   ,IDATE = SYSDATE
-	 WHERE  MNUM = #{mnum}
-	 AND    BCNUM = #{bcnum}	 
-	 
+	 	WHERE BCNUM = #{bcnum}
+
 </update>
 
 <update id="hateUpdate" parameterType="likevo" >
     
 	UPDATE 	PC_LIKE 
-	   SET  HATE = HATE + 1
+	   SET  HATE = #{hate}
 		   ,IDATE = SYSDATE
-	 WHERE  MNUM = #{mnum}
-	 AND    BCNUM = #{bcnum}	 
+		WHERE BCNUM = #{bcnum}
+
 	 
 </update>
 

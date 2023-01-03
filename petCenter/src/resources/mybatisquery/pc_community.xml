@@ -47,8 +47,14 @@ SELECT A.BCNUM AS BCNUM
 		,A.MID AS MID
 		,A.BCTITLE AS BCTITLE
 		,A.BCCONTENT AS BCCONTENT
-		FROM PC_COMMUNITY A
-		WHERE A.BCNUM = #{bcnum}
+		,B.BLNUM 	AS	BLNUM
+	    ,B.LIKEY	AS	LIKEY
+		,B.HATE		AS	HATE  
+		FROM PC_COMMUNITY A, PC_LIKE B
+		WHERE	A.BCNUM = B.BCNUM(+)
+		AND		A.DELYN = 'Y'
+		AND		A.BCNUM = #{bcnum}
+		
 
 </select>
 <update id="petcommunityUpdate" parameterType="communityvo" >
