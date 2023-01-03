@@ -4,6 +4,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
 		<title>Walk History</title>
 		
 		<link rel="stylesheet" href="/petCenter/calendar_datepicker/jquery-ui-1.12.1/jquery-ui.min.css">
