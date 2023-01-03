@@ -40,8 +40,8 @@
 	UPDATE 	PC_LIKE 
 	   SET  LIKEY = #{likey}
 		   ,IDATE = SYSDATE
-	 WHERE  BCNUM = #{bcnum}
-	 
+	 	WHERE BCNUM = #{bcnum}
+
 </update>
 
 <update id="hateUpdate" parameterType="likevo" >
@@ -49,7 +49,8 @@
 	UPDATE 	PC_LIKE 
 	   SET  HATE = #{hate}
 		   ,IDATE = SYSDATE
-	 WHERE  BCNUM = #{bcnum}	 
+		WHERE BCNUM = #{bcnum}
+
 	 
 </update>
 
