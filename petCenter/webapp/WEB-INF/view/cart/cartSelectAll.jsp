@@ -39,8 +39,8 @@
 		  position: relative;
 		  left: 50px;
 		  width: 400px;
-		  height: 50px;
-		  border: 1px solid black;
+		  height: 40px;
+/* 		  border: 1px solid black; */
 	}
 	
 	div.c{
@@ -48,22 +48,24 @@
 		  left: 50px;
 		  width: 400px;
 		  height: 80px;
-		  border: 1px solid black;
+		  margin-top: 20px;
+/* 		  border: 1px solid black; */
 	}
 	
 	div.d,.e{
 		  position: relative;
-		  margin-top: 30px;
-		  left: 50px;
+		  margin: 20px;
+/* 		  left: 50px; */
 		  width: 400px;
 		  height: 150px;
-		  border: 1px solid black;
+/* 		  border: 1px solid black; */
 	}
 	
 	div.de{
 		position: fixed;
-	  	top: 180px;
-	  	left: 450px;
+	  	top: 100px;
+	  	left: 500px;
+	  	border: 1px solid black;
 	}
 	
 	.buyBtn{
@@ -77,6 +79,14 @@
 		cursor:pointer;
 		outline: 0;
 		}
+		
+	div.lAll{
+		position: relative;
+		left: 50px;
+		width: 400px;
+		border: 1px solid black;
+		
+	}
 </style>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script type="text/javascript">
@@ -112,7 +122,6 @@
 			}
 			
 			var cnum = [];
-			//each(), 다건 주문 대비
 			$("input:checkbox[name='cnum']:checked").each(function(){
 				//체크된 것만 값을 뽑아서 배열 cnum에 push
 				cnum.push($(this).val());
@@ -124,99 +133,77 @@
 			}).submit();
 		});
 		
-
+		//쇼핑 함수
+		$(document).on('click', '#shopBtn', function(){
+			alert("#shopBtn 버튼 클릭: ");
+			let mnum = $('#mnum').val();
+			alert("mnum: "+ mnum);
+			
+			location.href="productSelectAll.pc?pcategory=21&mnum="+mnum;
+		});
 		
-// 		//선택삭제
-// 		$(document).on('click', '#delsBtn', function(){
-// 			alert("#delsBtn 선택삭제 버튼 클릭");
-// 			cart_delete();
+		
+		//보완해야함
+		//체크박스를 클릭 -> 해당하는 금액이 전체 금액에 더해짐 -> 만약 전체금액이 30000원 이상이면 배송료는 0원으로 변한다.
+		$(document).on('click', '#cnum', function(){
+			alert("#cnum 버튼 클릭: " + cnum);
+			
+			var cnum = [];
+			$("input:checkbox[name='cnum']:checked").each(function(){
+				cnum.push($('#opsum').val());
+				console.log(cnum);
+			});
+				
+			
+			
+	
+		});
+	
+// 		$('#chkMaintainAll, .chkMaintain').click(function(){ // 1번 알고리즘 실행
+// 		        var sum = 0; // 합계 초기화 변수 -> 반복문 밖에서 선언해준다.
+// 		        $('.chkMaintain').each(function(){ // 2번 알고리즘 실행
+// 		            if ($(this).is(":checked") == true) 
+// 		        {
+// 		 // html 에서 선언해준 input type='hidden' 의 value값을 가져온다.
+// 		                var price_goods = 
+// 		parseInt($(this).parents('tr').find('input[name=price_goods]').val());
+// 		                sum = sum + price_goods;
+// 		            }
 // 		});
-		
-// 		//장바구니 전체 비우기
-// 		$(document).on('click', '#delAllBtn', function(){
-// 			alert("#delAllBtn 장바구니 전체 비우기 버튼 클릭");
-// 			cart_delete();
+// 		console.log(sum);
 // 		});
-		
-		
-// 		//선택삭제 함수
-// 		function cart_delete(){
-			
-// 			//선택을 하던지 전체를 비우던지 해야 삭제할 수 있음
-// 			if($('.cnum:checked').length == 0){
-// 				alert("삭제할 상품 하나 이상을 선택하세요.");
-// 				return;
-// 			}
-			
-// 			var cnum = [];
-// 			//each()
-// 			$("input:checkbox[name='cnum']:checked").each(function(){
-// 				//체크된 것만 값을 뽑아서 배열 cnum에 push
-// 				cnum.push($(this).val());
-// 				console.log(cnum);
-// 			});//end of each
-			
-// 			$("#productList").attr({ "action":"cartDeleteArray.pjb"
-// 									,"method":"GET"			
-// 			}).submit();
-// 		}//end of cart_delete()
-		
-// 		$(document).on('click', '#shoppingBtn', function(){
-// 			alert("#shoppingBtn 버튼 클릭: ");
-// 			location.href="productSelectAll.pjb";
-// 		});//end of #shoppingBtn
-		
-		
-// 		//오더 함수(선택한 항목만 가져가서 주문)
-// 		$(document).on('click', '#buyBtn', function(){
-// 			alert("#buyBtn 버튼 클릭: ");
-			
-// 			if($('.cnum:checked').length == 0){
-// 				alert("주문한 상품 하나 이상을 선택하시오.");
-// 				return;
-// 			}
-			
-// 			var cnum = [];
-// 			//each(), 다건 주문 대비
-// 			$("input:checkbox[name='cnum']:checked").each(function(){
-// 				//체크된 것만 값을 뽑아서 배열 cnum에 push
-// 				cnum.push($(this).val());
-// 				console.log(cnum);
-// 			});//end of each
-						
-// 			$("#productList").attr({ "action":"orderInsertForm.pjb"
-// 									,"method":"GET"			
-// 			}).submit();
-// 		});//end of #buyBtn
+	
+	
 	});//end of ready()
+
 
 </script>
 </head>
 <body>
 <form id="cartSelectAll" name="cartSelectAll">
-	<table>
+	<table align="">
 		<tr>
 			<td><div class="c"><h1>장바구니</h1></div></td>
 		</tr>
-		<tr>
-			<td>
-				<div class="a">
-					<div><input type="checkbox" name="chk" id="chk" class="chk">전체선택</div>
-				</div>
-			</td>
-			<td><div> </div></td>
-		</tr>
-		<tr>
-			<td>
-				<div class="b" style="text-align:right;">[배송비 30000원 이상 무료]</div>
+			<tr>
+				<td>
+					<div class="a">
+						<div><input type="checkbox" name="chk" id="chk" class="chk">전체선택<hr></div>
+					</div>
+				</td>
+				<td><div> </div></td>
+			</tr>
+			<tr>
+				<td>
+					<div class="b" style="text-align:right;">[배송비 30000원 이상 무료]<hr></div>
 <%
 	if(obj == null){
-%>
-		<tr>
-			<td colspan="8" align="center">
-				<h2>장바구니에 상품을 담으세요.</h2>
-			</td>
-		</tr>				
+	%>
+				<tr>
+					<td colspan="8" align="center">
+						<h2>장바구니에 상품을 담으세요.</h2>
+					</td>
+				</tr>				
 <%		
 	}else{
 		List<CartVO> list = (List<CartVO>)obj;
@@ -245,39 +232,48 @@
 			logger.info("cphotoPath: "+ cphotoPath);
 			logger.info("idate: "+ idate);
 %>
-				<div>
-					<div class="c">
-						<div style="text-align:right;">
-							<input type="hidden" name="mnum" id="mnum" class="mnum" value="<%= mnum %>">
-							<button type="button" class="delBtn" name="delBtn" id="delBtn" value="<%= cnum %>">삭제
+					<div>
+						<div class="c">
+						
+							<div>
+								<input type="checkbox" name="cnum" id="cnum" class="cnum" value=<%= cnum %>>
+								<input type="hidden" name="opsum" id="opsum" class="opsum" value=<%= opsum %>>
+								<img src="fileupload/product/<%= cphoto %>" width="25px" height="25px"/>
+								<strong><%= cname %></strong>
+							</div>
+						
+							<div style="text-align:right;">
+								<em><%= cprice %></em> x 
+								<em><%= ccnt %></em> 개
+								<strong><%= opsum %> 원</strong>
+							</div>
+							
+							<div style="text-align:right;">
+								<input type="hidden" name="mnum" id="mnum" class="mnum" value="<%= mnum %>">
+								<button type="button" class="delBtn" name="delBtn" id="delBtn" value="<%= cnum %>">삭제</button>
+							</div>
+							<hr>
 						</div>
-						<div>
-							<input type="checkbox" name="cnum" id="cnum" class="cnum" value=<%= cnum %>>
-							<img src="fileupload/product/<%= cphoto %>" width="25px" height="25px"/>
-							<em><%= cname %></em>
-						</div>
-						<div style="text-align:right;">
-							<em><%= cprice %></em> x 
-							<em><%= ccnt %></em> 개
-							<em ><%= opsum %></em> 원
-						</div>
-					</div>
 					<%
 		}//end of for
 	}//end of else
 					%>
-				</div>
-			</td>
+					</div>
+				</td>
+			</tr>
 			<td>
 				<div class="de">
 					<div  class="d">
 						<div><h3>결제금액</h3></div>
-						<div style="text-align:right;">상품금액  0원</div>
-						<div style="text-align:right;">배송비  2500원</div><hr>
-						<div style="text-align:right;">최종결제금액 0원</div>
+						상품금액<div id="totalPrice" style="text-align:right; display: inline-block;"> 0 </div> 원<br>
+						배송비<div id="delivery" style="text-align:right; display: inline-block;"> 2500 </div> 원<hr>
+						최종결제금액<div id="totalPrice2" style="text-align:right; display: inline-block;"> 0 </div> 원
 					</div>
 					<div class="e" style="text-align:center;">
 						<input type="button" id="buyBtn" class="buyBtn">
+					</div>
+					<div class="f" style="text-align:center;">
+						<input type="button" id="shopBtn" class="shopBtn" value="쇼핑하기">
 					</div>
 				</div>
 			</td>

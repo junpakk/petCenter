@@ -24,13 +24,16 @@
 $(document).ready(function(){
 	$('#shoppingBtn').click(function(){
 		console.log("#shoppingBtn 클릭: ");
-		location.href="productSelectAll.pc";
+		const mnum = document.getElementById("mnum");
+		location.href="productSelectAll.pc?mnum="+mnum;
 		});
 });//end of ready()
 	
 </script>
 </head>
 <body>
+<h3 align="center">주문정보 확인창</h3><hr width="1000px">
+
 <form name="orderSelectAll" id="orderSelectAll">
 <table border="1" align="center">
 <thead>
@@ -38,6 +41,7 @@ $(document).ready(function(){
 		<td style="text-align:center">
 			<input type="checkbox" name="chk" id="chk" class="chk">
 		</td>
+		<td style="text-align:center">주문일</td>
 		<td style="text-align:center">상품명</td>
 		<td style="text-align:center">가격</td>
 		<td style="text-align:center">수량</td>
@@ -50,6 +54,8 @@ $(document).ready(function(){
 	String pnum = "";
 	String pprice = "";
 	String ppricesum = "";
+	String opsum = "";
+	int delivery = 2500;
 	int sum = 0;
 	String sumV = "";
 	
@@ -72,19 +78,24 @@ $(document).ready(function(){
 %>
 <tr>
 	<td style="text-align:center">
+		<input type="hidden" id="mnum" value="<%= ovo.getMnum() %>">
 		<input type="checkbox" name="onum" id="onum" class="onum" value=<%= ovo.getOnum() %>>
 	</td>
-	<td class="tt" style="text-align:center">
-		<%= ovo.getOname() %>
-	</td>
-	<%
-		int Oprice = 0;
-		Oprice = Integer.parseInt(ovo.getOpsum())/Integer.parseInt(ovo.getOcnt());
-	%>
-	<td class="tt" style="text-align:center"><%= Oprice  %> 원</td>
-	<td class="tt" style="text-align:center"><%= ovo.getOcnt() %> 개</td>
-	<td class="tt" style="text-align:center">총 <%= ovo.getOpsum() %> 원</td>
-	<td class="tt" style="text-align:center">2500원</td>
+	<td style="text-align:center"><%= ovo.getIdate() %></td>
+	<td style="text-align:center"><%= ovo.getOname() %></td>
+<%
+			int Oprice = 0;
+			Oprice = Integer.parseInt(ovo.getOpsum())/Integer.parseInt(ovo.getOcnt());
+
+			opsum = ovo.getOpsum();
+			if(Integer.parseInt(opsum)>=30000){
+				delivery = 0;
+			}
+%>
+	<td style="text-align:center"><%= Oprice  %> 원</td>
+	<td style="text-align:center"><%= ovo.getOcnt() %> 개</td>
+	<td style="text-align:center">총 <%= opsum %> 원</td>
+	<td style="text-align:center"><%= delivery %> 원</td>
 </tr>
 <%
 		}//end of for

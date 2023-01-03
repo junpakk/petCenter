@@ -72,7 +72,7 @@
 		<td class="" style="text-align:center">수량</td>
 		<td class="" style="text-align:center">주문금액</td>
 		<td class="" style="text-align:center">배송비</td>
-		<td class="" style="text-align:center">주문금액합계</td>
+		<td class="" style="text-align:center">합계</td>
 	</tr>
 
 <%
@@ -87,13 +87,21 @@
 	
 	
 	if(list.size()>0){
+		
+		int delivery = 2500;
+		int priceSum = 0;
+		
 		logger.info("list.size(): "+ list.size());
 		for(int i=0; i<list.size(); i++){
 			CartVO cvo = list.get(i);
 			logger.info("cvo: "+ cvo);
-			
-			String priceSum ="";
-			//priceSum = Integer.parseInt(getCprice())*Integer.parseInt(getCcnt());
+		
+			priceSum = Integer.parseInt(cvo.getCprice())*Integer.parseInt(cvo.getCcnt());
+			if(priceSum>=30000){
+				delivery = 0;
+			}else{
+				priceSum += delivery;
+			}
 %>	
 	<tr>
 		<td class="" id="" style="text-align:center">
@@ -104,7 +112,7 @@
 		</td>
 		<td class="" style="text-align:center"><%= cvo.getCcnt() %>개</td>
 		<td class="" style="text-align:right"><%= cvo.getCprice() %> 원</td>
-		<td class="" style="text-align:right">2500원</td>
+		<td class="" style="text-align:right"><%= delivery %> 원</td>
 		<td class="" style="text-align:right"><%= priceSum %> 원</td>
 	</tr>
 <%
