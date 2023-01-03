@@ -64,7 +64,7 @@
 				mnum: $("mnum").val(),
 				bcnum: $("bcnum").val(),
 			};		
-			dataParam = $("#sForm").serialize();
+		
 			
 			$.ajax({
 				url: boardLikeURL,
