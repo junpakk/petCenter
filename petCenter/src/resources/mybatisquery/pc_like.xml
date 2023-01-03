@@ -9,7 +9,7 @@
 		SELECT 	A.BLNUM 	BLNUM	
 		FROM 	PC_LIKE A
 		WHERE 	A.DELYN = 'Y' 
-		AND     A.MNUM = #{mnum}	
+<!-- 		AND     A.MNUM = #{mnum}	 -->
 		AND     A.BCNUM = #{bcnum}
 		
 </select>
@@ -19,7 +19,7 @@
 		SELECT 	*
 		FROM 	PC_LIKE A
 		WHERE 	A.DELYN = 'Y' 
-		AND     A.MNUM = #{mnum}	
+<!-- 		AND     A.MNUM = #{mnum}	 -->
 		AND     A.BCNUM = #{bcnum}
 		
 </select>
@@ -42,9 +42,9 @@
 	UPDATE 	PC_LIKE 
 	   SET  LIKEY = #{likey}
 		   ,IDATE = SYSDATE
-	 WHERE  MNUM = #{mnum}
-	 AND    BCNUM = #{bcnum}	 
-	 
+<!-- 	 WHERE  MNUM = #{mnum} -->
+<!-- 	 AND    BCNUM = #{bcnum}	  -->
+	 	WHERE BCNUM = #{bcnum}
 </update>
 
 <update id="hateUpdate" parameterType="likevo" >
@@ -52,8 +52,9 @@
 	UPDATE 	PC_LIKE 
 	   SET  HATE = #{hate}
 		   ,IDATE = SYSDATE
-	 WHERE  MNUM = #{mnum}
-	 AND    BCNUM = #{bcnum}	 
+<!-- 	 WHERE  MNUM = #{mnum} -->
+<!-- 	 AND    BCNUM = #{bcnum}	  -->
+		WHERE BCNUM = #{bcnum}
 	 
 </update>
 
