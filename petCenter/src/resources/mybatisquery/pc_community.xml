@@ -28,7 +28,6 @@
 	</insert>
 	
 	<select id="petcommunitySelectAll" parameterType="communityvo" resultType="communityvo" >
-
 		SELECT	 *
 		FROM (
 			SELECT 	 A.BCNUM			BCNUM
@@ -58,15 +57,7 @@
 			</if>
 			ORDER BY 1
 			) WHERE pageSize = #{curPage}
-
 	</select>
-	
-	<update id="petcommunityDelete" parameterType="communityvo" >
-	UPDATE PC_COMMUNITY
-	SET DELYN='N'
-	
-	WHERE BCNUM = #{bcnum}
-	</update>
 	
 	<select id="petcommunitySelect" parameterType="communityvo" resultType="communityvo">
 	SELECT A.BCNUM AS BCNUM
@@ -83,6 +74,16 @@
 			AND		A.BCNUM = #{bcnum}
 	
 	</select>
+	
+	
+	<update id="petcommunityDelete" parameterType="communityvo" >
+	UPDATE PC_COMMUNITY
+	SET DELYN='N'
+	
+	WHERE BCNUM = #{bcnum}
+	</update>
+	
+
 	
 	<update id="petcommunityUpdate" parameterType="communityvo" >
 	UPDATE PC_COMMUNITY

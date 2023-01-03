@@ -31,12 +31,13 @@
 
 
 		<a href="mainPage.pc">메인페이지</a><br>
+		<a href="rssPage.pc">rss테스트페이지</a><br>
 		<a href="logout.pc">로그아웃</a><br>
 		<a href="memInsertForm.pc">회원가입</a><br>
 		<a href="memSelectAll.pc">회원목록</a><br>
 		<hr>
 		<a href="productInsertForm.pc">상품등록폼</a><br/>
-		<a href="productSelectAll.pc">상품전체목록페이지</a><br/>
+		<a href="productSelectAll.pc?mnum=M0001&pcategory=21">상품전체목록페이지</a><br/>
 		<a href="cartSelectAll.pc?mnum=M0001">카트전체목록페이지 M0001 테스트</a><br/>
 		
 		<a href="communitySelectAll.pc">1</a><br>

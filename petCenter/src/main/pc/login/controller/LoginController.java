@@ -30,14 +30,20 @@ import main.pc.common.PasswordUtil;
 import main.pc.login.service.LoginService;
 import main.pc.login.vo.IdFindVO;
 import main.pc.login.vo.PwFindVO;
+import main.pc.member.service.MemberService;
 import main.pc.member.vo.MemberVO;
 
 @Controller
 public class LoginController {
 	Logger logger = LogManager.getLogger(this.getClass());
 	
+	// 컨트롤러에서 로그인서비스 필드 오토 와이어드
 	@Autowired(required=false)
 	private LoginService loginService;
+	
+	// 컨트롤러에서 멤버서비스 필드 오토 와이어드
+	@Autowired(required=false)
+	private MemberService memberService;
 	
 	// 로그인 폼
 	@GetMapping("loginForm")
@@ -46,6 +52,12 @@ public class LoginController {
 		return "login/loginForm";
 	}
 	
+	// 임시 rss 테스트페이지
+	@GetMapping("rssPage")
+	public String rssPage() {
+		logger.info("rssPage 함수 진입 >>> : ");
+		return "main/rssPage";
+	}
 	// 메인페이지
 	@GetMapping("mainPage")
 	public String mainPage() {
@@ -232,17 +244,9 @@ public class LoginController {
 		logger.info("kakaoLogin mvo.getSnsemail() >>> : " + mvo.getSnsemail());
 		
 		// sns 입력시 기존 not null 컬럼을 처리하기 
-		String mid = "kakao : " + mvo.getSnsid();
-		String mpw = EncryptSHA.encryptSHA256(EncryptSHA.encryptSHA256(PasswordUtil.tempPW(8)));
-		String memail = mvo.getSnsemail();
-		
-		logger.info("kakaoLogin mid >>> : " + mid);
-		logger.info("kakaoLogin mpw >>> : " + mpw);
-		logger.info("kakaoLogin memail >>> : " + memail);
-		
-		mvo.setMid(mid);
-		mvo.setMpw(mpw);
-		mvo.setMemail(memail);
+		String mid = "";
+		String mpw = "";
+		String memail = "";
 		
 		List<MemberVO> kList = loginService.snsLogin(mvo);
 		int kCnt = kList.size();
@@ -250,6 +254,26 @@ public class LoginController {
 		int insertCnt = 0;
 		
 		if(kCnt == 0) {// 셀렉트 0 -> 회원아님 -> 회원가입
+			
+			while(true) {
+				mid = "kakao" + PasswordUtil.randomPW(15);
+				mvo.setMid(mid);
+				List<MemberVO> list = memberService.memIdCheck(mvo);
+				if(list.size() == 0) {
+					break;
+				}
+			}
+			
+			mpw = EncryptSHA.encryptSHA256(EncryptSHA.encryptSHA256(PasswordUtil.tempPW(8)));
+			mvo.setMpw(mpw);
+			
+			memail = mvo.getSnsemail();
+			mvo.setMemail(memail);
+			
+			logger.info("kakaoLogin mid >>> : " + mid);
+			logger.info("kakaoLogin mpw >>> : " + mpw);
+			logger.info("kakaoLogin memail >>> : " + memail);
+			
 			insertCnt = loginService.snsInsert(mvo);
 			logger.info("kakaoLogin insertCnt >>> : " + insertCnt);
 			
@@ -330,10 +354,10 @@ public class LoginController {
 			mname = (String)jobj.get("name");
 			mhp = (String)jobj.get("mobile");
 			
-			logger.info("naverLogin id >>> : " + snsid);
-			logger.info("naverLogin email >>> : " + snsemail);
-			logger.info("naverLogin name >>> : " + mname);
-			logger.info("naverLogin phone >>> : " + mhp);
+			logger.info("naverLogin snsid >>> : " + snsid);
+			logger.info("naverLogin snsemail >>> : " + snsemail);
+			logger.info("naverLogin mname >>> : " + mname);
+			logger.info("naverLogin mhp >>> : " + mhp);
 			
 		}catch(Exception e) {
 			logger.info("네이버 로그인 실패" + e.getMessage());
@@ -341,40 +365,51 @@ public class LoginController {
 		}
 		
 		// sns 입력시 기존 not null 컬럼을 처리하기 
-		String mid = "naver : " + snsid;
-		String mpw = EncryptSHA.encryptSHA256(EncryptSHA.encryptSHA256(PasswordUtil.tempPW(8)));
-		String memail = snsemail;
-		
-		logger.info("kakaoLogin mid >>> : " + mid);
-		logger.info("kakaoLogin mpw >>> : " + mpw);
-		logger.info("kakaoLogin memail >>> : " + memail);
+		String mid = "";
+		String mpw = "";
+		String memail = "";
 		
 		mvo.setSnstype("02");
 		mvo.setSnsid(snsid);
 		mvo.setSnsemail(snsemail);
 		
-		mvo.setMid(mid);
-		mvo.setMpw(mpw);
-		mvo.setMemail(memail);
-		mvo.setMhp(mhp);
-		mvo.setMname(mname);
-		
 		List<MemberVO> nList = loginService.snsLogin(mvo);
-		int kCnt = nList.size();
-		logger.info("kakaoLogin kCnt >>> : " + kCnt);
+		int nCnt = nList.size();
+		logger.info("naverLogin nCnt >>> : " + nCnt);
 		int insertCnt = 0;
 		
-		if(kCnt == 0) {// 셀렉트 0 -> 회원아님 -> 회원가입
+		if(nCnt == 0) {// 셀렉트 0 -> 회원아님 -> 회원가입
+		
+			while(true) {
+				mid = "naver" + PasswordUtil.randomPW(15);
+				mvo.setMid(mid);
+				List<MemberVO> list = memberService.memIdCheck(mvo);
+				if(list.size() == 0) {
+					break;
+				}
+			}
+			
+			mpw = EncryptSHA.encryptSHA256(EncryptSHA.encryptSHA256(PasswordUtil.tempPW(8)));
+			mvo.setMpw(mpw);
+			logger.info("naverLogin mpw >>> : " + mpw);
+			
+			memail = snsemail;
+			mvo.setMemail(memail);
+			logger.info("naverLogin memail >>> : " + memail);
+			
+			if(mhp != null && mhp.length() > 0) mvo.setMhp(mhp);
+			if(mname != null && mname.length() > 0) mvo.setMname(mname);
+			
 			insertCnt = loginService.snsInsert(mvo);
 			logger.info("kakaoLogin insertCnt >>> : " + insertCnt);
-			
+		
 			// 회원가입후 다시 셀렉트
 			nList = loginService.snsLogin(mvo);
-			kCnt = nList.size();
-			logger.info("kakaoLogin kCnt after >>> : " + kCnt);
+			nCnt = nList.size();
+			logger.info("kakaoLogin kCnt after >>> : " + nCnt);
 		}
 		
-		if (kCnt == 1) {
+		if (nCnt == 1) {
 			
 			K_Session ks = K_Session.getInstance();
 			String kID = ks.getSession(req);

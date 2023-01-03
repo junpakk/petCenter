@@ -43,10 +43,6 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script type="text/javascript">
 
-	$(document).ready(function(){
-		
-	});	
-	
 	function count(type)  {
 		  // 결과를 표시할 수량 및 총가격
 		  const result = document.getElementById("result");
@@ -77,17 +73,17 @@
 <style>
 	
 	div.a, .b{
-		  position: relative;
-		  width: 500px;
-		  height: 500px;
-		  border: 1px solid black;
+		position: relative;
+		width: 500px;
+		height: 500px;
+		border: 1px solid black;
 	}
 	
 	div.c, .d{
-		  position: relative;
-		  width: 500px;
-		  height: 200px;
-		  border: 1px solid black;
+		position: relative;
+		width: 500px;
+		height: 200px;
+		border: 1px solid black;
 	}
 	
 	div.b1{
@@ -102,11 +98,11 @@
 	}
 	
 	div.b2{
-		  position: relative;
-		  left: 50px;
-		  width: 400px;
-		  height: 60px;
-		  border: 1px solid black;
+		position: relative;
+		left: 50px;
+		width: 400px;
+		height: 60px;
+		border: 1px solid black;
 	}
 	
 </style>
@@ -115,7 +111,7 @@
 
 <body>
 <form id="selectForm" name="selectForm" style="align:center;">
-	<table>
+	<table align="center">
 		<tr>
 			<td>
 				<div class="a"><img width="500px;" height="500px;" src="/petCenter/fileupload/product/<%= pvo.getPphoto() %>"/></div>
@@ -151,18 +147,17 @@
 			</td>
 			<td>
 				<div class="d">
-					총수량 <div id="cCnt" style="display: inline-block">1</div> 개<br/>
-					합계<div id="tPrice" style="display: inline-block"><%= pvo.getPprice() %></div> 원
-					<div></div>
-					<div>
-						<div style="display: inline-block">
-							<input type="button" id="cartBtn" value="장바구니">
+					총수량<div id="cCnt" style="display: inline-block">1</div> 개<br/>
+					합계	<div id="tPrice" style="display: inline-block"><%= pvo.getPprice() %></div> 원
+						<div></div>
+						<div>
+							<div style="display: inline-block">
+								<input type="button" id="cartBtn" value="장바구니">
+							</div>
+							<div style="display: inline-block">
+								<input type="button" id="orderBtn" value="구매하기">
+							</div>
 						</div>
-				
-						<div style="display: inline-block">
-							<input type="button" id="orderBtn" value="구매하기">
-						</div>
-					</div>
 				</div>
 			</td>
 		</tr>

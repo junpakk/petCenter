@@ -20,6 +20,8 @@
 		
 			$(document).ready(function() {
 		
+
+
 				$("#suBtn").on("click", function() { location.href = "/petCenter/communitySelectAll.pc"; });
 				
 				// like_1 버튼 
@@ -33,6 +35,7 @@
 						mnum: $("#mnum").val(),
 						bcnum: $("#bcnum").val(),
 					};
+
 					
 					dataParam = $("#sForm").serialize();
 					

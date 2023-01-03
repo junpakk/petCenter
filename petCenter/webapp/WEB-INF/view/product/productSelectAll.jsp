@@ -27,6 +27,10 @@ getAttribute()의 경우 setAttribute()속성을 통한 설정이 없으면 무�
 	int nCnt = list.size();
 	logger.info("list.size(): "+ list.size());
 	
+	String mnum = "";
+	mnum = request.getParameter("mnum");
+	logger.info("mnum: "+ mnum);
+	
 %>
 
 <!DOCTYPE html>
@@ -39,7 +43,16 @@ getAttribute()의 경우 setAttribute()속성을 통한 설정이 없으면 무�
 
 	$(document).ready(function(){
 		
-	});	
+		$("#pcategory").change(function(){
+	        const mnum = '<%= mnum %>';
+			const pcategory = $("#pcategory").val();
+	        alert("pcategory : "+ pcategory);
+	        
+	        location.href="productSelectAll.pc?mnum="+mnum+"&pcategory="+pcategory;
+<%-- 	        location.href="cartInsert.pc?pname=<%= pname %>&pprice=<%= pprice %>&pphoto=<%= pphoto %>&ccnt="+cCnt; --%>
+		});
+		
+	});//end of ready
 
 </script>
 <style>
@@ -71,9 +84,14 @@ ul	{
 			<th>
 				<ul>
 				    <li>
-				      <button class="" id="pc11">사료</button><!-- 카테고리 11 --><!-- 일단 강아지 페이지만 -->
-				      <button class="" id="pc12">간식</button><!-- 카테고리 12 -->
-				      <button class="" id="pc13">용품</button><!-- 카테고리 13 -->
+					      <select id="pcategory">
+							  <option id="pcategory" value="00">우리아이</option>
+							  <option id="pcategory" value="21">고양이</option>
+							  <option id="pcategory" value="11">강아지</option>
+						  </select>
+					      <input type="button" class="" id="pc21" value="사료"><!-- 카테고리 11 -->
+					      <input type="button" class="" id="pc21" value="간식"><!-- 카테고리 12 -->
+					      <input type="button" class="" id="pc21" value="용품"><!-- 카테고리 13 -->
 				    </li>
 	  			</ul>
 			</th>
@@ -82,16 +100,18 @@ ul	{
 	
 	
 <%
+
+	String pcategory = "";
 	String pname = "";	
 	String pprice = "";
 	String pphoto = "";
 	String pphotoPath = "";
 	String pnum = "";
 	
-// 	for(int i=0; i<list.size(); i++){
-	for(int i=0; i<16; i++){
-// 		ProductVO pvo  = list.get(i);
-		ProductVO pvo  = list.get(0);
+	for(int i=0; i<list.size(); i++){
+// 	for(int i=0; i<16; i++){
+		ProductVO pvo  = list.get(i);
+// 		ProductVO pvo  = list.get(0);
 		
 		pname = pvo.getPname();
 		pprice = pvo.getPprice();
@@ -111,7 +131,7 @@ ul	{
 			</tr>
 			<tr>
 				<td align="right">
-					<a href="#">
+					<a href="cartSelectAll.pc?mnum=<%= mnum %>">
 						<img src="/petCenter/img/icon/cart.png" width="30px" height="30px"/>
 					</a>
 				</td>
