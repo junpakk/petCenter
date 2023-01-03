@@ -50,7 +50,7 @@
 <update id="hateUpdate" parameterType="likevo" >
     
 	UPDATE 	PC_LIKE 
-	   SET  HATE = #{hate} + 1
+	   SET  HATE = #{hate}
 		   ,IDATE = SYSDATE
 	 WHERE  MNUM = #{mnum}
 	 AND    BCNUM = #{bcnum}	 

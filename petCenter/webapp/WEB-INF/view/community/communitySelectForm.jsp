@@ -117,7 +117,7 @@
 						<input type="hidden" name="mnum" id="mnum" value="<%=mnum %>">
 						<input type="hidden" name="bcnum" id="bcnum" value="<%=bcnum %>">
 						<input type="hidden" name="likey"  id="likey" value="<%= covo.getLikey()%>">
-						<input type="hidden" name="haty"  id="haty" value="<%= covo.getHate() %>">						
+						<input type="hidden" name="hate"  id="haty" value="<%= covo.getHate() %>">						
 					</td>
 				</tr>
 				<tr>
