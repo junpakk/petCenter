@@ -21,7 +21,7 @@ var newEvent = function (start, end, eventType) {
 
     $("#contextMenu").hide(); //메뉴 숨김
 
-    modalTitle.html('새롭게 가자 일정');
+    modalTitle.html('일정');
     editType.val(eventType).prop('selected', true);
     editTitle.val('');
     editStart.val(start);
@@ -39,7 +39,7 @@ var newEvent = function (start, end, eventType) {
     //새로운 일정 저장버튼 클릭
     $('#save-event').unbind();
     $('#save-event').on('click', function () {
-		alert("save-event >>> : ");
+		alert("일정 등록");
         var eventData = {
             cal_no: eventId,
             cal_title: editTitle.val(),

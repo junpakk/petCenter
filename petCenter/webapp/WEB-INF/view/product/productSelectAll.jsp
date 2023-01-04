@@ -22,15 +22,21 @@ getAttribute()는 Object 타입을 리턴하기 때문에 주로 빈 객체나 �
 getParameter()는 웹브라우저에서 전송받은 request영역의 값을 읽어오고
 getAttribute()의 경우 setAttribute()속성을 통한 설정이 없으면 무조건 null값을 리턴한다.
 */
+
+	Object mnum = session.getAttribute("KNUM");
+// 	mnum = "";
+	logger.info("mnum: "+ mnum);
+	
+	
+// 	String mnum = (String)knum;
+// 	mnum = request.getParameter("mnum");
+// 	logger.info("mnum: "+ mnum);
+	
 	Object obj = request.getAttribute("listAll");//상품정보
 	List<ProductVO> list = (List<ProductVO>)obj;
 	int nCnt = list.size();
 	logger.info("list.size(): "+ list.size());
-	
-	String mnum = "";
-	mnum = request.getParameter("mnum");
-	logger.info("mnum: "+ mnum);
-	
+// 	logger.info("list.get(0).getPnum(): "+ list.get(0).getPnum());
 %>
 
 <!DOCTYPE html>
@@ -41,6 +47,21 @@ getAttribute()의 경우 setAttribute()속성을 통한 설정이 없으면 무�
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script type="text/javascript">
 
+	function cartPlz(){
+		const mnum = "<%= mnum %>";
+		alert("mnum: "+ mnum);
+		if (confirm("장바구니 목록을 확인하시겠습니까?")){
+		
+			if(mnum == null || mnum == "null" || typeof(mnum)== "undefined" || mnum== ""){
+				alert("로그인을 먼저 해주세요!");
+	//				location.href="productSelectAll.pc?pcategory=21";
+				return;
+			}else{
+				location.href="cartSelectAll.pc?mnum="+mnum;
+			}
+		}
+	};
+
 	$(document).ready(function(){
 		
 		$("#pcategory").change(function(){
@@ -48,12 +69,13 @@ getAttribute()의 경우 setAttribute()속성을 통한 설정이 없으면 무�
 			const pcategory = $("#pcategory").val();
 	        alert("pcategory : "+ pcategory);
 	        
-	        location.href="productSelectAll.pc?mnum="+mnum+"&pcategory="+pcategory;
+	        location.href="productSelectAll.pc?pcategory="+pcategory;
+// 	        location.href="productSelectAll.pc?mnum="+mnum+"&pcategory="+pcategory;
 <%-- 	        location.href="cartInsert.pc?pname=<%= pname %>&pprice=<%= pprice %>&pphoto=<%= pphoto %>&ccnt="+cCnt; --%>
 		});
-		
-	});//end of ready
 
+	});
+	//end of ready
 </script>
 <style>
 
@@ -124,16 +146,16 @@ ul	{
 		<table>
 			<tr>
 				<td>
+<%-- 					<a onclick="productSelect()" href="productSelect.pc?pnum=<%= pnum %>"> --%>
 					<a href="productSelect.pc?pnum=<%= pnum %>">
+<%-- 					<button onclick="productSelect()" id="pnum" value="<%= pnum %>"> --%>
 						<img width="280px" height="280px" src="/petCenter/fileupload/product/<%= pphoto %>"/>
- 					</a>
+					</a>
 				</td>
 			</tr>
 			<tr>
 				<td align="right">
-					<a href="cartSelectAll.pc?mnum=<%= mnum %>">
-						<img src="/petCenter/img/icon/cart.png" width="30px" height="30px"/>
-					</a>
+					<img src="/petCenter/img/icon/cart.png" width="30px" height="30px" onclick="cartPlz()"/>
 				</td>
 			</tr>
 			<tr>
