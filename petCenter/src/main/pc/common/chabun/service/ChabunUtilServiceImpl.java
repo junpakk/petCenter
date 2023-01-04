@@ -16,6 +16,7 @@ import main.pc.map.vo.MapVO;
 import main.pc.reply.vo.ReplyVO;
 
 import main.pc.member.vo.MemberVO;
+import main.pc.notice.vo.NoticeVO;
 import main.pc.order.vo.OrderVO;
 import main.pc.product.vo.ProductVO;
 
@@ -96,6 +97,13 @@ public class ChabunUtilServiceImpl implements ChabunUtilService {
 	public CommunitiesVO getCommunitiesChabun() {
 		// TODO Auto-generated method stub
 		return chabunUtilDAO.getCommunitiesChabun();
+	}
+	// 공지사항
+	@Override
+	public NoticeVO getNoticeChabun() {
+		// TODO Auto-generated method stub
+		logger.info("getNoticeChabun 함수 진입");
+		return chabunUtilDAO.getNoticeChabun();
 	}
 
 	

@@ -49,6 +49,12 @@
 		<br>
 		<br>
 		<a href="comInsForm.pc">커뮤니티글쓰기(ex)</a><br>
+		
+		<br>
+		<br>
+		<br>
+		<a href="noticeInsertForm.pc">공지사항 글쓰기</a><br>
+		<a href="noticeSelectAll.pc">공지사항 목록조회</a><br>
 	</body>
 
 </html>

@@ -6,11 +6,8 @@
 
 <!-- 멤버 -->
 <select id="getChabunMember" resultType="membervo">
-
-SELECT  
-        NVL(MAX(SUBSTR(A.MNUM, -4)), 0) + 1 AS MNUM
+SELECT  NVL(MAX(SUBSTR(A.MNUM, -4)), 0) + 1 AS MNUM
 FROM    PC_MEMBER A
-
 </select>
 
 <!-- 상품 -->
@@ -56,6 +53,10 @@ FROM    PC_MEMBER A
 
 <select id="getCommunitiesChabun" resultType="communitiesvo">
 	SELECT /*+ INDEX_DESC(A SYS_C0011279) */ NVL(MAX(SUBSTR(A.BCNUM, -4)), 0) + 1  BCNUM FROM PC_COM A
+</select>
+
+<select id="getNoticeChabun" resultType="noticevo">
+	SELECT /*+ INDEX_DESC(A SYS_C0011280) */ NVL(MAX(SUBSTR(A.BNNUM, -4)), 0) + 1  BNNUM FROM PC_NOTICE A
 </select>
 
 </mapper>

@@ -4,8 +4,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<title>박람회 게시판 글쓰기</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript">
 
 	$(document).ready(function(){	 
@@ -30,7 +34,7 @@
 <body>
 <div class="container">
 <form name="fairForm" id="fairForm">
-<table border="1" align="center">
+<table border="1" align="center" class="table table-sm table-bordered w-auto" >
 	<tr>
 		<td colspan="2" align="center">박람회 게시판 글쓰기</td>				
 	</tr>
@@ -55,7 +59,7 @@
 	</tr>
 	<tr>
 		<td colspan="2" align="right">				
-		<input type="button" value="글쓰기" id="insertbtn">		
+		<input type="button" value="글쓰기" id="insertbtn" class="btn btn-primary btn-lg">
 	</td>				
 	</tr>
 </table>
