@@ -17,7 +17,14 @@
 <title>Insert title here</title>
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
-
+		$(document).ready(function(){	 
+		
+				//사전등록
+				$(document).on("click", "#bbtn", function(){
+					alert("등록되었습니다.");
+				});
+			});
+		
 </script>
 <% request.setCharacterEncoding("UTF-8"); %>
 <%
@@ -35,7 +42,7 @@
 	<table>
 		<tr>
 			<td>
-				<img src="/petCenter/fileupload/fair/<%=fvo.getBfphoto()%>" width="500" height="500"><br>
+				<img src="/petCenter/fileupload/fair/<%=fvo.getBfphoto()%>" width="300" height="300"><br>
 			</td>
 			<td>
 				<table border="1">
@@ -62,6 +69,11 @@
 						※ 무료입장 대상 : 미취학 아동/ 65세 이상 경로 우대자/ 장애인(복지카드 소지자)/ 국가 유공자(신분증 소지자)<br>
 						※ 본 박람회는 반려동물 동반 입장 가능합니다.<br>
 						(목줄 또는 하네스 착용 필수, 이동장/슬링백/유모차 이용 적극 권장)	
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<input type="button" id="bbtn" value="사전등록">
 					</td>
 				</tr>
 				</table>

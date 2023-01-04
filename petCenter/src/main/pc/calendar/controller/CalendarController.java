@@ -26,7 +26,7 @@ public class CalendarController {
 	
 	@GetMapping("calendar")
 	public String calendar() {
-		logger.info("calendar 함수 진입 >>> : ");	
+		logger.info("calendar");	
 		
 		return "calendar/calendar";
 	}
@@ -35,13 +35,13 @@ public class CalendarController {
 	// 캘린더 전체조회
 	@GetMapping("calendarSelectAll")
 	public String calendarSelectAll(CalendarVO cvo, Model model, HttpSession session) {
-		logger.info("calendarSelectAll 진입 성공 >>> : ");
+		logger.info("calendarSelectAll");
 		
 		//--------- 캘린더 정보조회 ---------
 		
 		// 세션 아이디값 
 		cvo.setMid((String)session.getAttribute("KID"));
-		logger.info("cvo.getMid() >>> : " + cvo.getMid());
+		logger.info("cvo.getMid() " + cvo.getMid());
 		
 		List<CalendarVO> aList = calendarService.calendarSelectAll(cvo);
 		JSONArray jsonCalendar = new JSONArray();
@@ -75,7 +75,7 @@ public class CalendarController {
 	// 캘린더 입력
 	@GetMapping("calendarInsert")
 	public String calendarInsert(CalendarVO cvo, Model model, HttpSession session) {
-		logger.info("calendarInsert 진입 성공 >>> : ");
+		logger.info("calendarInsert");
 		
 		// 세션 아이디값 
 		cvo.setMid((String)session.getAttribute("KID"));	

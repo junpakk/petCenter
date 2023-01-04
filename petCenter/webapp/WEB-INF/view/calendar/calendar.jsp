@@ -34,10 +34,10 @@
         <div id="contextMenu" class="dropdown clearfix">
             <ul class="dropdown-menu dropNewEvent" role="menu" aria-labelledby="dropdownMenu"
                 style="display:block;position:static;margin-bottom:5px;">
-                <li><a tabindex="-1" href="#">카테고리1</a></li>
-                <li><a tabindex="-1" href="#">카테고리2</a></li>
-                <li><a tabindex="-1" href="#">카테고리3</a></li>
-                <li><a tabindex="-1" href="#">카테고리4</a></li>
+                <li><a tabindex="-1" href="#">일정1</a></li>
+                <li><a tabindex="-1" href="#">일정2</a></li>
+                <li><a tabindex="-1" href="#">일정3</a></li>
+                <li><a tabindex="-1" href="#">일정4</a></li>
                 <li class="divider"></li>
                 <li><a tabindex="-1" href="#" data-role="close">Close</a></li>
             </ul>
@@ -90,10 +90,10 @@
                             <div class="col-xs-12">
                                 <label class="col-xs-4" for="edit-type">구분</label>
                                 <select class="inputModal" type="text" name="edit-type" id="edit-type">
-                                    <option value="카테고리1">카테고리1</option>
-                                    <option value="카테고리2">카테고리2</option>
-                                    <option value="카테고리3">카테고리3</option>
-                                    <option value="카테고리4">카테고리4</option>
+                                    <option value="카테고리1">일정1</option>
+                                    <option value="카테고리2">일정2</option>
+                                    <option value="카테고리3">일정3</option>
+                                    <option value="카테고리4">일정4</option>
                                 </select>
                             </div>
                         </div>
@@ -134,38 +134,6 @@
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
 
-      <%--   <div class="panel panel-default">
-
-            <div class="panel-heading">
-                <h3 class="panel-title">필터</h3>
-            </div>
-            
-
-            <div class="panel-body">
-
-                <div class="col-lg-6">
-                    <label for="calendar_view">구분별</label>
-                    <div class="input-group">
-                        <select class="filter" id="type_filter" multiple="multiple">
-                            <option value="카테고리1">카테고리1</option>
-                            <option value="카테고리2">카테고리2</option>
-                            <option value="카테고리3">카테고리3</option>
-                            <option value="카테고리4">카테고리4</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="col-lg-6">
-                    <label for="calendar_view">등록자</label>
-                    <div class="input-group">
-                 
-                        <label class="checkbox-inline"><input class='filter' type="checkbox" value="brownPoodle"
-                                checked><%= m_nick %></label>
-                    </div>
-                </div>
-
-            </div>
-        </div> --%>
         <!-- /.filter panel -->
     </div>
     <!-- /.container -->

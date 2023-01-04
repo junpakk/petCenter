@@ -6,11 +6,8 @@
 
 <!-- 멤버 -->
 <select id="getChabunMember" resultType="membervo">
-
-SELECT  
-        NVL(MAX(SUBSTR(A.MNUM, -4)), 0) + 1 AS MNUM
+SELECT  NVL(MAX(SUBSTR(A.MNUM, -4)), 0) + 1 AS MNUM
 FROM    PC_MEMBER A
-
 </select>
 
 <!-- 상품 -->
@@ -18,10 +15,15 @@ FROM    PC_MEMBER A
 	SELECT	/*+ INDEX_DESC(A SYS_C0011066) */ NVL(MAX(SUBSTR(A.PNUM,-4)),0) + 1 PNUM 
 	FROM PC_PRODUCT A
 </select>
-
+<!-- 카트 -->
 <select id="getCartChabun" resultType="cartvo">
 	SELECT  /*+ INDEX_DESC(A SYS_C0011066) */ NVL(MAX(SUBSTR(A.CNUM,-4)),0) + 1 CNUM
 	FROM PC_CART A
+</select>
+<!-- 오더  -->
+<select id="getOrderChabun" resultType="ordervo">
+	SELECT  /*+ INDEX_DESC(A SYS_C0011066) */ NVL(MAX(SUBSTR(A.ONUM,-4)),0) + 1 ONUM
+	FROM PC_Order A
 </select>
 
 <!-- 댓글 -->
@@ -42,13 +44,15 @@ FROM    PC_MEMBER A
 <!-- 맵 -->
 <select id="getMapChabun" resultType="mapvo">
 	SELECT  /*+ INDEX_DESC(A SYS_C0011193) */ NVL(MAX(SUBSTR(A.MAPNUM, -4)), 0) + 1  MAPNUM FROM PC_MAP A
+<!-- 	SELECT  /*+ INDEX_DESC(A SYS_C0011193) */ IFNULL(MAX(SUBSTR(A.MAPNUM, -4)), 0) + 1  MAPNUM FROM PC_MAP A -->
 </select>
 
-<select id="getCommunityChabun" resultType="communityvo">
-	SELECT /*+ INDEX_DESC(A SYS_C0011279) */ NVL(MAX(SUBSTR(A.BCNUM, -4)), 0) + 1  BCNUM FROM PC_COMMUNITY A
+<select id="getCommunitiesChabun" resultType="communitiesvo">
+	SELECT /*+ INDEX_DESC(A SYS_C0011279) */ NVL(MAX(SUBSTR(A.BCNUM, -4)), 0) + 1  BCNUM FROM PC_COM A
 </select>
-<select id="getZangChabun" resultType="zangvo">
-	SELECT /*+ INDEX_DESC(A SYS_C0011280) */ NVL(MAX(SUBSTR(A.BZNUM, -4)), 0) + 1  BZNUM FROM PC_ZANG A
+
+<select id="getNoticeChabun" resultType="noticevo">
+	SELECT /*+ INDEX_DESC(A SYS_C0011280) */ NVL(MAX(SUBSTR(A.BNNUM, -4)), 0) + 1  BNNUM FROM PC_NOTICE A
 </select>
 
 </mapper>

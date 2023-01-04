@@ -14,15 +14,6 @@
 	Logger logger = LogManager.getLogger(this.getClass());
 	logger.info("productSelectAll.jsp 진입: ");
 	
-	//페이징 세팅
-// 	int pageSize = 0;
-// 	int groupSize = 0;
-// 	int curPage = 0;
-// 	int totalCount = 0;
-	
-// 	Object objPaging = request.getAttribute("pagingPVO");//페이징
-// 	ProductVO pagingPVO = (ProductVO)objPaging;
-	
 /*
 일단 가장 큰 차이점은 둘의 리턴 타입이다.
 getParameter()메서드의 경우 String타입을 리턴,
@@ -31,11 +22,21 @@ getAttribute()는 Object 타입을 리턴하기 때문에 주로 빈 객체나 �
 getParameter()는 웹브라우저에서 전송받은 request영역의 값을 읽어오고
 getAttribute()의 경우 setAttribute()속성을 통한 설정이 없으면 무조건 null값을 리턴한다.
 */
+
+	Object mnum = session.getAttribute("KNUM");
+// 	mnum = "";
+	logger.info("mnum: "+ mnum);
+	
+	
+// 	String mnum = (String)knum;
+// 	mnum = request.getParameter("mnum");
+// 	logger.info("mnum: "+ mnum);
+	
 	Object obj = request.getAttribute("listAll");//상품정보
 	List<ProductVO> list = (List<ProductVO>)obj;
 	int nCnt = list.size();
 	logger.info("list.size(): "+ list.size());
-	
+// 	logger.info("list.get(0).getPnum(): "+ list.get(0).getPnum());
 %>
 
 <!DOCTYPE html>
@@ -46,17 +47,40 @@ getAttribute()의 경우 setAttribute()속성을 통한 설정이 없으면 무�
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script type="text/javascript">
 
+	function cartPlz(){
+		const mnum = "<%= mnum %>";
+		alert("mnum: "+ mnum);
+		if (confirm("장바구니 목록을 확인하시겠습니까?")){
+		
+			if(mnum == null || mnum == "null" || typeof(mnum)== "undefined" || mnum== ""){
+				alert("로그인을 먼저 해주세요!");
+	//				location.href="productSelectAll.pc?pcategory=21";
+				return;
+			}else{
+				location.href="cartSelectAll.pc?mnum="+mnum;
+			}
+		}
+	};
+
 	$(document).ready(function(){
 		
-	});	
+		$("#pcategory").change(function(){
+	        const mnum = '<%= mnum %>';
+			const pcategory = $("#pcategory").val();
+	        alert("pcategory : "+ pcategory);
+	        
+	        location.href="productSelectAll.pc?pcategory="+pcategory;
+// 	        location.href="productSelectAll.pc?mnum="+mnum+"&pcategory="+pcategory;
+<%-- 	        location.href="cartInsert.pc?pname=<%= pname %>&pprice=<%= pprice %>&pphoto=<%= pphoto %>&ccnt="+cCnt; --%>
+		});
 
+	});
+	//end of ready
 </script>
 <style>
 
 tbody {
   display: inline-block;
-/*   width: 250px; */
-/*   height: 300px; */
   padding: 5px;
   border: 1px solid none;    
   background-color: none; 
@@ -64,6 +88,7 @@ tbody {
 
 table {
 	align: center;
+	
 }
 
 ul	{
@@ -81,9 +106,14 @@ ul	{
 			<th>
 				<ul>
 				    <li>
-				      <button class="" id="pc11">사료</button><!-- 카테고리 11 --><!-- 일단 강아지 페이지만 -->
-				      <button class="" id="pc12">간식</button><!-- 카테고리 12 -->
-				      <button class="" id="pc13">용품</button><!-- 카테고리 13 -->
+					      <select id="pcategory">
+							  <option id="pcategory" value="00">우리아이</option>
+							  <option id="pcategory" value="21">고양이</option>
+							  <option id="pcategory" value="11">강아지</option>
+						  </select>
+					      <input type="button" class="" id="pc21" value="사료"><!-- 카테고리 11 -->
+					      <input type="button" class="" id="pc21" value="간식"><!-- 카테고리 12 -->
+					      <input type="button" class="" id="pc21" value="용품"><!-- 카테고리 13 -->
 				    </li>
 	  			</ul>
 			</th>
@@ -92,16 +122,18 @@ ul	{
 	
 	
 <%
+
+	String pcategory = "";
 	String pname = "";	
 	String pprice = "";
 	String pphoto = "";
 	String pphotoPath = "";
 	String pnum = "";
 	
-// 	for(int i=0; i<list.size(); i++){
-	for(int i=0; i<16; i++){
-// 		ProductVO pvo  = list.get(i);
-		ProductVO pvo  = list.get(0);
+	for(int i=0; i<list.size(); i++){
+// 	for(int i=0; i<16; i++){
+		ProductVO pvo  = list.get(i);
+// 		ProductVO pvo  = list.get(0);
 		
 		pname = pvo.getPname();
 		pprice = pvo.getPprice();
@@ -109,31 +141,21 @@ ul	{
 		pphoto = pvo.getPphoto();
 		pphotoPath = CommonUtils.PRODUCT_IMG_UPLOAD_PATH;
 		pnum = pvo.getPnum();
-	
-		//페이징 세팅
-// 		pageSize = Integer.parseInt(pagingPVO.getPageSize());
-// 		groupSize = Integer.parseInt(pagingPVO.getGroupSize());
-// 		curPage = Integer.parseInt(pagingPVO.getCurPage());
-// 		totalCount = Integer.parseInt(pvo.getTotalCount());
 %>
 	<td>
 		<table>
 			<tr>
 				<td>
-<%-- 					<button type="submit" id="btnPphoto" onclick="findSelect('<%= pnum %>')"> --%>
-<%-- 						<img src="/petCenter/fileupload/product/<%= pphoto %>"/> --%>
-<!-- 					</button> -->
-
+<%-- 					<a onclick="productSelect()" href="productSelect.pc?pnum=<%= pnum %>"> --%>
 					<a href="productSelect.pc?pnum=<%= pnum %>">
-						<img src="/petCenter/fileupload/product/<%= pphoto %>"/>
- 					</a>
+<%-- 					<button onclick="productSelect()" id="pnum" value="<%= pnum %>"> --%>
+						<img width="280px" height="280px" src="/petCenter/fileupload/product/<%= pphoto %>"/>
+					</a>
 				</td>
 			</tr>
 			<tr>
 				<td align="right">
-					<a href="#">
-						<img src="/petCenter/img/icon/cart.png" width="30px" height="30px"/>
-					</a>
+					<img src="/petCenter/img/icon/cart.png" width="30px" height="30px" onclick="cartPlz()"/>
 				</td>
 			</tr>
 			<tr>
@@ -157,18 +179,6 @@ ul	{
 </table>
 <table>	
 	<tfoot>
-	<!-- <tr> -->
-	<!-- 	<td colspan="3"> -->
-	<%-- 		<jsp:include page="productPaging.jsp" flush="true"> --%>
-	<%-- 			<jsp:param name="url" value="productSelectAll.pjb"/> --%>
-	<%-- 			<jsp:param name="str" value=""/> --%>
-	<%-- 			<jsp:param name="pageSize" value="<%=pageSize%>"/> --%>
-	<%-- 			<jsp:param name="groupSize" value="<%=groupSize%>"/> --%>
-	<%-- 			<jsp:param name="curPage" value="<%=curPage%>"/> --%>
-	<%-- 			<jsp:param name="totalCount" value="<%=totalCount%>"/> --%>
-	<%-- 		</jsp:include> --%>
-	<!-- 	</td> -->
-	<!-- </tr> -->
 	</tfoot>
 </table>
 </form>

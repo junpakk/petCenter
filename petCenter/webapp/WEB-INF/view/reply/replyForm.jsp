@@ -15,16 +15,43 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<% request.setCharacterEncoding("UTF-8"); %>
+<%
+	Logger logger = LogManager.getLogger(this.getClass());
+	logger.info("reply.jsp >>> : ");
+	
+	String bcnum = request.getParameter("bcnum");
+	String mid = (String)session.getAttribute("KID");
+	String mnum = (String)session.getAttribute("KNUM");
+
+	logger.info("replyForm bcnum : " + bcnum);
+	logger.info("replyForm mid : " + mid);
+%>
+
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
 
 	$(document).ready(function(){
 		
+		
+		
+
 		//brcontent 길이 제한 200byte
 		$("#brcontent").keydown(function(){
 			cut_200(this);
 		});
 		
+		// 댓글 전체 불러오기 
+		selectAll();
+		
+		
+<%-- 		$(function(){
+			var a = $('#replylist[class="mnum"]').val();
+			if(<%=mnum%>!=a){
+				$("#deleteBtn".hide());
+			}
+		}); --%>
+
 		
 		// 댓글 등록
 		$(document).on("click", "#insert1Btn", function(){
@@ -67,19 +94,33 @@
 		$(document).on("click", ".deleteBtn", function(){
 			console.log("D : ");
 			
+			var mmnum = $(this).parents("li").children("input:eq(0)").val();
+			var nnum = "<%=mnum%>";
+			
+
+			if(nnum != mmnum){
+				alert("정보가 일치하지 않습니다.");
+				return false;
+			}
+			
 			var brnumV = $(this).parents("li").attr("dataNum");
 			alert("brnumV : " + brnumV);
+			console.log("brnumV : " + brnumV);
+
 			var target = $(this).parents(".brmemoItem");
+			alert("target : " + target);
 			console.log("target : " + target);
 			
 			let deleteURL = "replyDelete.pc";
 			let method = "POST";
 			let dataParam = {
-				rkbnum: $('#brnum').val(brnumV),				
+				brnum: $('#brnum').val(brnumV),	
+
 			};		
 			dataParam = $("#replyForm").serialize();
 			console.log("dataParam : " + dataParam);
 			
+					
 			$.ajax({
 				url: deleteURL,
 				type: method,
@@ -103,9 +144,7 @@
 	
 	// 게시글 번호로 댓글 전체조회 ============================================
 	function selectAll(){
-					
-		console.log("SALL : ");
-		
+
 		let selectAllURL = "replySelectAll.pc";
 		let method = "POST";
 		let dataParam = {
@@ -121,10 +160,10 @@
 			success: whenSuccess,
 			error: whenError
 		});
-		
+
 		function whenSuccess(resData){	
 			console.log("whenSuccess replySelectAll resData : " + resData);
-			
+
 			if(isEmpty(resData)){
 				return false;
 			}
@@ -141,7 +180,7 @@
 					console.log("vv[2] : " + vv[2]);
 					console.log("vv[3] : " + vv[3]);					
 				}
-				addNewItem(vv[0], vv[1], vv[2], vv[3]);
+				addNewItem(vv[0], vv[1], vv[2], vv[3], vv[4]);
 			}
 		}
 		function whenError(e){
@@ -150,7 +189,7 @@
 	}
 	
 	//새로운 글 화면에 추가	=================================================
-	function addNewItem(num, writer, content, datetime){
+	function addNewItem(num, writer, content, datetime, mnum){
 		
 		//데이터 체크
 		if(isEmpty(num)) return false;
@@ -173,14 +212,18 @@
 		var delInput = $("<input>");
 		delInput.attr({"type":"button", "value":"삭제하기"});
 		delInput.addClass("deleteBtn");
+		// 회원번호 
+		var num = $("<input>");
+		num.attr({"type":"hidden", "value":"" + mnum + ""});
+		num.addClass("mmnum");
 		// 내용
 		var contentP = $("<p>");
 		contentP.html(decodeURIComponent(content));
 		
 		// 조립하기
 		writerP.append(nameSpan).append(dateSpan).append(delInput);
-		newLi.append(writerP).append(contentP);
-		$("#rboardlist").append(newLi);
+		newLi.append(writerP).append(contentP).append(num);
+		$("#replylist").append(newLi);
 	}
 	
 	// 댓글 길이 체크  ========================================================
@@ -228,14 +271,7 @@
 <form name="replyForm" id="replyForm">
 <table border="1">
 <h3>댓글</h3>
-<% request.setCharacterEncoding("UTF-8"); %>
-<%
-	Logger logger = LogManager.getLogger(this.getClass());
-	String bcnum = request.getParameter("bcnum");
-	String mid = request.getParameter("mid");
 
-	logger.info("replyForm bcnum : " + bcnum);
-%>
 
 		<tr>
 
@@ -243,6 +279,7 @@
 				<%=mid %> 님
 				<input type="hidden" name="mid" id="mid" value="<%=mid%>"/>
 				<input type="hidden" name="bcnum" id="bcnum" value="<%=bcnum%>">
+				<input type="hidden" name="mnum" id="mnum" value="<%=mnum %>">
 				<input type="hidden" name="brnum" id="brnum">
 			    <input type="button" value="등록" id="insert1Btn">
 			</td>

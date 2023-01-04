@@ -78,16 +78,16 @@ public class LoginServiceImpl implements LoginService {
 	}
 
 	@Override
-	public List<MemberVO> kakaoLogin(MemberVO mvo) {
+	public List<MemberVO> snsLogin(MemberVO mvo) {
 		// TODO Auto-generated method stub
-		logger.info("kakaoLogin 함수 진입 >>> : ");
-		return null;
+		logger.info("snsLogin 함수 진입 >>> : ");
+		return loginDAO.snsLogin(mvo);
 	}
 
 	@Override
-	public int kakaoInsert(MemberVO mvo) {
+	public int snsInsert(MemberVO mvo) {
 		// TODO Auto-generated method stub
-		logger.info("kakaoInsert 함수 진입 >>> : ");
-		return 0;
+		logger.info("snsInsert 함수 진입 >>> : ");
+		return loginDAO.snsInsert(mvo);
 	}
 }

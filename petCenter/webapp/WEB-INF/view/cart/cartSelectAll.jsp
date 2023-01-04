@@ -12,13 +12,12 @@
 	Logger logger = LogManager.getLogger(this.getClass());
 	logger.info("cartSelectAll.jsp 진입: ");
 	
+	Object mnum = session.getAttribute("KNUM");
+	logger.info("mnum: "+ mnum);
+	
 	Object obj = request.getAttribute("listAll");
-	List<CartVO> list = (List<CartVO>)obj;
-	int nCnt = list.size();
-	logger.info("list.size(): "+ list.size());
 	
 	String cnum = "";
-	String mnum = "";
 	String cname = "";
 	String ccnt = "";
 	String cprice = "";
@@ -28,6 +27,7 @@
 	String idate = "";
 	String udate = "";
 	int opsum = 0;
+
 %>
 
 <!DOCTYPE html>
@@ -41,8 +41,8 @@
 		  position: relative;
 		  left: 50px;
 		  width: 400px;
-		  height: 50px;
-		  border: 3px solid blue;
+		  height: 40px;
+/* 		  border: 1px solid black; */
 	}
 	
 	div.c{
@@ -50,25 +50,27 @@
 		  left: 50px;
 		  width: 400px;
 		  height: 80px;
-		  border: 3px solid blue;
+		  margin-top: 20px;
+/* 		  border: 1px solid black; */
 	}
 	
 	div.d,.e{
 		  position: relative;
-		  margin-top: 30px;
-		  left: 50px;
+		  margin: 20px;
+/* 		  left: 50px; */
 		  width: 400px;
 		  height: 150px;
-		  border: 3px solid blue;
+/* 		  border: 1px solid black; */
 	}
 	
 	div.de{
 		position: fixed;
-	  	top: 180px;
-	  	left: 450px;
+	  	top: 100px;
+	  	left: 500px;
+	  	border: 1px solid black;
 	}
 	
-	.btn_submit{
+	.buyBtn{
 		background-image: url('./img/icon/order.png');
 /* 	    background-position:  0px 0px; */
 		align: center;
@@ -79,80 +81,222 @@
 		cursor:pointer;
 		outline: 0;
 		}
-[출처] [css] input type="submit" 에 이미지 넣기|작성자 쏼루
+		
+	div.lAll{
+		position: relative;
+		left: 50px;
+		width: 400px;
+		border: 1px solid black;
+		
+	}
 </style>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script type="text/javascript">
+
+	$(document).ready(function(){
+		//전체 체크 또는 전체 해제
+		$(document).on("click", "#chk", function(){
+			if($(this).prop('checked')){
+				$('.cnum').prop('checked', true);
+			}else{
+				$('.cnum').prop('checked', false)
+			}
+		});//end of #chk
+		
+		//삭제버튼
+		$(document).on('click', '#delBtn', function(){
+			alert("#delBtn 클릭: ");
+			let cnum = $(this).val();
+			let mnum = $('#mnum').val();
+			alert("cnum: "+ cnum);
+			alert("mnum: "+ mnum);
+			
+			location.href="cartDelete.pc?cnum="+cnum+"&mnum="+mnum;
+		});
+		
+		
+// 		배송비<div id="delivery" style="text-align:right; display: inline-block;"> 2500 </div> 원<hr>
+// 		최종결제금액<div id="tPrice" style="text-align:right; display: inline-block;"> 0 </div> 원
+		
+		//오더 함수(선택한 항목만 가져가서 주문)
+		$(document).on('click', '#buyBtn', function(){
+			alert("#buyBtn 버튼 클릭: ");
+			
+			if($('.cnum:checked').length == 0){
+				alert("주문한 상품 하나 이상을 선택하시오.");
+				return;
+			}
+			
+			let cnum = [];
+			$("input:checkbox[name='cnum']:checked").each(function(){
+				cnum.push($(this).val());
+				console.log(cnum);
+			});//end of each
+			
+// 			const delivery = document.getElementsByName("delivery").innerText;
+// 			const tprice = document.getElementsByName("tprice").innerText;
+// 			alert("delivery: "+ delivery);
+// 			alert("tprice: "+ tprice);
+// 			alert("delivery: "+ typeof(delivery));
+// 			alert("tprice: "+ typeof(tprice));
+			
+			$("#cartSelectAll").attr({ 	 "action":"orderInsertForm.pc"
+// 			$("#cartSelectAll").attr({ 	 "action":"orderInsertForm.pc"
+										,"method":"GET"
+			}).submit();
+		});
+		
+		//쇼핑 함수
+		$(document).on('click', '#shopBtn', function(){
+			alert("#shopBtn 버튼 클릭: ");
+			let mnum = $('#mnum').val();
+			alert("mnum: "+ mnum);
+			
+			location.href="productSelectAll.pc?pcategory=21&mnum="+mnum;
+		});
+		
+		//주문내역확인
+		$(document).on('click', '#orderInfo', function(){
+			alert("#orderInfo 버튼 클릭: ");
+			let mnum = $('#mnum').val();
+			alert("mnum: "+ mnum);
+			
+			location.href="orderSelectAll.pc?mnum="+mnum;
+		});
+		
+		
+		//체크박스를 클릭 -> 해당하는 금액이 전체 금액에 더해짐 -> 만약 전체금액이 30000원 이상이면 배송료는 0원으로 변한다.
+		let price = 0;
+		$(document).on('click', '#cnum', function(){
+
+			//$("#price").text("");
+			//$("#targetChkbox").is(":checked") == true
+			if($(this).is(":checked") == true){
+				let cost = $(this).siblings();
+				//alert("cost: "+ cost);
+				let value = cost.get(0).value;
+				alert("value: "+ value);
+				price = price + parseInt(value);
+				$("#price").text(price);
+			}else{
+				let cost = $(this).siblings();
+				let value = cost.get(0).value;
+				price = price - parseInt(value);
+				$("#price").text(price);
+			}
+			
+			if(price >= 30000){
+				$("#delivery").text(0);
+				$("#tPrice").text(price);
+				
+			}else{
+				$("#delivery").text(2500);
+				$("#tPrice").text(price+2500);
+			}
+			
+		});
+	
+	});//end of ready()
+
+
+</script>
 </head>
 <body>
-
 <form id="cartSelectAll" name="cartSelectAll">
-	<table>
+	<table align="">
 		<tr>
 			<td><div class="c"><h1>장바구니</h1></div></td>
 		</tr>
-		<tr>
-			<td>
-				<div class="a">
-					<div><input type="checkbox">전체선택</div>
-					<div style="text-align:right;"><input type="button" value="선택삭제"></div>
-				</div>
-			</td>
-			<td><div> </div></td>
-		</tr>
-		<tr>
-			<td>
-				<div class="b" style="text-align:right;">[배송비 30000원 이상 무료]</div>
-				<div>
-					<%
-						 for(int i=0; i<list.size(); i++){
-							CartVO cvo = list.get(i);
-							 
-							cnum = cvo.getCname();
-							mnum = cvo.getMnum();
-							cname = cvo.getCname();
-							ccnt = cvo.getCcnt();
-							cprice = cvo.getCprice();
-							cphoto = cvo.getCphoto();
-							opsum = Integer.valueOf(ccnt)*Integer.valueOf(cprice);							
-// 							cphotoPath = CommonUtils.PRODUCT_IMG_UPLOAD_PATH;
-							idate = cvo.getIdate();
-							logger.info("cnum: "+ cnum);
-							logger.info("mnum: "+ mnum);
-							logger.info("cname: "+ cname);
-							logger.info("ccnt: "+ ccnt);
-							logger.info("cprice: "+ cprice);
-							logger.info("cphoto: "+ cphoto);
-							logger.info("cphoto: "+ cphoto);
-							logger.info("cphotoPath: "+ cphotoPath);
-							logger.info("idate: "+ idate);
-					%>
-					<div class="c">
-						<div>
-							<input type="checkbox">
-							<input type="hidden" value="cnum">
-							<img src="fileupload/product/<%= cphoto %>" width="25px" height="25px"/>
-							<em><%= cname %></em>
-						</div>
-						<div style="text-align:right;">
-							<em><%= cprice %></em> x 
-							<em><%= ccnt %></em> 개
-							<em ><%= opsum %></em> 원
-						</div>
+			<tr>
+				<td>
+					<div class="a">
+						<input type="hidden" name="mnum" id="mnum" class="mnum" value="<%= mnum %>">
+						<div><input type="checkbox" name="chk" id="chk" class="chk">전체선택<hr></div>
 					</div>
+				</td>
+				<td><div> </div></td>
+			</tr>
+			<tr>
+				<td>
+					<div class="b" style="text-align:right;">[배송비 30000원 이상 무료]<hr></div>
+<%
+	if(obj == null){
+%>
+				<tr>
+					<td colspan="8" align="center">
+						<h2>장바구니에 상품을 담으세요.</h2>
+					</td>
+				</tr>				
+<%		
+	}else{
+		List<CartVO> list = (List<CartVO>)obj;
+		int nCnt = list.size();
+		logger.info("list.size(): "+ list.size());
+						
+		for(int i=0; i<list.size(); i++){
+			CartVO cvo = list.get(i);
+			 
+			cnum = cvo.getCnum();
+// 			mnum = cvo.getMnum();
+			ccnt = cvo.getCcnt();
+			cprice = cvo.getCprice();
+			cphoto = cvo.getCphoto();
+			cname = cvo.getCname();
+			opsum = Integer.valueOf(ccnt)*Integer.valueOf(cprice);							
+		// 	cphotoPath = CommonUtils.PRODUCT_IMG_UPLOAD_PATH;
+			idate = cvo.getIdate();
+			logger.info("cnum: "+ cnum);
+			logger.info("mnum: "+ mnum);
+			logger.info("cname: "+ cname);
+			logger.info("ccnt: "+ ccnt);
+			logger.info("cprice: "+ cprice);
+			logger.info("cphoto: "+ cphoto);
+			logger.info("cphoto: "+ cphoto);
+			logger.info("cphotoPath: "+ cphotoPath);
+			logger.info("idate: "+ idate);
+			logger.info("opsum: "+ opsum);
+%>
+					<div>
+						<div class="c">
+							<div>
+								<input type="checkbox" name="cnum" id="cnum" class="cnum" value=<%= cnum %>>
+								<input type="hidden" name="opsum" id="opsum" class="opsum" value=<%= opsum %>>
+								<img src="fileupload/product/<%= cphoto %>" width="25px" height="25px"/>
+								<strong><%= cname %></strong>
+							</div>
+						
+							<div style="text-align:right;">
+								<em><%= cprice %></em> x 
+								<em><%= ccnt %></em> 개
+								<strong><%= opsum %> 원</strong>
+							</div>
+							
+							<div style="text-align:right;">
+								<button type="button" class="delBtn" name="delBtn" id="delBtn" value="<%= cnum %>">삭제</button>
+							</div>
+							<hr>
+						</div>
 					<%
-						}
+		}//end of for
+	}//end of else
 					%>
-				</div>
-			</td>
+					</div>
+				</td>
+			</tr>
 			<td>
 				<div class="de">
 					<div  class="d">
 						<div><h3>결제금액</h3></div>
-						<div style="text-align:right;">상품금액  0원</div>
-						<div style="text-align:right;">배송비  2500원</div><hr>
-						<div style="text-align:right;">최종결제금액 0원</div>
+						상품금액<div id="price" style="text-align:right; display: inline-block;"> 0 </div> 원<br>
+						배송비<div id="delivery" style="text-align:right; display: inline-block;"> 2500 </div> 원<hr>
+						최종결제금액<div id="tPrice" style="text-align:right; display: inline-block;"> 0 </div> 원
 					</div>
 					<div class="e" style="text-align:center;">
-						<input type="submit" class="btn_submit" value="">
+						<input type="button" id="buyBtn" class="buyBtn">
+					</div>
+					<div class="f" style="text-align:center;">
+						<input type="button" id="shopBtn" class="shopBtn" value="쇼핑하기">
+						<input type="button" id="orderInfo" class="orderInfo" value="주문내역">
 					</div>
 				</div>
 			</td>

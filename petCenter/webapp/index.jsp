@@ -5,6 +5,7 @@
 
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
 <title>Insert title here</title>
 </head>
 <body>
@@ -30,13 +31,30 @@
 
 
 		<a href="mainPage.pc">메인페이지</a><br>
+		<a href="rssPage.pc">rss테스트페이지</a><br>
 		<a href="logout.pc">로그아웃</a><br>
 		<a href="memInsertForm.pc">회원가입</a><br>
 		<a href="memSelectAll.pc">회원목록</a><br>
 		<hr>
 		<a href="productInsertForm.pc">상품등록폼</a><br/>
-		<a href="productSelectAll.pc">상품전체목록페이지</a><br/>
+		<a href="productSelectAll.pc?pcategory=21">상품전체목록페이지</a><br/>
 		<a href="cartSelectAll.pc?mnum=M0001">카트전체목록페이지 M0001 테스트</a><br/>
+		
+		<a href="communitySelectAll.pc">1</a><br>
+		<a href="communityInsertForm.pc">커뮤니티글쓰기</a><br>
+		<a href="zangInsertForm.pc">3</a><br>
+		<a href="petzangSelectAll.pc">4</a><br>
+		
+		<br>
+		<br>
+		<br>
+		<a href="comInsForm.pc">커뮤니티글쓰기(ex)</a><br>
+		
+		<br>
+		<br>
+		<br>
+		<a href="noticeInsertForm.pc">공지사항 글쓰기</a><br>
+		<a href="noticeSelectAll.pc">공지사항 목록조회</a><br>
 	</body>
 
 </html>

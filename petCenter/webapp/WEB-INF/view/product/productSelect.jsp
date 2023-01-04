@@ -14,6 +14,9 @@
 	Logger logger = LogManager.getLogger(this.getClass());
 	logger.info("productSelect.jsp 진입: ");
 	
+	Object mnum = session.getAttribute("KNUM");
+	logger.info("mnum: "+ mnum);
+	
 	Object obj = request.getAttribute("list");//상품상세정보
 	List<ProductVO> list = (List<ProductVO>)obj;
 	int nCnt = list.size();
@@ -43,10 +46,6 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script type="text/javascript">
 
-	$(document).ready(function(){
-		
-	});	
-	
 	function count(type)  {
 		  // 결과를 표시할 수량 및 총가격
 		  const result = document.getElementById("result");
@@ -77,17 +76,17 @@
 <style>
 	
 	div.a, .b{
-		  position: relative;
-		  width: 500px;
-		  height: 500px;
-		  border: 3px solid blue;
+		position: relative;
+		width: 500px;
+		height: 500px;
+		border: 1px solid black;
 	}
 	
 	div.c, .d{
-		  position: relative;
-		  width: 500px;
-		  height: 200px;
-		  border: 3px solid blue;
+		position: relative;
+		width: 500px;
+		height: 200px;
+		border: 1px solid black;
 	}
 	
 	div.b1{
@@ -98,15 +97,15 @@
 		left: 50px;
 		width: 400px;
 		height: 80px;
-		border: 3px solid blue;
+		border: 1px solid black;
 	}
 	
 	div.b2{
-		  position: relative;
-		  left: 50px;
-		  width: 400px;
-		  height: 60px;
-		  border: 3px solid blue;
+		position: relative;
+		left: 50px;
+		width: 400px;
+		height: 60px;
+		border: 1px solid black;
 	}
 	
 </style>
@@ -115,7 +114,7 @@
 
 <body>
 <form id="selectForm" name="selectForm" style="align:center;">
-	<table>
+	<table align="center">
 		<tr>
 			<td>
 				<div class="a"><img width="500px;" height="500px;" src="/petCenter/fileupload/product/<%= pvo.getPphoto() %>"/></div>
@@ -125,9 +124,9 @@
 					<div class="b1" ><%= pvo.getPname() %></div>
 					<div class="b1" ><%= pprice %> 원</div>			
 					<hr>
-					<div class="b2">연관태그 #강아지 #애완견 #사료</div>
+					<div class="b2">연관태그<br/> #<%= pvo.getPname() %><br/> #반려동물 #사료</div>
 					<hr>
-					<div class="b2">배송정보 배송비 2,500원 (30,000원 이상 무료배송)</div>
+					<div class="b2">배송정보<br/> 배송비 2,500원 (30,000원 이상 무료배송)</div>
 					<hr>
 					<div class="b2">취소/교환/환불 팝업창</div>
 				</div>
@@ -151,18 +150,17 @@
 			</td>
 			<td>
 				<div class="d">
-					총수량 <div id="cCnt" style="display: inline-block">1</div> 개<br/>
-					합계<div id="tPrice" style="display: inline-block"><%= pvo.getPprice() %></div> 원
-					<div></div>
-					<div>
-						<div style="display: inline-block">
-							<input type="button" id="cartBtn" value="장바구니">
+					총수량<div id="cCnt" style="display: inline-block">1</div> 개<br/>
+					합계	<div id="tPrice" style="display: inline-block"><%= pvo.getPprice() %></div> 원
+						<div></div>
+						<div>
+							<div style="display: inline-block">
+								<input type="button" id="cartBtn" value="장바구니">
+							</div>
+							<div style="display: inline-block">
+								<input type="button" id="orderBtn" value="구매하기">
+							</div>
 						</div>
-				
-						<div style="display: inline-block">
-							<input type="button" id="orderBtn" value="구매하기">
-						</div>
-					</div>
 				</div>
 			</td>
 		</tr>
@@ -171,14 +169,50 @@
 
 <script>
 	
+// 	function cartPlz(){
+<%-- 		const mnum = "<%= mnum %>"; --%>
+// 		alert("mnum: "+ mnum);
+// 		if (confirm("장바구니 목록을 확인하시겠습니까?")){
+		
+// 			if(mnum == null || mnum == "null" || typeof(mnum)== "undefined" || mnum== ""){
+// 				alert("로그인을 먼저 해주세요!");
+// 				return;
+// 			}else{
+// 				location.href="cartSelectAll.pc?mnum="+mnum;
+// 			}
+// 		}
+// 	};
+	
 	$('#cartBtn').click(function(){
 		//console.log("#cartBtn 클릭: ");
 		if(confirm("해당 상품을 장바구니에 담으시겠습니까?")){
-			 //console.log("주문");
+			const mnum = '<%= mnum %>';
 			const cCnt = document.getElementById("cCnt").innerText;
-			alert("cCnt: "+ cCnt);
+			alert("cCnt, mnum: "+ cCnt +" , "+ mnum);
 					
-			location.href="cartInsert.pc?pname=<%= pname %>&pprice=<%= pprice %>&pphoto=<%= pphoto %>&ccnt="+cCnt;		
+			if(mnum == null || mnum == "null" || typeof(mnum) == "undefined" || mnum == ""){
+				alert("로그인을 먼저 해주세요!");
+				return;
+			}else{
+				location.href="cartInsert.pc?pname=<%= pname %>&pprice=<%= pprice %>&pphoto=<%= pphoto %>&ccnt="+cCnt+"&mnum="+mnum;
+			}
+		}
+	});
+	
+		
+	$('#orderBtn').click(function(){
+		//console.log("#orderBtn 클릭: ");
+		if(confirm("해당 상품을 주문하시겠습니까?")){
+			const mnum = '<%= mnum %>';
+			const cCnt = document.getElementById("cCnt").innerText;
+			alert("cCnt, mnum: "+ cCnt +" , "+ mnum);
+			
+			if(mnum == null || mnum == "null" || typeof(mnum) == "undefined" || mnum == ""){
+				alert("로그인을 먼저 해주세요!");
+				return;
+			}else{
+				location.href="cartInsert.pc?pname=<%= pname %>&pprice=<%= pprice %>&pphoto=<%= pphoto %>&ccnt="+cCnt;
+			}
 		}
 	});
 	

@@ -13,8 +13,7 @@
 	Logger logger = LogManager.getLogger(this.getClass());
 	logger.info("cartInsert.jsp 진입: ");
 	
-	Object obj = request.getAttribute("mnum");//회원정보
-	String mnum = (String)obj;
+	Object mnum = session.getAttribute("KNUM");//회원정보
 	logger.info("mnum: "+ mnum);
 %>
 <script>

@@ -21,14 +21,21 @@
 	MemberVO mvo = list.get(0);
 	
 	String mnum = mvo.getMnum();
-	String mname = mvo.getMname();
-	String mid = mvo.getMid();
-	String mpw = mvo.getMpw();
 	
-	String[] mhpArr = mvo.getMhp().split("-");
-	String mhp1 = mhpArr[0];
-	String mhp2 = mhpArr[1];
-	String mhp3 = mhpArr[2];
+	String mname = "";
+	if(mvo.getMname() != null) mname = mvo.getMname();
+	
+	String mid = mvo.getMid();
+	
+	String mhp1 = "";
+	String mhp2 = "";
+	String mhp3 = "";
+	if(mvo.getMhp() != null) {
+		String[] mhpArr = mvo.getMhp().split("-");
+		mhp1 = mhpArr[0];
+		mhp2 = mhpArr[1];
+		mhp3 = mhpArr[2];
+	}
 	
 	String[] memailArr = mvo.getMemail().split("@");
 	String memail1 = memailArr[0];
@@ -36,7 +43,11 @@
 	
 	String mpet = mvo.getMpet();
 	
-	String minfo = mvo.getMinfo();
+	String minfo = "";
+	if(mvo.getMinfo() != null) minfo = mvo.getMinfo();
+	
+	String snstype = mvo.getSnstype();
+	logger.info("snstype >>> : " + snstype);
 %>
 <!DOCTYPE html>
 <html>
@@ -60,7 +71,9 @@
 			$("#mname").val('<%= mname %>');
 			$("#mid").val('<%= mid %>');
 			
-			$("#mhp1").val('<%= mhp1 %>');
+			let mhp1 = '<%= mhp1 %>';
+			if (mhp1 != null && mhp1.length > 0) {$("#mhp1").val(mhp1);}
+			
 			$("#mhp2").val('<%= mhp2 %>');
 			$("#mhp3").val('<%= mhp3 %>');
 			
@@ -197,7 +210,10 @@
 		<input type="text" name="mid" id="mid" readonly />
 	</td>
 </tr>
-
+<%
+	if(snstype == null){
+		
+%>
 <tr>
 	<td class="align-middle" id="notNull">비밀번호</td>
 	<td>
@@ -206,6 +222,9 @@
 		<input type="button" value="비밀번호변경" id="pwUpdate" class="btn btn-success btn-sm"/><br/>
 	</td>
 </tr>
+<%
+	}
+%>
 
 <tr>
 	<td class="align-middle">이름</td>

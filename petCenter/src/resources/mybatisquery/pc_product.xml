@@ -44,7 +44,8 @@
 <!-- 		       ,CEIL(ROW_NUMBER() OVER(ORDER BY A.PNUM)/ #{pageSize} ) pageSize		 -->
 <!-- 			   ,COUNT(A.PNUM) OVER() AS totalCount  -->
 		FROM 	PC_PRODUCT A
-		WHERE 	A.DELYN = 'Y' 	
+		WHERE 	A.DELYN = 'Y'
+		AND		A.PCATEGORY = #{pcategory}
 <!-- 		ORDER BY 1 DESC   -->
 		<!--  ? : 현재 페이지 : curPage -->
 <!-- 	) WHERE pageSize = #{curPage} -->
