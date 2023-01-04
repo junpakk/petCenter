@@ -57,16 +57,69 @@
 	
 	.header{
 	/* 	background-image:url("../../img/contact.png"); */
-		diplay:flex;
+		height: 165px;
 		position:sticky;
-		top:0%;
 	  	background:white;
 		grid-area:header;
-		text-align:center;
+		width: 100%;
+		z-index: 9999;
+		top: 0;
+		left: 0;
 	}
 	
-	.upperH{width:100%;height:22px;background:#3db7cc;}
-	.lowerH{width:100%;height:100px;background:white; padding-left: 100px; padding-right: 30px}
+	.upperH{
+			width: 100%;
+			margin: 0 auto;
+			height:50px;
+			background:#3db7cc;
+			}
+			
+	.upperH a{
+		color: black;
+		text-decoration: none;
+		font-size: 15px;
+		font: italic small-caps bold;
+	}
+			
+			
+	.lowerH{
+			width: 1400px;
+			margin: 0 auto;
+			height:115px;
+			background:white; 
+/* 			padding-left: 100px;  */
+/* 			padding-right: 30px */
+			}
+			
+	.lowerH img{
+		float: left;
+		margin-left: 10px;
+	}
+	
+	.menu{
+		float: right;
+	}
+	
+	.menu li{
+			list-style: none;
+			float: left;
+	}
+	
+/* 	ul.tmenu > li{ */
+/* 		list-style: none; */
+/* 		padding-right: 100px; */
+/* 		float: right; */
+/* 	} */
+	
+	.menu a{
+		line-height: 110px;
+		color: black;
+		display: block;
+		padding: 0 15px;
+		text-decoration: none;
+		font-size: 25px;
+		font: italic small-caps bold;
+	}
 	
 	.side{
 		background:red;
@@ -110,38 +163,47 @@
 		mnum = (String)objMnum;
 		mid = (String)objMid;
 %>
-				<nav align="right" style="color:white;">
-					<%= mid %> 님 안녕하세요!! &nbsp; &nbsp; &nbsp;
-					<a href="logout.pc" style="color:white;">로그아웃</a> | 
-					<% String link =  "memSelect.pc?mnum=" + mnum;%>
-					<a href="<%= link %>" style="color:white;">내정보</a> &nbsp; &nbsp;    
-				</nav>
+					<ul class="tmenu">
+						<li align="right">
+							<%= mid %> 님 안녕하세요!! &nbsp; &nbsp; &nbsp;
+							<a href="logout.pc" style="color:white;">로그아웃</a>
+							<% String link =  "memSelect.pc?mnum=" + mnum;%>
+							<a href="<%= link %>" style="color:white;">내정보</a>
+						</li>    
 <% 
 	}else{
-	%>
-				<nav align="right" style="color:white;">
-					<a href="loginForm.pc" style="color:white;">로그인</a> |
-					<a href="memInsertForm.pc" style="color:white;">회원가입</a>&nbsp; &nbsp;    
-				</nav>
-				<div>
+%>
+						<li align="right" style="padding-right:15%; padding-top:12px">
+							<a href="loginForm.pc" style="color:white;">로그인</a>
+							<a href="memInsertForm.pc" style="color:white;">회원가입</a>
+						</li>  
+					</ul>
 <%
 	}
 %>		
-				</div>
 			</div>
 			<div class="lowerH">
-				<img src="/petCenter/img/logo.png" align="left" width="140" height="125">
-				<a href="communityInsertForm.pc">게시판</a> 
-				<a href="communityInsertForm.pc">쇼핑몰(버튼)</a> 
-				<a href="communityInsertForm.pc">지도(버튼)</a> 
-				<a href="communityInsertForm.pc">공지사항(버튼)</a> 
-				
-				/ 박람회(버튼) 
-				<a href="comInsForm.pc">커뮤니티글쓰기(ex)</a>
-				<a href="comSelAll.pc">커뮤니티글보기(ex)</a>
-				<a href="productSelectAll.pc?pcategory=21">쇼핑몰</a>
-					지도(버튼) 
-					공지사항(버튼)
+				<img src="/petCenter/img/logo.png" align="left" width="110" height="110">
+				<nav>
+					<ul class="menu">
+<!-- 					<a href="communityInsertForm.pc">게시판</a>  -->
+<!-- 					<a href="communityInsertForm.pc">쇼핑몰(버튼)</a>  -->
+<!-- 					<a href="communityInsertForm.pc">지도(버튼)</a>  -->
+<!-- 					<a href="communityInsertForm.pc">공지사항(버튼)</a>  -->
+					
+<!-- 					/ 박람회(버튼)  -->
+<!-- 					<a href="comInsForm.pc">커뮤니티글쓰기(ex)</a> -->
+<!-- 					<a href="comSelAll.pc">커뮤니티글보기(ex)</a> -->
+<!-- 					<a href="productSelectAll.pc?pcategory=21">쇼핑몰</a> -->
+<!-- 						지도(버튼)  -->
+<!-- 						공지사항(버튼) -->
+						<li><a href="">박람회</a></li>
+						<li><a href="communityInsertForm.pc">커뮤니티</a></li>
+						<li><a href="productSelectAll.pc?pcategory=21">쇼핑몰</a></li>
+						<li><a href="">산책지도</a></li>
+						<li><a href="">공지사항</a></li>
+					</ul>
+				</nav>
 			</div>
 		</div><!-- end of header -->
 		<div class="side"></div>
