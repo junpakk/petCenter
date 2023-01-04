@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+          "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+          
+<mapper namespace="main.pc.notice.dao.NoticeDAO">
+
+<insert id="noticeInsert" parameterType="noticevo" >
+ 
+	INSERT INTO PC_NOTICE (
+								 bnnum
+								,bntitle
+								,bncontent
+								,bnphoto
+								,delyn
+								,idate
+								,udate)
+            			VALUES( 
+            					#{bnnum, jdbcType=VARCHAR }, 
+            					#{bntitle, jdbcType=VARCHAR }, 
+            					#{bncontent, jdbcType=VARCHAR }, 
+            					#{bnphoto, jdbcType=VARCHAR }, 
+            					'Y', 
+            					SYSDATE, 
+            					SYSDATE)
+</insert>
+
+<select id="noticeSelectAll" parameterType="noticevo" resultType="noticevo">
+	SELECT
+	 A.BNNUM AS BUNUM
+	,A.BNTITLE AS BNTITLE
+	,A.BNCONTENT AS BNCONTENT
+	,A.BNPHOTO AS BNPHOTO
+	FROM PC_NOTICE A
+	WHERE A.DELYN='Y'
+</select>
+
+</mapper>

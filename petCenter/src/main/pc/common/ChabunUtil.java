@@ -13,8 +13,8 @@ public abstract class ChabunUtil {
 	public static final String BIZ_GUBUN_BF = "BF"; // 박람회
 	public static final String BIZ_GUBUM_MP = "MP"; // 좋아요	
 	
-	public static final String BIZ_GUBUN_BC 	= "BC"; 
-	public static final String BIZ_GUBUN_Z 	= "Z"; 
+	public static final String BIZ_GUBUN_BC = "BC"; 
+	public static final String BIZ_GUBUN_BN = "BN"; // 공지사항
 	
 	
 	public static String numPad(String t, String c) {
@@ -67,13 +67,13 @@ public abstract class ChabunUtil {
 		// TODO Auto-generated method stub
 		return BIZ_GUBUN_BC.concat(ChabunUtil.numPad(type, memNum));
 	}
-	public static String getZangChabun(String type, String memNum) {		
-		return BIZ_GUBUN_Z.concat(ChabunUtil.numPad(type, memNum));
-	}
 	
 	public static String getCommunitiesChabun(String type, String memNum) {
 		// TODO Auto-generated method stub
 		return BIZ_GUBUN_BC.concat(ChabunUtil.numPad(type, memNum));
 	}	
 
+	public static String getNoticeChabun(String type, String memNum) {		
+		return BIZ_GUBUN_BN.concat(ChabunUtil.numPad(type, memNum));
+	}
 }

@@ -183,6 +183,7 @@
 %>		
 			</div>
 			<div class="lowerH">
+<<<<<<< HEAD
 				<img src="/petCenter/img/logo.png" align="left" width="110" height="110">
 				<nav>
 					<ul class="menu">
@@ -204,7 +205,24 @@
 						<li><a href="">공지사항</a></li>
 					</ul>
 				</nav>
+=======
+				<img src="/petCenter/img/logo.png" align="left" width="140" height="125">
+
+				<a href="communityInsertForm.pc">게시판</a> 
+				<a href="communityInsertForm.pc">쇼핑몰(버튼)</a> 
+				<a href="communityInsertForm.pc">지도(버튼)</a> 
+				<a href="communityInsertForm.pc">공지사항(버튼)</a> 
+				
+				/ 박람회(버튼) 
+				<a href="comInsForm.pc">커뮤니티글쓰기(ex)</a>
+				<a href="comSelAll.pc">커뮤니티글보기(ex)</a>
+				<a href="productSelectAll.pc?pcategory=21">쇼핑몰</a>
+				<a href="tipSelAll.pc">팁 게시판</a><br>
+					지도(버튼) 
+					공지사항(버튼)
+>>>>>>> branch 'master' of https://github.com/junpakk/petCenter.git
 			</div>
+
 		</div><!-- end of header -->
 		<div class="side"></div>
 		<div class="main">

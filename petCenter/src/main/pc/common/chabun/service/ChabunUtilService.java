@@ -1,11 +1,11 @@
 package main.pc.common.chabun.service;
 
 import main.pc.member.vo.MemberVO;
+import main.pc.notice.vo.NoticeVO;
 import main.pc.order.vo.OrderVO;
 import main.pc.product.vo.ProductVO;
 import main.pc.cart.vo.CartVO;
 import main.pc.communities.vo.CommunitiesVO;
-import main.pc.community.vo.CommunityVO;
 import main.pc.fair.vo.FairVO;
 import main.pc.like.vo.LikeVO;
 import main.pc.map.vo.MapVO;
@@ -22,8 +22,8 @@ public interface ChabunUtilService {
 	public OrderVO getOrderChabun();//오더
 	public FairVO getFairChabun();//박람회
 	public MapVO getMapChabun();//맵
-	public CommunityVO getCommunityChabun();
 	public CommunitiesVO getCommunitiesChabun();
-
-
+	public NoticeVO getNoticeChabun();//공지사항
+	
+	
 }

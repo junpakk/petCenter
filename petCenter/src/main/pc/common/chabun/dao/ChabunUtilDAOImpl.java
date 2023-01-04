@@ -12,11 +12,11 @@ import main.pc.map.vo.MapVO;
 import main.pc.reply.vo.ReplyVO;
 
 import main.pc.member.vo.MemberVO;
+import main.pc.notice.vo.NoticeVO;
 import main.pc.order.vo.OrderVO;
 import main.pc.product.vo.ProductVO;
 import main.pc.cart.vo.CartVO;
 import main.pc.communities.vo.CommunitiesVO;
-import main.pc.community.vo.CommunityVO;
 
 @Repository
 public class ChabunUtilDAOImpl implements ChabunUtilDAO {
@@ -88,16 +88,19 @@ public class ChabunUtilDAOImpl implements ChabunUtilDAO {
 		return sqlSession.selectOne("getMapChabun");
 	}	
 	
-	@Override
-	public CommunityVO getCommunityChabun() {
-		// TODO Auto-generated method stub
-		return sqlSession.selectOne("getCommunityChabun");
-	}
 
 	@Override
 	public CommunitiesVO getCommunitiesChabun() {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("getCommunitiesChabun");
+	}
+
+	//공지사항
+	@Override
+	public NoticeVO getNoticeChabun() {
+		// TODO Auto-generated method stub
+		logger.info("getNoticeChabun 함수 진입");
+		return sqlSession.selectOne("getNoticeChabun");
 	}
 
 }

@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,12 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h3>커뮤니티수정업데이트</h3>
-
 <script type="text/javascript">
-location.href="/pet/communitySelectAll.pc";
-</script>	
-
-
+location.href="noticeSelectAll.pc";
+</script>
 </body>
 </html>
