@@ -63,13 +63,13 @@
 				diplay:flex;
 				position:sticky;
 				top:0%;
-			  	background:orange;
+			  	background:white;
 				grid-area:header;
 				text-align:center;
 			}
 			
-			.upperH{width:100%;height:50px;background:pink;}
-			.lowerH{width:100%;height:100px;background:yellow;}
+			.upperH{width:100%;height:22px;background:#3db7cc;}
+			.lowerH{width:100%;height:100px;background:white; padding-left: 100px; padding-right: 30px}
 			
 			.side{
 				background:red;
@@ -92,18 +92,19 @@
 				background:green;
 				grid-area:footer;
 			}		
+
 			
 		</style>
 		
 	</head>
 	<body>
+	
 	<div class="container">
 		<!-- header를 sitearea, topbar, wrapper, logoarea, toplogo,  -->
 		<div class="header">
 			<!-- 상단바와 내용 -->
-		<div class="upperH">링크1 / 링크2 / 링크3 / 링크4 / 링크 5  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 마이페이지
+		<div class="upperH">
 		
-			<div>
 			<%
 				String mnum = "";
 				String mid = "";
@@ -114,29 +115,46 @@
 					mnum = (String)objMnum;
 					mid = (String)objMid;
 			%>
-				<p>
-					<%= mid %>(<%= mnum %>) 님 안녕하세요!! 
-					<a href="logout.pc">로그아웃</a> | 
-					<a href="calendar.pc" >캘린더</a> |
-					<a href="memInsertForm.pc" >회원가입</a>
-					<% String link =  "memSelect.pc?mnum=" + mnum;%>
-					<a href="<%= link %>">회원정보</a>
-				</p>
-			<% 
-				}else{
-			%>
-				<p>
-					<a href="loginForm.pc" >로그인</a> |
-					<a href="memInsertForm.pc" >회원가입</a>
-					
-				</p>
+						<nav align="right" style="color:white;">
+						    
+						    
+						  	  <%= mid %> 님 안녕하세요!! &nbsp; &nbsp; &nbsp;
+						      <a href="logout.pc" style="color:white;">로그아웃</a> | 
+						      <% String link =  "memSelect.pc?mnum=" + mnum;%>
+						      <a href="<%= link %>" style="color:white;">내정보</a> &nbsp; &nbsp;    
+						    
+			 			 </nav>
+			 			   <% 
+							}else{
+								%>
+								<nav align="right" style="color:white;">
+								
+								
+									<a href="loginForm.pc" style="color:white;">로그인</a> |
+									<a href="memInsertForm.pc" style="color:white;">회원가입</a>&nbsp; &nbsp;    
+						
+						    	 </nav>
+			
+			<div>
+			
+			
+			
+			
+				
+			
 			<%
 				}
 			%>		
 			</div>
 		
 		</div>
-		<div class="lowerH">로고 / 박람회(버튼) <a href="communityInsertForm.pc">커뮤니티글쓰기</a> 쇼핑몰(버튼) 지도(버튼) 공지사항(버튼)</div>
+		<div class="lowerH">
+				<img src="/petCenter/img/logo.png" align="left" width="140" height="125">
+				<a href="communityInsertForm.pc">게시판</a> 
+				<a href="communityInsertForm.pc">쇼핑몰(버튼)</a> 
+				<a href="communityInsertForm.pc">지도(버튼)</a> 
+				<a href="communityInsertForm.pc">공지사항(버튼)</a> 
+		</div>
 		</div><!-- end of header -->
 		<div class="side">
 		</div>
