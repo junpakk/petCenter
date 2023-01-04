@@ -48,9 +48,11 @@ public class CartController {
 		//채번
 		String cnum = ChabunUtil.getCartChabun("D", chabunUtilService.getCartChabun().getCnum());
 		logger.info("cnum: "+ cnum);
+		String mnum = req.getParameter("mnum");
+		logger.info("mnum: "+ mnum);
 		
 		cvo.setCnum(cnum);
-		cvo.setMnum("M0001");
+		cvo.setMnum(mnum);
 		cvo.setCname(pvo.getPname());
 		cvo.setCprice(pvo.getPprice());
 		cvo.setCphoto(pvo.getPphoto());
@@ -66,7 +68,7 @@ public class CartController {
 			model.addAttribute("mnum", cvo.getMnum());
 			return "cart/cartInsert";
 		}
-		return "#";
+		return "product/productSelect";
 	}
 	
 	

@@ -51,6 +51,13 @@ public class OrderController {
 		//단건이 아니니까 배열로 cnum의 값을 받아주면 좋을 것 같다.
 		String cnum[] = req.getParameterValues("cnum");
 		String mnum = req.getParameter("mnum");
+//		String delivery = req.getParameter("delivery");
+//		String tprice = req.getParameter("tprice");
+		logger.info("cnum[]: "+ cnum);
+		logger.info("mnum: "+ mnum);
+//		logger.info("delivery: "+ delivery);
+//		logger.info("tprice: "+ tprice);
+		
 		for(int i=0; i<cnum.length; i++) {
 			logger.info("cnum: "+ cnum[i]);
 		}
@@ -63,8 +70,10 @@ public class OrderController {
 			CartVO cvo = new CartVO();
 			cvo.setCnum(cnum[i]);
 			cvo.setMnum(mnum);
+//			cvo.setDelivery(delivery);
+//			cvo.setTprice(tprice);
 			list.add(cvo);
-			logger.info("list"+ list);
+			logger.info("list: "+ list);
 		}//end of for
 		
 		//장바구니에서 선택한 목록만 가져올 수 있게끔 cartSelect 쿼리문 새로 만들기
@@ -133,6 +142,16 @@ public class OrderController {
 			ovo.setOname(ocvo.getCname());
 			ovo.setOcnt(ocvo.getCcnt());
 			ovo.setOpsum(Integer.toString(opsum));
+			//배송료
+			String delivery = req.getParameter("delivery");
+			logger.info("delivery: "+ delivery);
+			ovo.setDelivery(delivery);
+			
+			//총가격
+			String tprice = req.getParameter("tprice");
+			logger.info("tprice: "+ tprice);
+			ovo.setTprice(tprice);
+			
 			
 			//주문자명
 			String mname = req.getParameter("mname");
@@ -187,7 +206,6 @@ public class OrderController {
 				
 				return "cart/cartDelete";
 			}
-			return "";
 		}
 		return "cart/cartSelectAll";
 	}//end of orderInsert

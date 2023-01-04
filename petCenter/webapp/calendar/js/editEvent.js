@@ -40,7 +40,7 @@ var editEvent = function (event, element, view) {
     $('#updateEvent').on('click', function () {
 
         if (editStart.val() > editEnd.val()) {
-            alert('끝나는 날짜가 앞설 수 없습니다.');
+            alert('날짜를 확인해주세요.');
             return false;
         }
 

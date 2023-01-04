@@ -14,6 +14,9 @@
 	Logger logger = LogManager.getLogger(this.getClass());
 	logger.info("productSelect.jsp 진입: ");
 	
+	Object mnum = session.getAttribute("KNUM");
+	logger.info("mnum: "+ mnum);
+	
 	Object obj = request.getAttribute("list");//상품상세정보
 	List<ProductVO> list = (List<ProductVO>)obj;
 	int nCnt = list.size();
@@ -121,9 +124,9 @@
 					<div class="b1" ><%= pvo.getPname() %></div>
 					<div class="b1" ><%= pprice %> 원</div>			
 					<hr>
-					<div class="b2">연관태그 #강아지 #애완견 #사료</div>
+					<div class="b2">연관태그<br/> #<%= pvo.getPname() %><br/> #반려동물 #사료</div>
 					<hr>
-					<div class="b2">배송정보 배송비 2,500원 (30,000원 이상 무료배송)</div>
+					<div class="b2">배송정보<br/> 배송비 2,500원 (30,000원 이상 무료배송)</div>
 					<hr>
 					<div class="b2">취소/교환/환불 팝업창</div>
 				</div>
@@ -166,23 +169,50 @@
 
 <script>
 	
+// 	function cartPlz(){
+<%-- 		const mnum = "<%= mnum %>"; --%>
+// 		alert("mnum: "+ mnum);
+// 		if (confirm("장바구니 목록을 확인하시겠습니까?")){
+		
+// 			if(mnum == null || mnum == "null" || typeof(mnum)== "undefined" || mnum== ""){
+// 				alert("로그인을 먼저 해주세요!");
+// 				return;
+// 			}else{
+// 				location.href="cartSelectAll.pc?mnum="+mnum;
+// 			}
+// 		}
+// 	};
+	
 	$('#cartBtn').click(function(){
 		//console.log("#cartBtn 클릭: ");
 		if(confirm("해당 상품을 장바구니에 담으시겠습니까?")){
+			const mnum = '<%= mnum %>';
 			const cCnt = document.getElementById("cCnt").innerText;
-			alert("cCnt: "+ cCnt);
+			alert("cCnt, mnum: "+ cCnt +" , "+ mnum);
 					
-			location.href="cartInsert.pc?pname=<%= pname %>&pprice=<%= pprice %>&pphoto=<%= pphoto %>&ccnt="+cCnt;		
+			if(mnum == null || mnum == "null" || typeof(mnum) == "undefined" || mnum == ""){
+				alert("로그인을 먼저 해주세요!");
+				return;
+			}else{
+				location.href="cartInsert.pc?pname=<%= pname %>&pprice=<%= pprice %>&pphoto=<%= pphoto %>&ccnt="+cCnt+"&mnum="+mnum;
+			}
 		}
 	});
 	
+		
 	$('#orderBtn').click(function(){
 		//console.log("#orderBtn 클릭: ");
 		if(confirm("해당 상품을 주문하시겠습니까?")){
+			const mnum = '<%= mnum %>';
 			const cCnt = document.getElementById("cCnt").innerText;
-			alert("cCnt: "+ cCnt);
-					
-			location.href="cartInsert.pc?pname=<%= pname %>&pprice=<%= pprice %>&pphoto=<%= pphoto %>&ccnt="+cCnt;		
+			alert("cCnt, mnum: "+ cCnt +" , "+ mnum);
+			
+			if(mnum == null || mnum == "null" || typeof(mnum) == "undefined" || mnum == ""){
+				alert("로그인을 먼저 해주세요!");
+				return;
+			}else{
+				location.href="cartInsert.pc?pname=<%= pname %>&pprice=<%= pprice %>&pphoto=<%= pphoto %>&ccnt="+cCnt;
+			}
 		}
 	});
 	
