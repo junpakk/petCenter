@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 import main.pc.cart.vo.CartVO;
 import main.pc.common.chabun.dao.ChabunUtilDAO;
 import main.pc.communities.vo.CommunitiesVO;
-import main.pc.community.vo.CommunityVO;
 import main.pc.fair.vo.FairVO;
 import main.pc.like.vo.LikeVO;
 import main.pc.map.vo.MapVO;
@@ -87,11 +86,6 @@ public class ChabunUtilServiceImpl implements ChabunUtilService {
 		return chabunUtilDAO.getMapChabun();
 	}
 
-	@Override
-	public CommunityVO getCommunityChabun() {
-		// TODO Auto-generated method stub
-		return chabunUtilDAO.getCommunityChabun();
-	}
 	@Override
 	public CommunitiesVO getCommunitiesChabun() {
 		// TODO Auto-generated method stub

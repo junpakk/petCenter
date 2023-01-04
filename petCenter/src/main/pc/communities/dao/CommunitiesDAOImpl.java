@@ -29,4 +29,27 @@ public class CommunitiesDAOImpl implements CommunitiesDAO {
 		return sqlSession.selectList("comSelAll", cvo);
 	}
 
+	@Override
+	public List<CommunitiesVO> comSelForm(CommunitiesVO cvo) {
+		// TODO Auto-generated method stub
+		logger.info("comSelForm() 함수진입");
+		return sqlSession.selectList("comSelForm", cvo);
+	}
+	
+	@Override
+	public int bchitcnt(CommunitiesVO cvo) {
+		// TODO Auto-generated method stub
+		logger.info("bhitcnt 함수 진입");	
+		
+		return sqlSession.update("bchitcnt", cvo);
+	}
+
+	@Override
+	public List<CommunitiesVO> tipSelAll(CommunitiesVO cvo) {
+		// TODO Auto-generated method stub
+		logger.info("tipSelAll() 함수진입");
+		return sqlSession.selectList("tipSelAll", cvo);
+	}
+
+
 }

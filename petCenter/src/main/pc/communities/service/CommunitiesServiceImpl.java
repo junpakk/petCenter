@@ -31,4 +31,26 @@ public class CommunitiesServiceImpl implements CommunitiesService {
 		return communitiesDAO.comSelAll(cvo);
 	}
 
+	@Override
+	public List<CommunitiesVO> comSelForm(CommunitiesVO cvo) {
+		// TODO Auto-generated method stub
+		logger.info("comSelForm() 함수진입");
+		return communitiesDAO.comSelForm(cvo);
+	}
+
+	@Override
+	public int bchitcnt(CommunitiesVO cvo) {
+		// TODO Auto-generated method stub
+		logger.info("bchitcnt() 함수진입");
+		return communitiesDAO.bchitcnt(cvo);
+	}
+
+	@Override
+	public List<CommunitiesVO> tipSelAll(CommunitiesVO cvo) {
+		// TODO Auto-generated method stub
+		logger.info("tipSelAll() 함수진입");
+		return communitiesDAO.tipSelAll(cvo);
+	}
+
+
 }

@@ -151,15 +151,16 @@
 		<div class="lowerH">
 
 				<img src="/petCenter/img/logo.png" align="left" width="140" height="125">
-				<a href="communityInsertForm.pc">게시판</a> 
-				<a href="communityInsertForm.pc">쇼핑몰(버튼)</a> 
-				<a href="communityInsertForm.pc">지도(버튼)</a> 
-				<a href="communityInsertForm.pc">공지사항(버튼)</a> 
+				<a href="communityInsertForm.pc">게시판</a> <br>
+				<a href="communityInsertForm.pc">쇼핑몰(버튼)</a> <br>
+				<a href="communityInsertForm.pc">지도(버튼)</a> <br>
+				<a href="communityInsertForm.pc">공지사항(버튼)</a> <br>
 
 			/ 박람회(버튼) 
-			<a href="comInsForm.pc">커뮤니티글쓰기(ex)</a>
-			<a href="comSelAll.pc">커뮤니티글보기(ex)</a>
-			<a href="productSelectAll.pc?pcategory=21">쇼핑몰</a>
+			<a href="comInsForm.pc">커뮤니티글쓰기(ex)</a><br>
+			<a href="comSelAll.pc">커뮤니티글보기(ex)</a><br>
+			<a href="productSelectAll.pc?pcategory=21">쇼핑몰</a><br>
+			<a href="tipSelAll.pc">팁 게시판</a><br>
 		 	지도(버튼) 
 		 	공지사항(버튼)
 

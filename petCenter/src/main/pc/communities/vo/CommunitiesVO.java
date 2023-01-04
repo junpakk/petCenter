@@ -32,11 +32,13 @@ public class CommunitiesVO {
 
 	public CommunitiesVO() {}
 
+
+
 	public CommunitiesVO(String bcnum, String bcc, String mnum, String mid, String bctitle, String bccontent,
 			String bcphoto, String bchit, String delyn, String idate, String udate, String blnum, int likey, int hate,
-			String pageSize, String groupSize, String curPage, String totalCount, String searchFilter, String keyword,
-			String startDate, String endDate) {
-		super();
+			String pageSize, String groupSize, String curPage, String totalCount, String searchFilter,
+			String keyword, String startDate, String endDate) {
+
 		this.bcnum = bcnum;
 		this.bcc = bcc;
 		this.mnum = mnum;
@@ -60,6 +62,8 @@ public class CommunitiesVO {
 		this.startDate = startDate;
 		this.endDate = endDate;
 	}
+
+
 
 	public String getBcnum() {
 		return bcnum;
@@ -236,6 +240,7 @@ public class CommunitiesVO {
 	public void setEndDate(String endDate) {
 		this.endDate = endDate;
 	}
+
 
 	@Override
 	public String toString() {

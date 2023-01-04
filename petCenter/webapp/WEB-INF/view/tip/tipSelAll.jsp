@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 
 <%@ page import="java.util.List"%>
-<%@ page import="main.pc.community.vo.CommunityVO"%>
+<%@ page import="main.pc.communities.vo.CommunitiesVO"%>
 
 <!DOCTYPE html>
 <html>
@@ -15,7 +15,7 @@
 		
 		<script type="text/javascript">
 			$(document).ready(function() {
-				alert("제이쿼리진입 >>> : ");
+				console.log("제이쿼리진입 >>> : ");
 				
 				$(document).on("click", "#chkAll", function() {
 					if($(this).prop("checked")) {
@@ -24,61 +24,26 @@
 					}
 				});
 				
+				
+				
 				$(document).on("click", "#bcnum", function() {
 					if($(this).prop("checked")) {
 						$(".bcnum").prop("checked", false);
 						$(this).prop("checked", true);
 					}
 				});
-
-				$("#iBtn").on("click", function() {
-					$("#selectForm").attr({
-						"action":"communityInsertForm.pc",
-						"method":"GET",
-						"enctype":"application/x-www-form-urlencoded"
-					}).submit();
+				
+				$("#tomain").on("click", function(){
+					location.href="mainPage.pc";
 				});
 
-				$("#sBtn").on("click", function() {
-					$("#selectForm").attr({
-						"action":"communitySelectAll.pc",
-						"method":"GET",
-						"enctype":"application/x-www-form-urlencoded"
-					}).submit();
-				});
-
-				$("#dBtn").on("click", function() {
-					if($(".bcnum:checked").length == 0) {
-						alert("삭제하나선택하시오 >>> : ");
-						return;
-					}
-					$("#selectForm").attr({
-						"action":"communityDelete.pc",
-						"method":"GET",
-						"enctype":"application/x-www-form-urlencoded"
-					}).submit();
-				});
-
-				$("#ssBtn").on("click", function() {
-					if($(".bcnum:checked").length == 0) {
-						alert("수정하나선택하시오 >>> : ");
-						return;
-					}
-
-					$("#selectForm").attr({
-						"action":"communitySelect.pc",
-						"method":"GET",
-						"enctype":"application/x-www-form-urlencoded"
-					}).submit();
-				});
-					
 					
 				$("#viewBtn").on("click", function() {
 					if($(".bcnum:checked").length == 0) {
 						return;
 					}
 					$("#selectForm").attr({
-						"action":"communitySelectForm.pc",
+						"action":"comSelForm.pc",
 						"method":"GET",
 						"enctype":"application/x-www-form-urlencoded"
 					}).submit();	
@@ -109,7 +74,13 @@
 				text-align:center;
 			}
 			.upperH{width:100%;height:50px;background:pink;text-align:center;}
-			.lowerH{width:100%;height:100px;background:yellow;text-align:center;}			
+			.lowerH{width:100%;height:100px;background:yellow;text-align:center;}
+			#bImage{
+				border:1px solid #ccc;
+				border-radius:1px;
+				width:20px;
+				height:20px;
+			}
 		</style>
 		
 	</head>
@@ -154,40 +125,46 @@
 		<div class="container">
 		<%
 		request.setCharacterEncoding("UTF-8");
-		Object obj = request.getAttribute("listAll");
+		Object obj = request.getAttribute("comList");
 		if(obj == null) return;
 		
-		List<CommunityVO> list = (List<CommunityVO>)obj;
+		int totalCount = 0;
+		
+		List<CommunitiesVO> list = (List<CommunitiesVO>)obj;
 		int nCnt = list.size();
 		%>
-		<div class="title">커뮤니티글보기</div>
+		<div class="title">팁 게시판</div>
 		
 		<div class="search-box">
-			<jsp:include page="communitySearch.jsp" flush="true">
+			<jsp:include page="tipSelAllSearch.jsp" flush="true">
 				<jsp:param name="searchFilter" value="${paging.searchFilter}"/>
 				<jsp:param name="keyword" value="${paging.keyword}"/>
 				<jsp:param name="startDate" value="${paging.startDate}"/>
 				<jsp:param name="endDate" value="${paging.endDate}"/>
+				<jsp:param name="mnum" value="${paging.mnum}"/>
 				<jsp:param name="mid" value="${paging.mid}"/>
 			</jsp:include>
 		</div>
-		
 		<form action="selectForm" id="selectForm" name="selectForm">
 			<table class="table-sm table-striped table-hover table-bordered" style="width:100%;">
 				<thead>
 					<th><input type="checkbox" id="chkAll" name="chkAll" class="chkAll"/></th>
 					<th>순번</th>
 					<th>글번호</th>
-					<th>글카테고리</th>
-					<th>회원아이디</th>
-					<th>글제목</th>
+					<th style="width:100px;">카테고리</th>
+					<th>회원번호</th>
+					<th style="width:100px;">아이디</th>
+					<th style="width:200px;">글제목</th>
 					<th>글내용</th>
+					<th>조회수</th>
+					<th>입력일</th>
 				</thead>
 				<% 
 				if(nCnt>0) {
 					for(int i = 0; i<nCnt; i++) {
 						
-						CommunityVO covo = list.get(i);
+						CommunitiesVO covo = list.get(i);
+						totalCount = Integer.parseInt(covo.getTotalCount());
 				%>
 			<tbody>
 				<tr>
@@ -195,20 +172,32 @@
 					<td class="vCenter"><%= i+1 %></td>
 					<td class="vCenter"><%= covo.getBcnum() %></td>
 					<td class="vCenter"><%= covo.getBcc() %></td>
-					<td class="vCenter"><%= covo.getMid() %></td>
+					<td class="vCenter"><%= covo.getMnum() %></td>
+					<td class="vCenter"> <img id="bImage" src="/petCenter/fileupload/com/<%=covo.getBcphoto() %>"  onerror="this.src='/petCenter/img/noImg.gif';"><%= covo.getMid() %></td>
 					<td class="vCenter"><%= covo.getBctitle() %></td>
 					<td><%= covo.getBccontent() %></td>
+					<td class="vCenter"><%= covo.getBchit() %></td>
+					<td class="vCenter"><%= covo.getIdate() %></td>
 				</tr>
 				<% 
 					}
 				}
 				%>
 				<tr>
-					<td colspan="7" class="gbuttons">
-						<input type="button" value="등록" id="iBtn"/>
-						<input type="button" value="조회" id="sBtn"/>
-						<input type="button" value="삭제" id="dBtn"/>
-						<input type="button" value="수정" id="ssBtn"/>
+					<td colspan="10">
+						<jsp:include page="tipPaging.jsp" flush="true">
+							<jsp:param name="url" value="comSelAll.pc"/>
+							<jsp:param name="str" value="searchFilter=${paging.searchFilter}&keyword=${paging.keyword}&startDate=${paging.startDate}&endDate=${paging.endDate}&mid=<%= mid %>&mnum=<%= mnum %>"/>
+							<jsp:param name="pageSize" value="${paging.pageSize}"/>
+							<jsp:param name="groupSize" value="${paging.groupSize}"/>
+							<jsp:param name="curPage" value="${paging.curPage}"/>
+							<jsp:param name="totalCount" value="<%=totalCount %>"/>
+						</jsp:include>
+					</td>
+				</tr>				
+				<tr>
+					<td colspan="10" class="gbuttons">
+						<input type="button" value="메인으로" id="tomain"/>
 						<input type="button" value="보기" id="viewBtn"/>
 					</td>
 				</tr>

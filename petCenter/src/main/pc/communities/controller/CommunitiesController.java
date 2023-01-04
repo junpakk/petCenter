@@ -28,12 +28,14 @@ public class CommunitiesController {
 	@Autowired(required=false)
 	private CommunitiesService communitiesService;
 	
+	// 인서트 이동
 	@GetMapping("comInsForm")
 	public String comInsForm() {
 		logger.info("comInsForm() 진입");
 		return "com/comInsForm";
 	}
 	
+	// 인서트 
 	@RequestMapping(value="comIns", method=RequestMethod.POST)
 	public String comIns(HttpServletRequest req, Model model) {
 		logger.info("comIns 함수 진입 >>> ");
@@ -71,6 +73,8 @@ public class CommunitiesController {
 		
 	}
 	
+	
+	// 커뮤니티 전체조회
 	@GetMapping("comSelAll")
 	public String comSelAll(CommunitiesVO cvo, Model m) {
 		logger.info("comSelAll 함수 진입 >>> ");
@@ -106,4 +110,63 @@ public class CommunitiesController {
 		
 		return "com/comInsForm";
 	}
+	
+	
+	// 팁 게시판 전체 조회
+	@GetMapping("tipSelAll")
+	public String tipSelAll(CommunitiesVO cvo, Model m) {
+		logger.info("comSelAll 함수 진입 >>> ");
+		
+		int pageSize = CommonUtils.COM_PAGE_SIZE;
+		int groupSize = CommonUtils.COM_GROUP_SIZE;
+		int curPage = CommonUtils.COM_CUR_PAGE;
+		int totalCount = CommonUtils.COM_TOTAL_COUNT;
+		
+		if(cvo.getCurPage() != null) {
+			curPage = Integer.parseInt(cvo.getCurPage());
+		}
+		
+		cvo.setPageSize(String.valueOf(pageSize));
+		cvo.setGroupSize(String.valueOf(groupSize));
+		cvo.setCurPage(String.valueOf(curPage));
+		cvo.setTotalCount(String.valueOf(totalCount));
+		
+		logger.info(cvo.toString());
+		
+		List<CommunitiesVO> comList = communitiesService.tipSelAll(cvo);
+		
+		int nCnt = comList.size();
+		
+		if(nCnt > 0) {
+			logger.info("nCnt >>> "+nCnt);
+			
+			m.addAttribute("paging", cvo);
+			m.addAttribute("comList", comList);
+			return "tip/tipSelAll";
+			
+		}
+		
+		return "tip/tipSelAll";
+	}
+	
+	//게시판 보기
+			@GetMapping("comSelForm")
+			public String comSelForm(CommunitiesVO cvo, Model m) {
+				
+				List<CommunitiesVO> list = communitiesService.comSelForm(cvo);
+				int nCnt = list.size();
+
+				if(nCnt>0) {
+					
+					int bhitCnt = communitiesService.bchitcnt(cvo);
+					logger.info("cvo.getbchit "+cvo.getBchit());
+					m.addAttribute("listS", list);
+
+					return "com/comSelForm";
+					
+				}
+				return "com/comSelAll";
+				
+			}
+
 }
