@@ -136,7 +136,14 @@
 			</div>
 		
 		</div>
-		<div class="lowerH">로고 / 박람회(버튼) <a href="communityInsertForm.pc">커뮤니티글쓰기</a> 쇼핑몰(버튼) 지도(버튼) 공지사항(버튼)</div>
+		<div class="lowerH">
+			로고 
+			/ 박람회(버튼) 
+			<a href="communityInsertForm.pc">커뮤니티글쓰기</a>
+			<a href="productSelectAll.pc?pcategory=21">쇼핑몰</a>
+		 	지도(버튼) 
+		 	공지사항(버튼)
+		</div>
 		</div><!-- end of header -->
 		<div class="side">
 		</div>
