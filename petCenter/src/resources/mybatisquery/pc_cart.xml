@@ -13,6 +13,8 @@
 							,CNAME
 							,CCNT
 							,CPRICE
+							,DELIVERY
+							,TPRICE
 							,CPHOTO
 							,DELYN
 							,IDATE
@@ -21,7 +23,9 @@
            					,#{mnum, jdbcType=VARCHAR} 
            					,#{cname} 
            					,#{ccnt} 
-           					,#{cprice} 
+           					,#{cprice}
+           					,#{delivery}
+           					,#{tprice}
            					,#{cphoto, jdbcType=VARCHAR} 
            					,'Y' 
            					,SYSDATE  

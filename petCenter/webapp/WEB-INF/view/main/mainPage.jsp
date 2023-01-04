@@ -149,11 +149,20 @@
 		
 		</div>
 		<div class="lowerH">
+
 				<img src="/petCenter/img/logo.png" align="left" width="140" height="125">
 				<a href="communityInsertForm.pc">게시판</a> 
 				<a href="communityInsertForm.pc">쇼핑몰(버튼)</a> 
 				<a href="communityInsertForm.pc">지도(버튼)</a> 
 				<a href="communityInsertForm.pc">공지사항(버튼)</a> 
+
+			/ 박람회(버튼) 
+			<a href="comInsForm.pc">커뮤니티글쓰기(ex)</a>
+			<a href="comSelAll.pc">커뮤니티글보기(ex)</a>
+			<a href="productSelectAll.pc?pcategory=21">쇼핑몰</a>
+		 	지도(버튼) 
+		 	공지사항(버튼)
+
 		</div>
 		</div><!-- end of header -->
 		<div class="side">

@@ -71,37 +71,27 @@
 		<td class="" style="text-align:center">주문 상품명</td>
 		<td class="" style="text-align:center">수량</td>
 		<td class="" style="text-align:center">주문금액</td>
-		<td class="" style="text-align:center">배송비</td>
 		<td class="" style="text-align:center">합계</td>
 	</tr>
-
 <%
 	Object obj = request.getAttribute("listAll");
 	if(obj == null) {return;}
 	
-	
 	List<CartVO> list = (List<CartVO>) obj;
 	
-	//cotroller에 데이터 보내주기 테스트, null 뜸
-	//request.setAttribute("obj", obj);
-	
+	int delivery = 2500;
+	int priceSum = 0;
 	
 	if(list.size()>0){
-		
-		int delivery = 2500;
-		int priceSum = 0;
 		
 		logger.info("list.size(): "+ list.size());
 		for(int i=0; i<list.size(); i++){
 			CartVO cvo = list.get(i);
 			logger.info("cvo: "+ cvo);
 		
-			priceSum = Integer.parseInt(cvo.getCprice())*Integer.parseInt(cvo.getCcnt());
-			if(priceSum>=30000){
-				delivery = 0;
-			}else{
-				priceSum += delivery;
-			}
+			int price = 0;
+			price = Integer.parseInt(cvo.getCprice())*Integer.parseInt(cvo.getCcnt());
+			priceSum += price;
 %>	
 	<tr>
 		<td class="" id="" style="text-align:center">
@@ -112,13 +102,32 @@
 		</td>
 		<td class="" style="text-align:center"><%= cvo.getCcnt() %>개</td>
 		<td class="" style="text-align:right"><%= cvo.getCprice() %> 원</td>
-		<td class="" style="text-align:right"><%= delivery %> 원</td>
-		<td class="" style="text-align:right"><%= priceSum %> 원</td>
+		<td class="" style="text-align:right"><%= price %> 원</td>
 	</tr>
 <%
 		}//end of for
 	}//end of if
+	
+	if(priceSum >= 30000){
+		delivery = 0;
+		priceSum += delivery;
+	}else{
+		delivery = 2500;
+		priceSum += delivery;
+	}
 %>
+	<tr>
+		<td class="" style="text-align:center">배송비</td>
+		<td class="" style="text-align:right" colspan="3"><%= delivery %> 원
+		<input type="hidden" name="delivery" value="<%= delivery %>">
+		</td>
+	</tr>
+	<tr>
+		<td class="" style="text-align:center">총합계</td>
+		<td class="" style="text-align:right" colspan="3"><%= priceSum %> 원
+		<input type="hidden" id="tprice" name="tprice" value="<%= priceSum %>">
+		</td>
+	</tr>
 	<tr>
 		<td colspan="6" align="left"><font size="3" style="color:black;"><h4>2. 배송지 정보</h4></font></td>
 	</tr>

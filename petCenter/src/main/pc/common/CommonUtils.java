@@ -17,7 +17,7 @@ public abstract class CommonUtils {
 	public static final int MAP_TOTAL_COUNT = 0;	//토탈카운트	모든 글의 갯수
 	
 	// 커뮤니티 페이징 상수
-	public static final int COM_PAGE_SIZE = 10;		//페이지사이즈	1페이지당 표시글갯수
+	public static final int COM_PAGE_SIZE = 5;		//페이지사이즈	1페이지당 표시글갯수
 	public static final int COM_GROUP_SIZE = 3;		//그룹사이즈	1페이지당 그룹 갯수
 	public static final int COM_CUR_PAGE = 1;		//현재페이지	초기설정 현재페이지
 	public static final int COM_TOTAL_COUNT = 0;	//토탈카운트	모든 글의 갯수

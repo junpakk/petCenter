@@ -7,6 +7,8 @@
 		<title>게시판 입력</title>
 	</head>
 	<body>
-		<h3>게시판정보입력되었습니다</h3>
+		<script>
+			location.href="comSelAll.pc";
+		</script>
 	</body>
 </html>
