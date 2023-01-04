@@ -21,7 +21,7 @@
 	logger.info("mnum: "+ mnum);
 %>
 <script>
-	location.href="/petCenter/orderSelectAll.pc?mnum=<%= mnum %>";
+	location.href="/petCenter/cartSelectAll.pc?mnum=<%= mnum %>";
 </script>
 </body>
 </html>

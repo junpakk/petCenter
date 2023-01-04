@@ -36,7 +36,7 @@
 		<a href="memSelectAll.pc">회원목록</a><br>
 		<hr>
 		<a href="productInsertForm.pc">상품등록폼</a><br/>
-		<a href="productSelectAll.pc?mnum=M0001&pcategory=21">상품전체목록페이지</a><br/>
+		<a href="productSelectAll.pc?pcategory=21">상품전체목록페이지</a><br/>
 		<a href="cartSelectAll.pc?mnum=M0001">카트전체목록페이지 M0001 테스트</a><br/>
 		
 		<a href="communitySelectAll.pc">1</a><br>

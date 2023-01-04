@@ -91,7 +91,7 @@ public class ProductController {
 			model.addAttribute("listAll", listAll);//상품 정보
 			return "product/productSelectAll";
 		}
-		return "index";
+		return "main/mainPage";
 	}//end of productSelectAll
 	
 	//상품 조회

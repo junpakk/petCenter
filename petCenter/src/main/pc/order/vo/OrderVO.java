@@ -9,6 +9,8 @@ public class OrderVO {
 	private String oname;
 	private String ocnt;
 	private String opsum;
+	private String delivery;
+	private String tprice;
 	private String mhp;//추가사항 작성해야 함
 	private String ozcode;
 	private String oraddress;
@@ -49,6 +51,14 @@ public class OrderVO {
 
 	public String getOpsum() {
 		return opsum;
+	}
+
+	public String getDelivery() {
+		return delivery;
+	}
+
+	public String getTprice() {
+		return tprice;
 	}
 
 	public String getMhp() {
@@ -112,6 +122,14 @@ public class OrderVO {
 		this.opsum = opsum;
 	}
 
+	public void setDelivery(String delivery) {
+		this.delivery = delivery;
+	}
+
+	public void setTprice(String tprice) {
+		this.tprice = tprice;
+	}
+
 	public void setMhp(String mhp) {
 		this.mhp = mhp;
 	}
@@ -144,12 +162,13 @@ public class OrderVO {
 		this.udate = udate;
 	}
 
+	
 	@Override
 	public String toString() {
 		return "OrderVO [onum=" + onum + ", mnum=" + mnum + ", mname=" + mname + ", cnum=" + cnum + ", oname=" + oname
-				+ ", ocnt=" + ocnt + ", opsum=" + opsum + ", mhp=" + mhp + ", ozcode=" + ozcode + ", oraddress="
-				+ oraddress + ", oraddressd=" + oraddressd + ", ojibun=" + ojibun + ", delyn=" + delyn + ", idate="
-				+ idate + ", udate=" + udate + "]";
+				+ ", ocnt=" + ocnt + ", opsum=" + opsum + ", delivery=" + delivery + ", tprice=" + tprice + ", mhp="
+				+ mhp + ", ozcode=" + ozcode + ", oraddress=" + oraddress + ", oraddressd=" + oraddressd + ", ojibun="
+				+ ojibun + ", delyn=" + delyn + ", idate=" + idate + ", udate=" + udate + "]";
 	}
 	
 	/*
@@ -161,6 +180,8 @@ public class OrderVO {
 	,ONAME 		VARCHAR2(500) 
 	,OCNT 		VARCHAR2(200) 
 	,OPSUM 		VARCHAR2(200)   NOT NULL
+	,DELIVERY	VARCHAR2(20)	NOT NULL
+	,TPRICE		VARCHAR2(20)	NOT NULL
     ,MPH        VARCHAR2(20)    
 	,OZCODE 	VARCHAR2(6)     NOT NULL
 	,ORADDRESS 	VARCHAR2(200)   NOT NULL
