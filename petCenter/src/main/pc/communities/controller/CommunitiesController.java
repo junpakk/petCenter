@@ -1,5 +1,7 @@
 package main.pc.communities.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.LogManager;
@@ -67,5 +69,41 @@ public class CommunitiesController {
 		
 		return "com/comInsForm";
 		
-	}	
+	}
+	
+	@GetMapping("comSelAll")
+	public String comSelAll(CommunitiesVO cvo, Model m) {
+		logger.info("comSelAll 함수 진입 >>> ");
+		
+		int pageSize = CommonUtils.COM_PAGE_SIZE;
+		int groupSize = CommonUtils.COM_GROUP_SIZE;
+		int curPage = CommonUtils.COM_CUR_PAGE;
+		int totalCount = CommonUtils.COM_TOTAL_COUNT;
+		
+		if(cvo.getCurPage() != null) {
+			curPage = Integer.parseInt(cvo.getCurPage());
+		}
+		
+		cvo.setPageSize(String.valueOf(pageSize));
+		cvo.setGroupSize(String.valueOf(groupSize));
+		cvo.setCurPage(String.valueOf(curPage));
+		cvo.setTotalCount(String.valueOf(totalCount));
+		
+		logger.info(cvo.toString());
+		
+		List<CommunitiesVO> comList = communitiesService.comSelAll(cvo);
+		
+		int nCnt = comList.size();
+		
+		if(nCnt > 0) {
+			logger.info("nCnt >>> "+nCnt);
+			
+			m.addAttribute("paging", cvo);
+			m.addAttribute("comList", comList);
+			return "com/comSelAll";
+			
+		}
+		
+		return "com/comInsForm";
+	}
 }

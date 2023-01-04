@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+          "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+          
+<mapper namespace="main.pc.communities.dao.CommunitiesDAO">
+
+	<insert id="comIns" parameterType="communitiesvo" >
+	 
+		INSERT INTO PC_COM (bcnum,bcc,mnum,mid,bctitle,bccontent,bcphoto,bchit,delyn,idate,udate)
+        			VALUES 
+        			( #{bcnum, jdbcType=VARCHAR},
+        			  #{bcc, jdbcType=VARCHAR},
+        			  #{mnum, jdbcType=VARCHAR},
+        			  #{mid, jdbcType=VARCHAR},
+        			  #{bctitle, jdbcType=VARCHAR},
+        			  #{bccontent, jdbcType=VARCHAR},
+        			  #{bcphoto, jdbcType=VARCHAR},
+        			  #{bchit, jdbcType=VARCHAR},
+        			  'Y',
+        			  SYSDATE,
+        			  SYSDATE )
+	</insert>
+	
+	<select id="comSelAll" parameterType="communitiesvo" resultType="communitiesvo" >
+		SELECT	 *
+		FROM (
+			SELECT 	 A.BCNUM			BCNUM
+					,A.BCC				BCC
+					,A.MNUM				MNUM
+					,A.MID				MID
+					,A.BCTITLE			BCTITLE
+					,A.BCCONTENT		BCCONTENT
+					,A.BCPHOTO			BCPHOTO
+					,A.BCHIT			BCHIT
+					,A.DELYN			DELYN
+					,TO_CHAR(TO_DATE(A.IDATE), 'YYYY-MM-DD')	IDATE
+					,TO_CHAR(TO_DATE(A.UDATE), 'YYYY-MM-DD')	UDATE
+					
+					,CEIL(ROW_NUMBER() OVER(ORDER BY A.BCNUM)/#{pageSize}) pageSize
+					,COUNT(A.BCNUM) OVER() AS totalCount
+			FROM	PC_COM A
+			WHERE	A.DELYN = 'Y'
+			<if test="searchFilter=='key_01'">
+				<![CDATA[ AND A.BCTITLE LIKE '%' || #{keyword, jdbcType=VARCHAR} || '%']]>
+			</if>			
+			<if test="searchFilter=='key_02'">
+				<![CDATA[ AND A.BCC LIKE '%' || #{keyword, jdbcType=VARCHAR} || '%']]>
+			</if>
+			<if test="searchFilter=='key_03'">
+				<![CDATA[ AND A.BCC LIKE '%' || #{keyword, jdbcType=VARCHAR} || '%']]>
+			</if>
+			<if test="searchFilter=='key_04'">
+				<![CDATA[ AND A.BCC NOT LIKE '%강아지%']]>
+				<![CDATA[ AND A.BCC NOT LIKE '%고양이%']]>
+			</if>
+
+			<if test="startDate != null and startDate != '' and endDate != null and endDate != ''">
+				<![CDATA[ AND TO_CHAR(TO_DATE(A.UDATE), 'YYYY-MM-DD')
+					>= TO_CHAR(TO_DATE(#{startDate, jdbcType=VARCHAR}), 'YYYY-MM-DD')]]>
+				<![CDATA[ AND TO_CHAR(TO_DATE(A.UDATE), 'YYYY-MM-DD')
+					<= TO_CHAR(TO_DATE(#{endDate, jdbcType=VARCHAR}), 'YYYY-MM-DD')]]>
+			</if>
+			ORDER BY 1
+			) WHERE pageSize = #{curPage}
+	</select>	
+</mapper>
