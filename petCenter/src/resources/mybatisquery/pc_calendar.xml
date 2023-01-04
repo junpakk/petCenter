@@ -16,13 +16,13 @@
 						,A.CAL_BACKGROUNDCOLOR	CAL_BACKGROUNDCOLOR	
 						,A.CAL_TEXTCOLOR		CAL_TEXTCOLOR		
 						,A.CAL_ALLDAY			CAL_ALLDAY		
-						,A.DELETEYN				DELETEYN		
-						,A.INSERTDATE			INSERTDATE		
-						,A.UPDATEDATE			UPDATEDATE		
+						,A.DELYN				DELYN		
+						,A.IDATE				IDATE		
+						,A.UDATE				UDATE		
 						,A.MID					MID				
 			FROM 													
 						PC_CALENDAR A
-			WHERE 		A.DELETEYN = 'Y'
+			WHERE 		A.DELYN = 'Y'
 			AND 		MID = #{mid, jdbcType=VARCHAR}								
 		 	ORDER BY 1 DESC
 	</select>
@@ -44,9 +44,9 @@
 							,CAL_BACKGROUNDCOLOR		
 							,CAL_TEXTCOLOR				
 							,CAL_ALLDAY					
-							,DELETEYN
-							,INSERTDATE				
-							,UPDATEDATE														
+							,DELYN
+							,IDATE				
+							,UDATE														
 							,MID						
  					) 								
  			VALUES	 								

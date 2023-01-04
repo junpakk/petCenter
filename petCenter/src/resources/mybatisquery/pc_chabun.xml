@@ -53,8 +53,5 @@ FROM    PC_MEMBER A
 <select id="getCommunityChabun" resultType="communityvo">
 	SELECT /*+ INDEX_DESC(A SYS_C0011279) */ NVL(MAX(SUBSTR(A.BCNUM, -4)), 0) + 1  BCNUM FROM PC_COMMUNITY A
 </select>
-<select id="getZangChabun" resultType="zangvo">
-	SELECT /*+ INDEX_DESC(A SYS_C0011280) */ NVL(MAX(SUBSTR(A.BZNUM, -4)), 0) + 1  BZNUM FROM PC_ZANG A
-</select>
 
 </mapper>

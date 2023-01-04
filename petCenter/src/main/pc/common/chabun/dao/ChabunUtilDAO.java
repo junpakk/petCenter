@@ -6,7 +6,7 @@ import main.pc.fair.vo.FairVO;
 import main.pc.like.vo.LikeVO;
 import main.pc.map.vo.MapVO;
 import main.pc.reply.vo.ReplyVO;
-import main.pc.zang.vo.ZangVO;
+
 import main.pc.member.vo.MemberVO;
 import main.pc.order.vo.OrderVO;
 import main.pc.product.vo.ProductVO;
@@ -24,8 +24,6 @@ public interface ChabunUtilDAO {
 	public FairVO getFairChabun();
 	public MapVO getMapChabun();//맵
 	
-	public ZangVO getZangChabun();
-
 	public CommunityVO getCommunityChabun();
 
 }

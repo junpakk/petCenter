@@ -10,7 +10,7 @@ import main.pc.fair.vo.FairVO;
 import main.pc.like.vo.LikeVO;
 import main.pc.map.vo.MapVO;
 import main.pc.reply.vo.ReplyVO;
-import main.pc.zang.vo.ZangVO;
+
 import main.pc.member.vo.MemberVO;
 import main.pc.order.vo.OrderVO;
 import main.pc.product.vo.ProductVO;
@@ -87,11 +87,6 @@ public class ChabunUtilDAOImpl implements ChabunUtilDAO {
 		return sqlSession.selectOne("getMapChabun");
 	}	
 	
-	@Override
-	public ZangVO getZangChabun() {
-		// TODO Auto-generated method stub
-		return sqlSession.selectOne("getZangChabun");
-	}
 	@Override
 	public CommunityVO getCommunityChabun() {
 		// TODO Auto-generated method stub
