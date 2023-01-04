@@ -29,7 +29,6 @@ public class MemberController {
 	@Autowired(required=false)
 	private MemberService memberService;
 	
-	
 	// 컨트롤러에서 채번 서비스 필드 오토 와이어드
 	@Autowired(required=false)
 	private ChabunUtilService chabunUtilService;

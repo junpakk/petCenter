@@ -134,38 +134,6 @@
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
 
-      <%--   <div class="panel panel-default">
-
-            <div class="panel-heading">
-                <h3 class="panel-title">필터</h3>
-            </div>
-            
-
-            <div class="panel-body">
-
-                <div class="col-lg-6">
-                    <label for="calendar_view">구분별</label>
-                    <div class="input-group">
-                        <select class="filter" id="type_filter" multiple="multiple">
-                            <option value="카테고리1">카테고리1</option>
-                            <option value="카테고리2">카테고리2</option>
-                            <option value="카테고리3">카테고리3</option>
-                            <option value="카테고리4">카테고리4</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="col-lg-6">
-                    <label for="calendar_view">등록자</label>
-                    <div class="input-group">
-                 
-                        <label class="checkbox-inline"><input class='filter' type="checkbox" value="brownPoodle"
-                                checked><%= m_nick %></label>
-                    </div>
-                </div>
-
-            </div>
-        </div> --%>
         <!-- /.filter panel -->
     </div>
     <!-- /.container -->

@@ -21,9 +21,9 @@
 		<typeAlias type="main.pc.calendar.vo.CalendarVO" alias="calendarVO"/>
 		
 		<typeAlias type="main.pc.map.vo.MapVO" alias="mapvo"/>
-		
-		<typeAlias type="main.pc.zang.vo.ZangVO" alias="zangvo"/>	
+			
 		<typeAlias type="main.pc.community.vo.CommunityVO" alias="communityvo"/>	
 		<typeAlias type="main.pc.koji.vo.KojiVO" alias="kojivo"/>
+		<typeAlias type="main.pc.communities.vo.CommunitiesVO" alias="communitiesvo"/>
 	</typeAliases>
 </configuration>

@@ -115,8 +115,7 @@
 					mid = (String)objMid;
 			%>
 				<p>
-					<%= mid %> 님 안녕하세요!! <br>
-					<%= mnum %> 님 안녕하세요!! <br>
+					<%= mid %>(<%= mnum %>) 님 안녕하세요!! 
 					<a href="logout.pc">로그아웃</a> | 
 					<a href="calendar.pc" >캘린더</a> |
 					<a href="memInsertForm.pc" >회원가입</a>
@@ -137,7 +136,7 @@
 			</div>
 		
 		</div>
-		<div class="lowerH">로고 / 박람회(버튼) 커뮤니티(버튼) 쇼핑몰(버튼) 지도(버튼) 공지사항(버튼)</div>
+		<div class="lowerH">로고 / 박람회(버튼) <a href="communityInsertForm.pc">커뮤니티글쓰기</a> 쇼핑몰(버튼) 지도(버튼) 공지사항(버튼)</div>
 		</div><!-- end of header -->
 		<div class="side">
 		</div>
