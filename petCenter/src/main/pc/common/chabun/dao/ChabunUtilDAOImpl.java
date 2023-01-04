@@ -15,6 +15,7 @@ import main.pc.member.vo.MemberVO;
 import main.pc.order.vo.OrderVO;
 import main.pc.product.vo.ProductVO;
 import main.pc.cart.vo.CartVO;
+import main.pc.communities.vo.CommunitiesVO;
 import main.pc.community.vo.CommunityVO;
 
 @Repository
@@ -91,6 +92,12 @@ public class ChabunUtilDAOImpl implements ChabunUtilDAO {
 	public CommunityVO getCommunityChabun() {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("getCommunityChabun");
+	}
+
+	@Override
+	public CommunitiesVO getCommunitiesChabun() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("getCommunitiesChabun");
 	}
 
 }

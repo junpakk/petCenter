@@ -71,5 +71,9 @@ public abstract class ChabunUtil {
 		return BIZ_GUBUN_Z.concat(ChabunUtil.numPad(type, memNum));
 	}
 	
+	public static String getCommunitiesChabun(String type, String memNum) {
+		// TODO Auto-generated method stub
+		return BIZ_GUBUN_BC.concat(ChabunUtil.numPad(type, memNum));
+	}	
 
 }

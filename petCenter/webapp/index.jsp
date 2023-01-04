@@ -31,6 +31,7 @@
 
 
 		<a href="mainPage.pc">메인페이지</a><br>
+		<a href="rssPage.pc">rss테스트페이지</a><br>
 		<a href="logout.pc">로그아웃</a><br>
 		<a href="memInsertForm.pc">회원가입</a><br>
 		<a href="memSelectAll.pc">회원목록</a><br>
@@ -40,9 +41,14 @@
 		<a href="cartSelectAll.pc?mnum=M0001">카트전체목록페이지 M0001 테스트</a><br/>
 		
 		<a href="communitySelectAll.pc">1</a><br>
-		<a href="communityInsertForm.pc">2</a><br>
+		<a href="communityInsertForm.pc">커뮤니티글쓰기</a><br>
 		<a href="zangInsertForm.pc">3</a><br>
 		<a href="petzangSelectAll.pc">4</a><br>
+		
+		<br>
+		<br>
+		<br>
+		<a href="comInsForm.pc">커뮤니티글쓰기(ex)</a><br>
 	</body>
 
 </html>

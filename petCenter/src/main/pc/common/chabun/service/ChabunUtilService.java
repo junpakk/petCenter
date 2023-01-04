@@ -4,6 +4,7 @@ import main.pc.member.vo.MemberVO;
 import main.pc.order.vo.OrderVO;
 import main.pc.product.vo.ProductVO;
 import main.pc.cart.vo.CartVO;
+import main.pc.communities.vo.CommunitiesVO;
 import main.pc.community.vo.CommunityVO;
 import main.pc.fair.vo.FairVO;
 import main.pc.like.vo.LikeVO;
@@ -22,6 +23,7 @@ public interface ChabunUtilService {
 	public FairVO getFairChabun();//박람회
 	public MapVO getMapChabun();//맵
 	public CommunityVO getCommunityChabun();
+	public CommunitiesVO getCommunitiesChabun();
 
 
 }

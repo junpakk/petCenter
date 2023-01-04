@@ -54,4 +54,8 @@ FROM    PC_MEMBER A
 	SELECT /*+ INDEX_DESC(A SYS_C0011279) */ NVL(MAX(SUBSTR(A.BCNUM, -4)), 0) + 1  BCNUM FROM PC_COMMUNITY A
 </select>
 
+<select id="getCommunitiesChabun" resultType="communitiesvo">
+	SELECT /*+ INDEX_DESC(A SYS_C0011279) */ NVL(MAX(SUBSTR(A.BCNUM, -4)), 0) + 1  BCNUM FROM PC_COM A
+</select>
+
 </mapper>
