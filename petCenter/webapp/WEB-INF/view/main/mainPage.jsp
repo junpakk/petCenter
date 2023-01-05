@@ -27,8 +27,10 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <style type="text/css">
 
+	
+
 	*{
-		font-family:'Noto Sans KR', sans-serif;
+/* 		font-family:'Noto Sans KR', sans-serif; */
 		/*목록에 점 없애기*/
 		list-style:none;
 		/*링크에 색깔 밑줄없애기*/
@@ -78,7 +80,7 @@
 		color: black;
 		text-decoration: none;
 		font-size: 15px;
-		font: italic small-caps bold;
+/* 		font: italic small-caps bold; */
 	}
 			
 			
@@ -118,11 +120,11 @@
 		padding: 0 15px;
 		text-decoration: none;
 		font-size: 25px;
-		font: italic small-caps bold;
+/* 		font: italic small-caps bold; */
 	}
 	
 	.side{
-		background:red;
+		background:#3db7cc;
 		grid-area:side;
 	}
 	
@@ -135,12 +137,12 @@
 	}
 
 	.aside{
-		background:blue;
+		background:#3db7cc;
 		grid-area:aside;
 	}			
 	
 	.footer{
-		background:green;
+		background:#3db7cc;
 		grid-area:footer;
 	}		
 	
@@ -164,9 +166,9 @@
 		mid = (String)objMid;
 %>
 					<ul class="tmenu">
-						<li align="right">
-							<%= mid %> 님 안녕하세요!! &nbsp; &nbsp; &nbsp;
-							<a href="logout.pc" style="color:white;">로그아웃</a>
+						<li align="right" style="padding-right:15%; padding-top:12px">
+							<a style="color:white;"><%= mid %> 님 안녕하세요!!</a> &nbsp; &nbsp;
+							<a href="logout.pc" style="color:white;">로그아웃 |</a>
 							<% String link =  "memSelect.pc?mnum=" + mnum;%>
 							<a href="<%= link %>" style="color:white;">내정보</a>
 						</li>    
@@ -174,7 +176,7 @@
 	}else{
 %>
 						<li align="right" style="padding-right:15%; padding-top:12px">
-							<a href="loginForm.pc" style="color:white;">로그인</a>
+							<a href="loginForm.pc" style="color:white;">로그인 |</a>
 							<a href="memInsertForm.pc" style="color:white;">회원가입</a>
 						</li>  
 					</ul>
@@ -184,17 +186,17 @@
 			</div>
 			<div class="lowerH">
 
-				<img src="/petCenter/img/logo.png" align="left" width="140" height="125">
-
-				<a href="communityInsertForm.pc">게시판</a> 
-				<a href="communityInsertForm.pc">쇼핑몰(버튼)</a> 
-				<a href="communityInsertForm.pc">지도(버튼)</a> 
-				<a href="communityInsertForm.pc">공지사항(버튼)</a> 
-				<a href="comInsForm.pc">커뮤니티글쓰기(ex)</a>
-				<a href="comSelAll.pc">커뮤니티글보기(ex)</a>
-				<a href="productSelectAll.pc?pcategory=21">쇼핑몰</a>
-				<a href="tipSelAll.pc">팁 게시판</a><br>
-
+				<a href="#"><img src="/petCenter/img/logo.png" align="left" width="110" height="110"></a>
+				<nav>
+					<ul class="menu">
+						<li><a href="fairSelectAll.pc">박람회</a></li>
+						<li><a href="comSelAll.pc">커뮤니티</a></li>
+						<li><a href="productSelectAll.pc?pcategory=21">쇼핑몰</a></li>
+						<li><a href="">산책지도</a></li>
+						<li><a href="">공지사항</a></li>
+						<li><a href="tipSelAll.pc">팁 게시판</a></li>
+					</ul>
+				</nav>
 
 			</div>
 

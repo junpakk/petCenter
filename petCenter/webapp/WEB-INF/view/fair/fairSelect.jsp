@@ -17,18 +17,24 @@
 <title>Insert title here</title>
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
+<% String mnum = (String)session.getAttribute("KNUM"); %>
+
 		$(document).ready(function(){	 
 		
 				//사전등록
 				$(document).on("click", "#bbtn", function(){
+					if(<%=mnum%> != null){
 					alert("등록되었습니다.");
+					}else{
+						alert("로그인을 먼저 해주세요.");
+					}
 				});
 			});
 		
 </script>
 <% request.setCharacterEncoding("UTF-8"); %>
 <%
-		
+
 		Object obj = request.getAttribute("listS");
 		List<FairVO> list = (List<FairVO>)obj;
 		if (list.size() > 0){
