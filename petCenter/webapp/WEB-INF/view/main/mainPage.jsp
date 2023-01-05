@@ -26,6 +26,29 @@
 <!-- 		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script> -->
 <!-- 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>		 -->
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript">
+
+
+		$(document).ready(function(){	 
+
+				//박람회 전체보기
+				$("#allfair").on("click", function(){
+					location.href="fairSelectAll.pc";
+					});
+				
+				//박람회 첫번째
+				$("#fairSel").on("click", function(){
+					location.href="fairSelect.pc";
+					});
+
+				
+				//박람회 나머지
+				
+				$("#fairnone").on("click", function(){
+					alert("사전등록은 한달 전부터 가능합니다. ");
+					});
+			});
+</script>
 <style type="text/css">
 
 	
@@ -151,6 +174,28 @@
 		grid-area:footer;
 	}
 	
+	
+	button {
+    margin: 10px;
+	}
+	
+	.w-btn {
+	    display: inline-block;
+	    padding: 15px 60px;
+	    border-radius: 50px;
+	}
+	
+	
+	.fair {
+	    background-color: white;
+	    
+	}
+
+	.fairbtn {
+		border-radius: 50px;
+		background-color: white;
+	}
+	
 
 	
 </style>
@@ -210,7 +255,51 @@
 		</div><!-- end of header -->
 		<div class="side"></div>
 		<div class="main">
-			<div><img src="/petCenter/img/11.png"/></div>
+			<div>
+
+				<br>
+				<table>
+					<tr>
+						<td>
+							<h1 align="left" style="padding-left:100px;">예정 전시</h1> 
+						</td>
+						<td width="1100" align="right">	
+							<button  type="button" class="w-btn fair" id="allfair">전체보기  ></button>
+						</td>
+					</tr>
+				</table>
+				<br>
+				<table>
+					<tr>
+						<td>
+							<img src="/petCenter/img/fair/1.png" style="border-radius:7px;" width="340" height="410"/>
+						</td>
+						<td>
+				 			<img src="/petCenter/img/fair/2.png" style="border-radius:7px;" width="340" height="410"/>
+				 		</td>
+				 		<td>
+				 			<img src="/petCenter/img/fair/3.png" style="border-radius:7px;" width="340" height="410"/>
+				 		</td>
+				 		<td>
+				 			<img src="/petCenter/img/fair/4.png" style="border-radius:7px;" width="340" height="410"/>
+				 		</td>
+				 	</tr>
+				 	<tr>
+				 		<td>
+				 			<button  type="button" id="fairSel" class="fairbtn" style="width:247pt;height:30pt;">사전등록하러가기</button>
+				 		</td>
+				 		<td>
+				 			<button  type="button" id="fairnone" class="fairbtn" style="width:247pt;height:30pt;">사전등록하러가기</button>
+				 		</td>
+				 		<td>
+				 			<button  type="button" id="fairnone" class="fairbtn" style="width:247pt;height:30pt;">사전등록하러가기</button>
+				 		</td>
+				 		<td>
+				 			<button  type="button" id="fairnone" class="fairbtn" style="width:247pt;height:30pt;">사전등록하러가기</button>
+				 		</td>
+				</table>
+			
+			</div>
 			<div><img src="/petCenter/img/22.png"/></div>
 			<div><img src="/petCenter/img/33.png"/></div>
 			<div><img src="/petCenter/img/44.png"/></div>
