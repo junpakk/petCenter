@@ -172,6 +172,7 @@
 		</td>
 	</tr>
 </table>
+	<br><br><br>
 	<jsp:include page="../include/footer.jsp" flush="true">
 		<jsp:param name="url" value="produectSelectAll.jsp"/>
 	</jsp:include> 		

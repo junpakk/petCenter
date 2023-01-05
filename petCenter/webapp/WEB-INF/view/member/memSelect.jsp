@@ -91,18 +91,25 @@
 
 	.align-middle{ text-align: center;}
 	
+
+	
+	
 </style>
 </head>
 
 <body>
 <!-- <div> -->
+<!-- </div> -->
+
+
+<form name="memForm" id="memForm">
 	<jsp:include page="../include/header.jsp" flush="true">
 		<jsp:param name="url" value="produectSelectAll.jsp"/>
 	</jsp:include>
-<!-- </div> -->
+
 <div id="container">
-<form name="memForm" id="memForm">
-<table class="table table-sm table-striped table-hover table-bordered w-auto" align="center">
+<br><br><br>
+<table class="table table-sm table-striped table-hover table-bordered w-auto" style="position:fixed; left:730px;" >
 <thead>
 <tr>
 	<td colspan="2">
@@ -182,9 +189,13 @@
 	}
 %>
 </tfoot>
-
 </table>
-</form>
 </div>
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	<jsp:include page="../include/footer.jsp" flush="true">
+		<jsp:param name="url" value="produectSelectAll.jsp"/>
+	</jsp:include> 	
+</form>
+
 </body>
 </html>

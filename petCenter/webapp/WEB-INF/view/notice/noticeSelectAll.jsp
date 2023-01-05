@@ -52,7 +52,7 @@
 	
 </style>
 </head>
-<body class="container">
+<body>
 <% 
 request.setCharacterEncoding("UTF-8");
 Object obj = request.getAttribute("listAll");
@@ -60,10 +60,13 @@ if(obj == null) {return;}
 List<NoticeVO> list = (List<NoticeVO>)obj;
 int nCnt = list.size();
 %>
+
+<form action="nsForm" id="nsForm" name="nsForm">
 	<jsp:include page="../include/header.jsp" flush="true">
 		<jsp:param name="url" value="produectSelectAll.jsp"/>
 	</jsp:include>
-<form action="nsForm" id="nsForm" name="nsForm">
+	<br><br><br><br><br><br>
+<div class="container">
 <table border="1" align="center" class="table table-sm table-striped table-hover table-bordered" >
 <thead>
 <tr>
@@ -109,8 +112,11 @@ if(nCnt>0) {
 <input type="button" id="selectformBtn" value="내용확인" class="btn btn-warning btn-sm"/>
 </td>
 </table>
+</div>
+	<br><br><br><br><br><br>
+	<jsp:include page="../include/footer.jsp" flush="true">
+		<jsp:param name="url" value="produectSelectAll.jsp"/>
+	</jsp:include> 
 </form>
-
-
 </body>
 </html>
