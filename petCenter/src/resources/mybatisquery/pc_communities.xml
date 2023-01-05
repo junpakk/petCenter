@@ -84,7 +84,8 @@
 					,CEIL(ROW_NUMBER() OVER(ORDER BY A.BCNUM)/#{pageSize}) pageSize
 					,COUNT(A.BCNUM) OVER() AS totalCount
 			FROM	PC_COM A, PC_LIKE B
-			WHERE	A.DELYN = 'Y'
+			WHERE	A.BCNUM = B.BCNUM(+)
+			AND 	A.DELYN = 'Y'
 			AND		B.LIKEY >= 20
 			<if test="searchFilter=='key_01'">
 				<![CDATA[ AND A.BCTITLE LIKE '%' || #{keyword, jdbcType=VARCHAR} || '%']]>
