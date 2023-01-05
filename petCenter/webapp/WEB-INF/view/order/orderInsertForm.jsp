@@ -60,8 +60,11 @@
 </head>
 <body>
 <form name="orderForm" id="orderForm">
-<table border="1" align="center">
-	
+	<jsp:include page="../include/header.jsp" flush="true">
+		<jsp:param name="url" value="produectSelectAll.jsp"/>
+	</jsp:include>
+<table border="1" style="margin:0 auto;">
+	<tr><br/><h2 align="center">주문정보입력</h2><br/></tr>
 	<tr>
 		<td colspan="6" align="left">
 			<font size="3" style="color:black;"><h4>1. 주문확인</h4></font>
@@ -169,7 +172,9 @@
 		</td>
 	</tr>
 </table>
+	<jsp:include page="../include/footer.jsp" flush="true">
+		<jsp:param name="url" value="produectSelectAll.jsp"/>
+	</jsp:include> 		
 </form>
-
 </body>
 </html>

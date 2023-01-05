@@ -21,15 +21,8 @@
 <title>PET CENTER MAIN</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="https://fonts.googleapis.com/css2?family=Jua&family=Seymour+One&display=swap" rel="stylesheet">
-<!-- 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"> -->
-<!-- 		<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js"></script> -->
-<!-- 		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script> -->
-<!-- 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>		 -->
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <style type="text/css">
-
-	
-
 	*{
 /* 		font-family:'Noto Sans KR', sans-serif; */
 		/*목록에 점 없애기*/
@@ -150,13 +143,9 @@
 		background:#3db7cc;
 		grid-area:footer;
 	}
-	
-
-	
 </style>
 </head>
 <body>
-	<div class="container">
 		<!-- header를 sitearea, topbar, wrapper, logoarea, toplogo,  -->
 		<div class="header">
 			<!-- 상단바와 내용 -->
@@ -192,11 +181,10 @@
 %>		
 			</div>
 			<div class="lowerH">
-
 				<a href="#"><img src="/petCenter/img/logo.png" align="left" width="110" height="110"></a>
 				<nav>
 					<ul class="menu">
-						<li><a href="fairSelectAll.pc">박람회</a></li>
+						<li><a href="">박람회</a></li>
 						<li><a href="comSelAll.pc">커뮤니티</a></li>
 						<li><a href="productSelectAll.pc?pcategory=21">쇼핑몰</a></li>
 						<li><a href="">산책지도</a></li>
@@ -204,35 +192,8 @@
 						<li><a href="tipSelAll.pc">팁 게시판</a></li>
 					</ul>
 				</nav>
-
 			</div>
 
 		</div><!-- end of header -->
-		<div class="side"></div>
-		<div class="main">
-			<div><img src="/petCenter/img/11.png"/></div>
-			<div><img src="/petCenter/img/22.png"/></div>
-			<div><img src="/petCenter/img/33.png"/></div>
-			<div><img src="/petCenter/img/44.png"/></div>
-		</div><!--  end of main -->
-		<div class="aside"></div>
-		<div class="footer">
-			<div class="footer1" style="color:white; margin-left:165px; margin-right:165px;">
-				<br/>
-				(주) PetCenter   대표자 : PC   프로젝트번호 : 202-05-20231   주소 : 서울특별시 금천구 가산디지털2로 123 2차) 월드메르디앙 ㅣ 발표번호 : 2023-서울가산-0113
-				<br/>
-				[CS CENTER]
-				<br/><br/>
-				참가 문의 : 02-XXXX-XXXX,XXXX ㅣ 참관객 문의 : 02-XXXX-XXXX   E-MAIL : petCenter.pc@pcgroup.com   FAX : 02-XXXX-XXXX
-				<br/>
-				Mon - Fri. 09:30 - 18:30 ㅣ Lunch : 13:20 - 14:30 ㅣ Sat, Sun & Holiday OFF
-				<br/>
-				(사)한국펫센터프로젝트협회   주소 : 경기도 프로젝트시 833-1 반려동물지식산업센터 A+동 115층 1001호
-				<br/><br/>
-				Copyright(c) 2023. PetCenter. All Right Reserved.
-				<br/><br/>
-			</div>
-		</div>
-	</div><!-- end of container -->	
 </body>
 </html>

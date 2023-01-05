@@ -25,17 +25,19 @@ $(document).ready(function(){
 	$('#shoppingBtn').click(function(){
 		console.log("#shoppingBtn 클릭: ");
 		const mnum = document.getElementById("mnum");
-		location.href="productSelectAll.pc?mnum="+mnum;
+		location.href="productSelectAll.pc?pcategory=21";
 		});
 });//end of ready()
 	
 </script>
 </head>
 <body>
-<h3 align="center">주문정보 확인창</h3><hr width="1000px">
-
 <form name="orderSelectAll" id="orderSelectAll">
-<table border="1" align="center">
+	<jsp:include page="../include/header.jsp" flush="true">
+		<jsp:param name="url" value="produectSelectAll.jsp"/>
+	</jsp:include>
+<h2 align="center"><br/>주문정보 확인창<br/></h2><br/>
+<table border="1" style="margin:0 auto;">
 <thead>
 	<tr>
 		<td style="text-align:center">
@@ -109,6 +111,9 @@ $(document).ready(function(){
 </tr>
 </tbody>
 </table>
+	<jsp:include page="../include/footer.jsp" flush="true">
+		<jsp:param name="url" value="produectSelectAll.jsp"/>
+	</jsp:include> 	
 </form>
 </body>
 </html>
