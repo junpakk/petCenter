@@ -39,7 +39,7 @@
 
 	div.a,.b{
 		  position: relative;
-		  left: 50px;
+		  left: 400px;
 		  width: 400px;
 		  height: 40px;
 /* 		  border: 1px solid black; */
@@ -47,9 +47,9 @@
 	
 	div.c{
 		  position: relative;
-		  left: 50px;
+		  left: 400px;
 		  width: 400px;
-		  height: 80px;
+		  height: 100px;
 		  margin-top: 20px;
 /* 		  border: 1px solid black; */
 	}
@@ -59,14 +59,14 @@
 		  margin: 20px;
 /* 		  left: 50px; */
 		  width: 400px;
-		  height: 150px;
+		  height: 140px;
 /* 		  border: 1px solid black; */
 	}
 	
 	div.de{
 		position: fixed;
-	  	top: 100px;
-	  	left: 500px;
+	  	top: 180px;
+	  	left: 900px;
 	  	border: 1px solid black;
 	}
 	
@@ -203,7 +203,10 @@
 </head>
 <body>
 <form id="cartSelectAll" name="cartSelectAll">
-	<table align="">
+	<jsp:include page="../include/header.jsp" flush="true">
+		<jsp:param name="url" value="produectSelectAll.jsp"/>
+	</jsp:include>
+	<table>
 		<tr>
 			<td><div class="c"><h1>장바구니</h1></div></td>
 		</tr>
@@ -223,8 +226,10 @@
 	if(obj == null){
 %>
 				<tr>
-					<td colspan="8" align="center">
-						<h2>장바구니에 상품을 담으세요.</h2>
+					<td colspan="8">
+						<div class="b" style="text-align:center;" >
+							<h2><br/><br/>장바구니에 상품을 담으세요.<br/><br/></h2>
+						</div>
 					</td>
 				</tr>				
 <%		
@@ -301,7 +306,10 @@
 				</div>
 			</td>
 		</tr>
-	</table>		
+	</table>
+	<jsp:include page="../include/footer.jsp" flush="true">
+		<jsp:param name="url" value="produectSelectAll.jsp"/>
+	</jsp:include> 		
 </form>
 </body>
 </html>

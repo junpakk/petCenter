@@ -97,9 +97,12 @@ ul	{
 </style>
 </head>
 <body>
-<h3 align="center">PetCenter가 추천하는 내 아이 취향저격 상품</h3>
 <form name="productList" id="productList">
-<table border="1" align="center">
+	<jsp:include page="../include/header.jsp" flush="true">
+		<jsp:param name="url" value="produectSelectAll.jsp"/>
+	</jsp:include>
+<h3 align="center">PetCenter가 추천하는 내 아이 취향저격 상품</h3>
+<table border="1" style="margin:0 auto;">
 
 	<thead>
 		<tr>
@@ -120,7 +123,7 @@ ul	{
 		</tr>
 	</thead>
 	
-	
+	<tbody>
 <%
 
 	String pcategory = "";
@@ -159,12 +162,12 @@ ul	{
 				</td>
 			</tr>
 			<tr>
-				<td>
+				<td style="text-align:center">
 					<%= pname %>
 				</td>
 			</tr>
 			<tr>
-				<td>
+				<td style="text-align:right">
 					가격: <%= pprice %> 원
 				</td>
 			</tr>
@@ -176,11 +179,11 @@ ul	{
 		}
 	}//end of for
 %>
+	</tbody>
 </table>
-<table>	
-	<tfoot>
-	</tfoot>
-</table>
+	<jsp:include page="../include/footer.jsp" flush="true">
+		<jsp:param name="url" value="produectSelectAll.jsp"/>
+	</jsp:include> 
 </form>
 </body>
 </html>

@@ -114,7 +114,11 @@
 
 <body>
 <form id="selectForm" name="selectForm" style="align:center;">
-	<table align="center">
+	<jsp:include page="../include/header.jsp" flush="true">
+		<jsp:param name="url" value="produectSelectAll.jsp"/>
+	</jsp:include>
+	<h2 align="center"><br/>상품상세정보보기<br/></h2><br/>
+	<table style="margin:0 auto;">
 		<tr>
 			<td>
 				<div class="a"><img width="500px;" height="500px;" src="/petCenter/fileupload/product/<%= pvo.getPphoto() %>"/></div>
@@ -165,6 +169,9 @@
 			</td>
 		</tr>
 	</table>
+	<jsp:include page="../include/footer.jsp" flush="true">
+		<jsp:param name="url" value="produectSelectAll.jsp"/>
+	</jsp:include> 	
 </form>
 
 <script>
