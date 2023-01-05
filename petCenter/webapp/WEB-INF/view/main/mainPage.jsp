@@ -44,7 +44,7 @@
 		color:#000;		
 	}		
 
-	.container{
+	.container1{
 		display:grid;
 		grid-template-columns:1fr 1400px 1fr;
 		grid-template-rows:150px 1fr 218px;
@@ -54,7 +54,7 @@
 			"footer		footer		footer";
 	}
 
-	.container > div{
+	.container1 > div{
 		justify-items:center;
 		align-items:center;
 	}				
@@ -157,7 +157,7 @@
 </style>
 </head>
 <body>
-	<div class="container">
+	<div class="container1">
 		<!-- header를 sitearea, topbar, wrapper, logoarea, toplogo,  -->
 		<div class="header">
 			<!-- 상단바와 내용 -->
@@ -232,6 +232,6 @@
 				<br/><br/>
 			</div>
 		</div>
-	</div><!-- end of container -->	
+	</div><!-- end of container1 -->	
 </body>
 </html>
