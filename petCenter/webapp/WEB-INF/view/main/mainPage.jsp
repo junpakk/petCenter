@@ -219,7 +219,7 @@
 		mid = (String)objMid;
 %>
 					<ul class="tmenu">
-						<li align="right" style="padding-right:15%; padding-top:12px">
+						<li align="right" style="padding-right:18%; padding-top:12px">
 							<a style="color:white;"><%= mid %> 님 안녕하세요!!</a> &nbsp; &nbsp;
 							<a href="logout.pc" style="color:white;">로그아웃 |</a>
 							<% String link =  "memSelect.pc?mnum=" + mnum;%>
@@ -228,7 +228,7 @@
 <% 
 	}else{
 %>
-						<li align="right" style="padding-right:15%; padding-top:12px">
+						<li align="right" style="padding-right:18%; padding-top:12px">
 							<a href="loginForm.pc" style="color:white;">로그인 |</a>
 							<a href="memInsertForm.pc" style="color:white;">회원가입</a>
 						</li>  
@@ -245,8 +245,8 @@
 						<li><a href="fairSelectAll.pc">박람회</a></li>
 						<li><a href="comSelAll.pc">커뮤니티</a></li>
 						<li><a href="productSelectAll.pc?pcategory=21">쇼핑몰</a></li>
-						<li><a href="">산책지도</a></li>
-						<li><a href="">공지사항</a></li>
+						<li><a href="walkHelper.pc">산책지도</a></li>
+						<li><a href="noticeSelectAll.pc">공지사항</a></li>
 						<li><a href="tipSelAll.pc">팁 게시판</a></li>
 					</ul>
 				</nav>

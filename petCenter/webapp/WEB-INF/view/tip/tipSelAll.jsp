@@ -85,46 +85,18 @@
 		
 	</head>
 	<body>
-		<div class="header">
-		<div class="upperH">링크1 / 링크2 / 링크3 / 링크4 / 링크 5  &nbsp; 마이페이지
-			<div>
-			<%
-				String mnum = null;
-				String mid = null;
-				Object objMnum = session.getAttribute("KNUM");
-				Object objMid = session.getAttribute("KID");
-				
-				if (objMnum != null) {
-					mnum = (String)objMnum;
-					mid = (String)objMid;
-			%>
-				<p>
-					<%= mid %>(<%= mnum %>) 님 안녕하세요!! 
-					<a href="logout.pc">로그아웃</a> | 
-					<a href="calendar.pc" >캘린더</a> |
-					<a href="memInsertForm.pc" >회원가입</a>
-					<% String link =  "memSelect.pc?mnum=" + mnum;%>
-					<a href="<%= link %>">회원정보</a>
-				</p>
-			<% 
-				}else{
-			%>
-				<p>
-					<a href="loginForm.pc" >로그인</a> |
-					<a href="memInsertForm.pc" >회원가입</a>
-					
-				</p>
-			<%
-				}
-			%>		
-			</div>
-		
-		</div>
-		<div class="lowerH">로고 / 박람회(버튼) 커뮤니티(버튼) 쇼핑몰(버튼) 지도(버튼) 공지사항(버튼)</div>
-		</div>	
+	<jsp:include page="../include/header.jsp" flush="true">
+			<jsp:param name="url" value="produectSelectAll.jsp"/>
+	</jsp:include>
+	<br><br><br><br><br><br>
+	
 		<div class="container">
 		<%
 		request.setCharacterEncoding("UTF-8");
+		
+		Object mnum = session.getAttribute("KNUM");
+		Object mid = session.getAttribute("KID");
+		
 		Object obj = request.getAttribute("comList");
 		if(obj == null) return;
 		
@@ -205,5 +177,9 @@
 			</table>
 		</form>
 		</div>
+	<br><br><br><br><br><br>
+	<jsp:include page="../include/footer.jsp" flush="true">
+		<jsp:param name="url" value="produectSelectAll.jsp"/>
+	</jsp:include>
 	</body>
 </html>
