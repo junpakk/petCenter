@@ -90,16 +90,19 @@
 <style type="text/css">
 
 	.align-middle{ text-align: center;}
-/* 	#notNull{ color: red; } */
 	
 </style>
 </head>
 
 <body>
+<!-- <div> -->
+	<jsp:include page="../include/header.jsp" flush="true">
+		<jsp:param name="url" value="produectSelectAll.jsp"/>
+	</jsp:include>
+<!-- </div> -->
 <div id="container">
-
 <form name="memForm" id="memForm">
-<table class="table table-sm table-bordered w-auto" align="center">
+<table class="table table-sm table-striped table-hover table-bordered w-auto" align="center">
 <thead>
 <tr>
 	<td colspan="2">
@@ -158,9 +161,26 @@
 	<td colspan="2">
 		<button type="button" id="btnUpdate" class="btn btn-primary btn-lg">수정하기</button>
 		<button type="button" id="btnCalendar" class="btn btn-info btn-lg">일정관리</button>
-<!-- 		<button type="reset">다시 </button> -->
 	</td>
 </tr>
+<%
+	String admin = "";
+	Object objAdmin = session.getAttribute("KNUM");
+	if (objAdmin != null) {
+		admin = (String)objAdmin;
+		logger.info("mnum >>> : " + admin);
+		if(admin.equals("M0000000001")){
+%>
+<tr>
+	<td colspan="2">
+		<button type="button" onclick="location.href='memSelectAll.pc'" class="btn btn-info btn-lg">회원관리</button>
+		<button type="button" onclick="location.href='noticeInsertForm.pc'" class="btn btn-info btn-lg">공지사항</button>
+	</td>
+</tr>
+<%
+		}
+	}
+%>
 </tfoot>
 
 </table>

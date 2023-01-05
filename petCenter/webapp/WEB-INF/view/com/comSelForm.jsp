@@ -178,7 +178,8 @@
 		<form action="Form" id="Form" name="Form">
 			<input type="hidden" class="insert_1" id="mnum" name="mnum" value="<%=mnum %>" readonly/>
 			<input type="hidden" class="insert_1" id="mid" name="mid" value="<%=mid %>" readonly/>
-			<table class="table-sm table-striped table-hover table-bordered" style="width:100%;">
+			<table class="table table-sm table-striped table-hover table-bordered" style="width:100%;">
+			
 			<% 
 			Object obj = request.getAttribute("listS");
 			if(obj == null) return;
@@ -199,7 +200,7 @@
 					<td class="insert"><%=cvo.getBcnum() %></td>
 					<input type="hidden" name="bcnum" id="bcnum" value="<%=bcnum %>">
 					<input type="hidden" name="likey"  id="likey" value="<%= cvo.getLikey()%>">
-						<input type="hidden" name="hate"  id="haty" value="<%= cvo.getHate() %>">
+					<input type="hidden" name="hate"  id="haty" value="<%= cvo.getHate() %>">
 					<td class="insert" rowspan='4'><img id="bImage" src="/petCenter/fileupload/com/<%=cvo.getBcphoto() %>" width="400" height="400"  onerror="this.src='/petCenter/img/noImg.gif';"></td>
 				</tr>
 				<tr>
@@ -248,7 +249,7 @@
 			<!-- 댓글 처리 하는 루틴  --> 
 			<jsp:include page="/replyForm.pc">
 				<jsp:param value="<%=bcnum%>" name="bcnum"/>
-			</jsp:include>	
+			</jsp:include>
 		</div>
 		</div>
 	</body>

@@ -203,9 +203,8 @@
 
 <body>
 <div id="container">
-
 <form name="memForm" id="memForm">
-<table class="table table-bordered w-auto" align="center">
+<table class="table table-sm table-striped table-hover table-bordered w-auto" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
 	<td colspan="2">
