@@ -65,7 +65,7 @@
 	
 	div.de{
 		position: fixed;
-	  	top: 180px;
+	  	top: 210px;
 	  	left: 900px;
 	  	border: 1px solid black;
 	}
@@ -206,6 +206,7 @@
 	<jsp:include page="../include/header.jsp" flush="true">
 		<jsp:param name="url" value="produectSelectAll.jsp"/>
 	</jsp:include>
+	<br><br>
 	<table>
 		<tr>
 			<td><div class="c"><h1>장바구니</h1></div></td>
@@ -307,6 +308,7 @@
 			</td>
 		</tr>
 	</table>
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 	<jsp:include page="../include/footer.jsp" flush="true">
 		<jsp:param name="url" value="produectSelectAll.jsp"/>
 	</jsp:include> 		

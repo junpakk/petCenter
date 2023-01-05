@@ -37,7 +37,7 @@
 		color:#000;		
 	}		
 
-	.container{
+	.container1{
 		display:grid;
 		grid-template-columns:165.2px 1400px 165.2px;
 		grid-template-rows:150px 1fr 218px;
@@ -47,7 +47,7 @@
 			"footer		footer		footer";
 	}
 
-	.container > div{
+	.container1 > div{
 		justify-items:center;
 		align-items:center;
 	}				
