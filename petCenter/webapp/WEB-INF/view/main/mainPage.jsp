@@ -20,6 +20,7 @@
 <meta charset="UTF-8">
 <title>PET CENTER MAIN</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Jua&family=Seymour+One&display=swap" rel="stylesheet">
 <!-- 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"> -->
 <!-- 		<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js"></script> -->
 <!-- 		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script> -->
@@ -32,6 +33,7 @@
 	*{
 /* 		font-family:'Noto Sans KR', sans-serif; */
 		/*목록에 점 없애기*/
+		font-family: 'Jua', sans-serif;
 		list-style:none;
 		/*링크에 색깔 밑줄없애기*/
 		text-decoration:none;
@@ -45,7 +47,7 @@
 	.container{
 		display:grid;
 		grid-template-columns:1fr 1400px 1fr;
-		grid-template-rows:150px 1fr 150px;
+		grid-template-rows:150px 1fr 218px;
 		grid-template-areas:
 			"header		header		header"
 			"side		main		aside" 
@@ -60,16 +62,18 @@
 	.header{
 	/* 	background-image:url("../../img/contact.png"); */
 		height: 165px;
-		position:sticky;
+ 		position:sticky;
 	  	background:white;
 		grid-area:header;
 		width: 100%;
 		z-index: 9999;
-		top: 0;
 		left: 0;
+/* 		padding-top: 0px; */
+  		top: -50px;
 	}
 	
 	.upperH{
+			position:relative;
 			width: 100%;
 			margin: 0 auto;
 			height:50px;
@@ -79,12 +83,13 @@
 	.upperH a{
 		color: black;
 		text-decoration: none;
-		font-size: 15px;
+		font-size: 18px;
 /* 		font: italic small-caps bold; */
 	}
 			
 			
 	.lowerH{
+/* 			position:fixed; */
 			width: 1400px;
 			margin: 0 auto;
 			height:115px;
@@ -119,7 +124,7 @@
 		display: block;
 		padding: 0 15px;
 		text-decoration: none;
-		font-size: 25px;
+		font-size: 30px;
 /* 		font: italic small-caps bold; */
 	}
 	
@@ -144,7 +149,9 @@
 	.footer{
 		background:#3db7cc;
 		grid-area:footer;
-	}		
+	}
+	
+
 	
 </style>
 </head>
@@ -207,7 +214,23 @@
 			<div><img src="/petCenter/img/44.png"/></div>
 		</div><!--  end of main -->
 		<div class="aside"></div>
-		<div class="footer"></div>
+		<div class="footer">
+			<div class="footer1" style="color:white; margin-left:165px; margin-right:165px;">
+				<br/>
+				(주) PetCenter   대표자 : PC   프로젝트번호 : 202-05-20231   주소 : 서울특별시 금천구 가산디지털2로 123 2차) 월드메르디앙 ㅣ 발표번호 : 2023-서울가산-0113
+				<br/>
+				[CS CENTER]
+				<br/><br/>
+				참가 문의 : 02-XXXX-XXXX,XXXX ㅣ 참관객 문의 : 02-XXXX-XXXX   E-MAIL : petCenter.pc@pcgroup.com   FAX : 02-XXXX-XXXX
+				<br/>
+				Mon - Fri. 09:30 - 18:30 ㅣ Lunch : 13:20 - 14:30 ㅣ Sat, Sun & Holiday OFF
+				<br/>
+				(사)한국펫센터프로젝트협회   주소 : 경기도 프로젝트시 833-1 반려동물지식산업센터 A+동 115층 1001호
+				<br/><br/>
+				Copyright(c) 2023. PetCenter. All Right Reserved.
+				<br/><br/>
+			</div>
+		</div>
 	</div><!-- end of container -->	
 </body>
 </html>
