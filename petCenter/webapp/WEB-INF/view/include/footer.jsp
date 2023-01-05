@@ -5,9 +5,8 @@
 <head>
 <meta charset="UTF-8">
 </head>
-	<div class="container">
-		<div class="footer">
-			<div class="footer1" style="color:white; margin-left:165px; margin-right:165px;">
+		<div class="footer" >
+			<div class="footer1" style="color:white;">
 				<br/>
 				(주) PetCenter   대표자 : PC   프로젝트번호 : 202-05-20231   주소 : 서울특별시 금천구 가산디지털2로 123 2차) 월드메르디앙 ㅣ 발표번호 : 2023-서울가산-0113
 				<br/>
@@ -23,5 +22,4 @@
 				<br/><br/>
 			</div>
 		</div>
-	</div><!-- end of container -->	
 </html>

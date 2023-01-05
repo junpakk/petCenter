@@ -36,6 +36,7 @@ $(document).ready(function(){
 	<jsp:include page="../include/header.jsp" flush="true">
 		<jsp:param name="url" value="produectSelectAll.jsp"/>
 	</jsp:include>
+<br><br><br>	
 <h2 align="center"><br/>주문정보 확인창<br/></h2><br/>
 <table border="1" style="margin:0 auto;">
 <thead>
@@ -111,6 +112,7 @@ $(document).ready(function(){
 </tr>
 </tbody>
 </table>
+	<br><br><br><br><br><br><br><br><br>
 	<jsp:include page="../include/footer.jsp" flush="true">
 		<jsp:param name="url" value="produectSelectAll.jsp"/>
 	</jsp:include> 	

@@ -268,7 +268,7 @@
 <body>
 <div id="container" align="center">
 <form name="replyForm" id="replyForm">
-<table border="1">
+<table border="1" class="table table-sm table-striped table-hover table-bordered">
 <h3>댓글</h3>
 
 

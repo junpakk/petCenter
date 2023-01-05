@@ -196,7 +196,8 @@
 <div class="container">
 
 <form name="memSelectAll" id="memSelectAll">
-<table border="1" align="center" class="table table-sm table-bordered w-auto" >
+<table border="1" align="center" class="table table-sm table-striped table-hover table-bordered" >
+<!-- <table border="1" align="center" class="table table-sm table-bordered w-auto" > -->
 <thead>
 <tr>
 	<td colspan="8" >

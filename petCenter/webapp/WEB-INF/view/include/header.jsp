@@ -37,7 +37,7 @@
 		color:#000;		
 	}		
 
-	.container{
+	.container1{
 		display:grid;
 		grid-template-columns:165.2px 1400px 165.2px;
 		grid-template-rows:150px 1fr 218px;
@@ -47,7 +47,7 @@
 			"footer		footer		footer";
 	}
 
-	.container > div{
+	.container1 > div{
 		justify-items:center;
 		align-items:center;
 	}				
@@ -142,7 +142,10 @@
 	.footer{
 		background:#3db7cc;
 		grid-area:footer;
+		text-align: center;
+		
 	}
+
 </style>
 </head>
 <body>
@@ -181,7 +184,7 @@
 %>		
 			</div>
 			<div class="lowerH">
-				<a href="#"><img src="/petCenter/img/logo.png" align="left" width="110" height="110"></a>
+				<a href="mainPage.pc"><img src="/petCenter/img/logo.png" align="left" width="110" height="110"></a>
 				<nav>
 					<ul class="menu">
 						<li><a href="">박람회</a></li>

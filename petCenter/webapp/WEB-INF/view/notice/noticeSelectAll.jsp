@@ -60,9 +60,11 @@ if(obj == null) {return;}
 List<NoticeVO> list = (List<NoticeVO>)obj;
 int nCnt = list.size();
 %>
-
+	<jsp:include page="../include/header.jsp" flush="true">
+		<jsp:param name="url" value="produectSelectAll.jsp"/>
+	</jsp:include>
 <form action="nsForm" id="nsForm" name="nsForm">
-<table border="1" align="center" class="table table-sm table-bordered w-auto" >
+<table border="1" align="center" class="table table-sm table-striped table-hover table-bordered" >
 <thead>
 <tr>
 <td colspan="5" >
