@@ -168,7 +168,7 @@ ul	{
 			</tr>
 			<tr>
 				<td style="text-align:right">
-					가격: <%= pprice %> 원
+					가격: <%= pprice %> 원&nbsp;&nbsp;&nbsp;
 				</td>
 			</tr>
 		</table>
@@ -181,6 +181,7 @@ ul	{
 %>
 	</tbody>
 </table>
+	<br/>
 	<jsp:include page="../include/footer.jsp" flush="true">
 		<jsp:param name="url" value="produectSelectAll.jsp"/>
 	</jsp:include> 

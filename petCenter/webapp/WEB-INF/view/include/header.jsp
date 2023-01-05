@@ -142,7 +142,10 @@
 	.footer{
 		background:#3db7cc;
 		grid-area:footer;
+		text-align: center;
+		
 	}
+
 </style>
 </head>
 <body>
@@ -181,7 +184,7 @@
 %>		
 			</div>
 			<div class="lowerH">
-				<a href="#"><img src="/petCenter/img/logo.png" align="left" width="110" height="110"></a>
+				<a href="mainPage.pc"><img src="/petCenter/img/logo.png" align="left" width="110" height="110"></a>
 				<nav>
 					<ul class="menu">
 						<li><a href="">박람회</a></li>

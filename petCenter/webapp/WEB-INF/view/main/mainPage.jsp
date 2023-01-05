@@ -46,7 +46,7 @@
 
 	.container{
 		display:grid;
-		grid-template-columns:165.2px 1400px 165.2px;
+		grid-template-columns:1fr 1400px 1fr;
 		grid-template-rows:150px 1fr 218px;
 		grid-template-areas:
 			"header		header		header"
@@ -149,6 +149,7 @@
 	.footer{
 		background:#3db7cc;
 		grid-area:footer;
+		text-align:center;
 	}
 	
 
