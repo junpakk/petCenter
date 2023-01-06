@@ -68,8 +68,10 @@
 	}		
 
 	.container1{
+		position: relative;
+	
 		display:grid;
-		grid-template-columns:1fr 1400px 1fr;
+		grid-template-columns:1fr 1200px 1fr;
 		grid-template-rows:150px 1fr 218px;
 		grid-template-areas:
 			"header		header		header"
@@ -80,13 +82,15 @@
 	.container1 > div{
 		justify-items:center;
 		align-items:center;
+/* 		min-height : 100%;  */
 	}				
 	
 	.header{
 	/* 	background-image:url("../../img/contact.png"); */
 		height: 165px;
  		position:sticky;
-	  	background:white;
+ 	  	background:white;
+/* 		background:#3db7cc; */
 		grid-area:header;
 		width: 100%;
 		z-index: 9999;
@@ -95,9 +99,13 @@
   		top: -50px;
 	}
 	
+	.upperWrap{
+		background:#3db7cc;
+	}
+	
 	.upperH{
 			position:relative;
-			width: 100%;
+			width: 1200px;
 			margin: 0 auto;
 			height:50px;
 			background:#3db7cc;
@@ -113,7 +121,7 @@
 			
 	.lowerH{
 /* 			position:fixed; */
-			width: 1400px;
+			width: 1200px;
 			margin: 0 auto;
 			height:115px;
 			background:white; 
@@ -152,7 +160,8 @@
 	}
 	
 	.side{
-		background:#3db7cc;
+ 		background:#3db7cc;
+/* 		background:white; */
 		grid-area:side;
 	}
 	
@@ -163,9 +172,11 @@
 		text-align:center;
 		grid-area:main;
 	}
+	
 
 	.aside{
 		background:#3db7cc;
+/*  		background:white; */
 		grid-area:aside;
 	}			
 	
@@ -177,7 +188,7 @@
 	
 	
 	button {
-    margin: 10px;
+   		 margin: 10px;
 	}
 	
 	.w-btn {
@@ -195,9 +206,9 @@
 	.fairbtn {
 		border-radius: 50px;
 		background-color: white;
+		width:205pt;
+		height:30pt;
 	}
-	
-
 	
 </style>
 </head>
@@ -205,6 +216,7 @@
 	<div class="container1">
 		<!-- header를 sitearea, topbar, wrapper, logoarea, toplogo,  -->
 		<div class="header">
+			<div class="upperWrap">
 			<!-- 상단바와 내용 -->
 			<div class="upperH">
 	
@@ -219,7 +231,7 @@
 		mid = (String)objMid;
 %>
 					<ul class="tmenu">
-						<li align="right" style="padding-right:18%; padding-top:12px">
+						<li align="right" style="padding-right:1.5%; padding-top:12px">
 							<a style="color:white;"><%= mid %> 님 안녕하세요!!</a> &nbsp; &nbsp;
 							<a href="logout.pc" style="color:white;">로그아웃 |</a>
 							<% String link =  "memSelect.pc?mnum=" + mnum;%>
@@ -228,7 +240,7 @@
 <% 
 	}else{
 %>
-						<li align="right" style="padding-right:18%; padding-top:12px">
+						<li align="right" style="padding-right:1.5%; padding-top:12px">
 							<a href="loginForm.pc" style="color:white;">로그인 |</a>
 							<a href="memInsertForm.pc" style="color:white;">회원가입</a>
 						</li>  
@@ -236,6 +248,7 @@
 <%
 	}
 %>		
+			</div>
 			</div>
 			<div class="lowerH">
 
@@ -262,41 +275,41 @@
 				<table>
 					<tr>
 						<td>
-							<h1 align="left" style="padding-left:100px;">예정 전시</h1> 
+							<h1 align="left" style="margin-left:50px;">예정 전시</h1> 
 						</td>
-						<td width="1100" align="right">	
+						<td width="1000" align="right">	
 							<button  type="button" class="w-btn fair" id="allfair">전체보기  ></button>
 						</td>
 					</tr>
 				</table>
 				<br>
-				<table>
+				<table style="border:1px; width:1200px;">
 					<tr>
 						<td>
-							<img src="/petCenter/img/fair/1.png" style="border-radius:7px;" width="340" height="410"/>
+							<img src="/petCenter/img/fair/1.png" style="border-radius:7px;" width="280" height="350"/>
 						</td>
 						<td>
-				 			<img src="/petCenter/img/fair/2.png" style="border-radius:7px;" width="340" height="410"/>
+				 			<img src="/petCenter/img/fair/2.png" style="border-radius:7px;" width="280" height="350"/>
 				 		</td>
 				 		<td>
-				 			<img src="/petCenter/img/fair/3.png" style="border-radius:7px;" width="340" height="410"/>
+				 			<img src="/petCenter/img/fair/3.png" style="border-radius:7px;" width="280" height="350"/>
 				 		</td>
 				 		<td>
-				 			<img src="/petCenter/img/fair/4.png" style="border-radius:7px;" width="340" height="410"/>
+				 			<img src="/petCenter/img/fair/4.png" style="border-radius:7px;" width="280" height="350"/>
 				 		</td>
 				 	</tr>
 				 	<tr>
 				 		<td>
-				 			<button  type="button" id="fairSel" class="fairbtn" style="width:247pt;height:30pt;">사전등록하러가기</button>
+				 			<button  type="button" id="fairSel" class="fairbtn">사전등록하러가기</button>
 				 		</td>
 				 		<td>
-				 			<button  type="button" id="fairnone" class="fairbtn" style="width:247pt;height:30pt;">사전등록하러가기</button>
+				 			<button  type="button" id="fairnone" class="fairbtn">사전등록하러가기</button>
 				 		</td>
 				 		<td>
-				 			<button  type="button" id="fairnone" class="fairbtn" style="width:247pt;height:30pt;">사전등록하러가기</button>
+				 			<button  type="button" id="fairnone" class="fairbtn">사전등록하러가기</button>
 				 		</td>
 				 		<td>
-				 			<button  type="button" id="fairnone" class="fairbtn" style="width:247pt;height:30pt;">사전등록하러가기</button>
+				 			<button  type="button" id="fairnone" class="fairbtn">사전등록하러가기</button>
 				 		</td>
 				</table>
 			
@@ -307,7 +320,7 @@
 		</div><!--  end of main -->
 		<div class="aside"></div>
 		<div class="footer">
-			<div class="footer1" style="color:white; margin-left:165px; margin-right:165px;">
+			<div class="footer1" style="color:white;">
 				<br/>
 				(주) PetCenter   대표자 : PC   프로젝트번호 : 202-05-20231   주소 : 서울특별시 금천구 가산디지털2로 123 2차) 월드메르디앙 ㅣ 발표번호 : 2023-서울가산-0113
 				<br/>

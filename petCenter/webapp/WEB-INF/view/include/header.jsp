@@ -36,21 +36,6 @@
 		/*기본폰트색깔*/
 		color:#000;		
 	}		
-
-	.container1{
-		display:grid;
-		grid-template-columns:165.2px 1400px 165.2px;
-		grid-template-rows:150px 1fr 218px;
-		grid-template-areas:
-			"header		header		header"
-			"side		main		aside" 
-			"footer		footer		footer";
-	}
-
-	.container1 > div{
-		justify-items:center;
-		align-items:center;
-	}				
 	
 	.header{
 	/* 	background-image:url("../../img/contact.png"); */
@@ -65,9 +50,13 @@
   		top: -50px;
 	}
 	
+	.upperWrap{
+		background:#3db7cc;
+	}
+	
 	.upperH{
 			position:relative;
-			width: 100%;
+			width: 1200px;
 			margin: 0 auto;
 			height:50px;
 			background:#3db7cc;
@@ -83,7 +72,7 @@
 			
 	.lowerH{
 /* 			position:fixed; */
-			width: 1400px;
+			width: 1200px;
 			margin: 0 auto;
 			height:115px;
 			background:white; 
@@ -151,6 +140,7 @@
 <body>
 		<!-- header를 sitearea, topbar, wrapper, logoarea, toplogo,  -->
 		<div class="header">
+			<div class="upperWrap">
 			<!-- 상단바와 내용 -->
 			<div class="upperH">
 	
@@ -165,7 +155,7 @@
 		mid = (String)objMid;
 %>
 					<ul class="tmenu">
-						<li align="right" style="padding-right:20%; padding-top:12px">
+						<li align="right" style="padding-right:1.5%; padding-top:12px">
 							<a style="color:white;"><%= mid %> 님 안녕하세요!!</a> &nbsp; &nbsp;
 							<a href="logout.pc" style="color:white;">로그아웃 |</a>
 							<% String link =  "memSelect.pc?mnum=" + mnum;%>
@@ -174,7 +164,7 @@
 <% 
 	}else{
 %>
-						<li align="right" style="padding-right:20%; padding-top:12px">
+						<li align="right" style="padding-right:1.5%; padding-top:12px">
 							<a href="loginForm.pc" style="color:white;">로그인 |</a>
 							<a href="memInsertForm.pc" style="color:white;">회원가입</a>
 						</li>  
@@ -182,6 +172,7 @@
 <%
 	}
 %>		
+			</div>
 			</div>
 			<div class="lowerH">
 				<a href="mainPage.pc"><img src="/petCenter/img/logo.png" align="left" width="110" height="110"></a>
