@@ -22,6 +22,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import main.pc.common.EncryptSHA;
 import main.pc.common.GoogleAuthumMail;
@@ -67,6 +68,7 @@ public class LoginController {
 	
 	// 로그인
 	@PostMapping("loginCheck")
+	@ResponseBody
 	public String loginCheck(HttpServletRequest req, MemberVO mvo) {
 		logger.info("loginCheck 함수 진입 >>> : ");
 		
@@ -88,14 +90,14 @@ public class LoginController {
 			
 			if (kID != null && kID.equals(listLogin.get(0).getMid())) {
 				logger.info("loginCheck login >>> : 로그인 중 >>> : " + kID);
-				return "main/mainPage";
+				return "loginSuccess";
 			}else {
 				ks.setSession(req, listLogin.get(0).getMid(), listLogin.get(0).getMnum() );
 				logger.info("loginCheck login >>> : 세션부여 >>> : " + mvo.getMid());
-				return "main/mainPage";
+				return "loginSuccess";
 			}
 		}
-		return "login/loginForm";
+		return "loginFail";
 	}
 	
 	@GetMapping("logout")

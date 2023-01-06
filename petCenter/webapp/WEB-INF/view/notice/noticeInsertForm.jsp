@@ -29,17 +29,23 @@
 	
 </style>
 </head>
-<body id="container">
-
+<body>
+	<jsp:include page="../include/header.jsp" flush="true">
+		<jsp:param name="url" value="produectSelectAll.jsp"/>
+	</jsp:include>
+<br><br><br><br><br><br>
+<div class="container">
 <form action="nForm" id="nForm" name="nForm">
-<table class="table table-bordered w-auto" align="center" >
+<table border="1" align="center" class="table table-sm table-striped table-hover table-bordered" >
+<thead>
 <tr>
-<td colspan="2" >
+<th colspan="2" >
 <h3 style="text-align:center;">공지사항 글쓰기</h3>
-</td>
+</th>
 </tr>
+</thead>
 <tr>
-<td class="align-middle">게시판번호</td>
+<td class="align-middle" style="width:120px;">게시판번호</td>
 <td>
 <input type="text" id="bnnum" name="bnnum" readonly/>
 </td>
@@ -64,11 +70,16 @@
 </td>
 </tr>
 <tr>
-<td colspan="2">
+<td colspan="2" align="right">
 <input type="button" id="nBtn" value="공지사항입력" class="btn btn-primary btn-lg"/>
 </td>
 </tr>
 </table>
 </form>
+</div>
+<br><br><br><br><br><br>
+<jsp:include page="../include/footer.jsp" flush="true">
+		<jsp:param name="url" value="produectSelectAll.jsp"/>
+</jsp:include>
 </body>
 </html>

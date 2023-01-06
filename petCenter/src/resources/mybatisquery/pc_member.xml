@@ -101,6 +101,7 @@ AND     A.MID           = #{mid}
 
 	UPDATE   PC_MEMBER
 	SET      MHP          = #{ mhp }
+	        ,MNAME        = #{ mname }
 	        ,MEMAIL       = #{ memail }
 	        ,MPET         = #{ mpet }
 	        ,MINFO        = #{ minfo }

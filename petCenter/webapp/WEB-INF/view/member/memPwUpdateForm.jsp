@@ -91,24 +91,35 @@
 </script>
 </head>
 <body>
-<div id="container">
+<jsp:include page="../include/header.jsp" flush="true">
+	<jsp:param name="url" value="produectSelectAll.jsp"/>
+</jsp:include>
+<br><br><br><br><br><br><br><br><br>
+
+<div class="container">
+<div class="row">
+<div class="col">
+</div>
+<div class="col-6">
+
 <form name="pwForm" id="pwForm">
-	<table class="table table-sm table-bordered w-auto" align="center">
+	<table border="1" align="center" class="table table-sm table-striped table-hover table-bordered" >
 		<thead>
 			<tr>
 				<td >
-					<h2 style="text-align:center;">Pet Center 비밀번호 수정</h2>
+					<h2 style="text-align:center;">Pet Center <br>새로운 비밀번호 입력</h2>
 				</td>
 			</tr>
 		</thead>
 		
 		<tbody>
 			<tr>
-				<td>
+				<td align="center">
 					<input type="hidden" name="mid" id="mid" value="<%= mid %>" />
 					<input type="hidden" name="memail" id="memail" value="<%= memail %>" />
-					<input type="password" name="mpw" id="mpw" placeholder="8 ~ 20자리"  /><br/>
-					<input type="password" id="mpw_r" name="mpw_r" placeholder="영문 숫자 특수문자"  />
+					<input type="password" name="mpw" id="mpw" placeholder="8 ~ 20자리" maxlength="20"  /><br/><br>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<input type="password" id="mpw_r" name="mpw_r" placeholder="영문 숫자 특수문자" maxlength="20"  />
 					<input type="button" value="비밀번호확인" id="pwCheck" class="btn btn-success btn-sm"/><br/>
 					<span id="mpw_condi"style="color:Red;" hidden>8~20자 영문, 숫자, 특수문자</span>
 				</td>
@@ -117,7 +128,7 @@
 		
 		<tfoot>
 			<tr >
-				<td colspan="2">
+				<td colspan="2" align="right">
 					<button type="button" id="updateBtn" class="btn btn-primary btn-lg">수정하기</button>
 				</td>
 			</tr>
@@ -126,5 +137,15 @@
 	</table>
 </form>
 </div>
+<div class="col">
+</div>
+</div>
+</div>
+
+<br><br><br><br><br><br><br><br><br>
+<jsp:include page="../include/footer.jsp" flush="true">
+		<jsp:param name="url" value="produectSelectAll.jsp"/>
+</jsp:include>
+
 </body>
 </html>

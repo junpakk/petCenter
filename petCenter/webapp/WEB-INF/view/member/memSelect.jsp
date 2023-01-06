@@ -62,10 +62,10 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 
 <script type="text/javascript">
-	alert("javascript");
+	//alert("javascript");
 	
 	$(document).ready(function() {
-		alert("jQuery");
+		//alert("jQuery");
 		
 		// 폼태그 데이터 컨트롤러에 보내기
 		$("#btnUpdate").on("click", function() {
@@ -98,18 +98,17 @@
 </head>
 
 <body>
-<!-- <div> -->
-<!-- </div> -->
-
-
 <form name="memForm" id="memForm">
 	<jsp:include page="../include/header.jsp" flush="true">
 		<jsp:param name="url" value="produectSelectAll.jsp"/>
 	</jsp:include>
-
-<div id="container">
-<br><br><br>
-<table class="table table-sm table-striped table-hover table-bordered w-auto" style="position:fixed; left:730px;" >
+<br><br><br><br><br><br>
+<div class="container">
+<div class="row">
+<div class="col">
+</div>
+<div class="col col-6">
+<table border="1" align="center" class="table table-sm table-striped table-hover table-bordered" >
 <thead>
 <tr>
 	<td colspan="2">
@@ -121,7 +120,7 @@
 <tbody>
 
 <tr>
-	<td class="align-middle" id="notNull">아이디</td>
+	<td class="align-middle" id="notNull" style="width:120px;">아이디</td>
 	<td>
 		<input type="hidden" name="mnum" id="mnum" value="<%= mnum %>"/>
 		<%= mid %>
@@ -156,7 +155,7 @@
 
 <tr>
 	<td class="align-middle">자기소개</td>
-	<td style="width:420px;">
+	<td>
 		<%= minfo %>
 	</td>
 </tr>
@@ -165,7 +164,7 @@
 
 <tfoot>
 <tr >
-	<td colspan="2">
+	<td colspan="2" align="right">
 		<button type="button" id="btnUpdate" class="btn btn-primary btn-lg">수정하기</button>
 		<button type="button" id="btnCalendar" class="btn btn-info btn-lg">일정관리</button>
 	</td>
@@ -176,12 +175,14 @@
 	if (objAdmin != null) {
 		admin = (String)objAdmin;
 		logger.info("mnum >>> : " + admin);
-		if(admin.equals("M0000000001")){
+		if(admin.equals("M0000000001") && mnum.equals("M0000000001")){
 %>
-<tr>
-	<td colspan="2">
-		<button type="button" onclick="location.href='memSelectAll.pc'" class="btn btn-info btn-lg">회원관리</button>
-		<button type="button" onclick="location.href='noticeInsertForm.pc'" class="btn btn-info btn-lg">공지사항</button>
+<tr >
+	<td colspan="2" align="center">
+		<button type="button" onclick="location.href='memSelectAll.pc'" class="btn btn-danger btn-lg" >회원관리</button>
+		<button type="button" onclick="location.href='noticeInsertForm.pc'" class="btn btn-warning btn-lg" >공지사항작성</button>
+		<button type="button" onclick="location.href='productInsertForm.pc'" class="btn btn-success btn-lg" >상품등록</button>
+		<button type="button" onclick="location.href='fairInsertForm.pc'" class="btn btn-success btn-lg" >박람회등록</button>
 	</td>
 </tr>
 <%
@@ -191,7 +192,11 @@
 </tfoot>
 </table>
 </div>
-	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<div class="col">
+</div>
+</div>
+</div>
+	<br><br><br><br><br><br>
 	<jsp:include page="../include/footer.jsp" flush="true">
 		<jsp:param name="url" value="produectSelectAll.jsp"/>
 	</jsp:include> 	

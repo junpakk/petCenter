@@ -56,11 +56,43 @@
 		$("#loginBtn").click(function() {
 			console.log("loginBtn >>> : ");
 			
-			$('#loginForm').attr({
-				'action':'loginCheck.pc',
-				'method':'POST',
-				'enctype':'application/x-www-form-urlencoded'
-			}).submit();
+			let loginURL = 'loginCheck.pc';
+			let reqType = "POST";
+			let dataParam = {
+					mid : $("#mid").val(),
+					mpw : $("#mpw").val(),
+			};
+			
+			$.ajax({
+				url: loginURL,
+				type: reqType,
+				data: dataParam,
+				success: whenSuccess,
+				error: whenError
+			});
+			
+			function whenSuccess(resData){
+				//alert("whenSuccess resData >>> : " + resData);
+				if(resData == "loginSuccess"){
+					alert("로그인에 성공하였습니다");
+					location.href = "mainPage.pc";
+				}else{
+					alert("로그인에 실패하였습니다");
+					$("#mid").val('');
+					$("#mpw").val('');
+					$("#mid").focus();
+				}
+			}
+			
+			function whenError(e){
+				alert("e >>> : " + e.responseText);
+			}
+			
+// 			$('#loginForm').attr({
+// 				'action':'loginCheck.pc',
+// 				'method':'POST',
+// 				'enctype':'application/x-www-form-urlencoded'
+// 			}).submit();
 		});
 	});
 	
@@ -142,19 +174,21 @@
 </script>
 <style type="text/css">
 	
-/* 	.div1 { */
-/* 		background: #eee; */
-/* 		border: 2px solid red; */
-/* 		width: 300px; */
-/* 		height: 300px; */
-/* 		margin: 100px auto; */
-/* 	} */
 	
 </style>
 </head>
 <body>
+<jsp:include page="../include/header.jsp" flush="true">
+	<jsp:param name="url" value="produectSelectAll.jsp"/>
+</jsp:include>
+<br><br><br><br><br><br>
+
 <div class="container">
-<div class="div1 mt-5">
+<div class="row">
+<div class="col">
+</div>
+<div class="col-3">
+
 	<form name="loginForm" id="loginForm">
 		<table border="1" class="table table-bordered w-auto" align="center">
 			<thead>
@@ -163,14 +197,14 @@
 			</tr>
 			</thead>
 			<tr>
-				<td><input type="text" name="mid" id="mid" style="width:208px;" onkeydown=moveFocus("mpw")></td>
+				<td><input type="text" name="mid" id="mid" style="width:229px;" onkeydown=moveFocus("mpw")></td>
 			</tr>
 			<tr>
-				<td><input type="password" name="mpw" id="mpw" style="width:208px;" onkeydown=moveFocus("loginBtn")></td>
+				<td><input type="password" name="mpw" id="mpw" style="width:229px;" onkeydown=moveFocus("loginBtn")></td>
 			</tr>
 			<tr>
 				<td>
-					<button type="button" class="btn btn-primary" id="loginBtn" style="width:208px;">로그인</button>
+					<button type="button" class="btn btn-primary" id="loginBtn" style="width:229px;">로그인</button>
 				</td>
 			</tr>
 			<tr>
@@ -187,11 +221,11 @@
 					<input type="hidden" name="snsemail" id="snsemail" />
 					<input type="hidden" name="mname" id="mname" />
 					<a href="javascript:kakaoLoginApi()">
-						<img height="51" width="208" src="/petCenter/img/login/kakao.jpg"/>
+						<img height="55" width="229" src="/petCenter/img/login/kakao.jpg"/>
 					</a>
 					<br><br>
 					<a href="<%= apiURL %>">
-						<img height="51" width="208" src="/petCenter/img/login/naver.PNG"/>
+						<img height="55" width="229" src="/petCenter/img/login/naver.PNG"/>
 					</a>
 				</td>
 			</tr>
@@ -199,6 +233,14 @@
 		</table>
 	</form>
 </div>
+<div class="col">
 </div>
+</div>
+</div>
+
+<br><br><br><br><br><br>
+<jsp:include page="../include/footer.jsp" flush="true">
+		<jsp:param name="url" value="produectSelectAll.jsp"/>
+</jsp:include>
 </body>
 </html>

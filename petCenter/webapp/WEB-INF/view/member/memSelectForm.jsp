@@ -61,10 +61,10 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 
 <script type="text/javascript">
-	alert("javascript");
+	//alert("javascript");
 	
 	$(document).ready(function() {
-		alert("jQuery");
+		//alert("jQuery");
 		
 		(function inputData(){
 			$("#mnum").val('<%= mnum %>');
@@ -189,10 +189,19 @@
 </head>
 
 <body>
-<div id="container">
+<jsp:include page="../include/header.jsp" flush="true">
+	<jsp:param name="url" value="produectSelectAll.jsp"/>
+</jsp:include>
+<br><br><br><br><br><br>
+
+<div class="container">
+<div class="row">
+<div class="col">
+</div>
+<div class="col-6">
 
 <form name="memForm" id="memForm">
-<table class="table table-sm table-bordered w-auto" align="center">
+<table border="1" align="center" class="table table-sm table-striped table-hover table-bordered" >
 <thead>
 <tr>
 	<td colspan="2">
@@ -204,8 +213,8 @@
 <tbody>
 
 <tr>
-	<td class="align-middle" id="notNull">아이디</td>
-	<td>
+	<td class="align-middle" id="notNull" style="width:120px;">아이디</td>
+	<td >
 		<input type="hidden" name="mnum" id="mnum" />
 		<input type="text" name="mid" id="mid" readonly />
 	</td>
@@ -228,7 +237,7 @@
 
 <tr>
 	<td class="align-middle">이름</td>
-	<td><input type="text" name="mname" id="mname" readonly/></td>
+	<td><input type="text" name="mname" id="mname" /></td>
 </tr>
 
 <tr>
@@ -236,7 +245,7 @@
 	<td>
 		<input type="text" name="memail1" id="memail1" style="width:150px" />
 		@ <input type="text" name="memail2" id="memail2" style="width:100px" placeholder="직접입력"/>
-		<select name="memail3" id="memail3" style="width:100px; margin-right:10px">
+		<select name="memail3" id="memail3" class="custom-select" style="width:115px; margin-right:10px">
 			<option value="1" selected>직접입력</option>
 			<option value="naver.com" >naver.com</option>
 			<option value="gmail.com" >gmail.com</option>
@@ -249,7 +258,7 @@
 <tr>
 	<td class="align-middle" >휴대폰</td>
 	<td>
-		<select name="mhp1" id="mhp1">
+		<select name="mhp1" id="mhp1" class="custom-select" style="width:70px">
 			<option value="010" selected>010</option>
 			<option value="011">011</option>
 			<option value="016">016</option>
@@ -257,8 +266,8 @@
 			<option value="018">018</option>
 			<option value="019">019</option>
 		</select>
-		- <input type="text" name="mhp2" id="mhp2" size="1"/>
-		- <input type="text" name="mhp3" id="mhp3" size="1"/>
+		- <input type="text" name="mhp2" id="mhp2" maxlength="4" size="4"/>
+		- <input type="text" name="mhp3" id="mhp3" maxlength="4" size="4"/>
 	</td>
 </tr>
 
@@ -273,7 +282,7 @@
 <tr>
 	<td class="align-middle">자기소개</td>
 	<td>
-		<textarea name="minfo" id="minfo" rows="5" cols="49" placeholder="자기소개글 작성해주세요"><%= minfo %></textarea>
+		<textarea name="minfo" id="minfo" rows="5" cols="47" placeholder="자기소개글 작성해주세요"><%= minfo %></textarea>
 	</td>
 </tr>
 
@@ -283,7 +292,7 @@
 <tr >
 	<td colspan="2">
 		<button type="button" id="updateBtn" class="btn btn-primary btn-lg">수정하기</button>
-		<button type="button" id="btn" class="btn btn-danger btn-lg">탈퇴하기</button>
+		<button type="button" id="btn" class="btn btn-danger btn-lg" style="float: right;">탈퇴하기</button>
 <!-- 		<button type="reset">다시 </button> -->
 	</td>
 </tr>
@@ -291,6 +300,16 @@
 
 </table>
 </form>
+
 </div>
+<div class="col">
+</div>
+</div>
+</div>
+
+<br><br><br><br><br><br>
+<jsp:include page="../include/footer.jsp" flush="true">
+		<jsp:param name="url" value="produectSelectAll.jsp"/>
+</jsp:include>
 </body>
 </html>
