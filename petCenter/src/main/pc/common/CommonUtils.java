@@ -43,4 +43,9 @@ public abstract class CommonUtils {
 	public static final String NOTICE_IMG_UPLOAD_PATH = PETCENTER_IMG_UPLOAD_PATH + "notice";
 	public static final int NOTICE_IMG_FILE_SIZE = 10*1024*1024; //2이미지파일사이즈, 10MB
 	public static final String NOTICE_EN_CODE = "UTF-8";//3인코딩
+	
+	// 박람회
+	public static final String PHOTO_IMG_UPLOAD_PATH = PETCENTER_IMG_UPLOAD_PATH + "photo";
+	public static final int PHOTO_IMG_FILE_SIZE = 10*1024*1024; //2이미지파일사이즈, 10MB
+	public static final String PHOTO_EN_CODE = "UTF-8";//3인코딩
 }

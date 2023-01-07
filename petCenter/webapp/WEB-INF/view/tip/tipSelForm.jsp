@@ -33,7 +33,7 @@
 				});
 				
 				$("#cMain").on("click", function(){
-					location.href="comSelAll.pc";
+					location.href="tipSelAll.pc";
 				});
 				
 				// like_1 버튼 
@@ -152,7 +152,7 @@
 				location.href="mainPage.pc";
 			}
 		</script>
-		<div class="title">커뮤니티</div>
+		<div class="title">팁 게시판</div>
 		<form action="Form" id="Form" name="Form">
 			<input type="hidden" class="insert_1" id="mnum" name="mnum" value="<%=mnum %>" readonly/>
 			<input type="hidden" class="insert_1" id="mid" name="mid" value="<%=mid %>" readonly/>

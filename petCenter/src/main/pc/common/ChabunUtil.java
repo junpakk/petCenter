@@ -16,6 +16,8 @@ public abstract class ChabunUtil {
 	public static final String BIZ_GUBUN_BC = "BC"; 
 	public static final String BIZ_GUBUN_BN = "BN"; // 공지사항
 	
+	public static final String BIZ_GUBUN_BP = "BP"; // 사진게시판
+	
 	
 	public static String numPad(String t, String c) {
 		
@@ -75,5 +77,9 @@ public abstract class ChabunUtil {
 
 	public static String getNoticeChabun(String type, String memNum) {		
 		return BIZ_GUBUN_BN.concat(ChabunUtil.numPad(type, memNum));
+	}
+	
+	public static String getPhotoChabun(String type, String memNum) {		
+		return BIZ_GUBUN_BP.concat(ChabunUtil.numPad(type, memNum));
 	}
 }

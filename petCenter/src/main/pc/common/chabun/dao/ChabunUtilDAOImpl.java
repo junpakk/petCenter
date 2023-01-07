@@ -14,6 +14,7 @@ import main.pc.reply.vo.ReplyVO;
 import main.pc.member.vo.MemberVO;
 import main.pc.notice.vo.NoticeVO;
 import main.pc.order.vo.OrderVO;
+import main.pc.photo.vo.PhotoVO;
 import main.pc.product.vo.ProductVO;
 import main.pc.cart.vo.CartVO;
 import main.pc.communities.vo.CommunitiesVO;
@@ -101,6 +102,13 @@ public class ChabunUtilDAOImpl implements ChabunUtilDAO {
 		// TODO Auto-generated method stub
 		logger.info("getNoticeChabun 함수 진입");
 		return sqlSession.selectOne("getNoticeChabun");
+	}
+
+	@Override
+	public PhotoVO getPhotoChabun() {
+		// TODO Auto-generated method stub
+		logger.info("getPhotoChabun 함수 진입");
+		return sqlSession.selectOne("getPhotoChabun");
 	}
 
 }

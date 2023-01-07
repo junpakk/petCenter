@@ -41,6 +41,35 @@
 	}
 %>
 
+<style type="text/css">
+
+
+  .rsh {
+  	 	 padding: 15px 60px;
+  }
+  .rd {
+  		padding: 10px 30px;
+		
+
+
+  }
+  
+  .rss li{
+  		padding: 10px 200px 10px 20px;
+  		border-bottom: 1px solid #adacac;
+
+  		text-align: left;
+  
+  }
+  .rstd {
+  		white-space : nowrap;
+  		padding: 10px 300px 10px 300px;
+  		background-color: #e8e8e8;
+  }
+  
+ 
+  
+</style>
 <!DOCTYPE html>
 <html>
 <head>
@@ -52,7 +81,7 @@
 	alert("javascript");
 	
 	$(document).ready(function() {
-		alert("jQuery");
+
 		
 		$(function() {
 			
@@ -64,15 +93,15 @@
 				dataType: dtV,
 				success: function(data) {
 					
-					alert("data >>> : " + data);
+
 					console.log("data >>> : " + data);
 					
 					var $items = $(data).find("item");
-					alert("$items >>> : " + $items);
+
 					
 					if ($items.length > 0) {
 						
-						$items = $items.slice(0, 20);
+						$items = $items.slice(0, 5);
 						
 						var $ulTag = $("<ul />");
 						
@@ -104,8 +133,23 @@
 </script>
 </head>
 <body>
-<h3>RSS 읽기</h3>
-<hr>
-<div class="rss"></div>
+
+<br>
+<div align="left">
+	
+	<h1 class="rsh" align="left">애니멀라이트 뉴스기사</h3><br>
+	<div class="rd">
+	<table>
+		<tr>
+			<td class="rstd"> 제목 </td>
+			<td rowspan="2"><a href="http://www.animalrights.kr/"><img src="/petCenter/img/news.PNG" width="500" height="280"/></a></td>
+		</tr>
+		<tr>
+			<td  class="rss">
+			</td> 
+		</tr>
+	</table>
+	</div>
+</div>
 </body>
 </html>

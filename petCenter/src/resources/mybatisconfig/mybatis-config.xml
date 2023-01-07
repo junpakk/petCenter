@@ -23,5 +23,6 @@
 		<typeAlias type="main.pc.communities.vo.CommunitiesVO" alias="communitiesvo"/>
 		
 		<typeAlias type="main.pc.notice.vo.NoticeVO" alias="noticevo"/>
+		<typeAlias type="main.pc.photo.vo.PhotoVO" alias="photovo"/>
 	</typeAliases>
 </configuration>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+          "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+          
+<mapper namespace="main.pc.photo.dao.PhotoDAO">
+
+	<insert id="photoIns" parameterType="photovo" >
+	 
+		INSERT INTO PC_PHOTO (bpnum,mnum,mid,bptitle,bpphoto,bphit,delyn,idate,udate)
+        			VALUES 
+        			( #{bpnum, jdbcType=VARCHAR},
+        			  #{mnum, jdbcType=VARCHAR},
+        			  #{mid, jdbcType=VARCHAR},
+        			  #{bptitle, jdbcType=VARCHAR},
+        			  #{bpphoto, jdbcType=VARCHAR},
+        			  #{bphit, jdbcType=VARCHAR},
+        			  'Y',
+        			  SYSDATE,
+        			  SYSDATE )
+	</insert>
+
+	
+	<select id="photoSelAll" parameterType="photovo" resultType="photovo" >
+		SELECT * FROM (
+			SELECT 	 A.BPNUM			BPNUM
+					,A.MNUM				MNUM
+					,A.MID				MID
+					,A.BPTITLE			BPTITLE
+					,A.BPPHOTO			BPPHOTO
+					,A.BPHIT			BPHIT
+					,A.DELYN			DELYN
+					,TO_CHAR(TO_DATE(A.IDATE), 'YYYY-MM-DD')	IDATE
+					,TO_CHAR(TO_DATE(A.UDATE), 'YYYY-MM-DD')	UDATE			
+					,CEIL(ROW_NUMBER() OVER(ORDER BY A.BPNUM)/#{pageSize}) pageSize
+					,COUNT(A.BPNUM) OVER() AS totalCount
+			FROM	PC_PHOTO A
+			WHERE 	A.DELYN = 'Y'
+			ORDER BY 1
+		) 	WHERE pageSize = #{curPage}
+	</select>	
+	
+	<select id="photoSelForm" parameterType="photovo" resultType="photovo">
+
+	SELECT       A.BPNUM			BPNUM
+				,A.MNUM				MNUM
+				,A.MID				MID
+				,A.BPTITLE			BPTITLE
+				,A.BPPHOTO			BPPHOTO
+				,A.BPHIT			BPHIT
+				,A.DELYN			DELYN
+				,B.LIKEY			LIKEY
+				,B.HATE				HATE  
+	            ,TO_CHAR(TO_DATE(A.IDATE), 'YYYY-MM-DD')  AS IDATE
+		        ,TO_CHAR(TO_DATE(A.UDATE), 'YYYY-MM-DD')  AS UDATE
+	FROM		PC_PHOTO A, PC_LIKE B
+	WHERE		A.BPNUM = B.BPNUM(+)
+				AND		A.DELYN = 'Y'
+				AND		A.BPNUM = #{bpnum}
+</select>
+
+
+<update id="bphitcnt" parameterType="photovo" >
+ 
+	UPDATE  PC_PHOTO 
+		SET BPHIT = (SELECT NVL(MAX(BPHIT), 0) + 1 FROM PC_PHOTO WHERE DELYN = 'Y' AND BPNUM = #{bpnum})
+		   ,UDATE = SYSDATE
+	WHERE   DELYN = 'Y'
+	AND     BPNUM = #{bpnum}		   
+</update>
+</mapper>

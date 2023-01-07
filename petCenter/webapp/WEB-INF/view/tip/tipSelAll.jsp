@@ -43,7 +43,7 @@
 						return;
 					}
 					$("#selectForm").attr({
-						"action":"comSelForm.pc",
+						"action":"tipSelForm.pc",
 						"method":"GET",
 						"enctype":"application/x-www-form-urlencoded"
 					}).submit();	

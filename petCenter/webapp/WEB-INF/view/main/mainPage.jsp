@@ -269,53 +269,68 @@
 		</div><!-- end of header -->
 		<div class="side"></div>
 		<div class="main">
-			<div>
-
-				<br>
-				<table>
-					<tr>
-						<td>
-							<h1 align="left" style="margin-left:50px;">예정 전시</h1> 
-						</td>
-						<td width="1000" align="right">	
-							<button  type="button" class="w-btn fair" id="allfair">전체보기  ></button>
-						</td>
-					</tr>
-				</table>
-				<br>
-				<table style="border:1px; width:1200px;">
-					<tr>
-						<td>
-							<img src="/petCenter/img/fair/1.png" style="border-radius:7px;" width="280" height="350"/>
-						</td>
-						<td>
-				 			<img src="/petCenter/img/fair/2.png" style="border-radius:7px;" width="280" height="350"/>
-				 		</td>
-				 		<td>
-				 			<img src="/petCenter/img/fair/3.png" style="border-radius:7px;" width="280" height="350"/>
-				 		</td>
-				 		<td>
-				 			<img src="/petCenter/img/fair/4.png" style="border-radius:7px;" width="280" height="350"/>
-				 		</td>
-				 	</tr>
-				 	<tr>
-				 		<td>
-				 			<button  type="button" id="fairSel" class="fairbtn">사전등록하러가기</button>
-				 		</td>
-				 		<td>
-				 			<button  type="button" id="fairnone" class="fairbtn">사전등록하러가기</button>
-				 		</td>
-				 		<td>
-				 			<button  type="button" id="fairnone" class="fairbtn">사전등록하러가기</button>
-				 		</td>
-				 		<td>
-				 			<button  type="button" id="fairnone" class="fairbtn">사전등록하러가기</button>
-				 		</td>
-				</table>
+		<!-- 박람회 -->
+				<div>
+	
+					<br>
+					<table>
+						<tr>
+							<td>
+								<h1 align="left" style="margin-left:50px;">예정 전시</h1> 
+							</td>
+							<td width="1000" align="right">	
+								<button  type="button" class="w-btn fair" id="allfair">전체보기  ></button>
+							</td>
+						</tr>
+					</table>
+					<br>
+					<table style="border:1px; width:1200px;">
+						<tr>
+							<td>
+								<img src="/petCenter/img/fair/1.png" style="border-radius:7px;" width="280" height="350"/>
+							</td>
+							<td>
+					 			<img src="/petCenter/img/fair/2.png" style="border-radius:7px;" width="280" height="350"/>
+					 		</td>
+					 		<td>
+					 			<img src="/petCenter/img/fair/3.png" style="border-radius:7px;" width="280" height="350"/>
+					 		</td>
+					 		<td>
+					 			<img src="/petCenter/img/fair/4.png" style="border-radius:7px;" width="280" height="350"/>
+					 		</td>
+					 	</tr>
+					 	<tr>
+					 		<td>
+					 			<button  type="button" id="fairSel" class="fairbtn">사전등록하러가기</button>
+					 		</td>
+					 		<td>
+					 			<button  type="button" id="fairnone" class="fairbtn">사전등록하러가기</button>
+					 		</td>
+					 		<td>
+					 			<button  type="button" id="fairnone" class="fairbtn">사전등록하러가기</button>
+					 		</td>
+					 		<td>
+					 			<button  type="button" id="fairnone" class="fairbtn">사전등록하러가기</button>
+					 		</td>
+					</table>
+				
+				</div>
+		<!-- 박람회 -->
+		<!-- rss 연결 -->
+				<div>
+					<jsp:include page="../main/rssPage.jsp" flush="true">
+						<jsp:param name="url" value="rss.jsp"/>
+					</jsp:include>
+				</div>
+				<!-- rss 연결 -->
+				
+				<!-- 사진 게시판 연결 -->
+					<div>
+						사진 게시판 넣을예정
+						<img src="/petCenter/img/33.png"/>
+					</div>
+				<!-- 사진 게시판 연결 -->
 			
-			</div>
-			<div><img src="/petCenter/img/22.png"/></div>
-			<div><img src="/petCenter/img/33.png"/></div>
 			<div><img src="/petCenter/img/44.png"/></div>
 		</div><!--  end of main -->
 		<div class="aside"></div>

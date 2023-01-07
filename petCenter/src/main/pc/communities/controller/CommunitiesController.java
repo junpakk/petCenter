@@ -168,5 +168,25 @@ public class CommunitiesController {
 				return "com/comSelAll";
 				
 			}
+			
+		//팁게시판 보기
+		@GetMapping("tipSelForm")
+		public String tipSelForm(CommunitiesVO cvo, Model m) {
+			
+			List<CommunitiesVO> list = communitiesService.comSelForm(cvo);
+			int nCnt = list.size();
+
+			if(nCnt>0) {
+				
+				int bhitCnt = communitiesService.bchitcnt(cvo);
+				logger.info("cvo.getbchit "+cvo.getBchit());
+				m.addAttribute("listS", list);
+
+				return "tip/tipSelForm";
+				
+			}
+			return "tip/tipSelAll";
+			
+		}		
 
 }

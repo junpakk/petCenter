@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
     
 <%@ page import="java.util.List"%>
-<%@ page import="main.pc.communities.vo.CommunitiesVO"%>
+<%@ page import="main.pc.photo.vo.PhotoVO"%>
     
 <!DOCTYPE html>
 <html>
@@ -32,8 +32,8 @@
 					location.href="mainPage.pc";
 				});
 				
-				$("#cMain").on("click", function(){
-					location.href="comSelAll.pc";
+				$("#pMain").on("click", function(){
+					location.href="photoSelAll.pc";
 				});
 				
 				// like_1 버튼 
@@ -45,7 +45,7 @@
 					let dataParam = {
 						likey: $("#likey").val(),
 						mnum: $("#mnum").val(),
-						bcnum: $("#bcnum").val(),
+						bpnum: $("#bpnum").val(),
 					};
 					
 					dataParam = $("#Form").serialize();
@@ -71,35 +71,6 @@
 					
 				});
 				
-				// like_2 버튼 
-				$(document).on("click", "#like_2", function(e){
-					alert($("#haty").val());
-					
-					let boardLikeURL = "hate1.pc";
-					let reqType = "GET";
-					let dataParam = {
-						hate: $("#haty").val(),
-						mnum: $("#mnum").val(),
-						bcnum: $("#bcnum").val(),
-					};
-					
-					dataParam = $("#Form").serialize();
-					
-					$.ajax({
-						url: boardLikeURL,
-						type: reqType,								
-						data: dataParam,	            
-						success: whenSuccess				
-					});
-					
-					function whenSuccess(resData){
-						alert("resData : " + resData);
-						console.log("resData : " + resData);			
-						$("#disp_cnt_stop").text(resData);
-						$("#haty").val(resData);
-					}	
-					
-				});
 			});
 		</script>
 		
@@ -152,7 +123,7 @@
 				location.href="mainPage.pc";
 			}
 		</script>
-		<div class="title">커뮤니티</div>
+		<div class="title">반려동물 자랑</div>
 		<form action="Form" id="Form" name="Form">
 			<input type="hidden" class="insert_1" id="mnum" name="mnum" value="<%=mnum %>" readonly/>
 			<input type="hidden" class="insert_1" id="mid" name="mid" value="<%=mid %>" readonly/>
@@ -162,62 +133,52 @@
 			Object obj = request.getAttribute("listS");
 			if(obj == null) return;
 			
-			List<CommunitiesVO> list = (List<CommunitiesVO>)obj;
+			List<PhotoVO> list = (List<PhotoVO>)obj;
 			int i = list.size();
-			String bcnum = "";
+			String bpnum = "";
 
-			CommunitiesVO cvo = null;
+			PhotoVO pvo = null;
 			if(i == 1) { 
-				 cvo = list.get(0);
-				bcnum = cvo.getBcnum();
+				 pvo = list.get(0);
+				bpnum = pvo.getBpnum();
 
 			}
 			%>
 				<tr>
 					<td class="semi_title">글번호</td>
-					<td class="insert"><%=cvo.getBcnum() %></td>
-					<td class="insert" rowspan='4'><img id="bImage" src="/petCenter/fileupload/com/<%=cvo.getBcphoto() %>" width="160" height="150"  onerror="this.src='/petCenter/img/noImg.gif';"></td>
-				</tr>
-				<tr>
-					<td class="semi_title">카테고리</td>
-					<td class="insert"><%=cvo.getBcc() %></td>	
+					<td class="insert"><%=pvo.getBpnum() %></td>
 				</tr>
 				<tr>
 					<td class="semi_title">글제목</td>
-					<td class="insert"><%=cvo.getBctitle() %></td>
+					<td class="insert"><%=pvo.getBptitle() %></td>
 				</tr>
 				<tr>
 					<td class="semi_title">작성자</td>
-					<td class="insert"><%=cvo.getMid() %></td>
+					<td class="insert"><%=pvo.getMid() %></td>
+				</tr>
+				
+				<tr>
+					<td class="semi_title">사진</td>
+					<td class="insert"><img id="bImage" src="/petCenter/fileupload/photo/<%=pvo.getBpphoto() %>" width="160" height="150"  onerror="this.src='/petCenter/img/noImg.gif';"></td>
 				</tr>
 				<tr>
-					<td align="center" colspan="3"> 추천  <%= cvo.getLikey() %>&nbsp; 반대  <%= cvo.getHate() %>&nbsp; 조회 <%= cvo.getBchit() %> &nbsp; 작성일자 : <%= cvo.getUdate() %></td>
+					<td align="center" colspan="2"> 추천  <%= pvo.getLikey() %>&nbsp; 조회 <%= pvo.getBphit() %> &nbsp; 작성일자 : <%= pvo.getUdate() %></td>
 				</tr>
 				<tr>
-					<td class="semi_title">글내용</td>
-					<td class="insert" colspan='2'><textarea class="insert_1" id="bccontent" name="bccontent" rows="10"  required readonly><%=cvo.getBccontent() %></textarea></td>
-				</tr>
-				<tr>
-					<td colspan="3" style="text-align:center" >
+					<td colspan="2" style="text-align:center" >
 						<input type="button" class="like_1" name="like_1" id="like_1" value="추천">
 
 							<img src='/petCenter/img/like/heart.png' style='width:12px; margin:3px 3px 0 0;'>
-							<span id="disp_cnt_recom"><%= cvo.getLikey() %></span>
-
-						<input type="button" class="like_2" name="like_2" id="like_2" value="반대">
-
-							<img src='/petCenter/img/like/thumb_rev.png' style='width:12px; margin:3px 3px 0 0;'>
-							<span id="disp_cnt_stop"><%= cvo.getHate() %></span>
-							<input type="hidden" name="bcnum" id="bcnum" value="<%=bcnum %>">
-							<input type="hidden" name="likey"  id="likey" value="<%= cvo.getLikey()%>">
-							<input type="hidden" name="hate"  id="haty" value="<%= cvo.getHate() %>">
+							<span id="disp_cnt_recom"><%= pvo.getLikey() %></span>
+							<input type="hidden" name="bcnum" id="bcnum" value="<%=bpnum %>">
+							<input type="hidden" name="likey"  id="likey" value="<%= pvo.getLikey()%>">
 
 					</td>
 				<tr>
 				<tr>
-					<td colspan="3" class="gbuttons">
+					<td colspan="2" class="gbuttons">
 						<input type="button" id="toMain" name="toMain" value="메인화면"/>
-						<input type="button" id="cMain" name="cMain" value="글목록"/>
+						<input type="button" id="pMain" name="pMain" value="글목록"/>
 					</td>
 				</tr>
 			
@@ -226,7 +187,7 @@
 		<div>
 			<!-- 댓글 처리 하는 루틴  --> 
 			<jsp:include page="/replyForm.pc">
-				<jsp:param value="<%=bcnum%>" name="bcnum"/>
+				<jsp:param value="<%=bpnum%>" name="bpnum"/>
 			</jsp:include>
 		</div>
 		</div>

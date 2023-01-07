@@ -42,7 +42,9 @@
 
 <style type="text/css">
 
-
+	td{
+		padding: 5px;
+	}
 
 </style>
 </head>
@@ -52,7 +54,7 @@
 	<jsp:include page="../include/header.jsp" flush="true">
 		<jsp:param name="url" value="produectSelectAll.jsp"/>
 	</jsp:include>
-	<h2>박람회 예정</h2><br>
+	<h2>예정 박람회</h2><br>
 	<table>
 		<tr>
 			<table>

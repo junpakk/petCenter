@@ -48,7 +48,7 @@
 	.w-btn {
 	    display: inline-block;
 	    border: none;
-	    padding: 15px 500px;
+	    padding: 15px 400px;
 	    border-radius: 50px;
 	}
 	
@@ -71,10 +71,15 @@
 %>
 </head>
 <body>
+<jsp:include page="../include/header.jsp" flush="true">
+			<jsp:param name="url" value="produectSelectAll.jsp"/>
+	</jsp:include>
+	<br><br>
+<div align="center">
 <form name="fairForm" id="fairForm">
 	<table>
 			<td>
-				<img src="/petCenter/fileupload/fair/1.png" width="400" height="500"><br>
+				<img src="/petCenter/fileupload/fair/1.png" width="400" height="450"><br>
 			</td>
 			<td>
 				<table>
@@ -114,6 +119,11 @@
 
 
 </form>
+</div>
+<br><br><br>
+<jsp:include page="../include/footer.jsp" flush="true">
+		<jsp:param name="url" value="produectSelectAll.jsp"/>
+	</jsp:include>
 </body>
 </html>
 <%

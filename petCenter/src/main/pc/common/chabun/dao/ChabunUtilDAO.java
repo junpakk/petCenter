@@ -10,6 +10,7 @@ import main.pc.reply.vo.ReplyVO;
 import main.pc.member.vo.MemberVO;
 import main.pc.notice.vo.NoticeVO;
 import main.pc.order.vo.OrderVO;
+import main.pc.photo.vo.PhotoVO;
 import main.pc.product.vo.ProductVO;
 
 public interface ChabunUtilDAO {
@@ -28,4 +29,5 @@ public interface ChabunUtilDAO {
 	public CommunitiesVO getCommunitiesChabun();
 	
 	public NoticeVO getNoticeChabun();//공지사항
+	public PhotoVO getPhotoChabun();
 }

@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 
 <%@ page import="java.util.List"%>
-<%@ page import="main.pc.communities.vo.CommunitiesVO"%>
+<%@ page import="main.pc.photo.vo.PhotoVO"%>
 
 <!DOCTYPE html>
 <html>
@@ -19,54 +19,46 @@
 				
 				$(document).on("click", "#chkAll", function() {
 					if($(this).prop("checked")) {
-						$(".bcnum").prop("checked", false);
+						$(".bpnum").prop("checked", false);
 						
 					}
 				});
 				
-				$(document).on("click", "#bcnum", function() {
+				$(document).on("click", "#bpnum", function() {
 					if($(this).prop("checked")) {
-						$(".bcnum").prop("checked", false);
+						$(".bpnum").prop("checked", false);
 						$(this).prop("checked", true);
 					}
 				});
 
 				$("#iBtn").on("click", function() {
 					$("#selectForm").attr({
-						"action":"comInsForm.pc",
+						"action":"photoInsForm.pc",
 						"method":"GET",
 						"enctype":"application/x-www-form-urlencoded"
 					}).submit();
 				});
 
-// 				$("#sBtn").on("click", function() {
-// 					$("#selectForm").attr({
-// 						"action":"comSelAll.pc",
-// 						"method":"GET",
-// 						"enctype":"application/x-www-form-urlencoded"
-// 					}).submit();
-// 				});
-
 				$("#dBtn").on("click", function() {
-					if($(".bcnum:checked").length == 0) {
+					if($(".bpnum:checked").length == 0) {
 						alert("삭제하나선택하시오 >>> : ");
 						return;
 					}
 					$("#selectForm").attr({
-						"action":"comDel.pc",
+						"action":"photoDel.pc",
 						"method":"GET",
 						"enctype":"application/x-www-form-urlencoded"
 					}).submit();
 				});
 
 				$("#ssBtn").on("click", function() {
-					if($(".bcnum:checked").length == 0) {
+					if($(".bpnum:checked").length == 0) {
 						alert("수정하나선택하시오 >>> : ");
 						return;
 					}
 
 					$("#selectForm").attr({
-						"action":"comSel.pc",
+						"action":"photoSel.pc",
 						"method":"GET",
 						"enctype":"application/x-www-form-urlencoded"
 					}).submit();
@@ -74,11 +66,11 @@
 					
 					
 				$("#viewBtn").on("click", function() {
-					if($(".bcnum:checked").length == 0) {
+					if($(".bpnum:checked").length == 0) {
 						return;
 					}
 					$("#selectForm").attr({
-						"action":"comSelForm.pc",
+						"action":"photoSelForm.pc",
 						"method":"GET",
 						"enctype":"application/x-www-form-urlencoded"
 					}).submit();	
@@ -99,7 +91,7 @@
 			/*td.semi_title{text-align:center;}*/
 			th{text-align:center; white-space:nowrap;}
 			td.gbuttons, td.vCenter{text-align:center}
-		
+			}
 		</style>
 		
 	</head>
@@ -113,37 +105,26 @@
 		Object mnum = session.getAttribute("KNUM");
 		Object mid = session.getAttribute("KID");
 		request.setCharacterEncoding("UTF-8");
-		Object obj = request.getAttribute("comList");
+		Object obj = request.getAttribute("photoList");
 		if(obj == null) return;
 		
 		int totalCount = 0;
 		
-		List<CommunitiesVO> list = (List<CommunitiesVO>)obj;
+		List<PhotoVO> list = (List<PhotoVO>)obj;
 		int nCnt = list.size();
 		%>
 	<div class="container">
-		<div class="title">커뮤니티</div>
+		<div class="title">반려동물 자랑</div>
 		
-		<div class="search-box">
-			<jsp:include page="comSelAllSearch.jsp" flush="true">
-				<jsp:param name="searchFilter" value="${paging.searchFilter}"/>
-				<jsp:param name="keyword" value="${paging.keyword}"/>
-				<jsp:param name="startDate" value="${paging.startDate}"/>
-				<jsp:param name="endDate" value="${paging.endDate}"/>
-				<jsp:param name="mnum" value="${paging.mnum}"/>
-				<jsp:param name="mid" value="${paging.mid}"/>
-			</jsp:include>
-		</div>
 		<form action="selectForm" id="selectForm" name="selectForm">
 			<table class="table-sm table-striped table-hover table-bordered" style="width:100%;">
 				<thead>
 					<th><input type="checkbox" id="chkAll" name="chkAll" class="chkAll"/></th>
 					<th>순번</th>
 					<th>글번호</th>
-					<th style="width:100px;">카테고리</th>
 					<th style="width:100px;">아이디</th>
 					<th style="width:200px;">글제목</th>
-					<th>글내용</th>
+					<th>사진</th>
 					<th>조회수</th>
 					<th>입력일</th>
 				</thead>
@@ -151,30 +132,29 @@
 				if(nCnt>0) {
 					for(int i = 0; i<nCnt; i++) {
 						
-						CommunitiesVO covo = list.get(i);
-						totalCount = Integer.parseInt(covo.getTotalCount());
+						PhotoVO pvo = list.get(i);
+						totalCount = Integer.parseInt(pvo.getTotalCount());
 				%>
 			<tbody>
 				<tr>
-					<td class="vCenter"><input type="checkbox" id="bcnum" name="bcnum" class="bcnum" value="<%= covo.getBcnum() %>"/></td>
+					<td class="vCenter"><input type="checkbox" id="bpnum" name="bpnum" class="bpnum" value="<%= pvo.getBpnum() %>"/></td>
 					<td class="vCenter"><%= i+1 %></td>
-					<td class="vCenter"><%= covo.getBcnum() %></td>
-					<td class="vCenter"><%= covo.getBcc() %></td>
-					<td class="vCenter"> <img id="bImage" src="/petCenter/fileupload/com/<%=covo.getBcphoto() %>"  onerror="this.src='/petCenter/img/noImg.gif';"><%= covo.getMid() %></td>
-					<td class="vCenter"><%= covo.getBctitle() %></td>
-					<td><%= covo.getBccontent() %></td>
-					<td class="vCenter"><%= covo.getBchit() %></td>
-					<td class="vCenter"><%= covo.getIdate() %></td>
+					<td class="vCenter"><%= pvo.getBpnum() %></td>
+					<td class="vCenter"><%= pvo.getMid() %></td>
+					<td class="vCenter"><%= pvo.getBptitle() %></td>
+					<td class="vCenter"><img id="bImage" src="/petCenter/fileupload/photo/<%=pvo.getBpphoto() %>" width="110" height="110" onerror="this.src='/petCenter/img/noImg.gif';"></td>
+					<td class="vCenter"><%= pvo.getBphit() %></td>
+					<td class="vCenter"><%= pvo.getIdate() %></td>
 				</tr>
 				<% 
 					}
 				}
 				%>
 				<tr>
-					<td colspan="9">
-						<jsp:include page="comPaging.jsp" flush="true">
-							<jsp:param name="url" value="comSelAll.pc"/>
-							<jsp:param name="str" value="searchFilter=${paging.searchFilter}&keyword=${paging.keyword}&startDate=${paging.startDate}&endDate=${paging.endDate}&mid=<%= mid %>&mnum=<%= mnum %>"/>
+					<td colspan="8">
+						<jsp:include page="photoPaging.jsp" flush="true">
+							<jsp:param name="url" value="photoSelAll.pc"/>
+							<jsp:param name="str" value=""/>
 							<jsp:param name="pageSize" value="${paging.pageSize}"/>
 							<jsp:param name="groupSize" value="${paging.groupSize}"/>
 							<jsp:param name="curPage" value="${paging.curPage}"/>
@@ -183,7 +163,7 @@
 					</td>
 				</tr>				
 				<tr>
-					<td colspan="9" class="gbuttons">
+					<td colspan="8" class="gbuttons">
 						<input type="button" value="등록" id="iBtn"/>
 <!-- 						<input type="button" value="조회" id="sBtn"/> -->
 						<input type="button" value="삭제" id="dBtn"/>
