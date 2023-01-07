@@ -99,6 +99,7 @@
 			/*td.semi_title{text-align:center;}*/
 			th{text-align:center; white-space:nowrap;}
 			td.gbuttons, td.vCenter{text-align:center}
+			#bImage{width:30px;height:28px;}
 		
 		</style>
 		
@@ -160,7 +161,7 @@
 					<td class="vCenter"><%= i+1 %></td>
 					<td class="vCenter"><%= covo.getBcnum() %></td>
 					<td class="vCenter"><%= covo.getBcc() %></td>
-					<td class="vCenter"> <img id="bImage" src="/petCenter/fileupload/com/<%=covo.getBcphoto() %>"  onerror="this.src='/petCenter/img/noImg.gif';"><%= covo.getMid() %></td>
+					<td class="vCenter"> <img id="bImage" src="/petCenter/fileupload/com/<%=covo.getBcphoto() %>" onerror="this.src='/petCenter/img/noImg.gif';"><%= covo.getMid() %></td>
 					<td class="vCenter"><%= covo.getBctitle() %></td>
 					<td><%= covo.getBccontent() %></td>
 					<td class="vCenter"><%= covo.getBchit() %></td>
