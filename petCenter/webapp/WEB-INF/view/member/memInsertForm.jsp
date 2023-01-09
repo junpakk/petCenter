@@ -286,6 +286,8 @@
 	<td>
 		<input type="checkbox" name="mpetArr" value="mp0" />강아지
 		<input type="checkbox" name="mpetArr" value="mp1" />고양이
+		<input type="checkbox" name="mpetArr" value="mp2" />조류
+		<input type="checkbox" name="mpetArr" value="mp3" />파충류
 	</td>
 </tr>
 
