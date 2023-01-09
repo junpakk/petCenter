@@ -53,6 +53,7 @@ public class CommunitiesController {
 		CommunitiesVO cvo = null;
 		cvo = new CommunitiesVO();
 		
+		cvo.setBchit("0");
 		cvo.setBcnum(bcnum);
 		cvo.setBcc(fu.getParameter("bcc"));
 		cvo.setMnum(fu.getParameter("mnum"));

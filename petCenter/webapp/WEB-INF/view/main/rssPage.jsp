@@ -137,7 +137,7 @@
 <br>
 <div align="left">
 	
-	<h1 class="rsh" align="left">애니멀라이트 뉴스기사</h3><br>
+	<h1 class="rsh" align="left">애니멀라이트 뉴스기사</h1><br>
 	<div class="rd">
 	<table>
 		<tr>

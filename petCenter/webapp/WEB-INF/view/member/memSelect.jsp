@@ -36,7 +36,7 @@
 	
 	String mpet = mvo.getMpet();
 	logger.info("mpet >>> : " + mpet);
-	String[] mpetArr = {"강아지", "고양이"};
+	String[] mpetArr = {"강아지", "고양이", "조류", "파충류"};
 	
 	if (mpet != null && mpet.length() > 0){
 		for(int i=0; i < mpetArr.length; i++) {
@@ -174,8 +174,13 @@
 		logger.info("mnum >>> : " + admin);
 		if(admin.equals("M0000000001") && mnum.equals("M0000000001")){
 %>
-<tr >
+<tr>
 	<td colspan="2" align="center">
+		<h2>관리자 사이트 설정</h2>
+	</td>
+</tr>
+<tr >
+	<td colspan="2" align="left">
 		<button type="button" onclick="location.href='memSelectAll.pc'" class="btn btn-danger btn-lg" >회원관리</button>
 		<button type="button" onclick="location.href='noticeInsertForm.pc'" class="btn btn-warning btn-lg" >공지사항작성</button>
 		<button type="button" onclick="location.href='productInsertForm.pc'" class="btn btn-success btn-lg" >상품등록</button>

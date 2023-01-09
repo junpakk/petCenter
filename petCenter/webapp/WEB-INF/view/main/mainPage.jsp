@@ -320,7 +320,10 @@
 				<a href="#"><img src="/petCenter/img/logo.png" align="left" width="110" height="110"></a>
 				<nav>
 					<ul class="menu">
-						<li><a href="noticeSelectAll.pc">공지사항</a></li>
+						<li><a href="noticeSelectAll.pc">공지사항</a></li>			
+						<li><a href="productSelectAll.pc?pcategory=21">쇼핑몰</a></li>
+						<li><a href="walkHelper.pc">산책지도</a></li>
+						<li><a href="fairSelectAll.pc">박람회</a></li>
 						<li>
 							<div class="dropdown1">
 								<a class="dropBtn" href="#">게시판</a>
@@ -328,13 +331,10 @@
 									<hr style="border: 1px solid #3db7cc;">
 									<a href="comSelAll.pc">커뮤니티</a>
 									<a href="tipSelAll.pc">팁게시판</a>
-									<a href="">사진게시판</a>
+									<a href="photoSelAll.pc">사진게시판</a>
 								</div>
 							</div>
 						</li>
-						<li><a href="productSelectAll.pc?pcategory=21">쇼핑몰</a></li>
-						<li><a href="walkHelper.pc">산책지도</a></li>
-						<li><a href="fairSelectAll.pc">박람회</a></li>
 					</ul>
 				</nav>
 
@@ -404,8 +404,14 @@
 						<img src="/petCenter/img/33.png"/>
 					</div>
 				<!-- 사진 게시판 연결 -->
-			
-			<div><img src="/petCenter/img/44.png"/></div>
+				<!-- 회원 기호동물 차트 -->
+				<div>
+					<jsp:include page="../main/piechartPage.jsp" flush="true">
+						<jsp:param name="chart" value="chart.jsp"/>
+					</jsp:include>
+				</div>
+				
+				<!-- 회원 기호동물 차트 -->
 		</div><!--  end of main -->
 		<div class="aside">
 		</div>

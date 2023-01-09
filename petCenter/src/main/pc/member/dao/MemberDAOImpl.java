@@ -8,6 +8,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import main.pc.member.vo.ChartVO;
 import main.pc.member.vo.MemberVO;
 
 @Repository

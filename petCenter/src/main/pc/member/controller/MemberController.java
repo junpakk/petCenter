@@ -18,6 +18,7 @@ import main.pc.common.CommonUtils;
 import main.pc.common.EncryptSHA;
 import main.pc.common.chabun.service.ChabunUtilService;
 import main.pc.member.service.MemberService;
+import main.pc.member.vo.ChartVO;
 import main.pc.member.vo.MemberVO;
 
 
@@ -42,7 +43,7 @@ public class MemberController {
 	
 	//인서트 DB 입력
 	@PostMapping("memInsert")
-	public String memInsert(HttpServletRequest req, MemberVO mvo, Model model) {
+	public String memInsert(HttpServletRequest req, MemberVO mvo, Model model, ChartVO cvo) {
 		logger.info("memInsert 함수 진입 >>> :");
 		
 		String mnum = ChabunUtil.getMemberChabun("D", chabunUtilService.getChabunMember().getMnum());
@@ -76,6 +77,7 @@ public class MemberController {
 		
 		// 기호동물
 		String[] mpetArr = req.getParameterValues("mpetArr");
+		
 		String mpet = "";
 		logger.info("memInsert mpetArr >>> : " + mpetArr);
 		

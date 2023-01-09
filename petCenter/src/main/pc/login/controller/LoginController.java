@@ -57,7 +57,7 @@ public class LoginController {
 	@GetMapping("rssPage")
 	public String rssPage() {
 		logger.info("rssPage 함수 진입 >>> : ");
-		return "main/rssPage";
+		return "main/piechartPage";
 	}
 	// 메인페이지
 	@GetMapping("mainPage")
