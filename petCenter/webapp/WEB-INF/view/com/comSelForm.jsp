@@ -115,17 +115,7 @@
 			textarea.insert_1{width:100%;border:none;}
 			td.semi_title{text-align:center; white-space:nowrap;}
 			td.gbuttons{text-align:center}
-			.header{
-			/* 	background-image:url("../../img/contact.png"); */
-				diplay:flex;
-				position:sticky;
-				top:0%;
-			  	background:orange;
-				grid-area:header;
-				text-align:center;
-			}
-			.upperH{width:100%;height:50px;background:pink;text-align:center;}
-			.lowerH{width:100%;height:100px;background:yellow;text-align:center;}			
+	
 		</style>
 	
 	</head>

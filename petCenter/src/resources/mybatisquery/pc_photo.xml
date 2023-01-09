@@ -31,11 +31,11 @@
 					,A.DELYN			DELYN
 					,TO_CHAR(TO_DATE(A.IDATE), 'YYYY-MM-DD')	IDATE
 					,TO_CHAR(TO_DATE(A.UDATE), 'YYYY-MM-DD')	UDATE			
-					,CEIL(ROW_NUMBER() OVER(ORDER BY A.BPNUM)/#{pageSize}) pageSize
+					,CEIL(ROW_NUMBER() OVER(ORDER BY A.BPNUM DESC)/#{pageSize}) pageSize
 					,COUNT(A.BPNUM) OVER() AS totalCount
 			FROM	PC_PHOTO A
 			WHERE 	A.DELYN = 'Y'
-			ORDER BY 1
+			ORDER BY 1 DESC
 		) 	WHERE pageSize = #{curPage}
 	</select>	
 	

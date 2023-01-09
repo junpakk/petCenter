@@ -90,7 +90,7 @@
 /* 			textarea.insert_1{width:100%;border:none;} */
 			/*td.semi_title{text-align:center;}*/
 			th{text-align:center; white-space:nowrap;}
-			td.gbuttons, td.vCenter{text-align:center}
+			td.vCenter{text-align:center}
 			}
 		</style>
 		
@@ -163,7 +163,7 @@
 					</td>
 				</tr>				
 				<tr>
-					<td colspan="8" class="gbuttons">
+					<td colspan="8" class="gbuttons" align="right">
 						<input type="button" value="등록" id="iBtn"/>
 <!-- 						<input type="button" value="조회" id="sBtn"/> -->
 						<input type="button" value="삭제" id="dBtn"/>
