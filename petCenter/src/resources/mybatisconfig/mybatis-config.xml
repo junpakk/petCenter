@@ -24,5 +24,7 @@
 		
 		<typeAlias type="main.pc.notice.vo.NoticeVO" alias="noticevo"/>
 		<typeAlias type="main.pc.photo.vo.PhotoVO" alias="photovo"/>
+		
+		<typeAlias type="main.pc.member.vo.ChartVO" alias="chartvo"/>
 	</typeAliases>
 </configuration>

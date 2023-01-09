@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import main.pc.member.dao.MemberDAO;
+import main.pc.member.vo.ChartVO;
 import main.pc.member.vo.MemberVO;
 
 @Service
