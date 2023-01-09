@@ -103,9 +103,9 @@
   	
   	// 버튼 동작
   	$(document).ready(function(){
-  		alert("눌림");
-    	$('button').on('click', function(){
-    		alert("눌림눌림");
+  		
+  		
+    	$(function(){
         
      	var jsonUrl = "/petCenter/json_piechart.json";
         
@@ -121,7 +121,6 @@
 
              // 파이 차트 1
              function drawChart() {
-            	 alert("drawChart");
              	// 버튼 클릭 시 ajax를 사용하여 서버로부터 json 배열 객체를 가져왔다고 가정함
              	var arr = [
              				  ['동물','좋아하는사람'],
@@ -140,20 +139,40 @@
                              
                              
                             };
-                 alert("chart");
                  var chart = new google.visualization.PieChart(document.getElementById('piechart'));
                 	chart.draw(dataTable, options);
                  
               } // drawColumnChart1()의 끝
-              
-              drawChart();
+
+             google.charts.setOnLoadCallback(drawChart);
+
            }
        	});
 	});
 </script>
+<style type="text/css">
+
+
+  .charth {
+  	 	 padding: 15px 40px;
+  }
+  
+ 
+  
+</style>
 </head>
 <body>
-	<button type="button" id="btn">버튼</button>
-	<div id="piechart" style="width:900px; height:500px;"></div>
+	<table>
+		<tr>
+			<td>
+				<h1 class="charth" align="left">Pet Center 동물 선호도 조사</h1>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div id="piechart" style="width:600px; height:400px;" align="center"></div>
+			</td>
+		</tr>
+	</table>
 </body>
 </html>
