@@ -91,9 +91,6 @@
 
 	.align-middle{ text-align: center;}
 	
-
-	
-	
 </style>
 </head>
 

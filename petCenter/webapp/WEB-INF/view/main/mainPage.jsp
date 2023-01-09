@@ -47,7 +47,27 @@
 				$("#fairnone").on("click", function(){
 					alert("사전등록은 한달 전부터 가능합니다. ");
 					});
+				
+		
 			});
+		
+		function popup(){
+			//window.open("URL", "팝업이름", "팝업 옵션");
+			let url = "chat.pc";
+			let name = "popup test";
+			let option ="width=500, height=500, top=450, left=1350";
+			window.open(url, name, option);
+			/*
+				width		open되는 팝업 창의 너비를 지정
+				height		open되는 팝업창의 높이를 지정
+				left		open되는 팝업창의 x축 위치를 지정
+				top			open되는 팝업창의 y축 위치를 지정
+				scrollbars	팝업창의 scrollbar를 Visible 여부를 설정 (scrollbars = no or scrollbars = yes)
+				location	팝업창의 URL 입력란을 Visible 여부를 설정 (location= no or location= yes)
+				toolbars	팝업창의 도구상자를 Visible 여부를 설정 (toolbars= no or toolbars= yes)
+				status		팝업창의 상태 표시줄을 Visible 여부를 설정 (status= no or status= yes)
+			*/
+		};
 </script>
 <style type="text/css">
 
@@ -160,8 +180,8 @@
 	}
 	
 	.side{
- 		background:#3db7cc;
-/* 		background:white; */
+  		background:#3db7cc;
+/*  		background:white; */
 		grid-area:side;
 	}
 	
@@ -175,8 +195,8 @@
 	
 
 	.aside{
-		background:#3db7cc;
-/*  		background:white; */
+ 		background:#3db7cc;
+/*   		background:white; */
 		grid-area:aside;
 	}			
 	
@@ -237,6 +257,23 @@
 	.lowerH a:hover{
 		color:#3db7cc;
 	}
+	
+	.chat{
+		z-index : 1;
+		position:fixed;
+        background-color: #3db7cc;
+		left:92%;
+		top: 85%;
+	}
+	
+	.chat img{
+		margin: 0 auto;
+        width: 100px;
+        height: 100px;
+        border: 5px solid #3db7cc;
+        border-radius: 50%;
+	}
+	
 	
 </style>
 </head>
@@ -370,7 +407,8 @@
 			
 			<div><img src="/petCenter/img/44.png"/></div>
 		</div><!--  end of main -->
-		<div class="aside"></div>
+		<div class="aside">
+		</div>
 		<div class="footer">
 			<div class="footer1" style="color:white;">
 				<br/>
@@ -388,6 +426,9 @@
 				<br/><br/>
 			</div>
 		</div>
-	</div><!-- end of container1 -->	
+	</div><!-- end of container1 -->
+	<div class="chat">
+		<a href="javascript:popup()"><img src="/petCenter/img/chat-bubble-icon.jpg" width="75px" height="75px" alt=""></a>
+	</div>	
 </body>
 </html>
