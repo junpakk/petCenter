@@ -210,6 +210,34 @@
 		height:30pt;
 	}
 	
+/* 	.dropdown{ */
+/* 	  position : relative; */
+/* 	  display : inline-block; */
+/* 	} */
+
+	.dropdown1-content{
+	  display : none;
+	  position : absolute;
+	  z-index : 1; /*다른 요소들보다 앞에 배치*/
+	}
+	
+/* 	.dropdown-content a{ */
+/* 	  display : block; */
+/* 	} */
+	
+	.dropdown1:hover .dropdown1-content {
+	  display: block;
+	  background-color: white;
+	}
+	
+	.dropdown1-content a:hover{
+		background: #c9eef5;
+	}
+	
+	.lowerH a:hover{
+		color:#3db7cc;
+	}
+	
 </style>
 </head>
 <body>
@@ -255,12 +283,21 @@
 				<a href="#"><img src="/petCenter/img/logo.png" align="left" width="110" height="110"></a>
 				<nav>
 					<ul class="menu">
-						<li><a href="fairSelectAll.pc">박람회</a></li>
-						<li><a href="comSelAll.pc">커뮤니티</a></li>
+						<li><a href="noticeSelectAll.pc">공지사항</a></li>
+						<li>
+							<div class="dropdown1">
+								<a class="dropBtn" href="#">게시판</a>
+								<div class="dropdown1-content">
+									<hr style="border: 1px solid #3db7cc;">
+									<a href="comSelAll.pc">커뮤니티</a>
+									<a href="tipSelAll.pc">팁게시판</a>
+									<a href="">사진게시판</a>
+								</div>
+							</div>
+						</li>
 						<li><a href="productSelectAll.pc?pcategory=21">쇼핑몰</a></li>
 						<li><a href="walkHelper.pc">산책지도</a></li>
-						<li><a href="noticeSelectAll.pc">공지사항</a></li>
-						<li><a href="tipSelAll.pc">팁 게시판</a></li>
+						<li><a href="fairSelectAll.pc">박람회</a></li>
 					</ul>
 				</nav>
 
