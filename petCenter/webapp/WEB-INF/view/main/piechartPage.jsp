@@ -148,6 +148,37 @@
 
            }
        	});
+    	
+    	
+	    $("#btn").on('click', function(){
+	
+				
+				let city = $('#city').val();
+				let appid = "5ff7484cc271679ce86712bca5d06803";
+				
+				/* 검색 */
+				let url = "https://api.openweathermap.org/data/2.5/weather?q="+city+"&appid="+appid+"&units=metric";
+	
+				fetch(url)
+					.then((response) => {
+				    	return response.json();
+				  	})
+				  	.then((json) => {
+				    	console.log(json);
+				
+				    	let result = "온도 : " + Math.floor(json.main.temp) + "ºC<br>" //소수점 버림 온도를 찍어줌
+					                + "습도 : " + json.main.humidity + "%<br>" //습도를 찍어줌
+					                + "바람 : " + json.wind.speed + "m/s<br>" //풍속을 찍어줌
+					                + "최고온도 : " +Math.floor(json.main.temp_max) + "C<br>" //소수점 버림 온도를 찍어줌
+					                + "최저온도 : " +Math.floor(json.main.temp_min)  + "ºC" //소수점 버림 온도를 찍어줌
+				    	let icon = json.weather[0].icon; //아이콘 받아옴
+				    	document.getElementById("cityname").innerHTML = city; //result를 humidity라는 id를 가진 span에 innerHTML로 표시
+					  	document.getElementById("humidity").innerHTML = result; //result를 humidity라는 id를 가진 span에 innerHTML로 표시
+					  	let iconurl = document.getElementById('ic'); //img id를 iconurl이라는 이름으로 받아옴
+					  	iconurl.src = "http://openweathermap.org/img/wn/" + icon + ".png"; //iconurl로 src를 설정해줌
+				  });			
+			});							
+
 	});
 </script>
 <style type="text/css">
@@ -157,7 +188,28 @@
   	 	 padding: 15px 40px;
   }
   
- 
+  .weatherh {
+  	 	 margin-left: 100px;
+  }
+  
+
+  .card {
+    margin-top: 20px;
+    margin-left: 100px;
+    width: 300px;
+    height: 350px;
+    background-color: white;
+    text-align: center;
+  }
+  #humidity {
+    line-height: 50px;
+    font-size: x-large;
+  }
+  #ic {
+    width: 70px;
+    height: 70px;
+  }
+
   
 </style>
 </head>
@@ -167,10 +219,27 @@
 			<td>
 				<h1 class="charth" align="left">Pet Center 동물 선호도 조사</h1>
 			</td>
+			<td>
+				<h1 class="weatherh">오늘의 날씨 검색</h1>
+			</td>
 		</tr>
 		<tr>
 			<td>
 				<div id="piechart" style="width:600px; height:400px;" align="center"></div>
+			</td>
+			<td>
+				<div class="weatherh">
+					<form name="weatherForm" id="weatherForm">
+					도시명 : <input type="text" name="city" id="city" placeholder="ex) seoul" />
+							<input type="button" id="btn" value="보내기" />
+					</form>
+				</div>
+				<div class="card">
+					<h3 id="cityname"></h3>
+					<img id="ic" src="/petCenter/img/weather.png">
+					<br>
+					<span id="humidity">검색해주세요</span>
+				</div>
 			</td>
 		</tr>
 	</table>

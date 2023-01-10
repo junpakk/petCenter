@@ -10,8 +10,6 @@
 				<br/>
 				(주) PetCenter   대표자 : PC   프로젝트번호 : 202-05-20231   주소 : 서울특별시 금천구 가산디지털2로 123 2차) 월드메르디앙 ㅣ 발표번호 : 2023-서울가산-0113
 				<br/>
-				[CS CENTER]
-				<br/><br/>
 				참가 문의 : 02-XXXX-XXXX,XXXX ㅣ 참관객 문의 : 02-XXXX-XXXX   E-MAIL : petCenter.pc@pcgroup.com   FAX : 02-XXXX-XXXX
 				<br/>
 				Mon - Fri. 09:30 - 18:30 ㅣ Lunch : 13:20 - 14:30 ㅣ Sat, Sun & Holiday OFF

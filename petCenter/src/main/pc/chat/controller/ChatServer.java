@@ -26,7 +26,7 @@ public class ChatServer {
 	private static List<Session> list = new ArrayList<Session>();
 	
 	private void print(String msg) {
-		System.out.printf("[%tT] %s\n", Calendar.getInstance(), msg );
+		System.out.printf("[%tT] %s\n", Calendar.getInstance(), msg);
 	}
 	
 	@OnOpen
@@ -37,6 +37,7 @@ public class ChatServer {
 	
 	@OnMessage
 	public void handleMessage(String msg, Session session) {
+		//ws.send("1#" + $("#user").val() + "#");
 		//로그인할때: 1#유저명
 		//대화할때: 2유저명#메세지
 		int index = msg.indexOf("#", 2);
@@ -54,7 +55,7 @@ public class ChatServer {
 				//현재 접속자가 아닌 나머지 사람들
 				if(s != session) {
 					try {
-						s.getBasicRemote().sendText("1#"+ user + "# ");
+						s.getBasicRemote().sendText("1#"+ user + "#");
 					}catch(IOException e) {
 						e.printStackTrace();
 					}
@@ -66,6 +67,7 @@ public class ChatServer {
 				//현재 접속자가 아닌 나머지 사람들
 				if(s != session) {
 					try {
+						//s.getBasicRemote().sendText("2#"+ user +" : "+ txt);
 						s.getBasicRemote().sendText("2#"+ user +" : "+ txt);
 					}catch(IOException e) {
 						e.printStackTrace();
@@ -78,7 +80,7 @@ public class ChatServer {
 				//현재 접속자가 아닌 나머지 사람들
 				if(s != session) {
 					try {
-						s.getBasicRemote().sendText("3#"+ user +"# ");
+						s.getBasicRemote().sendText("3#"+ user +"#");
 					}catch(IOException e) {
 						e.printStackTrace();
 					}

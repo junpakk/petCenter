@@ -6,12 +6,15 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import main.pc.common.ChabunUtil;
 import main.pc.common.CommonUtils;
@@ -113,24 +116,76 @@ public class PhotoController {
 	
 	
 	//게시판 보기
-			@GetMapping("photoSelForm")
-			public String photoSelForm(PhotoVO pvo, Model m) {
-				
-				List<PhotoVO> list = photoService.photoSelForm(pvo);
-				int nCnt = list.size();
+	@GetMapping("photoSelForm")
+	public String photoSelForm(PhotoVO pvo, Model m) {
+		
+		List<PhotoVO> list = photoService.photoSelForm(pvo);
+		int nCnt = list.size();
 
-				if(nCnt>0) {
-					
-					int bhitCnt = photoService.bphitcnt(pvo);
-					logger.info("pvo.getbphit "+pvo.getBphit());
-					m.addAttribute("listS", list);
+		if(nCnt>0) {
+			
+			int bhitCnt = photoService.bphitcnt(pvo);
+			logger.info("pvo.getbphit "+pvo.getBphit());
+			m.addAttribute("listS", list);
 
-					return "photo/photoSelForm";
-					
-				}
-				return "photo/photoSelAll";
-				
+			return "photo/photoSelForm";
+			
+		}
+		return "photo/photoSelAll";
+		
+	}
+			
+	//사진 게시판 메인
+	@GetMapping("photoMain")
+	public String photoMain(PhotoVO pvo, Model m) {
+		logger.info("photoMain 함수 진입 >>> ");
+		
+		return "photo/photoMain";
+	}
+			
+	//사진 게시판 메인 ajax
+	@GetMapping("photoMainAjax")
+	@ResponseBody
+	public Object photoMainAjax(PhotoVO pvo, Model m) {
+		logger.info("photoMainAjax 함수 진입 >>> ");
+		
+		int pageSize = CommonUtils.COM_PAGE_SIZE;
+		int groupSize = CommonUtils.COM_GROUP_SIZE;
+		int curPage = CommonUtils.COM_CUR_PAGE;
+		int totalCount = CommonUtils.COM_TOTAL_COUNT;
+		
+		if(pvo.getCurPage() != null) {
+			curPage = Integer.parseInt(pvo.getCurPage());
+		}
+		
+		pvo.setPageSize(String.valueOf(pageSize));
+		pvo.setGroupSize(String.valueOf(groupSize));
+		pvo.setCurPage(String.valueOf(curPage));
+		pvo.setTotalCount(String.valueOf(totalCount));
+		
+		List<PhotoVO> photoList = photoService.photoSelAll(pvo);
+		
+		int nCnt = photoList.size();
+		
+		if(nCnt > 0) {
+			logger.info("nCnt >>> "+nCnt);
+			String result = "";
+			JSONArray jArr = new JSONArray();
+			for ( int i = 0; i < nCnt ; i++) {
+				PhotoVO _pvo = photoList.get(i);
+				JSONObject jObj = new JSONObject();
+				logger.info(i + " : _pvo.getBpnum() >>> : " + _pvo.getBpnum());
+				jObj.put("bpnum", _pvo.getBpnum());
+				logger.info(i + "_pvo.getBpphoto() >>> : " + _pvo.getBpphoto());
+				jObj.put("bpphoto", _pvo.getBpphoto());
+				jArr.add(jObj);
 			}
+			logger.info(jArr.toJSONString());
+			return jArr.toJSONString();
+		}
+		
+		return "error";
+	}
 			
 
 }

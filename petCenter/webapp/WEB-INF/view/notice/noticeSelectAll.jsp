@@ -3,6 +3,14 @@
 <%@ page import="main.pc.member.vo.MemberVO" %>
 <%@ page import="main.pc.notice.vo.NoticeVO"%>
 <%@ page import="java.util.List"%>
+<%@ page import="org.apache.log4j.LogManager" %>
+<%@ page import="org.apache.log4j.Logger" %>
+
+<%
+	Logger logger = LogManager.getLogger(this.getClass());
+	logger.info("noticeSelectAll.jsp >>> : ");
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -107,7 +115,19 @@ if(nCnt>0) {
 }
 %>
 <td colspan="5">
+<%
+	String admin = "";
+	Object objAdmin = session.getAttribute("KNUM");
+	if (objAdmin != null) {
+		admin = (String)objAdmin;
+		logger.info("mnum >>> : " + admin);
+		if(admin.equals("M0000000001")){
+%>
 <input type="button" id="insertBtn" value="등록" class="btn btn-success btn-sm"/>
+<%
+		}
+	}
+%>
 <input type="button" id="selectallBtn" value="전체조회" class="btn btn-secondary btn-sm"/>
 <input type="button" id="selectformBtn" value="내용확인" class="btn btn-warning btn-sm"/>
 </td>
