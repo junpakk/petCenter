@@ -31,7 +31,7 @@
 
 
 		<a href="mainPage.pc">메인페이지</a><br>
-		<a href="rssPage.pc">rss테스트페이지</a><br>
+		<a href="photoMain.pc">사진메인테스트페이지</a><br>
 		<a href="logout.pc">로그아웃</a><br>
 		<a href="memInsertForm.pc">회원가입</a><br>
 		<a href="memSelectAll.pc">회원목록</a><br>

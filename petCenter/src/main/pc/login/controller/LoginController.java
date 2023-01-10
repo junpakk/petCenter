@@ -53,7 +53,7 @@ public class LoginController {
 		return "login/loginForm";
 	}
 	
-	// 임시 rss 테스트페이지
+	// 임시  테스트페이지
 	@GetMapping("rssPage")
 	public String rssPage() {
 		logger.info("rssPage 함수 진입 >>> : ");

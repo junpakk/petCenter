@@ -92,7 +92,7 @@
 	
 		display:grid;
 		grid-template-columns:1fr 1200px 1fr;
-		grid-template-rows:150px 1fr 218px;
+		grid-template-rows:150px 1fr 170px;
 		grid-template-areas:
 			"header		header		header"
 			"side		main		aside" 
@@ -127,7 +127,7 @@
 			position:relative;
 			width: 1200px;
 			margin: 0 auto;
-			height:50px;
+			height:40px;
 			background:#3db7cc;
 			}
 			
@@ -180,7 +180,7 @@
 	}
 	
 	.side{
-  		background:#3db7cc;
+  		background:white;
 /*  		background:white; */
 		grid-area:side;
 	}
@@ -195,7 +195,7 @@
 	
 
 	.aside{
- 		background:#3db7cc;
+ 		background:white;
 /*   		background:white; */
 		grid-area:aside;
 	}			
@@ -261,15 +261,15 @@
 	.chat{
 		z-index : 1;
 		position:fixed;
-        background-color: #3db7cc;
+        background-color: white;
 		left:92%;
-		top: 85%;
+		top: 72%;
 	}
 	
 	.chat img{
 		margin: 0 auto;
-        width: 100px;
-        height: 100px;
+        width: 70px;
+        height: 70px;
         border: 5px solid #3db7cc;
         border-radius: 50%;
 	}
@@ -296,7 +296,7 @@
 		mid = (String)objMid;
 %>
 					<ul class="tmenu">
-						<li align="right" style="padding-right:1.5%; padding-top:12px">
+						<li align="right" style="padding-right:1.5%; padding-top:5px">
 							<a style="color:white;"><%= mid %> 님 안녕하세요!!</a> &nbsp; &nbsp;
 							<a href="logout.pc" style="color:white;">로그아웃 |</a>
 							<% String link =  "memSelect.pc?mnum=" + mnum;%>
@@ -305,7 +305,7 @@
 <% 
 	}else{
 %>
-						<li align="right" style="padding-right:1.5%; padding-top:12px">
+						<li align="right" style="padding-right:1.5%; padding-top:5px">
 							<a href="loginForm.pc" style="color:white;">로그인 |</a>
 							<a href="memInsertForm.pc" style="color:white;">회원가입</a>
 						</li>  
@@ -322,7 +322,17 @@
 					<ul class="menu">
 						<li><a href="noticeSelectAll.pc">공지사항</a></li>			
 						<li><a href="productSelectAll.pc?pcategory=21">쇼핑몰</a></li>
-						<li><a href="walkHelper.pc">산책지도</a></li>
+						<li>
+							<div class="dropdown1">
+								<a class="dropBtn" href="#">지도서비스</a>
+								<div class="dropdown1-content">
+									<hr style="border: 1px solid #3db7cc;">
+										<a href="keySearch.pc">동물병원찾기</a>
+										<a href="walkHelper.pc">산책도우미</a>
+										<a href="walkHistory.pc">지난산책로</a>
+								</div>
+							</div>
+						</li>
 						<li><a href="fairSelectAll.pc">박람회</a></li>
 						<li>
 							<div class="dropdown1">
@@ -337,17 +347,23 @@
 						</li>
 					</ul>
 				</nav>
-
 			</div>
-
+			<hr>
 		</div><!-- end of header -->
 		<div class="side"></div>
 		<div class="main">
+		<!-- 회원 기호동물 차트, 날씨 -->
+				<div>
+					<jsp:include page="../main/piechartPage.jsp" flush="true">
+						<jsp:param name="chart" value="chart.jsp"/>
+					</jsp:include>
+				</div>		
+		<!-- 회원 기호동물 차트 -->
 		<!-- 박람회 -->
 				<div>
-	
 					<br>
 					<table>
+					
 						<tr>
 							<td>
 								<h1 align="left" style="margin-left:50px;">예정 전시</h1> 
@@ -398,20 +414,14 @@
 				</div>
 				<!-- rss 연결 -->
 				
-				<!-- 사진 게시판 연결 -->
-					<div>
-						사진 게시판 넣을예정
-						<img src="/petCenter/img/33.png"/>
-					</div>
-				<!-- 사진 게시판 연결 -->
-				<!-- 회원 기호동물 차트 -->
+		<!-- 사진 게시판 연결 -->
 				<div>
-					<jsp:include page="../main/piechartPage.jsp" flush="true">
-						<jsp:param name="chart" value="chart.jsp"/>
+					<jsp:include page="photoMain.pc" flush="true">
+						<jsp:param name="photomain" value="photoMain.jsp"/>
 					</jsp:include>
 				</div>
+		<!-- 사진 게시판 연결 -->
 				
-				<!-- 회원 기호동물 차트 -->
 		</div><!--  end of main -->
 		<div class="aside">
 		</div>
@@ -420,8 +430,6 @@
 				<br/>
 				(주) PetCenter   대표자 : PC   프로젝트번호 : 202-05-20231   주소 : 서울특별시 금천구 가산디지털2로 123 2차) 월드메르디앙 ㅣ 발표번호 : 2023-서울가산-0113
 				<br/>
-				[CS CENTER]
-				<br/><br/>
 				참가 문의 : 02-XXXX-XXXX,XXXX ㅣ 참관객 문의 : 02-XXXX-XXXX   E-MAIL : petCenter.pc@pcgroup.com   FAX : 02-XXXX-XXXX
 				<br/>
 				Mon - Fri. 09:30 - 18:30 ㅣ Lunch : 13:20 - 14:30 ㅣ Sat, Sun & Holiday OFF
@@ -434,7 +442,7 @@
 		</div>
 	</div><!-- end of container1 -->
 	<div class="chat">
-		<a href="javascript:popup()"><img src="/petCenter/img/chat-bubble-icon.jpg" width="75px" height="75px" alt=""></a>
+		<a href="javascript:popup()"><img src="/petCenter/img/chat-bubble-icon.jpg" width="50px" height="50px" alt=""></a>
 	</div>	
 </body>
 </html>
