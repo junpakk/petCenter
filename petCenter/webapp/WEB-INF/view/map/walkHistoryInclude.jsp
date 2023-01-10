@@ -178,7 +178,8 @@
 	</head>
 	<body>
 	<div class='container'>
-		<h3>지난산책로보기</h3>
+		<h2>지난산책로보기</h2>
+		<br>
 		<form name="mapHisSearchForm" id="mapHisSearchForm">
 			
 			<input type="text" id="mid" name="mid" value="<%=mid %>" readonly>&nbsp;&nbsp;
@@ -195,8 +196,9 @@
 			<input type="reset" value="리셋">
 			
 		</form>
-		
-		<h3>지난산책로삭제</h3>
+		<br><br><br>
+		<h2>지난산책로삭제</h2>
+		<br>
 		<form name="mapHistoryForm" id="mapHistoryForm">
 			
 			<input type="text" id="memberid" name="memberid" value="<%=mid %>" readonly>&nbsp;&nbsp;

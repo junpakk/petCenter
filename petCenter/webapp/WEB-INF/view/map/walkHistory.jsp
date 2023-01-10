@@ -41,6 +41,9 @@
 		<jsp:param name="mid" value="<%=mid %>"/>
 	</jsp:include>
 	</div>
-
+	<br><br><br>
+	<jsp:include page="../include/footer.jsp" flush="true">
+		<jsp:param name="url" value="#"/>
+	</jsp:include> 
 	</body>
 </html>
