@@ -29,7 +29,7 @@
 	<script>
 		if(<%=mid%> === null || "<%=mid%>" === ""){
 			alert("먼저 로그인 해주세요 "+ <%=mid%>);
-			location.href="mainPage.pc";
+			location.href="loginForm.pc";
 		}
 	</script>	
 	<jsp:include page="../include/header.jsp" flush="true">
@@ -42,6 +42,24 @@
 	</jsp:include>
 	</div>
 	<br><br><br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+
+	
 	<jsp:include page="../include/footer.jsp" flush="true">
 		<jsp:param name="url" value="#"/>
 	</jsp:include> 

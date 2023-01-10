@@ -116,7 +116,7 @@
 		z-index: 9999;
 		left: 0;
 /* 		padding-top: 0px; */
-  		top: -50px;
+  		top: -45px;
 	}
 	
 	.upperWrap{
