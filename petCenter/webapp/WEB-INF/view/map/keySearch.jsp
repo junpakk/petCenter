@@ -68,6 +68,10 @@
 	    
 	</head>
 	<body>
+		<jsp:include page="../include/header.jsp" flush="true">
+			<jsp:param name="url" value="produectSelectAll.jsp"/>
+		</jsp:include>
+		<br><br>
 		<div class="map_wrap">
 			<div id="map" style="width:1000px;height:800px;margin-left: auto; margin-right: auto;border:5px double #000;border-radius: 10px;"></div>
 			<br>
@@ -84,7 +88,10 @@
 		        </div>
 		    </div>
 		</div>
-		
+		<br><br><br>
+		<jsp:include page="../include/footer.jsp" flush="true">
+			<jsp:param name="url" value="produectSelectAll.jsp"/>
+		</jsp:include>     		
 		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e2a549944561293fdf3d307b172230ec&libraries=services"></script>
 		<script>
 		
