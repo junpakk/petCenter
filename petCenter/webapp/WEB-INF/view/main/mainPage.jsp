@@ -416,7 +416,7 @@
 				
 		<!-- 사진 게시판 연결 -->
 				<div>
-					<jsp:include page="photoMain.pc" flush="true">
+					<jsp:include page="../photo/photoMain.jsp" flush="true">
 						<jsp:param name="photomain" value="photoMain.jsp"/>
 					</jsp:include>
 				</div>
