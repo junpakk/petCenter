@@ -217,7 +217,7 @@
 									<hr style="border: 1px solid #3db7cc;">
 									<a href="comSelAll.pc">커뮤니티</a>
 									<a href="tipSelAll.pc">팁게시판</a>
-									<a href="">사진게시판</a>
+									<a href="photoSelAll.pc">사진게시판</a>
 								</div>
 							</div>
 						</li>
