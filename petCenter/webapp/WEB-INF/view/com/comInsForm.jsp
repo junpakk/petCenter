@@ -14,7 +14,7 @@
 				var file = imgsrc.files[0];
 				imageWin = window.open("#","","width=300px, height=300px");
 				imageWin.document.write("<html><body style='margin:0'>");
-				imageWin.document.write("<img src='" +URL.createObjectURL(file)+ "' border=0>");
+				imageWin.document.write("<img src='" +URL.createObjectURL(file)+ "' border=0 style='width:300px; height:300px;'/>");
 				imageWin.document.write("</body></html>");
 				imageWin.document.title = pageName;
 			}			
