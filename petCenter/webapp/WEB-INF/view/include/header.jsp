@@ -58,7 +58,7 @@
 			position:relative;
 			width: 1200px;
 			margin: 0 auto;
-			height:50px;
+			height:40px;
 			background:#3db7cc;
 			}
 			
@@ -173,7 +173,7 @@
 		mid = (String)objMid;
 %>
 					<ul class="tmenu">
-						<li align="right" style="padding-right:1.5%; padding-top:12px">
+						<li align="right" style="padding-right:1.5%; padding-top:5px">
 							<a style="color:white;"><%= mid %> 님 안녕하세요!!</a> &nbsp; &nbsp;
 							<a href="logout.pc" style="color:white;">로그아웃 |</a>
 							<% String link =  "memSelect.pc?mnum=" + mnum;%>
@@ -182,7 +182,7 @@
 <% 
 	}else{
 %>
-						<li align="right" style="padding-right:1.5%; padding-top:12px">
+						<li align="right" style="padding-right:1.5%; padding-top:5px">
 							<a href="loginForm.pc" style="color:white;">로그인 |</a>
 							<a href="memInsertForm.pc" style="color:white;">회원가입</a>
 						</li>  
@@ -214,7 +214,7 @@
 					</ul>
 				</nav>
 			</div>
-
+			<hr>
 		</div><!-- end of header -->
 </body>
 </html>

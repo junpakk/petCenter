@@ -132,5 +132,40 @@ public class PhotoController {
 				
 			}
 			
+	//사진 게시판 메인
+			@GetMapping("photoMain")
+			public String photoMain(PhotoVO pvo, Model m) {
+				logger.info("comSelAll 함수 진입 >>> ");
+				
+				
+				int pageSize = CommonUtils.COM_PAGE_SIZE;
+				int groupSize = CommonUtils.COM_GROUP_SIZE;
+				int curPage = CommonUtils.COM_CUR_PAGE;
+				int totalCount = CommonUtils.COM_TOTAL_COUNT;
+				
+				if(pvo.getCurPage() != null) {
+					curPage = Integer.parseInt(pvo.getCurPage());
+				}
+				
+				pvo.setPageSize(String.valueOf(pageSize));
+				pvo.setGroupSize(String.valueOf(groupSize));
+				pvo.setCurPage(String.valueOf(curPage));
+				pvo.setTotalCount(String.valueOf(totalCount));
+				
+				List<PhotoVO> photoList = photoService.photoSelAll(pvo);
+				
+				int nCnt = photoList.size();
+				
+				if(nCnt > 0) {
+					logger.info("nCnt >>> "+nCnt);
+					
+					m.addAttribute("photoList", photoList);
+					return "photo/photoMain";
+					
+				}
+				
+				return "photo/photoMain";
+			}
+			
 
 }

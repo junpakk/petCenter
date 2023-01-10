@@ -159,7 +159,7 @@
 				
 				<tr>
 					<td class="semi_title">사진</td>
-					<td class="insert"><img id="bImage" src="/petCenter/fileupload/photo/<%=pvo.getBpphoto() %>" width="160" height="150"  onerror="this.src='/petCenter/img/noImg.gif';"></td>
+					<td class="insert"><img id="bImage" src="/petCenter/fileupload/photo/<%=pvo.getBpphoto() %>" width="500" height="500"  onerror="this.src='/petCenter/img/noImg.gif';"></td>
 				</tr>
 				<tr>
 					<td align="center" colspan="2"> 추천  <%= pvo.getLikey() %>&nbsp; 조회 <%= pvo.getBphit() %> &nbsp; 작성일자 : <%= pvo.getUdate() %></td>
