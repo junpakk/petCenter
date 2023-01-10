@@ -55,7 +55,7 @@
 			//window.open("URL", "팝업이름", "팝업 옵션");
 			let url = "chat.pc";
 			let name = "popup test";
-			let option ="width=500, height=500, top=450, left=1350";
+			let option ="width=490, height=500, top=450, left=1350";
 			window.open(url, name, option);
 			/*
 				width		open되는 팝업 창의 너비를 지정
