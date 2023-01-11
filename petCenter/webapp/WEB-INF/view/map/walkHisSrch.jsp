@@ -46,6 +46,26 @@
 		
 	</head>
 	<body>
+	<%
+		Object mnum_ = session.getAttribute("KNUM");
+		Object mid_ = session.getAttribute("KID");
+		
+		String mnum = null;
+		String mid = null;
+		
+		if(mnum_ != null) mnum = (String)mnum_;
+		if(mid_ != null) mid = (String)mid_;
+
+	%>
+	<script>
+		if(<%=mid%> === null || "<%=mid%>" === ""){
+			alert("먼저 로그인 해주세요 "+ <%=mid%>);
+			location.href="mainPage.pc";
+		}
+	</script>	
+	<jsp:include page="../include/header.jsp" flush="true">
+		<jsp:param name="url" value="#"/>
+	</jsp:include>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e2a549944561293fdf3d307b172230ec"></script>
 	<div class="container">
     <div id="menu_wrap" class="bg_white">
@@ -238,7 +258,9 @@
 	    }				
 	}	
 	</script>
-
-		
+	<br><br><br>
+	<jsp:include page="../include/footer.jsp" flush="true">
+		<jsp:param name="url" value="#"/>
+	</jsp:include> 		
 	</body>
 </html>
