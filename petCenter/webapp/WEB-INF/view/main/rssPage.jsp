@@ -48,7 +48,7 @@
   	 	 padding: 15px 60px;
   }
   .rd {
-  		padding: 10px 30px;
+  		padding: 10px 15px;
 		
 
 
@@ -63,7 +63,7 @@
   }
   .rstd {
   		white-space : nowrap;
-  		padding: 10px 300px 10px 300px;
+  		padding: 10px 320px 10px 320px;
   		background-color: #e8e8e8;
   }
   

@@ -352,13 +352,7 @@
 		</div><!-- end of header -->
 		<div class="side"></div>
 		<div class="main">
-		<!-- 회원 기호동물 차트, 날씨 -->
-				<div>
-					<jsp:include page="../main/piechartPage.jsp" flush="true">
-						<jsp:param name="chart" value="chart.jsp"/>
-					</jsp:include>
-				</div>		
-		<!-- 회원 기호동물 차트 -->
+		
 		<!-- 박람회 -->
 				<div>
 					<br>
@@ -374,7 +368,7 @@
 						</tr>
 					</table>
 					<br>
-					<table style="border:1px; width:1200px;">
+					<table style="width:1200px;">
 						<tr>
 							<td>
 								<img src="/petCenter/img/fair/1.png" style="border-radius:7px;" width="280" height="350"/>
@@ -421,7 +415,13 @@
 					</jsp:include>
 				</div>
 		<!-- 사진 게시판 연결 -->
-				
+		<!-- 회원 기호동물 차트, 날씨 -->
+				<div>
+					<jsp:include page="../main/piechartPage.jsp" flush="true">
+						<jsp:param name="chart" value="chart.jsp"/>
+					</jsp:include>
+				</div>		
+		<!-- 회원 기호동물 차트 -->		
 		</div><!--  end of main -->
 		<div class="aside">
 		</div>
