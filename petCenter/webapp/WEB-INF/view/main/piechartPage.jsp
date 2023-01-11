@@ -177,7 +177,27 @@
 					  	let iconurl = document.getElementById('ic'); //img id를 iconurl이라는 이름으로 받아옴
 					  	iconurl.src = "http://openweathermap.org/img/wn/" + icon + ".png"; //iconurl로 src를 설정해줌
 				  });			
-			});							
+		});
+	    
+	    //최초 서울날씨
+		fetch("https://api.openweathermap.org/data/2.5/weather?q=seoul&appid=5ff7484cc271679ce86712bca5d06803&units=metric")
+			.then((response) => {
+		    	return response.json();
+		  	})
+		  	.then((json) => {
+		    	console.log(json);
+		
+		    	let result = "온도 : " + Math.floor(json.main.temp) + "ºC<br>" //소수점 버림 온도를 찍어줌
+			                + "습도 : " + json.main.humidity + "%<br>" //습도를 찍어줌
+			                + "바람 : " + json.wind.speed + "m/s<br>" //풍속을 찍어줌
+			                + "최고온도 : " +Math.floor(json.main.temp_max) + "C<br>" //소수점 버림 온도를 찍어줌
+			                + "최저온도 : " +Math.floor(json.main.temp_min)  + "ºC" //소수점 버림 온도를 찍어줌
+		    	let icon = json.weather[0].icon; //아이콘 받아옴
+		    	document.getElementById("cityname").innerHTML = "seoul"; //result를 humidity라는 id를 가진 span에 innerHTML로 표시
+			  	document.getElementById("humidity").innerHTML = result; //result를 humidity라는 id를 가진 span에 innerHTML로 표시
+			  	let iconurl = document.getElementById('ic'); //img id를 iconurl이라는 이름으로 받아옴
+			  	iconurl.src = "http://openweathermap.org/img/wn/" + icon + ".png"; //iconurl로 src를 설정해줌
+		  });		
 
 	});
 </script>

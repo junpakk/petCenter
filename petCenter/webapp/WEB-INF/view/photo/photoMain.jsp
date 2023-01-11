@@ -59,12 +59,36 @@
 	});
 
 </script>
+<style type="text/css">
+
+  .rsh1 {
+  	 	 padding: 15px 60px;
+  }
+  .rd1 {
+  		padding: 10px 30px;
+  }
+  
+  tr.photo td {
+  		padding: 10px;
+  }
+  
+  img{
+  		border-radius:7px;
+  }
+</style>
 </head>
 
 <body>
-<table>
-<tr id="photo">
-</tr>
+<table style="padding: 15px 40px;">
+	<tr>
+		<td colspan="4">
+			<h1 class="rsh1" align="left">반려동물 자랑</h1><br>
+		</td>
+	</tr>
+	<div class="rd1">
+	<tr class="photo" id="photo">
+	</tr>
+</div>
 </table>
 </body>
 </html>
