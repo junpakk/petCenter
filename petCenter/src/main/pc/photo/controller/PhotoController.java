@@ -169,7 +169,7 @@ public class PhotoController {
 		
 		if(nCnt > 0) {
 			logger.info("nCnt >>> "+nCnt);
-			String result = "";
+
 			JSONArray jArr = new JSONArray();
 			for ( int i = 0; i < nCnt ; i++) {
 				PhotoVO _pvo = photoList.get(i);
