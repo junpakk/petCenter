@@ -15,10 +15,10 @@
 			.distanceInfo {position:relative;top:5px;left:5px;list-style:none;margin:0;}
 			.distanceInfo .label {display:inline-block;width:50px;}
 			.distanceInfo:after {content:none;}
-			
-			#menu_wrap {position:absolute;top:20px;left:820px;bottom:0;width:250px;height:60px;margin:10px 0 30px 10px;padding:5px;overflow-y:auto;background:rgba(255, 255, 255, 0.7);z-index: 1;font-size:40px;font-weight:bold;border-radius: 10px;}
-			.bg_white {background:#FF0000;}
-			#menu_wrap .timeDisplay{text-align: center;}
+		
+			.bg_white {position:absolute;top:220px;left:820px;bottom:0;width:250px;height:50px;margin:10px 0 30px 10px;padding:5px;overflow-y:auto;background:rgba(255, 255, 255, 0.7);z-index: 1;font-size:40px;font-weight:bold;border-radius: 10px;}
+			.bg_white .timeDisplay{text-align: center;}
+
 			#map {width:700px;height:600px;}
 			
 		</style>
