@@ -78,7 +78,7 @@
 <!-- jQuery CDN 불러오기  -------------------------------------------->
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
-	alert("javascript");
+	console.log("javascript");
 	
 	$(document).ready(function() {
 
