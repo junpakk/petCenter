@@ -202,7 +202,7 @@
 							<div class="dropdown1">
 								<a class="dropBtn" href="#">지도서비스</a>
 								<div class="dropdown1-content">
-										<hr style="border: 1px solid #3db7cc;">
+										<hr style="border: solid #3db7cc;">
 										<a href="keySearch.pc">동물병원찾기</a>
 										<a href="walkHelper.pc">산책도우미</a>
 										<a href="walkHistory.pc">지난산책로</a>
@@ -214,7 +214,7 @@
 							<div class="dropdown1">
 								<a class="dropBtn" href="#">게시판</a>
 								<div class="dropdown1-content">
-									<hr style="border: 1px solid #3db7cc;">
+									<hr style="border: solid #3db7cc;">
 									<a href="comSelAll.pc">커뮤니티</a>
 									<a href="tipSelAll.pc">팁게시판</a>
 									<a href="photoSelAll.pc">사진게시판</a>
@@ -224,7 +224,7 @@
 					</ul>
 				</nav>
 			</div>
-			<hr>
+			<hr style="border: 1px solid #3db7cc;">
 		</div><!-- end of header -->
 </body>
 </html>

@@ -30,6 +30,14 @@ $(document).ready(function(){
 });//end of ready()
 	
 </script>
+<style>
+	
+td {
+	padding:10px;
+}
+	
+	
+</style>
 </head>
 <body>
 <form name="orderSelectAll" id="orderSelectAll">
@@ -38,12 +46,12 @@ $(document).ready(function(){
 	</jsp:include>
 <br><br><br>	
 <h2 align="center"><br/>주문정보 확인창<br/></h2><br/>
-<table border="1" style="margin:0 auto;">
+<table class="orderTable" border="1" style="margin:0 auto;">
 <thead>
 	<tr>
-		<td style="text-align:center">
-			<input type="checkbox" name="chk" id="chk" class="chk">
-		</td>
+<!-- 		<td style="text-align:center"> -->
+<!-- 			<input type="checkbox" name="chk" id="chk" class="chk"> -->
+<!-- 		</td> -->
 		<td style="text-align:center">주문일</td>
 		<td style="text-align:center">상품명</td>
 		<td style="text-align:center">가격</td>
@@ -80,11 +88,11 @@ $(document).ready(function(){
 			OrderVO ovo = list.get(i);
 %>
 <tr>
-	<td style="text-align:center">
-		<input type="hidden" id="mnum" value="<%= ovo.getMnum() %>">
-		<input type="checkbox" name="onum" id="onum" class="onum" value=<%= ovo.getOnum() %>>
-	</td>
-	<td style="text-align:center"><%= ovo.getIdate() %></td>
+<!-- 	<td style="text-align:center"> -->
+<%-- 		<input type="hidden" id="mnum" value="<%= ovo.getMnum() %>"> --%>
+<%-- 		<input type="checkbox" name="onum" id="onum" class="onum" value=<%= ovo.getOnum() %>> --%>
+<!-- 	</td> -->
+	<td style="text-align:center"><%= ovo.getIdate().substring(0,10) %></td>
 	<td style="text-align:center"><%= ovo.getOname() %></td>
 <%
 			int Oprice = 0;
@@ -95,10 +103,10 @@ $(document).ready(function(){
 				delivery = 0;
 			}
 %>
-	<td style="text-align:center"><%= Oprice  %> 원</td>
+	<td style="text-align:right"><%= Oprice  %> 원</td>
 	<td style="text-align:center"><%= ovo.getOcnt() %> 개</td>
-	<td style="text-align:center">총 <%= opsum %> 원</td>
-	<td style="text-align:center"><%= delivery %> 원</td>
+	<td style="text-align:right">총 <%= opsum %> 원</td>
+	<td style="text-align:right"><%= delivery %> 원</td>
 </tr>
 <%
 		}//end of for

@@ -54,7 +54,7 @@
 /* 		  border: 1px solid black; */
 	}
 	
-	div.d,.e{
+	div.d{
 		  position: relative;
 		  margin: 20px;
 /* 		  left: 50px; */
@@ -81,6 +81,26 @@
 		cursor:pointer;
 		outline: 0;
 		}
+	.shopBtn{
+		background-image: url('./img/icon/shopping.png');
+		align: center;
+	    background-repeat: no-repeat;
+	    width: 380px;
+	    height: 60px;
+	    border: 0px;
+		cursor:pointer;
+		outline: 0;
+	}
+	.orderInfo{
+		background-image: url('./img/icon/orderdetail.png');
+		align: center;
+	    background-repeat: no-repeat;
+	    width: 380px;
+	    height: 60px;
+	    border: 0px;
+		cursor:pointer;
+		outline: 0;
+	}
 		
 	div.lAll{
 		position: relative;
@@ -215,7 +235,7 @@
 				<td>
 					<div class="a">
 						<input type="hidden" name="mnum" id="mnum" class="mnum" value="<%= mnum %>">
-						<div><input type="checkbox" name="chk" id="chk" class="chk">전체선택<hr></div>
+<!-- 						<div><input type="checkbox" name="chk" id="chk" class="chk">전체선택<hr></div> -->
 					</div>
 				</td>
 				<td><div> </div></td>
@@ -292,17 +312,18 @@
 			<td>
 				<div class="de">
 					<div  class="d">
-						<div><h3>결제금액</h3></div>
-						상품금액<div id="price" style="text-align:right; display: inline-block;"> 0 </div> 원<br>
-						배송비<div id="delivery" style="text-align:right; display: inline-block;"> 2500 </div> 원<hr>
-						최종결제금액<div id="tPrice" style="text-align:right; display: inline-block;"> 0 </div> 원
+						<div><h2>결제금액</h2></div>
+						<div align="right"><h3>상품금액<div id="price" style="text-align:right; display: inline-block;"> 0 </div> 원</h3></div>
+						<div align="right"><h3>배송비<div id="delivery" style="text-align:right; display: inline-block;"> 2500 </div> 원</h3></div><div><br/></div><hr>
+						<div align="right"><h3>최종결제금액<div id="tPrice" style="text-align:right; display: inline-block;"> 0 </div> 원</h3></div>
 					</div>
+					<br/>
 					<div class="e" style="text-align:center;">
 						<input type="button" id="buyBtn" class="buyBtn">
 					</div>
 					<div class="f" style="text-align:center;">
-						<input type="button" id="shopBtn" class="shopBtn" value="쇼핑하기">
-						<input type="button" id="orderInfo" class="orderInfo" value="주문내역">
+						<div><input type="button" id="shopBtn" class="shopBtn"></div>
+						<div><input type="button" id="orderInfo" class="orderInfo"></div><br/>
 					</div>
 				</div>
 			</td>

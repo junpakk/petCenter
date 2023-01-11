@@ -101,7 +101,7 @@ ul	{
 	<jsp:include page="../include/header.jsp" flush="true">
 		<jsp:param name="url" value="produectSelectAll.jsp"/>
 	</jsp:include>
-<h3 align="center">PetCenter가 추천하는 내 아이 취향저격 상품</h3>
+<h2 align="center" style="margin:20px;">PetCenter가 추천하는 내 아이 취향저격 상품</h2>
 <table border="1" style="margin:0 auto;">
 
 	<thead>
@@ -162,8 +162,8 @@ ul	{
 				</td>
 			</tr>
 			<tr>
-				<td style="text-align:center">
-					<%= pname %>
+				<td style="text-align:left;">
+					&nbsp;&nbsp;&nbsp;<%= pname %>
 				</td>
 			</tr>
 			<tr>

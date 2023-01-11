@@ -67,7 +67,7 @@
 	<tr><br/><h2 align="center">주문정보입력</h2><br/></tr>
 	<tr>
 		<td colspan="6" align="left">
-			<font size="3" style="color:black;"><h4>1. 주문확인</h4></font>
+			<font size="3" style="color:black;"><h4>&nbsp;&nbsp;1. 주문확인</h4></font>
 		</td>
 	</tr>
 	<tr>
@@ -97,15 +97,17 @@
 			priceSum += price;
 %>	
 	<tr>
-		<td class="" id="" style="text-align:center">
+		<td class="" id="" style="text-align:center;">
+		<div style="margin:10px">
 			<input type="hidden" id="cnum" name="cnum" value="<%= cvo.getCnum() %>">
 			<input type="hidden" id="mnum" name="mnum" value="<%= cvo.getMnum() %>">
 			<img src="/petCenter/fileupload/product/<%= cvo.getCphoto() %>" width="50" height="50"><br>
 			<%= cvo.getCname() %>
+		</div>
 		</td>
 		<td class="" style="text-align:center"><%= cvo.getCcnt() %>개</td>
-		<td class="" style="text-align:right"><%= cvo.getCprice() %> 원</td>
-		<td class="" style="text-align:right"><%= price %> 원</td>
+		<td class="" style="text-align:right"><%= cvo.getCprice() %> 원&nbsp;&nbsp;</td>
+		<td class="" style="text-align:right"><%= price %> 원&nbsp;&nbsp;</td>
 	</tr>
 <%
 		}//end of for
@@ -121,26 +123,26 @@
 %>
 	<tr>
 		<td class="" style="text-align:center">배송비</td>
-		<td class="" style="text-align:right" colspan="3"><%= delivery %> 원
+		<td class="" style="text-align:right" colspan="3"><%= delivery %> 원&nbsp;&nbsp;
 		<input type="hidden" name="delivery" value="<%= delivery %>">
 		</td>
 	</tr>
 	<tr>
 		<td class="" style="text-align:center">총합계</td>
-		<td class="" style="text-align:right" colspan="3"><%= priceSum %> 원
+		<td class="" style="text-align:right" colspan="3"><%= priceSum %> 원&nbsp;&nbsp;
 		<input type="hidden" id="tprice" name="tprice" value="<%= priceSum %>">
 		</td>
 	</tr>
 	<tr>
-		<td colspan="6" align="left"><font size="3" style="color:black;"><h4>2. 배송지 정보</h4></font></td>
+		<td colspan="6" align="left"><font size="3" style="color:black;"><h4>&nbsp;&nbsp;2. 배송지 정보</h4></font></td>
 	</tr>
 	<tr>
-		<td>받으실분</td>
+		<td align="center">받으실분</td>
 		<td colspan="5"><input type="text" name="mname" id="mname"/></td>
 	</tr>
 	
 	<tr>
-		<td>핸드폰</td>
+		<td align="center">핸드폰</td>
 		<td colspan="5">
 			<select name="mhp" id="mhp">
 				<option value="010">010</option>
@@ -154,7 +156,7 @@
 	</tr>
 	
 	<tr>
-		<td>주소</td>
+		<td align="center">주소</td>
 		<td colspan="5">
 			<input type="text" name="ozonecode" id="ozonecode" placeholder="우편번호" style="width:150px;" maxlength="6">
 			<input type="button" name="ozoneBtn" id="ozoneBtn" value="우편번호 찾기"><br/>
