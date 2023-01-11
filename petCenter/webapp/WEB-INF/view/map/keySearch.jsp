@@ -73,7 +73,7 @@
 		</jsp:include>
 		<br><br>
 		<div class="map_wrap">
-			<div id="map" style="width:1000px;height:800px;margin-left: auto; margin-right: auto;border:5px double #000;border-radius: 10px;"></div>
+			<div id="map" style="width:700px;height:600px;margin-left: auto; margin-right: auto;border:5px double #000;border-radius: 10px;"></div>
 			<br>
 		    <div id="menu_wrap" class="bg_white" style="text-align:center;">
 		        <div class="option">
