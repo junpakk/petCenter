@@ -99,7 +99,7 @@
 	<jsp:include page="../include/header.jsp" flush="true">
 		<jsp:param name="url" value="produectSelectAll.jsp"/>
 	</jsp:include>
-<br><br><br><br><br><br>
+<br><br><br>
 <div class="container">
 <div class="row">
 <div class="col">
@@ -180,11 +180,13 @@
 	</td>
 </tr>
 <tr >
-	<td colspan="2" align="left">
-		<button type="button" onclick="location.href='memSelectAll.pc'" class="btn btn-danger btn-lg" >회원관리</button>
-		<button type="button" onclick="location.href='noticeInsertForm.pc'" class="btn btn-warning btn-lg" >공지사항작성</button>
-		<button type="button" onclick="location.href='productInsertForm.pc'" class="btn btn-success btn-lg" >상품등록</button>
-		<button type="button" onclick="location.href='fairInsertForm.pc'" class="btn btn-success btn-lg" >박람회등록</button>
+	<td colspan="2" align="center">
+		<button type="button" onclick="location.href='memSelectAll.pc'" class="btn btn-danger" >회원관리</button>
+		<button type="button" onclick="location.href='noticeInsertForm.pc'" class="btn btn-warning" >공지사항작성</button>
+		<button type="button" onclick="location.href='productInsertForm.pc'" class="btn btn-success" >상품등록</button>
+		<button type="button" onclick="location.href='fairInsertForm.pc'" class="btn btn-success" >박람회등록</button>
+		<button type="button" onclick="location.href='chartdata.pc'" class="btn btn-success" >차트</button>
+		
 	</td>
 </tr>
 <%
@@ -198,7 +200,7 @@
 </div>
 </div>
 </div>
-	<br><br><br><br><br><br>
+	<br><br><br>
 	<jsp:include page="../include/footer.jsp" flush="true">
 		<jsp:param name="url" value="produectSelectAll.jsp"/>
 	</jsp:include> 	
