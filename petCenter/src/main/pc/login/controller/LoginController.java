@@ -53,11 +53,11 @@ public class LoginController {
 		return "login/loginForm";
 	}
 	
-	// 임시  테스트페이지
-	@GetMapping("rssPage")
-	public String rssPage() {
-		logger.info("rssPage 함수 진입 >>> : ");
-		return "main/piechartPage";
+	// 차트 제이슨파일 만들기
+	@GetMapping("chartdata")
+	public String chartdata() {
+		logger.info("chartdata 함수 진입 >>> : ");
+		return "main/chartdata";
 	}
 	// 메인페이지
 	@GetMapping("mainPage")
