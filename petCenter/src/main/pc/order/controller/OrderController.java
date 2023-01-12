@@ -225,6 +225,7 @@ public class OrderController {
 		List<OrderVO> orderListAll = orderService.orderSelectAll(ovo);
 		if(orderListAll.size() > 0) {
 			logger.info("orderListAll.size(): "+ orderListAll.size());
+			logger.info("orderListAll: "+ orderListAll);
 			model.addAttribute("orderListAll", orderListAll);
 			logger.info("주문 전체 목록을 호출합니다.");
 			return "order/orderSelectAll";

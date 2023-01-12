@@ -23,7 +23,7 @@
 			FROM 													
 						PC_CALENDAR A
 			WHERE 		A.DELYN = 'Y'
-			AND 		MID = #{mid, jdbcType=VARCHAR}								
+			AND 		A.MID = #{mid, jdbcType=VARCHAR}								
 		 	ORDER BY 1 DESC
 	</select>
 	
