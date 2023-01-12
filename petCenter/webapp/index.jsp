@@ -49,7 +49,7 @@
 		<br>
 		<br>
 		<a href="comInsForm.pc">커뮤니티글쓰기(ex)</a><br>
-		<a href="rssPage.pc">rss</a><br>
+		<a href="chartdata.pc">rss</a><br>
 		
 		
 		<br>

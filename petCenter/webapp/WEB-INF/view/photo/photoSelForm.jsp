@@ -187,7 +187,7 @@
 		<div>
 			<!-- 댓글 처리 하는 루틴  --> 
 			<jsp:include page="/replyForm.pc">
-				<jsp:param value="<%=bpnum%>" name="bpnum"/>
+				<jsp:param value="<%=bpnum%>" name="bcnum"/>
 			</jsp:include>
 		</div>
 		</div>
