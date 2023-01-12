@@ -251,12 +251,12 @@
 				<div class="weatherh">
 					<form name="weatherForm" id="weatherForm">
 					도시명 : <input type="text" name="city" id="city" placeholder="ex) seoul" />
-							<input type="button" id="btn" value="보내기" />
+							<input type="button" id="btn" value="검색"><img src="/petCenter/img/weather.png" width="30px" height="30px">
 					</form>
 				</div>
 				<div class="card">
 					<h3 id="cityname"></h3>
-					<img id="ic" src="/petCenter/img/weather.png">
+					<img id="ic" src="">
 					<br>
 					<span id="humidity">검색해주세요</span>
 				</div>

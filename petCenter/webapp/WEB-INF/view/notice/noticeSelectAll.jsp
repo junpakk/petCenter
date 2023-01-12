@@ -69,11 +69,12 @@ List<NoticeVO> list = (List<NoticeVO>)obj;
 int nCnt = list.size();
 %>
 
-<form action="nsForm" id="nsForm" name="nsForm">
-	<jsp:include page="../include/header.jsp" flush="true">
+<jsp:include page="../include/header.jsp" flush="true">
 		<jsp:param name="url" value="produectSelectAll.jsp"/>
 	</jsp:include>
 	<br><br><br><br><br><br>
+<form action="nsForm" id="nsForm" name="nsForm">
+	
 <div class="container">
 <table border="1" align="center" class="table table-sm table-striped table-hover table-bordered" >
 <thead>
