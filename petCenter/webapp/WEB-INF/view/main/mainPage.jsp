@@ -353,7 +353,7 @@
 					</ul>
 				</nav>
 			</div>
-			<hr>
+			<hr style="border: 1px solid #3db7cc;">
 		</div><!-- end of header -->
 		<div class="side"></div>
 		<div class="main">
