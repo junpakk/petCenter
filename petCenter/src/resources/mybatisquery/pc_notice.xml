@@ -32,6 +32,7 @@
 	,A.BNPHOTO AS BNPHOTO
 	FROM PC_NOTICE A
 	WHERE A.DELYN='Y'
+	ORDER BY 1 DESC
 </select>
 
 </mapper>
