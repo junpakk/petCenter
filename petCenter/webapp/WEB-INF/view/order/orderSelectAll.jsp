@@ -66,7 +66,8 @@ td {
 	String pprice = "";
 	String ppricesum = "";
 	String opsum = "";
-	int delivery = 2500;
+	String delivery = "0";
+// 	int delivery = 2500;
 	int sum = 0;
 	String sumV = "";
 	
@@ -99,9 +100,10 @@ td {
 			Oprice = Integer.parseInt(ovo.getOpsum())/Integer.parseInt(ovo.getOcnt());
 
 			opsum = ovo.getOpsum();
-			if(Integer.parseInt(opsum)>=30000){
-				delivery = 0;
-			}
+// 			if(Integer.parseInt(opsum)>=30000){
+// 				delivery = 0;
+// 			}
+			delivery = ovo.getDelivery();
 %>
 	<td style="text-align:right"><%= Oprice  %> 원</td>
 	<td style="text-align:center"><%= ovo.getOcnt() %> 개</td>
