@@ -294,7 +294,7 @@
 <tr >
 	<td colspan="2">
 		<button type="button" id="updateBtn" class="btn btn-primary btn-lg">수정하기</button>
-		<button type="button" id="btn" class="btn btn-danger btn-lg" style="float: right;">탈퇴하기</button>
+		<button type="button" id="deleteBtn" class="btn btn-danger btn-lg" style="float: right;">탈퇴하기</button>
 <!-- 		<button type="reset">다시 </button> -->
 	</td>
 </tr>
