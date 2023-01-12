@@ -7,7 +7,8 @@
 			
   <display-name>petCenter</display-name>
   <welcome-file-list>
-    <welcome-file>index.jsp</welcome-file>
+    <!-- <welcome-file>index.jsp</welcome-file> -->
+    <welcome-file>/WEB-INF/view/main/mainPage.jsp</welcome-file>
   </welcome-file-list>
   
   <context-param>
