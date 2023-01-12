@@ -1,6 +1,12 @@
 body {
   font-family: 'Open Sans', Arial, Helvetica, sans-serif;
-  padding: 30px;
+  
+}
+
+.cal {
+	margin-left: 180px;
+	width:70%;
+	height:70%;
 }
 
 .dropNewEvent {

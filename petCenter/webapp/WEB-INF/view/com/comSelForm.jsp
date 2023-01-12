@@ -36,7 +36,7 @@
 					location.href="comSelAll.pc";
 				});
 				
-				// like_1 버튼 
+				// like 버튼 
 				$(document).on("click", "#like_1", function(e){
 					alert($("#likey").val());
 		
@@ -71,7 +71,7 @@
 					
 				});
 				
-				// like_2 버튼 
+				// hate 버튼 
 				$(document).on("click", "#like_2", function(e){
 					alert($("#haty").val());
 					

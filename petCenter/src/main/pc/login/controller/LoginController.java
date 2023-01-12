@@ -181,7 +181,7 @@ public class LoginController {
 		return "login/pwFind";
 	}
 	
-	// 아이디찾기 인증번호
+	// 임시비밀번호 발급
 	@GetMapping("pwFindAuthnum")
 	public String pwFindAuthnum(MemberVO mvo) {
 		logger.info("pwFindAuthnum 함수 진입 >>> : ");
@@ -240,7 +240,6 @@ public class LoginController {
 	@PostMapping("kakaoLogin")
 	public String kakaoLogin(HttpServletRequest req, MemberVO mvo) {
 		logger.info("kakaoLogin 함수 진입 >>> : ");
-		
 		logger.info("kakaoLogin mvo.getSnstype() >>> : " + mvo.getSnstype());
 		logger.info("kakaoLogin mvo.getSnsid() >>> : " + mvo.getSnsid());
 		logger.info("kakaoLogin mvo.getSnsemail() >>> : " + mvo.getSnsemail());
@@ -272,9 +271,9 @@ public class LoginController {
 			memail = mvo.getSnsemail();
 			mvo.setMemail(memail);
 			
-			logger.info("kakaoLogin mid >>> : " + mid);
-			logger.info("kakaoLogin mpw >>> : " + mpw);
-			logger.info("kakaoLogin memail >>> : " + memail);
+			logger.info("kakaoLogin mvo.getMid() >>> : " + mvo.getMid());
+			logger.info("kakaoLogin mvo.getMpw() >>> : " + mvo.getMpw());
+			logger.info("kakaoLogin mvo.getMemail() >>> : " + mvo.getMemail());
 			
 			insertCnt = loginService.snsInsert(mvo);
 			logger.info("kakaoLogin insertCnt >>> : " + insertCnt);

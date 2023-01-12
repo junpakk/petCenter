@@ -159,7 +159,6 @@
 		var pwVal = $("#mpw").val();
 		var pwVal_r = $("#mpw_r").val();
 		
-		//const CHECK_PW = /^[a-zA-Z0-9]{8,20}/;
 		const CHECK_PW = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()])[A-Za-z\d!@#$%^&*()]{8,20}$/;
 			
 		if (!CHECK_PW.test(pwVal)){
@@ -302,9 +301,8 @@
 
 <tfoot>
 <tr >
-	<td colspan="2">
+	<td colspan="2" align="right">
 		<button type="button" id="btn" class="btn btn-primary btn-lg">가입하기</button>
-<!-- 		<button type="reset">다시 </button> -->
 	</td>
 </tr>
 </tfoot>

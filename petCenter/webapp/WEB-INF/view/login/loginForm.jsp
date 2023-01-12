@@ -130,7 +130,7 @@
 	}
 	
 	function kakaoLogin() {
-		alert("kakaoLogin >>> : ");
+		//alert("kakaoLogin >>> : ");
 		
 		$('#loginForm').attr({
 			'action':'kakaoLogin.pc',
@@ -204,7 +204,7 @@
 			</tr>
 			<tr>
 				<td>
-					<button type="button" class="btn btn-primary" id="loginBtn" style="width:229px;">로그인</button>
+					<button type="button" class="btn btn-primary" id="loginBtn" style="width:229px; height:51px;">로그인</button>
 				</td>
 			</tr>
 			<tr>

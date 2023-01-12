@@ -100,6 +100,7 @@
 			th{text-align:center; white-space:nowrap;}
 			td.vCenter{text-align:center}
 			#bImage{width:30px;height:28px;}
+			td{white-space:nowrap;}
 		
 		</style>
 		
@@ -108,7 +109,8 @@
 	<jsp:include page="../include/header.jsp" flush="true">
 			<jsp:param name="url" value="produectSelectAll.jsp"/>
 	</jsp:include>
-	
+	<br>
+	<div class="container">
 		<%
 		Object mnum = session.getAttribute("KNUM");
 		Object mid = session.getAttribute("KID");
@@ -121,7 +123,7 @@
 		List<CommunitiesVO> list = (List<CommunitiesVO>)obj;
 		int nCnt = list.size();
 		%>
-	<div class="container">
+	
 		<div class="title">커뮤니티</div>
 		
 		<div class="search-box">
@@ -143,7 +145,7 @@
 					<th style="width:100px;">카테고리</th>
 					<th style="width:100px;">아이디</th>
 					<th style="width:200px;">글제목</th>
-					<th>글내용</th>
+			<!-- 		<th>글내용</th> -->
 					<th>조회수</th>
 					<th>입력일</th>
 				</thead>
@@ -162,7 +164,7 @@
 					<td class="vCenter"><%= covo.getBcc() %></td>
 					<td class="vCenter"> <img id="bImage" src="/petCenter/fileupload/com/<%=covo.getBcphoto() %>" onerror="this.src='/petCenter/img/noImg.gif';"><%= covo.getMid() %></td>
 					<td class="vCenter"><%= covo.getBctitle() %></td>
-					<td><%= covo.getBccontent() %></td>
+					<%-- <td><%= covo.getBccontent() %></td> --%>
 					<td class="vCenter"><%= covo.getBchit() %></td>
 					<td class="vCenter"><%= covo.getIdate() %></td>
 				</tr>
@@ -171,7 +173,7 @@
 				}
 				%>
 				<tr>
-					<td colspan="9">
+					<td colspan="8">
 						<jsp:include page="comPaging.jsp" flush="true">
 							<jsp:param name="url" value="comSelAll.pc"/>
 							<jsp:param name="str" value="searchFilter=${paging.searchFilter}&keyword=${paging.keyword}&startDate=${paging.startDate}&endDate=${paging.endDate}&mid=<%= mid %>&mnum=<%= mnum %>"/>
@@ -183,7 +185,7 @@
 					</td>
 				</tr>				
 				<tr>
-					<td colspan="9" class="gbuttons" align="right">
+					<td colspan="8" class="gbuttons" align="right">
 						<input type="button" value="등록" id="iBtn"/>
 <!-- 						<input type="button" value="조회" id="sBtn"/> -->
 						<input type="button" value="삭제" id="dBtn"/>
