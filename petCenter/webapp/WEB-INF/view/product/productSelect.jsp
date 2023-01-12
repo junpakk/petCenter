@@ -114,7 +114,8 @@
 	table.t{
 /* 		background:#faf8b9; */
 /* background-color:rgba(61, 183, 204, 0.3); */
-		background-color:rgba(255, 195, 54, 0.1);
+/* 		background-color:rgba(255, 195, 54, 0.1); */
+		background-color:rgba(0,0,0,0.05);
 	}
 	
 </style>
@@ -155,9 +156,9 @@
 						<div class=""><h3><%= pvo.getPname() %></h3></div><br/>
 						<div align="right">
 							<div style="display: inline-block">
-								<input type="button" onclick="count('minus')" value="-"/>
+								<input type="button" onclick="count('minus')" value="-" style="width:20px; background:rgba(0,0,0,0.2); border:0px; "/>
 								&nbsp;<div id="result" style="display: inline-block">1</div>&nbsp;
-								<input type="button" onclick="count('plus')" value="+"/>&nbsp;
+								<input type="button" onclick="count('plus')" value="+" style="width:20px; background:rgba(0,0,0,0.2); border:0px; "/>&nbsp;
 							</div>
 							<div id="totalPrice" style="display: inline-block"><h3><%= pvo.getPprice() %></h3></div><h3 style="display: inline-block">&nbsp;원</h3>
 						</div>
@@ -173,10 +174,13 @@
 						<h3><div align="right">합계	<div id="tPrice" style="display: inline-block;"><%= pvo.getPprice() %></div> 원&nbsp;&nbsp;&nbsp;<br/><br/></div></h3>
 							<div align="center">
 								<div style="display: inline-block">
-									<input type="button" id="cartBtn" value="장바구니">
+									<input type="button" id="cartBtn" class="cartBtn" value="장바구니" 
+									style="width:90px; background:rgba(0,0,0,0.2);  font-size:20px; padding:5px; border:0px;">
 								</div>
+								&nbsp;&nbsp;
 								<div style="display: inline-block">
-									<input type="button" id="orderBtn" value="구매하기">
+									<input type="button" id="orderBtn" class="orderBtn" value="구매하기" 
+									style="width:90px; background:rgba(0,0,0,0.2);  font-size:20px; padding:5px; border:0px;">
 								</div>
 							</div>
 							<br/>

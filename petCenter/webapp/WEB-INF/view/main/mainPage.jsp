@@ -275,7 +275,8 @@
 	}
 	
 	.chart{
-		margin-top: 30px;
+		margin: 60px;
+		border: 1px solid #c9eef5;
 	}
 	
 	
@@ -404,6 +405,7 @@
 				</div>
 		<!-- 박람회 -->
 		<!-- rss 연결 -->
+				<br/><hr>
 				<div>
 					<jsp:include page="../main/rssPage.jsp" flush="true">
 						<jsp:param name="url" value="rss.jsp"/>
@@ -412,6 +414,7 @@
 				<!-- rss 연결 -->
 				
 		<!-- 사진 게시판 연결 -->
+				<br/><hr>
 				<div>
 					<jsp:include page="../photo/photoMain.jsp" flush="true">
 						<jsp:param name="photomain" value="photoMain.jsp"/>
@@ -419,11 +422,13 @@
 				</div>
 		<!-- 사진 게시판 연결 -->
 		<!-- 회원 기호동물 차트, 날씨 -->
+				<hr>
 				<div class="chart">
 					<jsp:include page="../main/piechartPage.jsp" flush="true">
 						<jsp:param name="chart" value="chart.jsp"/>
 					</jsp:include>
-				</div>		
+				</div>
+				<hr><br/>		
 		<!-- 회원 기호동물 차트 -->		
 		</div><!--  end of main -->
 		<div class="aside">

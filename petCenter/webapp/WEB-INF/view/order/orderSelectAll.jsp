@@ -115,7 +115,7 @@ td {
 
 <tr>
 	<td colspan="8" style="text-align:right">
-		<input type="button" value="쇼핑하기" id="shoppingBtn">
+		<input type="button" value="쇼핑하기" id="shoppingBtn" style="width:90px; background:rgba(0,0,0,0.2);  font-size:15px; padding:5px; border:0px;">
 	</td>
 </tr>
 </tbody>

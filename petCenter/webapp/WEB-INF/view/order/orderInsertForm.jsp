@@ -57,6 +57,13 @@
 	});//end of ready()
 
 </script>
+<style>
+
+	td {
+		padding:10px;
+	}
+	
+</style>
 </head>
 <body>
 <form name="orderForm" id="orderForm">
@@ -159,7 +166,7 @@
 		<td align="center">주소</td>
 		<td colspan="5">
 			<input type="text" name="ozonecode" id="ozonecode" placeholder="우편번호" style="width:150px;" maxlength="6">
-			<input type="button" name="ozoneBtn" id="ozoneBtn" value="우편번호 찾기"><br/>
+			<input type="button" name="ozoneBtn" id="ozoneBtn" value="우편번호 찾기" style="width:90px; background:rgba(0,0,0,0.2);  font-size:15px; padding:5px; border:0px;"><br/>
 			<input type="text" name="oroadaddress" id="oroadaddress" placeholder="도로명주소" style="width:250px;"><br/>
 			<input type="text" name="oroadaddressdetail" id="oroadaddressdetail" placeholder="도로명 상세주소" style="width:250px;"><br/>
 			<input type="text" name="ojibunaddress" id="ojibunaddress" placeholder="지번주소" style="width:250px;">
@@ -168,9 +175,9 @@
 	
 	<tr>
 		<td colspan="6" style="text-align:center">
-			<button type="button" id="orderBtn">주문</button>
-			<button type="button" id="paymentBtn">결제</button>
-			<button type="reset">다시</button>
+			<button type="button" id="orderBtn" style="width:90px; background:rgba(0,0,0,0.2);  font-size:15px; padding:5px; border:0px;">주문</button>
+			<button type="button" id="paymentBtn" style="width:90px; background:rgba(0,0,0,0.2);  font-size:15px; padding:5px; border:0px;">결제</button>
+			<button type="reset" style="width:90px; background:rgba(0,0,0,0.2);  font-size:15px; padding:5px; border:0px;">다시</button>
 		</td>
 	</tr>
 </table>

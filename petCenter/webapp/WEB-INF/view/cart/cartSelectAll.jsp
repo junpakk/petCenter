@@ -288,7 +288,7 @@
 								<input type="checkbox" name="cnum" id="cnum" class="cnum" value=<%= cnum %>>
 								<input type="hidden" name="opsum" id="opsum" class="opsum" value=<%= opsum %>>
 								<img src="fileupload/product/<%= cphoto %>" width="25px" height="25px"/>
-								<strong><%= cname %></strong>
+								<strong><h3 style="display:inline-block;"><%= cname %></h3></strong>
 							</div>
 						
 							<div style="text-align:right;">
@@ -296,12 +296,14 @@
 								<em><%= ccnt %></em> 개
 								<strong><%= opsum %> 원</strong>
 							</div>
-							
+							<br/>							
 							<div style="text-align:right;">
-								<button type="button" class="delBtn" name="delBtn" id="delBtn" value="<%= cnum %>">삭제</button>
+								<button type="button" class="delBtn" name="delBtn" id="delBtn" value="<%= cnum %>" style="width:90px; background:rgba(0,0,0,0.2); border:0px;  font-size:15px; padding:2px">삭제</button>
 							</div>
+							<br/>
 							<hr>
 						</div>
+						<br/>
 					<%
 		}//end of for
 	}//end of else
@@ -313,9 +315,9 @@
 				<div class="de">
 					<div  class="d">
 						<div><h2>결제금액</h2></div>
-						<div align="right"><h3>상품금액<div id="price" style="text-align:right; display: inline-block;"> 0 </div> 원</h3></div>
-						<div align="right"><h3>배송비<div id="delivery" style="text-align:right; display: inline-block;"> 2500 </div> 원</h3></div><div><br/></div><hr>
-						<div align="right"><h3>최종결제금액<div id="tPrice" style="text-align:right; display: inline-block;"> 0 </div> 원</h3></div>
+						<div align="right"><h3>상품금액&nbsp;<div id="price" style="text-align:right; display: inline-block;"> 0 </div> 원</h3></div>
+						<div align="right"><h3>배송비&nbsp;<div id="delivery" style="text-align:right; display: inline-block;"> 2500 </div> 원</h3></div><div><br/></div><hr>
+						<div align="right"><h3>최종결제금액&nbsp;<div id="tPrice" style="text-align:right; display: inline-block;"> 0 </div> 원</h3></div>
 					</div>
 					<br/>
 					<div class="e" style="text-align:center;">

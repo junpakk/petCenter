@@ -108,13 +108,13 @@ ul	{
 		<tr>
 			<th>
 				<ul>
-				    <li>
+				    <li style="padding:10px;">
 					      <select id="pcategory">
 							  <option id="pcategory" value="00">우리아이</option>
 							  <option id="pcategory" value="21">고양이</option>
 							  <option id="pcategory" value="11">강아지</option>
 						  </select>
-					      <input type="button" class="" id="pc21" value="사료"><!-- 카테고리 11 -->
+					      <input type="button" class="" id="pc21" value="사료" ><!-- 카테고리 11 -->
 					      <input type="button" class="" id="pc21" value="간식"><!-- 카테고리 12 -->
 					      <input type="button" class="" id="pc21" value="용품"><!-- 카테고리 13 -->
 				    </li>
