@@ -23,7 +23,7 @@
 	String code = request.getParameter("code");
 	String state = request.getParameter("state");
 	
-	String redirectURI = URLEncoder.encode("http://localhost:8088/petCenter/naverCallback.pc", "UTF-8");
+	String redirectURI = URLEncoder.encode("http://192.168.219.181:8088/petCenter/naverCallback.pc", "UTF-8");
 	String apiURL = "https://nid.naver.com/oauth2.0/token?grant_type=authorization_code"
 					+ "&client_id=" + clientId
 					+ "&client_secret=" + clientSecret

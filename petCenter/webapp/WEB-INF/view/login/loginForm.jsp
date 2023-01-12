@@ -7,7 +7,7 @@
 <%
 	//네이버 로그인
 	String clientId = "F2JhUJ5_BUtYEkqpaC9U";//애플리케이션 클라이언트 아이디값";
-	String redirectURI = URLEncoder.encode("http://localhost:8088/petCenter/naverCallback.pc", "UTF-8");
+	String redirectURI = URLEncoder.encode("http://192.168.219.181:8088/petCenter/naverCallback.pc", "UTF-8");
 	
 	SecureRandom random = new SecureRandom();
 	String state = new BigInteger(130, random).toString();
@@ -100,7 +100,7 @@
 	
 	window.Kakao.init('92dade31e34446d79aa0404eb6817dbe');
 	function kakaoLoginApi() {
-		alert("kakaoLoginApi >>> : ");
+		//alert("kakaoLoginApi >>> : ");
 		window.Kakao.Auth.login({
 			success: function(authObj){
 				console.log("authObj >>> : " + JSON.stringify(authObj));
