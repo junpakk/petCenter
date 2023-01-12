@@ -204,7 +204,20 @@ public class OrderController {
 			if(Cnt == -1) {
 				logger.info("nCnt: "+ nCnt);
 				
-				return "cart/cartDelete";
+				String mnum1 ="";
+				mnum1 = req.getParameter("mnum");
+				
+				OrderVO ovo1 = new OrderVO();
+				ovo1.setMnum(mnum1);
+				logger.info("ovo1: "+ ovo1);
+				
+				//서비스 호출
+				List<OrderVO> orderListAll = orderService.orderSelectAll(ovo1);
+				logger.info("orderListAll.size(): "+ orderListAll.size());
+				logger.info("orderListAll: "+ orderListAll);
+				model.addAttribute("orderListAll", orderListAll);
+				logger.info("주문 전체 목록을 호출합니다.");
+				return "order/orderSelectAll";
 			}
 		}
 		return "cart/cartSelectAll";
