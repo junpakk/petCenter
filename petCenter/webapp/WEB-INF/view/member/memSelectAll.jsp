@@ -119,7 +119,6 @@
 		});
 		
 		$("#searchBtn").click(function(){
-			alert("조건검색 >>> : 클릭");
 			
 			$("#memSelectAll").attr({
 				'action':'memSelectAll.pc',
@@ -130,7 +129,6 @@
 		
 		// s
 		$(document).on("click", "#selectBtn", function(){
-			alert("selectBtn >>> : click() ");
 			
 			if($(".mnum:checked").length == 1){
 				$("#memSelectAll").attr({
@@ -145,7 +143,6 @@
 		
 		// u
 		$(document).on("click", "#updateBtn", function(){
-			alert("updateBtn >>> : click() ");
 			
 			if($(".mnum:checked").length == 1){
 				$("#memSelectAll").attr({
@@ -160,7 +157,6 @@
 		
 		// d
 		$(document).on("click", "#deleteBtn", function(){
-			alert("deleteBtn >>> : click() ");
 			
 			if($(".mnum:checked").length == 1){
 				$("#memSelectAll").attr({
@@ -175,7 +171,6 @@
 		
 		// SALL
 		$(document).on("click", "#selectAllBtn", function(){
-			alert("selectAllBtn >>> : click() ");
 			location.href="memSelectAll.pc";
 		});
 		

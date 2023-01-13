@@ -15,8 +15,8 @@
 	
 	$(document).ready(function(){
 		$(document).on("click", "#pBtn", function(){
-			alert("#pBtn 버튼 클릭: ");
 			console.log("#pBtn 버튼 클릭: ");
+			
 			$("#productInsertForm").attr({
 				 'action' :'productInsert.pc'
 				,'method' :'POST'

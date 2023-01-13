@@ -19,12 +19,11 @@
 		
 	
 		//채팅서버주소
-		let url = "ws://192.168.219.121:8088/petCenter/chatserver";
+		let url = "ws://192.168.219.181:8088/petCenter/chatserver";
 		//웹소켓
 		let ws;
 		//연결하기
 		$("#connectChat").click(function(){
-			alert("#connectChat 버튼 클릭");
 			//유저명 확인
 			if($("#user").val().trim() != ""){
 				//연결
@@ -171,7 +170,8 @@
 <style type="text/css">
 		/*500px*/
 		body{
-			background: #c9eef5;
+/* 			background: #c9eef5; */
+			background: #fcf2d4;
 		}
 		
 		.listChat{
