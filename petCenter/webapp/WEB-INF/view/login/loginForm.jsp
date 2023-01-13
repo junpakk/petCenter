@@ -174,6 +174,8 @@
 </script>
 <style type="text/css">
 	
+	a { text-decoration:none !important }
+	a:hover { text-decoration:none !important }
 	
 </style>
 </head>
@@ -197,14 +199,14 @@
 			</tr>
 			</thead>
 			<tr>
-				<td><input type="text" name="mid" id="mid" style="width:229px;" onkeydown=moveFocus("mpw")></td>
+				<td><input type="text" name="mid" id="mid" style="width:229px;" onkeydown=moveFocus("mpw") class="form-control"></td>
 			</tr>
 			<tr>
-				<td><input type="password" name="mpw" id="mpw" style="width:229px;" onkeydown=moveFocus("loginBtn")></td>
+				<td><input type="password" name="mpw" id="mpw" style="width:229px;" onkeydown=moveFocus("loginBtn") class="form-control"></td>
 			</tr>
 			<tr>
 				<td>
-					<button type="button" class="btn btn-primary" id="loginBtn" style="width:229px; height:51px;">로그인</button>
+					<button type="button" class="btn btn-info" id="loginBtn" style="width:229px; height:51px;">로그인</button>
 				</td>
 			</tr>
 			<tr>
@@ -215,17 +217,18 @@
 				</td>
 			</tr>
 			<tr>
-				<td>
+				<td align="center">
+					<p>SNS 계정 간편로그인</p>
 					<input type="hidden" name="snstype" id="snstype" />
 					<input type="hidden" name="snsid" id="snsid" />
 					<input type="hidden" name="snsemail" id="snsemail" />
 					<input type="hidden" name="mname" id="mname" />
 					<a href="javascript:kakaoLoginApi()">
-						<img height="55" width="229" src="/petCenter/img/login/kakao.jpg"/>
+						<img height="55" width="55" src="/petCenter/img/login/kakao_login_circle.png" />
 					</a>
-					<br><br>
+					&nbsp;&nbsp;&nbsp;&nbsp;
 					<a href="<%= apiURL %>">
-						<img height="55" width="229" src="/petCenter/img/login/naver.PNG"/>
+						<img height="55" width="55" src="/petCenter/img/login/btnG_icon_circle.png" />
 					</a>
 				</td>
 			</tr>
