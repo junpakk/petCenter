@@ -36,7 +36,7 @@ getAttribute()의 경우 setAttribute()속성을 통한 설정이 없으면 무�
 	List<ProductVO> list = (List<ProductVO>)obj;
 	int nCnt = list.size();
 	logger.info("list.size(): "+ list.size());
-// 	logger.info("list.get(0).getPnum(): "+ list.get(0).getPnum());
+ 	logger.info("list.get(0).getPcategory(): "+ list.get(0).getPcategory());
 %>
 
 <!DOCTYPE html>
@@ -68,6 +68,16 @@ getAttribute()의 경우 setAttribute()속성을 통한 설정이 없으면 무�
 	        const mnum = '<%= mnum %>';
 			const pcategory = $("#pcategory").val();
 	        alert("pcategory : "+ pcategory);
+	        
+<%-- 	        if(<%= list.get(0).getPcategory() %> == '21'){ --%>
+// 	        	$("input:checkbox[value='21']").prop("checked",true);
+	        	
+// 	        }
+	        
+<%-- 	        if(<%= list.get(0).getPcategory() %> == '11'){ --%>
+// 	        	$("input:checkbox[value='11']").prop("checked",true);
+// 	        }
+	        
 	        
 	        location.href="productSelectAll.pc?pcategory="+pcategory;
 // 	        location.href="productSelectAll.pc?mnum="+mnum+"&pcategory="+pcategory;
