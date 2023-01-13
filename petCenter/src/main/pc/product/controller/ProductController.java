@@ -88,8 +88,16 @@ public class ProductController {
 		if(listAll.size() > 0) {
 			logger.info("listAll.size(): "+ listAll.size());
 			
-			model.addAttribute("listAll", listAll);//상품 정보
-			return "product/productSelectAll";
+			logger.info("listAll.get(0).getPcategory().substring(0,1): "+ listAll.get(0).getPcategory().substring(0,1));
+			if(listAll.get(0).getPcategory().substring(0,1).equals("1")) {
+				logger.info("1번 listAll.get(0).getPcategory().substring(0,1): "+ listAll.get(0).getPcategory().substring(0,1));
+				model.addAttribute("listAll", listAll);//상품 정보
+				return "product/productSelectAll";
+			}else{
+				logger.info("2번 listAll.get(0).getPcategory().substring(0,1): "+ listAll.get(0).getPcategory().substring(0,1));
+				model.addAttribute("listAll", listAll);//상품 정보
+				return "product/productSelectAll2";
+			}
 		}
 		return "main/mainPage";
 	}//end of productSelectAll
