@@ -28,7 +28,7 @@
 	%>
 	<script>
 		if(<%=mid%> === null || "<%=mid%>" === ""){
-			alert("먼저 로그인 해주세요 "+ <%=mid%>);
+			alert("먼저 로그인 해주세요 ");
 			location.href="loginForm.pc";
 		}
 	</script>	

@@ -38,7 +38,6 @@
 				
 				// like 버튼 
 				$(document).on("click", "#like_1", function(e){
-					alert($("#likey").val());
 		
 					let boardLikeURL = "like1.pc";
 					let reqType = "GET";
@@ -59,7 +58,6 @@
 					});
 					
 					function whenSuccess(resData){
-						alert("resData : " + resData);
 						console.log("resData : " + resData);			
 						$("#disp_cnt_recom").text(resData);
 						$("#likey").val(resData);
@@ -73,7 +71,6 @@
 				
 				// hate 버튼 
 				$(document).on("click", "#like_2", function(e){
-					alert($("#haty").val());
 					
 					let boardLikeURL = "hate1.pc";
 					let reqType = "GET";
@@ -93,7 +90,6 @@
 					});
 					
 					function whenSuccess(resData){
-						alert("resData : " + resData);
 						console.log("resData : " + resData);			
 						$("#disp_cnt_stop").text(resData);
 						$("#haty").val(resData);
@@ -138,8 +134,8 @@
 		<div class="container">
 		<script>
 			if(<%=mid%> === null || "<%=mid%>" === ""){
-				alert("먼저 로그인 해주세요 "+ <%=mid%>);
-				location.href="mainPage.pc";
+				alert("먼저 로그인 해주세요 ");
+				location.href="loginForm.pc";
 			}
 		</script>
 		<div class="title">커뮤니티</div>

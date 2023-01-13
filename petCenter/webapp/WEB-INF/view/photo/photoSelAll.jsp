@@ -17,12 +17,7 @@
 			$(document).ready(function() {
 				console.log("제이쿼리진입 >>> : ");
 				
-				$(document).on("click", "#chkAll", function() {
-					if($(this).prop("checked")) {
-						$(".bpnum").prop("checked", false);
-						
-					}
-				});
+		
 				
 				$(document).on("click", "#bpnum", function() {
 					if($(this).prop("checked")) {
@@ -32,6 +27,11 @@
 				});
 
 				$("#iBtn").on("click", function() {
+					
+					if($(".bpnum:checked").length == 0) {
+						return;
+					}
+					
 					$("#selectForm").attr({
 						"action":"photoInsForm.pc",
 						"method":"GET",
@@ -119,7 +119,7 @@
 		<form action="selectForm" id="selectForm" name="selectForm">
 			<table class="table-sm table-striped table-hover table-bordered" style="width:100%;">
 				<thead>
-					<th><input type="checkbox" id="chkAll" name="chkAll" class="chkAll"/></th>
+					<th></th>
 					<th>순번</th>
 					<th>글번호</th>
 					<th style="width:100px;">아이디</th>

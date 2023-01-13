@@ -148,10 +148,10 @@
 		<div class="container">
 		<script>
 			if(<%=mid%> === null || "<%=mid%>" === ""){
-				alert("먼저 로그인 해주세요 "+ <%=mid%>);
-				location.href="mainPage.pc";
+				alert("먼저 로그인 해주세요 ");
+				location.href="loginForm.pc";
 			}
-		</script>
+		</script>	
 		<div class="title">팁 게시판</div>
 		<form action="Form" id="Form" name="Form">
 			<input type="hidden" class="insert_1" id="mnum" name="mnum" value="<%=mnum %>" readonly/>

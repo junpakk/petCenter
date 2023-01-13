@@ -106,11 +106,9 @@
 			}
 			
 			var brnumV = $(this).parents("li").attr("dataNum");
-			alert("brnumV : " + brnumV);
 			console.log("brnumV : " + brnumV);
 
 			var target = $(this).parents(".brmemoItem");
-			alert("target : " + target);
 			console.log("target : " + target);
 			
 			let deleteURL = "replyDelete.pc";

@@ -109,7 +109,7 @@
 	<jsp:include page="../include/header.jsp" flush="true">
 			<jsp:param name="url" value="produectSelectAll.jsp"/>
 	</jsp:include>
-	<br>
+	<br><br><br>
 	<div class="container">
 		<%
 		Object mnum = session.getAttribute("KNUM");
@@ -197,7 +197,7 @@
 			</table>
 		</form>
 		</div>
-	<br><br>
+	<br><br><br><br><br>
 	<jsp:include page="../include/footer.jsp" flush="true">
 		<jsp:param name="url" value="produectSelectAll.jsp"/>
 	</jsp:include>

@@ -25,6 +25,15 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		
+
+		$(document).on("click", "#bntitle", function(){
+			
+			if($(this).prop('checked')){
+				$('.bntitle').prop('checked', false);
+				$(this).prop('checked', true);
+			}
+		});
+		
 		$("#insertBtn").on("click", function() {
 			
 			$("#nsForm").attr({
@@ -34,13 +43,13 @@
 			}).submit();
 		});
 		$("#selectallBtn").on("click", function() {
-			alert("새로고침>>> : ");
 			$("#nsForm").attr({
 				"action" : "noticeSelectAll.pc",
 				"method" : "GET",
 				"enctype" : "application/x-www-form-urlencoded"
 			}).submit();
 		});
+		
 		$("#selectformBtn").on("click", function() {
 	
 			$("#nsForm").attr({
@@ -84,7 +93,6 @@ int nCnt = list.size();
 </td>
 </tr>
 <th class="align-middle">
-<input type="checkbox" id="chkAll" name="chkAll" class="chkAll"/>
 </th>
 <th class="align-middle">순번</th>
 <th class="align-middle">글제목</th>

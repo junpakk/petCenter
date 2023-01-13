@@ -79,8 +79,8 @@
 		<div class="container">
 		<script>
 			if(<%=mid%> === null || "<%=mid%>" === ""){
-				alert("먼저 로그인 해주세요 "+ <%=mid%>);
-				location.href="mainPage.pc";
+				alert("먼저 로그인 해주세요 ");
+				location.href="loginForm.pc";
 			}
 		</script>
 		<div class="title">커뮤니티</div>

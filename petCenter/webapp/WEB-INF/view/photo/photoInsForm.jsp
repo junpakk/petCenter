@@ -7,7 +7,6 @@
 		<title>Insert title here</title>
 		<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 		<script type="text/javascript">
-			alert("스크립트진입 >>> : ");
 			console.log("스크립트진입 >>> : ");
 
 			const clickImg = function(imgsrc, pageName){
@@ -20,11 +19,9 @@
 			}			
 			
 			$(document).ready(function() {
-				alert("제이쿼리진입 >>> : ");
 				console.log("제이쿼리진입 >>> : ");
 				
 				$("#fBtn").on("click", function() {
-					alert("버튼눌림 >>> : ");
 					
 					$("#Form").attr({
 						"action":"photoIns.pc",
@@ -74,7 +71,12 @@
 
 				}
 			%>		
-
+		<script>
+		if(<%=mid%> === null || "<%=mid%>" === ""){
+			alert("먼저 로그인 해주세요 ");
+			location.href="loginForm.pc";
+		}
+	</script>
 		
 
 		<div class="container">

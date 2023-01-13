@@ -125,11 +125,11 @@
 		
 		//삭제버튼
 		$(document).on('click', '#delBtn', function(){
-			alert("#delBtn 클릭: ");
+			console.log("#delBtn 클릭: ");
 			let cnum = $(this).val();
 			let mnum = $('#mnum').val();
-			alert("cnum: "+ cnum);
-			alert("mnum: "+ mnum);
+			console.log("cnum: "+ cnum);
+			console.log("mnum: "+ mnum);
 			
 			location.href="cartDelete.pc?cnum="+cnum+"&mnum="+mnum;
 		});
@@ -140,7 +140,7 @@
 		
 		//오더 함수(선택한 항목만 가져가서 주문)
 		$(document).on('click', '#buyBtn', function(){
-			alert("#buyBtn 버튼 클릭: ");
+			console.log("#buyBtn 버튼 클릭: ");
 			
 			if($('.cnum:checked').length == 0){
 				alert("주문한 상품 하나 이상을 선택하시오.");
@@ -155,10 +155,10 @@
 			
 // 			const delivery = document.getElementsByName("delivery").innerText;
 // 			const tprice = document.getElementsByName("tprice").innerText;
-// 			alert("delivery: "+ delivery);
-// 			alert("tprice: "+ tprice);
-// 			alert("delivery: "+ typeof(delivery));
-// 			alert("tprice: "+ typeof(tprice));
+// 			console.log("delivery: "+ delivery);
+// 			console.log("tprice: "+ tprice);
+// 			console.log("delivery: "+ typeof(delivery));
+// 			console.log("tprice: "+ typeof(tprice));
 			
 			$("#cartSelectAll").attr({ 	 "action":"orderInsertForm.pc"
 // 			$("#cartSelectAll").attr({ 	 "action":"orderInsertForm.pc"
@@ -168,18 +168,18 @@
 		
 		//쇼핑 함수
 		$(document).on('click', '#shopBtn', function(){
-			alert("#shopBtn 버튼 클릭: ");
+			console.log("#shopBtn 버튼 클릭: ");
 			let mnum = $('#mnum').val();
-			alert("mnum: "+ mnum);
+			console.log("mnum: "+ mnum);
 			
 			location.href="productSelectAll.pc?pcategory=21&mnum="+mnum;
 		});
 		
 		//주문내역확인
 		$(document).on('click', '#orderInfo', function(){
-			alert("#orderInfo 버튼 클릭: ");
+			console.log("#orderInfo 버튼 클릭: ");
 			let mnum = $('#mnum').val();
-			alert("mnum: "+ mnum);
+			console.log("mnum: "+ mnum);
 			
 			location.href="orderSelectAll.pc?mnum="+mnum;
 		});
@@ -193,9 +193,9 @@
 			//$("#targetChkbox").is(":checked") == true
 			if($(this).is(":checked") == true){
 				let cost = $(this).siblings();
-				//alert("cost: "+ cost);
+				//console.log("cost: "+ cost);
 				let value = cost.get(0).value;
-				alert("value: "+ value);
+				console.log("value: "+ value);
 				price = price + parseInt(value);
 				$("#price").text(price);
 			}else{
