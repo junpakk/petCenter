@@ -25,7 +25,8 @@
 				$(document).on("click", "#bbtn", function(){
 					
 					let mmnum="<%=mnum%>";
-					if(mmnum != null){
+					console.log(mmnum);
+					if(mmnum !="null"){
 						alert("등록되었습니다.");
 					}else{
 						alert("로그인을 먼저 해주세요.");
