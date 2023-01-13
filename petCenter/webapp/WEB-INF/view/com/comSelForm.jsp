@@ -36,9 +36,8 @@
 					location.href="comSelAll.pc";
 				});
 				
-				// like_1 버튼 
+				// like 버튼 
 				$(document).on("click", "#like_1", function(e){
-					alert($("#likey").val());
 		
 					let boardLikeURL = "like1.pc";
 					let reqType = "GET";
@@ -59,7 +58,6 @@
 					});
 					
 					function whenSuccess(resData){
-						alert("resData : " + resData);
 						console.log("resData : " + resData);			
 						$("#disp_cnt_recom").text(resData);
 						$("#likey").val(resData);
@@ -71,9 +69,8 @@
 					
 				});
 				
-				// like_2 버튼 
+				// hate 버튼 
 				$(document).on("click", "#like_2", function(e){
-					alert($("#haty").val());
 					
 					let boardLikeURL = "hate1.pc";
 					let reqType = "GET";
@@ -93,7 +90,6 @@
 					});
 					
 					function whenSuccess(resData){
-						alert("resData : " + resData);
 						console.log("resData : " + resData);			
 						$("#disp_cnt_stop").text(resData);
 						$("#haty").val(resData);
@@ -113,26 +109,17 @@
 			td.insert{width:85%;}
 			input.insert_1{width:100%;border:none;}
 			textarea.insert_1{width:100%;border:none;}
-			td.semi_title{text-align:center;}
+			td.semi_title{text-align:center; white-space:nowrap;}
 			td.gbuttons{text-align:center}
-			.header{
-			/* 	background-image:url("../../img/contact.png"); */
-				diplay:flex;
-				position:sticky;
-				top:0%;
-			  	background:orange;
-				grid-area:header;
-				text-align:center;
-			}
-			.upperH{width:100%;height:50px;background:pink;text-align:center;}
-			.lowerH{width:100%;height:100px;background:yellow;text-align:center;}			
+	
 		</style>
 	
 	</head>
 	<body>
-		<div class="header">
-		<div class="upperH">링크1 / 링크2 / 링크3 / 링크4 / 링크 5  &nbsp; 마이페이지
-			<div>
+	<jsp:include page="../include/header.jsp" flush="true">
+			<jsp:param name="url" value="produectSelectAll.jsp"/>
+	</jsp:include>
+	<br><br>
 			<%
 				String mnum = null;
 				String mid = null;
@@ -142,43 +129,21 @@
 				if (objMnum != null) {
 					mnum = (String)objMnum;
 					mid = (String)objMid;
-			%>
-				<p>
-					<%= mid %>(<%= mnum %>) 님 안녕하세요!! 
-					<a href="logout.pc">로그아웃</a> | 
-					<a href="calendar.pc" >캘린더</a> |
-					<a href="memInsertForm.pc" >회원가입</a>
-					<% String link =  "memSelect.pc?mnum=" + mnum;%>
-					<a href="<%= link %>">회원정보</a>
-				</p>
-			<% 
-				}else{
-			%>
-				<p>
-					<a href="loginForm.pc" >로그인</a> |
-					<a href="memInsertForm.pc" >회원가입</a>
-					
-				</p>
-			<%
 				}
 			%>		
-			</div>
-		
-		</div>
-		<div class="lowerH">로고 / 박람회(버튼) 커뮤니티(버튼) 쇼핑몰(버튼) 지도(버튼) 공지사항(버튼)</div>
-		</div>
 		<div class="container">
 		<script>
 			if(<%=mid%> === null || "<%=mid%>" === ""){
-				alert("먼저 로그인 해주세요 "+ <%=mid%>);
-				location.href="mainPage.pc";
+				alert("먼저 로그인 해주세요 ");
+				location.href="loginForm.pc";
 			}
 		</script>
 		<div class="title">커뮤니티</div>
 		<form action="Form" id="Form" name="Form">
 			<input type="hidden" class="insert_1" id="mnum" name="mnum" value="<%=mnum %>" readonly/>
 			<input type="hidden" class="insert_1" id="mid" name="mid" value="<%=mid %>" readonly/>
-			<table class="table-sm table-striped table-hover table-bordered" style="width:100%;">
+			<table class="table table-sm table-striped table-hover table-bordered" style="width:100%;">
+			
 			<% 
 			Object obj = request.getAttribute("listS");
 			if(obj == null) return;
@@ -195,12 +160,9 @@
 			}
 			%>
 				<tr>
-					<td class="semi_title" style="width:130pt;height:40pt;">글번호</td>
+					<td class="semi_title">글번호</td>
 					<td class="insert"><%=cvo.getBcnum() %></td>
-					<input type="hidden" name="bcnum" id="bcnum" value="<%=bcnum %>">
-					<input type="hidden" name="likey"  id="likey" value="<%= cvo.getLikey()%>">
-						<input type="hidden" name="hate"  id="haty" value="<%= cvo.getHate() %>">
-					<td class="insert" rowspan='4'><img id="bImage" src="/petCenter/fileupload/com/<%=cvo.getBcphoto() %>" width="400" height="400"  onerror="this.src='/petCenter/img/noImg.gif';"></td>
+					<td class="insert" rowspan='4'><img id="bImage" src="/petCenter/fileupload/com/<%=cvo.getBcphoto() %>" width="160" height="150"  onerror="this.src='/petCenter/img/noImg.gif';"></td>
 				</tr>
 				<tr>
 					<td class="semi_title">카테고리</td>
@@ -232,6 +194,9 @@
 
 							<img src='/petCenter/img/like/thumb_rev.png' style='width:12px; margin:3px 3px 0 0;'>
 							<span id="disp_cnt_stop"><%= cvo.getHate() %></span>
+							<input type="hidden" name="bcnum" id="bcnum" value="<%=bcnum %>">
+							<input type="hidden" name="likey"  id="likey" value="<%= cvo.getLikey()%>">
+							<input type="hidden" name="hate"  id="haty" value="<%= cvo.getHate() %>">
 
 					</td>
 				<tr>
@@ -248,8 +213,11 @@
 			<!-- 댓글 처리 하는 루틴  --> 
 			<jsp:include page="/replyForm.pc">
 				<jsp:param value="<%=bcnum%>" name="bcnum"/>
-			</jsp:include>	
+			</jsp:include>
 		</div>
 		</div>
+		<jsp:include page="../include/footer.jsp" flush="true">
+		<jsp:param name="url" value="produectSelectAll.jsp"/>
+	</jsp:include>
 	</body>
 </html>

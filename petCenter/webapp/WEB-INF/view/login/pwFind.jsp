@@ -68,12 +68,22 @@
 
 </head>
 <body>
+<jsp:include page="../include/header.jsp" flush="true">
+	<jsp:param name="url" value="produectSelectAll.jsp"/>
+</jsp:include>
+<br><br><br><br><br><br>
+
 <div class="container">
+<div class="row">
+<div class="col">
+</div>
+<div class="col-6">
+
 	<form name="pwForm" id="pwForm">
 		<table border="1" class="table table-bordered w-auto" align="center">
 			<thead>
 				<tr>
-					<td colspan="2"><h1 align="center">PwFind</h1></td>
+					<td colspan="2"><h1 align="center">비밀번호 찾기</h1></td>
 				</tr>
 			</thead>
 			
@@ -96,7 +106,7 @@
 					<td class="align-middle">임시비밀번호</td>
 					<td>
 						<input type="text" name="ppw" id="ppw" style="width:200px;" placeholder="임시비밀번호  8자리 숫자 입력">
-						&nbsp;&nbsp;<button type="button" id="pwbtn" class="btn btn-success btn-sm">&nbsp;비밀번호&nbsp;&nbsp;바꾸기&nbsp;</button>
+						&nbsp;&nbsp;<button type="button" id="pwbtn" class="btn btn-success btn-sm">&nbsp;비밀번호&nbsp;바꾸기&nbsp;</button>
 					</td>
 				</tr>
 			</tbody>
@@ -104,5 +114,14 @@
 		</table>
 	</form>
 </div>
+<div class="col">
+</div>
+</div>
+</div>
+
+<br><br><br><br><br><br>
+<jsp:include page="../include/footer.jsp" flush="true">
+		<jsp:param name="url" value="produectSelectAll.jsp"/>
+</jsp:include>
 </body>
 </html>

@@ -22,6 +22,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import main.pc.common.EncryptSHA;
 import main.pc.common.GoogleAuthumMail;
@@ -52,11 +53,11 @@ public class LoginController {
 		return "login/loginForm";
 	}
 	
-	// 임시 rss 테스트페이지
-	@GetMapping("rssPage")
-	public String rssPage() {
-		logger.info("rssPage 함수 진입 >>> : ");
-		return "main/rssPage";
+	// 차트 제이슨파일 만들기
+	@GetMapping("chartdata")
+	public String chartdata() {
+		logger.info("chartdata 함수 진입 >>> : ");
+		return "main/chartdata";
 	}
 	// 메인페이지
 	@GetMapping("mainPage")
@@ -67,6 +68,7 @@ public class LoginController {
 	
 	// 로그인
 	@PostMapping("loginCheck")
+	@ResponseBody
 	public String loginCheck(HttpServletRequest req, MemberVO mvo) {
 		logger.info("loginCheck 함수 진입 >>> : ");
 		
@@ -88,14 +90,14 @@ public class LoginController {
 			
 			if (kID != null && kID.equals(listLogin.get(0).getMid())) {
 				logger.info("loginCheck login >>> : 로그인 중 >>> : " + kID);
-				return "main/mainPage";
+				return "loginSuccess";
 			}else {
 				ks.setSession(req, listLogin.get(0).getMid(), listLogin.get(0).getMnum() );
 				logger.info("loginCheck login >>> : 세션부여 >>> : " + mvo.getMid());
-				return "main/mainPage";
+				return "loginSuccess";
 			}
 		}
-		return "login/loginForm";
+		return "loginFail";
 	}
 	
 	@GetMapping("logout")
@@ -179,7 +181,7 @@ public class LoginController {
 		return "login/pwFind";
 	}
 	
-	// 아이디찾기 인증번호
+	// 임시비밀번호 발급
 	@GetMapping("pwFindAuthnum")
 	public String pwFindAuthnum(MemberVO mvo) {
 		logger.info("pwFindAuthnum 함수 진입 >>> : ");
@@ -238,7 +240,6 @@ public class LoginController {
 	@PostMapping("kakaoLogin")
 	public String kakaoLogin(HttpServletRequest req, MemberVO mvo) {
 		logger.info("kakaoLogin 함수 진입 >>> : ");
-		
 		logger.info("kakaoLogin mvo.getSnstype() >>> : " + mvo.getSnstype());
 		logger.info("kakaoLogin mvo.getSnsid() >>> : " + mvo.getSnsid());
 		logger.info("kakaoLogin mvo.getSnsemail() >>> : " + mvo.getSnsemail());
@@ -270,9 +271,9 @@ public class LoginController {
 			memail = mvo.getSnsemail();
 			mvo.setMemail(memail);
 			
-			logger.info("kakaoLogin mid >>> : " + mid);
-			logger.info("kakaoLogin mpw >>> : " + mpw);
-			logger.info("kakaoLogin memail >>> : " + memail);
+			logger.info("kakaoLogin mvo.getMid() >>> : " + mvo.getMid());
+			logger.info("kakaoLogin mvo.getMpw() >>> : " + mvo.getMpw());
+			logger.info("kakaoLogin mvo.getMemail() >>> : " + mvo.getMemail());
 			
 			insertCnt = loginService.snsInsert(mvo);
 			logger.info("kakaoLogin insertCnt >>> : " + insertCnt);

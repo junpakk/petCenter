@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 
 <%@ page import="org.apache.log4j.LogManager" %>
 <%@ page import="org.apache.log4j.Logger" %>
@@ -10,8 +10,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>È¸¿øÁ¶È¸</title>
+<meta charset="UTF-8">
+<title>íšŒì›ì¡°íšŒ</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
@@ -25,13 +25,13 @@
 	logger.info("memSelectAll.jsp >>> : ");
 %>
 <%
-	// ÆäÀÌÂ¡ º¯¼ö ¼¼ÆÃ
+	// íŽ˜ì´ì§• ë³€ìˆ˜ ì„¸íŒ…
 	int pageSize = 0;
 	int groupSize = 0;
 	int curPage = 0;
 	int totalCount = 0;
 	
-	// Á¶°Ç°Ë»ö º¯¼ö ¼¼ÆÃ
+	// ì¡°ê±´ê²€ìƒ‰ ë³€ìˆ˜ ì„¸íŒ…
 	String searchFilter = null;
 	String keyword = null;
 // 	String startDate = null;
@@ -73,12 +73,12 @@
 %>
 
 <script type="text/javascript">
-	alert("javascript");
+	//alert("javascript");
 	
 	$(function() {
-		alert("jQuery");
+		//alert("jQuery");
 		
-		// mnum Ã¼Å©¹Ú½º Ã¼Å©ÇÒ¶§ ´Ù¸¥ mnum Ã¼Å©¹Ú½º ÇØÁ¦
+		// mnum ì²´í¬ë°•ìŠ¤ ì²´í¬í• ë•Œ ë‹¤ë¥¸ mnum ì²´í¬ë°•ìŠ¤ í•´ì œ
 		$(document).on("click", "#mnum", function(){
 			
 			if($(this).prop('checked')){
@@ -113,13 +113,12 @@
 // 			$("#endDate").val(endDate);
 // 		}
 		
-		// Á¶°Ç°Ë»ö
+		// ì¡°ê±´ê²€ìƒ‰
 		$("#searchFilter").change(function(){
 			$("#keyword").val("");
 		});
 		
 		$("#searchBtn").click(function(){
-			alert("Á¶°Ç°Ë»ö >>> : Å¬¸¯");
 			
 			$("#memSelectAll").attr({
 				'action':'memSelectAll.pc',
@@ -130,7 +129,6 @@
 		
 		// s
 		$(document).on("click", "#selectBtn", function(){
-			alert("selectBtn >>> : click() ");
 			
 			if($(".mnum:checked").length == 1){
 				$("#memSelectAll").attr({
@@ -139,13 +137,12 @@
 					'enctype':'application/x-www-form-urlencoded'
 				}).submit();
 			}else{
-				alert("Á¶È¸ÇÒ ¸â¹ö ÇÏ³ª¸¦ ¼±ÅÃÇÏ¼¼¿ä !!!");
+				alert("ì¡°íšŒí•  ë©¤ë²„ í•˜ë‚˜ë¥¼ ì„ íƒí•˜ì„¸ìš” !!!");
 			}
 		});
 		
 		// u
 		$(document).on("click", "#updateBtn", function(){
-			alert("updateBtn >>> : click() ");
 			
 			if($(".mnum:checked").length == 1){
 				$("#memSelectAll").attr({
@@ -154,13 +151,12 @@
 					'enctype':'application/x-www-form-urlencoded'
 				}).submit();
 			}else{
-				alert("¼öÁ¤ÇÒ ¸â¹ö ÇÏ³ª¸¦ ¼±ÅÃÇÏ¼¼¿ä !!!");
+				alert("ìˆ˜ì •í•  ë©¤ë²„ í•˜ë‚˜ë¥¼ ì„ íƒí•˜ì„¸ìš” !!!");
 			}
 		});
 		
 		// d
 		$(document).on("click", "#deleteBtn", function(){
-			alert("deleteBtn >>> : click() ");
 			
 			if($(".mnum:checked").length == 1){
 				$("#memSelectAll").attr({
@@ -169,13 +165,12 @@
 					'enctype':'application/x-www-form-urlencoded'
 				}).submit();
 			}else{
-				alert("»èÁ¦ÇÒ ¸â¹ö ÇÏ³ª¸¦ ¼±ÅÃÇÏ¼¼¿ä !!!");
+				alert("ì‚­ì œí•  ë©¤ë²„ í•˜ë‚˜ë¥¼ ì„ íƒí•˜ì„¸ìš” !!!");
 			}
 		});
 		
 		// SALL
 		$(document).on("click", "#selectAllBtn", function(){
-			alert("selectAllBtn >>> : click() ");
 			location.href="memSelectAll.pc";
 		});
 		
@@ -193,41 +188,45 @@
 
 </head>
 <body>
+<jsp:include page="../include/header.jsp" flush="true">
+		<jsp:param name="url" value="produectSelectAll.jsp"/>
+	</jsp:include>
+<br><br><br><br><br><br>
 <div class="container">
-
 <form name="memSelectAll" id="memSelectAll">
-<table border="1" align="center" class="table table-sm table-bordered w-auto" >
+<table border="1" align="center" class="table table-sm table-striped table-hover table-bordered" >
+<!-- <table border="1" align="center" class="table table-sm table-bordered w-auto" > -->
 <thead>
 <tr>
 	<td colspan="8" >
-	<h3 style="text-align: center;">Pet Center È¸¿ø¸ñ·Ï</h3>
+	<h3 style="text-align: center;">Pet Center íšŒì›ëª©ë¡</h3>
 	</td>
 </tr>
 
 <tr>
 	<td colspan="8" >
-		<select id="searchFilter" name="searchFilter" >
-			<option value="key_00">ÀüÃ¼-----------</option>
-			<option value="key_01">È¸¿ø¹øÈ£</option>
-			<option value="key_02">¾ÆÀÌµð</option>
+		<select id="searchFilter" name="searchFilter" class="custom-select" style="width:150px">
+			<option value="key_00">ì „ì²´</option>
+			<option value="key_01">íšŒì›ë²ˆí˜¸</option>
+			<option value="key_02">ì•„ì´ë””</option>
 		</select>
-		<input type="text" id="keyword" name="keyword" placeholder="°Ë»ö¾î ÀÔ·Â" >
-<!-- 		<input type="text" id="startDate" name="startDate" size="10" placeholder="½ÃÀÛÀÏ" > -->
-<!-- 		<input type="text" id="endDate" name="endDate" size="10" placeholder="Á¾·áÀÏ" > -->
-		<input type="button" id="searchBtn" name="searchBtn" class="btn btn-primary btn-sm" value="°Ë»ö">
-		<input type="reset" id="resetBtn" name="resetBtn" class="btn btn-secondary btn-sm" value="¸®¼Â">
-		<input type="button" id="selectAllBtn" name="selectAllBtn" class="btn btn-success btn-sm" value="ÀüÃ¼Á¶È¸">
+		<input type="text" id="keyword" name="keyword" placeholder="ê²€ìƒ‰ì–´ ìž…ë ¥" >
+<!-- 		<input type="text" id="startDate" name="startDate" size="10" placeholder="ì‹œìž‘ì¼" > -->
+<!-- 		<input type="text" id="endDate" name="endDate" size="10" placeholder="ì¢…ë£Œì¼" > -->
+		<input type="button" id="searchBtn" name="searchBtn" class="btn btn-primary btn-sm" value="ê²€ìƒ‰">
+		<input type="reset" id="resetBtn" name="resetBtn" class="btn btn-secondary btn-sm" value="ë¦¬ì…‹">
+		<input type="button" id="selectAllBtn" name="selectAllBtn" class="btn btn-success btn-sm" value="ì „ì²´ì¡°íšŒ">
 	</td>
 </tr>
 
 <tr>
 	<th class="head"></th>
-	<th class="head">È¸¿ø¹øÈ£</th>
-	<th class="head">¾ÆÀÌµð</th>
-	<th class="head">ÀÌ¸§</th>
-	<th class="head">ÇÚµåÆù</th>
-	<th class="head">ÀÌ¸ÞÀÏ</th>
-	<th class="head">µî·ÏÀÏ</th>
+	<th class="head">íšŒì›ë²ˆí˜¸</th>
+	<th class="head">ì•„ì´ë””</th>
+	<th class="head">ì´ë¦„</th>
+	<th class="head">í•¸ë“œí°</th>
+	<th class="head">ì´ë©”ì¼</th>
+	<th class="head">ë“±ë¡ì¼</th>
 </tr>
 </thead>
 
@@ -274,6 +273,7 @@
 <%
 		}//end of for
 %>
+<tfoot>
 <tr>
 	<td colspan="8" >
 	<jsp:include page="memPaging.jsp" flush="true">
@@ -292,20 +292,21 @@
 
 <tr>
 	<td colspan="8" align="right">
-<!-- 		<input type="button" value="µî·Ï" id="insertBtn"> -->
-		<input type="button" value="Á¶È¸" id="selectBtn" class="btn btn-success btn-sm">
-		<input type="button" value="¼öÁ¤" id="updateBtn" class="btn btn-warning btn-sm">
-		<input type="button" value="»èÁ¦" id="deleteBtn" class="btn btn-danger btn-sm">
+<!-- 		<input type="button" value="ë“±ë¡" id="insertBtn"> -->
+		<input type="button" value="ì¡°íšŒ" id="selectBtn" class="btn btn-success btn-sm">
+		<input type="button" value="ìˆ˜ì •" id="updateBtn" class="btn btn-warning btn-sm">
+		<input type="button" value="ì‚­ì œ" id="deleteBtn" class="btn btn-danger btn-sm">
 	</td>
 </tr>
+</tfoot>
 
-
-<caption style="text-align:right">Á¶È¸µÈ È¸¿ø¼ö : <%= totalCount %> ¸í</caption>
+<caption style="text-align:right">ì¡°íšŒëœ íšŒì›ìˆ˜ : <%= totalCount %> ëª…</caption>
 </table>
 </form>
-
-
-
 </div>
+<br><br><br><br><br><br>
+<jsp:include page="../include/footer.jsp" flush="true">
+		<jsp:param name="url" value="produectSelectAll.jsp"/>
+</jsp:include>
 </body>
 </html>

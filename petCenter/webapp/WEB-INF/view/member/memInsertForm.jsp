@@ -20,13 +20,13 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 
 <script type="text/javascript">
-	alert("javascript");
+	//alert("javascript");
 	
 	var boolId = false;
 	var boolPw = false;
 	
 	$(document).ready(function() {
-		alert("jQuery");
+		//alert("jQuery");
 		
 		// 아이디 중복체크, 올바른 아이디
 		$("#midbtn").on("click", function(){
@@ -159,7 +159,6 @@
 		var pwVal = $("#mpw").val();
 		var pwVal_r = $("#mpw_r").val();
 		
-		//const CHECK_PW = /^[a-zA-Z0-9]{8,20}/;
 		const CHECK_PW = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()])[A-Za-z\d!@#$%^&*()]{8,20}$/;
 			
 		if (!CHECK_PW.test(pwVal)){
@@ -202,10 +201,19 @@
 </head>
 
 <body>
-<div id="container">
+<jsp:include page="../include/header.jsp" flush="true">
+	<jsp:param name="url" value="produectSelectAll.jsp"/>
+</jsp:include>
+<br><br><br><br><br><br>
+
+<div class="container">
+<div class="row">
+<div class="col">
+</div>
+<div class="col-6">
 
 <form name="memForm" id="memForm">
-<table class="table table-bordered w-auto" align="center">
+<table border="1" align="center" class="table table-sm table-striped table-hover table-bordered" >
 <thead>
 <tr>
 	<td colspan="2">
@@ -217,7 +225,7 @@
 <tbody>
 
 <tr>
-	<td class="align-middle" id="notNull">아이디</td>
+	<td class="align-middle" id="notNull" style="width:120px;">아이디</td>
 	<td>
 		<input type="text" name="mid" id="mid" placeholder="아이디" maxlength="20" />
 		<input type="button" name="midbtn" id="midbtn" value="아이디확인" class="btn btn-success btn-sm" />
@@ -245,7 +253,7 @@
 	<td>
 		<input type="text" name="memail1" id="memail1" style="width:150px" />
 		@ <input type="text" name="memail2" id="memail2" style="width:100px" placeholder="직접입력" />
-		<select name="memail3" id="memail3" style="width:100px; margin-right:10px">
+		<select name="memail3" id="memail3" class="custom-select" style="width:115px; margin-right:10px">
 			<option value="1" selected>직접입력</option>
 			<option value="naver.com" >naver.com</option>
 			<option value="gmail.com" >gmail.com</option>
@@ -259,7 +267,7 @@
 <tr>
 	<td class="align-middle" >휴대폰</td>
 	<td>
-		<select name="mhp1" id="mhp1">
+		<select name="mhp1" id="mhp1" class="custom-select" style="width:70px">
 			<option value="010" selected>010</option>
 			<option value="011">011</option>
 			<option value="016">016</option>
@@ -267,8 +275,8 @@
 			<option value="018">018</option>
 			<option value="019">019</option>
 		</select>
-		- <input type="text" name="mhp2" id="mhp2" maxlength="4" size="1"/>
-		- <input type="text" name="mhp3" id="mhp3" maxlength="4" size="1"/>
+		- <input type="text" name="mhp2" id="mhp2" maxlength="4" size="4"/>
+		- <input type="text" name="mhp3" id="mhp3" maxlength="4" size="4"/>
 	</td>
 </tr>
 
@@ -277,13 +285,15 @@
 	<td>
 		<input type="checkbox" name="mpetArr" value="mp0" />강아지
 		<input type="checkbox" name="mpetArr" value="mp1" />고양이
+		<input type="checkbox" name="mpetArr" value="mp2" />조류
+		<input type="checkbox" name="mpetArr" value="mp3" />파충류
 	</td>
 </tr>
 
 <tr>
 	<td class="align-middle">자기소개</td>
 	<td>
-		<textarea name="minfo" id="minfo" rows="5" cols="49" placeholder="자기소개글 작성해주세요"></textarea>
+		<textarea name="minfo" id="minfo" rows="5" cols="47" placeholder="자기소개글 작성해주세요"></textarea>
 	</td>
 </tr>
 
@@ -291,9 +301,8 @@
 
 <tfoot>
 <tr >
-	<td colspan="2">
+	<td colspan="2" align="right">
 		<button type="button" id="btn" class="btn btn-primary btn-lg">가입하기</button>
-<!-- 		<button type="reset">다시 </button> -->
 	</td>
 </tr>
 </tfoot>
@@ -301,5 +310,14 @@
 </table>
 </form>
 </div>
+<div class="col">
+</div>
+</div>
+</div>
+
+<br><br><br><br><br><br>
+<jsp:include page="../include/footer.jsp" flush="true">
+		<jsp:param name="url" value="produectSelectAll.jsp"/>
+</jsp:include>
 </body>
 </html>

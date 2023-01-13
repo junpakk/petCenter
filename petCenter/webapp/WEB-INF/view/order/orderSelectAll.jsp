@@ -25,22 +25,33 @@ $(document).ready(function(){
 	$('#shoppingBtn').click(function(){
 		console.log("#shoppingBtn 클릭: ");
 		const mnum = document.getElementById("mnum");
-		location.href="productSelectAll.pc?mnum="+mnum;
+		location.href="productSelectAll.pc?pcategory=21";
 		});
 });//end of ready()
 	
 </script>
+<style>
+	
+td {
+	padding:10px;
+}
+	
+	
+</style>
 </head>
 <body>
-<h3 align="center">주문정보 확인창</h3><hr width="1000px">
-
 <form name="orderSelectAll" id="orderSelectAll">
-<table border="1" align="center">
+	<jsp:include page="../include/header.jsp" flush="true">
+		<jsp:param name="url" value="produectSelectAll.jsp"/>
+	</jsp:include>
+<br><br><br>	
+<h2 align="center"><br/>주문정보 확인창<br/></h2><br/>
+<table class="orderTable" border="1" style="margin:0 auto;">
 <thead>
 	<tr>
-		<td style="text-align:center">
-			<input type="checkbox" name="chk" id="chk" class="chk">
-		</td>
+<!-- 		<td style="text-align:center"> -->
+<!-- 			<input type="checkbox" name="chk" id="chk" class="chk"> -->
+<!-- 		</td> -->
 		<td style="text-align:center">주문일</td>
 		<td style="text-align:center">상품명</td>
 		<td style="text-align:center">가격</td>
@@ -55,7 +66,8 @@ $(document).ready(function(){
 	String pprice = "";
 	String ppricesum = "";
 	String opsum = "";
-	int delivery = 2500;
+	String delivery = "0";
+// 	int delivery = 2500;
 	int sum = 0;
 	String sumV = "";
 	
@@ -77,25 +89,26 @@ $(document).ready(function(){
 			OrderVO ovo = list.get(i);
 %>
 <tr>
-	<td style="text-align:center">
-		<input type="hidden" id="mnum" value="<%= ovo.getMnum() %>">
-		<input type="checkbox" name="onum" id="onum" class="onum" value=<%= ovo.getOnum() %>>
-	</td>
-	<td style="text-align:center"><%= ovo.getIdate() %></td>
+<!-- 	<td style="text-align:center"> -->
+<%-- 		<input type="hidden" id="mnum" value="<%= ovo.getMnum() %>"> --%>
+<%-- 		<input type="checkbox" name="onum" id="onum" class="onum" value=<%= ovo.getOnum() %>> --%>
+<!-- 	</td> -->
+	<td style="text-align:center"><%= ovo.getIdate().substring(0,10) %></td>
 	<td style="text-align:center"><%= ovo.getOname() %></td>
 <%
 			int Oprice = 0;
 			Oprice = Integer.parseInt(ovo.getOpsum())/Integer.parseInt(ovo.getOcnt());
 
 			opsum = ovo.getOpsum();
-			if(Integer.parseInt(opsum)>=30000){
-				delivery = 0;
-			}
+// 			if(Integer.parseInt(opsum)>=30000){
+// 				delivery = 0;
+// 			}
+			delivery = ovo.getDelivery();
 %>
-	<td style="text-align:center"><%= Oprice  %> 원</td>
+	<td style="text-align:right"><%= Oprice  %> 원</td>
 	<td style="text-align:center"><%= ovo.getOcnt() %> 개</td>
-	<td style="text-align:center">총 <%= opsum %> 원</td>
-	<td style="text-align:center"><%= delivery %> 원</td>
+	<td style="text-align:right">총 <%= opsum %> 원</td>
+	<td style="text-align:right"><%= delivery %> 원</td>
 </tr>
 <%
 		}//end of for
@@ -104,11 +117,15 @@ $(document).ready(function(){
 
 <tr>
 	<td colspan="8" style="text-align:right">
-		<input type="button" value="쇼핑하기" id="shoppingBtn">
+		<input type="button" value="쇼핑하기" id="shoppingBtn" style="width:90px; background:rgba(0,0,0,0.2);  font-size:15px; padding:5px; border:0px;">
 	</td>
 </tr>
 </tbody>
 </table>
+	<br><br><br><br><br><br><br><br><br>
+	<jsp:include page="../include/footer.jsp" flush="true">
+		<jsp:param name="url" value="produectSelectAll.jsp"/>
+	</jsp:include> 	
 </form>
 </body>
 </html>

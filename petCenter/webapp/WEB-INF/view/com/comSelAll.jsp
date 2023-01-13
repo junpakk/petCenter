@@ -97,68 +97,23 @@
 /* 			input.insert_1{width:100%;border:none;} */
 /* 			textarea.insert_1{width:100%;border:none;} */
 			/*td.semi_title{text-align:center;}*/
-			th{text-align:center;}
-			td.gbuttons, td.vCenter{text-align:center}
-			.header{
-			/* 	background-image:url("../../img/contact.png"); */
-				diplay:flex;
-				position:sticky;
-				top:0%;
-			  	background:orange;
-				grid-area:header;
-				text-align:center;
-			}
-			.upperH{width:100%;height:50px;background:pink;text-align:center;}
-			.lowerH{width:100%;height:100px;background:yellow;text-align:center;}
-			#bImage{
-				border:1px solid #ccc;
-				border-radius:1px;
-				width:20px;
-				height:20px;
-			}
+			th{text-align:center; white-space:nowrap;}
+			td.vCenter{text-align:center}
+			#bImage{width:30px;height:28px;}
+			td{white-space:nowrap;}
+		
 		</style>
 		
 	</head>
 	<body>
-		<div class="header">
-		<div class="upperH">링크1 / 링크2 / 링크3 / 링크4 / 링크 5  &nbsp; 마이페이지
-			<div>
-			<%
-				String mnum = null;
-				String mid = null;
-				Object objMnum = session.getAttribute("KNUM");
-				Object objMid = session.getAttribute("KID");
-				
-				if (objMnum != null) {
-					mnum = (String)objMnum;
-					mid = (String)objMid;
-			%>
-				<p>
-					<%= mid %>(<%= mnum %>) 님 안녕하세요!! 
-					<a href="logout.pc">로그아웃</a> | 
-					<a href="calendar.pc" >캘린더</a> |
-					<a href="memInsertForm.pc" >회원가입</a>
-					<% String link =  "memSelect.pc?mnum=" + mnum;%>
-					<a href="<%= link %>">회원정보</a>
-				</p>
-			<% 
-				}else{
-			%>
-				<p>
-					<a href="loginForm.pc" >로그인</a> |
-					<a href="memInsertForm.pc" >회원가입</a>
-					
-				</p>
-			<%
-				}
-			%>		
-			</div>
-		
-		</div>
-		<div class="lowerH">로고 / 박람회(버튼) 커뮤니티(버튼) 쇼핑몰(버튼) 지도(버튼) 공지사항(버튼)</div>
-		</div>	
-		<div class="container">
+	<jsp:include page="../include/header.jsp" flush="true">
+			<jsp:param name="url" value="produectSelectAll.jsp"/>
+	</jsp:include>
+	<br><br><br>
+	<div class="container">
 		<%
+		Object mnum = session.getAttribute("KNUM");
+		Object mid = session.getAttribute("KID");
 		request.setCharacterEncoding("UTF-8");
 		Object obj = request.getAttribute("comList");
 		if(obj == null) return;
@@ -168,7 +123,8 @@
 		List<CommunitiesVO> list = (List<CommunitiesVO>)obj;
 		int nCnt = list.size();
 		%>
-		<div class="title">커뮤니티글보기(ex)</div>
+	
+		<div class="title">커뮤니티</div>
 		
 		<div class="search-box">
 			<jsp:include page="comSelAllSearch.jsp" flush="true">
@@ -187,10 +143,9 @@
 					<th>순번</th>
 					<th>글번호</th>
 					<th style="width:100px;">카테고리</th>
-					<th>회원번호</th>
 					<th style="width:100px;">아이디</th>
 					<th style="width:200px;">글제목</th>
-					<th>글내용</th>
+			<!-- 		<th>글내용</th> -->
 					<th>조회수</th>
 					<th>입력일</th>
 				</thead>
@@ -207,10 +162,9 @@
 					<td class="vCenter"><%= i+1 %></td>
 					<td class="vCenter"><%= covo.getBcnum() %></td>
 					<td class="vCenter"><%= covo.getBcc() %></td>
-					<td class="vCenter"><%= covo.getMnum() %></td>
-					<td class="vCenter"> <img id="bImage" src="/petCenter/fileupload/com/<%=covo.getBcphoto() %>"  onerror="this.src='/petCenter/img/noImg.gif';"><%= covo.getMid() %></td>
+					<td class="vCenter"> <img id="bImage" src="/petCenter/fileupload/com/<%=covo.getBcphoto() %>" onerror="this.src='/petCenter/img/noImg.gif';"><%= covo.getMid() %></td>
 					<td class="vCenter"><%= covo.getBctitle() %></td>
-					<td><%= covo.getBccontent() %></td>
+					<%-- <td><%= covo.getBccontent() %></td> --%>
 					<td class="vCenter"><%= covo.getBchit() %></td>
 					<td class="vCenter"><%= covo.getIdate() %></td>
 				</tr>
@@ -219,7 +173,7 @@
 				}
 				%>
 				<tr>
-					<td colspan="10">
+					<td colspan="8">
 						<jsp:include page="comPaging.jsp" flush="true">
 							<jsp:param name="url" value="comSelAll.pc"/>
 							<jsp:param name="str" value="searchFilter=${paging.searchFilter}&keyword=${paging.keyword}&startDate=${paging.startDate}&endDate=${paging.endDate}&mid=<%= mid %>&mnum=<%= mnum %>"/>
@@ -231,7 +185,7 @@
 					</td>
 				</tr>				
 				<tr>
-					<td colspan="10" class="gbuttons">
+					<td colspan="8" class="gbuttons" align="right">
 						<input type="button" value="등록" id="iBtn"/>
 <!-- 						<input type="button" value="조회" id="sBtn"/> -->
 						<input type="button" value="삭제" id="dBtn"/>
@@ -243,5 +197,9 @@
 			</table>
 		</form>
 		</div>
+	<br><br><br><br><br>
+	<jsp:include page="../include/footer.jsp" flush="true">
+		<jsp:param name="url" value="produectSelectAll.jsp"/>
+	</jsp:include>
 	</body>
 </html>

@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-<%-- <%@ page import="main.pc.member.vo.MemberVO" %> 
-<%@ page import="main.pc.community.vo.CommunityVO" %>  --%>
+
 <%@ page import="main.pc.reply.vo.ReplyVO" %> 
 <%@ page import = "java.util.List" %>
 <%@ page import = "java.util.ArrayList" %>
@@ -38,6 +37,9 @@
 
 		//brcontent 길이 제한 200byte
 		$("#brcontent").keydown(function(){
+			cut_200(this);
+		});
+		$("#brcontent").keyup(function(){
 			cut_200(this);
 		});
 		
@@ -76,7 +78,7 @@
 			});
 			
 			function whenSuccess(resData){	
-				alert("resData : " + resData);	
+				console.log("resData : " + resData);	
 				if ("GOOD" == resData){
 					// 입력데이터 초기화 함수호출 
 					rboardFormData();
@@ -104,11 +106,9 @@
 			}
 			
 			var brnumV = $(this).parents("li").attr("dataNum");
-			alert("brnumV : " + brnumV);
 			console.log("brnumV : " + brnumV);
 
 			var target = $(this).parents(".brmemoItem");
-			alert("target : " + target);
 			console.log("target : " + target);
 			
 			let deleteURL = "replyDelete.pc";
@@ -269,7 +269,7 @@
 <body>
 <div id="container" align="center">
 <form name="replyForm" id="replyForm">
-<table border="1">
+<table border="1" class="table table-sm table-striped table-hover table-bordered">
 <h3>댓글</h3>
 
 
@@ -285,9 +285,9 @@
 			</td>
 		</tr>
 		<tr>
-			<td>댓글 내용</td>
+			<td style="white-space:nowrap;">댓글 내용</td>
 			<td>
-				<textarea name="brcontent" id="brcontent" rows="5" cols="50" style="resize: none"></textarea>	
+				<textarea name="brcontent" id="brcontent" rows="5" cols="123" style="resize: none"></textarea>	
 				<span class="bytes">0</span>bytes
 			</td>	
 		</tr>

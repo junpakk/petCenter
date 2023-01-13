@@ -2,6 +2,7 @@ package main.pc.member.service;
 
 import java.util.List;
 
+import main.pc.member.vo.ChartVO;
 import main.pc.member.vo.MemberVO;
 
 public interface MemberService {
@@ -17,4 +18,5 @@ public interface MemberService {
 	
 	public List<MemberVO> memPwCheck(MemberVO mvo);
 	public int memPwUpdate(MemberVO mvo);
+
 }

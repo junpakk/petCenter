@@ -42,16 +42,20 @@
 
 <style type="text/css">
 
-
+	td{
+		padding: 5px;
+	}
 
 </style>
 </head>
 <body>
 <div class="container" align="center" style="border-color:black">
-	<h3>박람회 예정</h3>
-	<hr>
 	<form name="fairList" id="fairList">
-	<talble>
+	<jsp:include page="../include/header.jsp" flush="true">
+		<jsp:param name="url" value="produectSelectAll.jsp"/>
+	</jsp:include>
+	<h2>예정 박람회</h2><br>
+	<table>
 		<tr>
 			<table>
 			<% request.setCharacterEncoding("UTF-8"); %>
@@ -90,7 +94,11 @@
 %>
 			</table>
 		</tr>
-	</talble>
+	</table>
+	<br><br>
+	<jsp:include page="../include/footer.jsp" flush="true">
+		<jsp:param name="url" value="produectSelectAll.jsp"/>
+	</jsp:include>
 	<input type="hidden" name="bfnum" id="bfnum"  >
 	</form>
 </div>

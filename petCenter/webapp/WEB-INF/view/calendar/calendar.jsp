@@ -25,9 +25,20 @@
 
 <link rel="stylesheet" href="/petCenter/calendar/css/main.css">
 	
+<style>
+
+	#eventModal{
+		z-index:99999;
+	}
+
+</style>
 </head>
 
 <body>
+<jsp:include page="../include/header.jsp" flush="true">
+		<jsp:param name="url" value="produectSelectAll.jsp"/>
+	</jsp:include>
+<br><br>
     <div class="container">
 
         <!-- 일자 클릭시 메뉴오픈 -->
@@ -43,9 +54,9 @@
             </ul>
         </div>
 
-        <div id="wrapper">
+        <div id="wrapper" class="cal">
             <div id="loading"></div>
-            <div id="calendar"></div>
+            <div id="calendar" class="cal2"></div>
         </div>
 
 
@@ -148,7 +159,10 @@
     <script src="/petCenter/calendar/js/addEvent.js"></script>
     <script src="/petCenter/calendar/js/editEvent.js"></script>
     <script src="/petCenter/calendar/js/etcSetting.js"></script>
-    
+    <br><br>
+<jsp:include page="../include/footer.jsp" flush="true">
+		<jsp:param name="url" value="produectSelectAll.jsp"/>
+</jsp:include>
 </body>
 
 </html>

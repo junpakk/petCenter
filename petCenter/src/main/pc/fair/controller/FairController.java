@@ -106,13 +106,14 @@ public class FairController {
 			logger.info("fairSelect 함수 진입");
 						
 			// 서비스 호출
-			List<FairVO> listS = fairService.fairSelect(fvo);		
-			if (listS.size() == 1) { 
-										
-				model.addAttribute("listS", listS);
+//			List<FairVO> listS = fairService.fairSelect(fvo);		
+//			if (listS.size() == 1) { 
+//										
+//				model.addAttribute("listS", listS);
 				return "fair/fairSelect";
-			}		
-			return "fair/fairSelectAll";
+//			}		
+			
+//			return "fair/fairSelectAll";
 		}
 	
 	// 박람회 삭제

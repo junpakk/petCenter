@@ -36,7 +36,7 @@
 					,TO_CHAR(TO_DATE(A.IDATE), 'YYYY-MM-DD')	IDATE
 					,TO_CHAR(TO_DATE(A.UDATE), 'YYYY-MM-DD')	UDATE
 					
-					,CEIL(ROW_NUMBER() OVER(ORDER BY A.BCNUM)/#{pageSize}) pageSize
+					,CEIL(ROW_NUMBER() OVER(ORDER BY A.BCNUM DESC)/#{pageSize}) pageSize
 					,COUNT(A.BCNUM) OVER() AS totalCount
 			FROM	PC_COM A
 			WHERE	A.DELYN = 'Y'
@@ -60,7 +60,7 @@
 				<![CDATA[ AND TO_CHAR(TO_DATE(A.UDATE), 'YYYY-MM-DD')
 					<= TO_CHAR(TO_DATE(#{endDate, jdbcType=VARCHAR}), 'YYYY-MM-DD')]]>
 			</if>
-			ORDER BY 1
+			ORDER BY 1 DESC
 			) WHERE pageSize = #{curPage}
 	</select>	
 	
@@ -81,10 +81,11 @@
 					,TO_CHAR(TO_DATE(A.IDATE), 'YYYY-MM-DD')	IDATE
 					,TO_CHAR(TO_DATE(A.UDATE), 'YYYY-MM-DD')	UDATE
 					
-					,CEIL(ROW_NUMBER() OVER(ORDER BY A.BCNUM)/#{pageSize}) pageSize
+					,CEIL(ROW_NUMBER() OVER(ORDER BY A.BCNUM DESC)/#{pageSize}) pageSize
 					,COUNT(A.BCNUM) OVER() AS totalCount
 			FROM	PC_COM A, PC_LIKE B
-			WHERE	A.DELYN = 'Y'
+			WHERE	A.BCNUM = B.BCNUM(+)
+			AND 	A.DELYN = 'Y'
 			AND		B.LIKEY >= 20
 			<if test="searchFilter=='key_01'">
 				<![CDATA[ AND A.BCTITLE LIKE '%' || #{keyword, jdbcType=VARCHAR} || '%']]>
@@ -106,7 +107,7 @@
 				<![CDATA[ AND TO_CHAR(TO_DATE(A.UDATE), 'YYYY-MM-DD')
 					<= TO_CHAR(TO_DATE(#{endDate, jdbcType=VARCHAR}), 'YYYY-MM-DD')]]>
 			</if>
-			ORDER BY 1
+			ORDER BY 1 DESC
 			) WHERE pageSize = #{curPage}
 	</select>	
 	

@@ -14,7 +14,7 @@
 				var file = imgsrc.files[0];
 				imageWin = window.open("#","","width=300px, height=300px");
 				imageWin.document.write("<html><body style='margin:0'>");
-				imageWin.document.write("<img src='" +URL.createObjectURL(file)+ "' border=0>");
+				imageWin.document.write("<img src='" +URL.createObjectURL(file)+ "' border=0 style='width:300px; height:300px;'/>");
 				imageWin.document.write("</body></html>");
 				imageWin.document.title = pageName;
 			}			
@@ -55,24 +55,15 @@
 			textarea.insert_1{width:100%;border:none;}
 			td.semi_title{text-align:center;}
 			td.gbuttons{text-align:center}
-			.header{
-			/* 	background-image:url("../../img/contact.png"); */
-				diplay:flex;
-				position:sticky;
-				top:0%;
-			  	background:orange;
-				grid-area:header;
-				text-align:center;
-			}
-			.upperH{width:100%;height:50px;background:pink;text-align:center;}
-			.lowerH{width:100%;height:100px;background:yellow;text-align:center;}			
+					
 		</style>
 	
 	</head>
 	<body>
-		<div class="header">
-		<div class="upperH">링크1 / 링크2 / 링크3 / 링크4 / 링크 5  &nbsp; 마이페이지
-			<div>
+		<jsp:include page="../include/header.jsp" flush="true">
+			<jsp:param name="url" value="produectSelectAll.jsp"/>
+	</jsp:include>
+	<br><br>
 			<%
 				String mnum = null;
 				String mid = null;
@@ -82,39 +73,17 @@
 				if (objMnum != null) {
 					mnum = (String)objMnum;
 					mid = (String)objMid;
-			%>
-				<p>
-					<%= mid %>(<%= mnum %>) 님 안녕하세요!! 
-					<a href="logout.pc">로그아웃</a> | 
-					<a href="calendar.pc" >캘린더</a> |
-					<a href="memInsertForm.pc" >회원가입</a>
-					<% String link =  "memSelect.pc?mnum=" + mnum;%>
-					<a href="<%= link %>">회원정보</a>
-				</p>
-			<% 
-				}else{
-			%>
-				<p>
-					<a href="loginForm.pc" >로그인</a> |
-					<a href="memInsertForm.pc" >회원가입</a>
-					
-				</p>
-			<%
+			
 				}
 			%>		
-			</div>
-		
-		</div>
-		<div class="lowerH">로고 / 박람회(버튼) 커뮤니티(버튼) 쇼핑몰(버튼) 지도(버튼) 공지사항(버튼)</div>
-		</div>
 		<div class="container">
 		<script>
 			if(<%=mid%> === null || "<%=mid%>" === ""){
-				alert("먼저 로그인 해주세요 "+ <%=mid%>);
-				location.href="mainPage.pc";
+				alert("먼저 로그인 해주세요 ");
+				location.href="loginForm.pc";
 			}
 		</script>
-		<div class="title">커뮤니티글쓰기(ex)</div>
+		<div class="title">커뮤니티</div>
 		<form action="Form" id="Form" name="Form">
 			<input type="hidden" class="insert_1" id="mnum" name="mnum" value="<%=mnum %>" readonly/>
 			<input type="hidden" class="insert_1" id="mid" name="mid" value="<%=mid %>" readonly/>
@@ -151,5 +120,8 @@
 			</table>
 		</form>
 		</div>
+		<jsp:include page="../include/footer.jsp" flush="true">
+		<jsp:param name="url" value="produectSelectAll.jsp"/>
+	</jsp:include>
 	</body>
 </html>

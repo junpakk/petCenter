@@ -2,6 +2,7 @@ package main.pc.member.dao;
 
 import java.util.List;
 
+import main.pc.member.vo.ChartVO;
 import main.pc.member.vo.MemberVO;
 
 public interface MemberDAO {

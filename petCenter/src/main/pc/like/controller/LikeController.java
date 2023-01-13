@@ -34,14 +34,6 @@ public class LikeController {
 	public String like1(LikeVO lvo, HttpServletRequest req) {
 		
 		String blnum = ChabunUtil.getLikeChabun("D", chabunUtilService.getLikeChabun().getBlnum());
-		logger.info("like1 blnum : " + blnum);
-		//lvo.setLikey(req.getParameter("likey"));
-		logger.info("like1 Likey : " + lvo.getLikey());
-		logger.info("like1 Mnum : " + lvo.getMnum());
-		logger.info("like1 Bcnum : " + lvo.getBcnum());
-		
-		
-		
 		
 		lvo.setBlnum(blnum);
 		

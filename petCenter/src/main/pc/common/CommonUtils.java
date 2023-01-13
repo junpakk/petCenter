@@ -9,8 +9,8 @@ public abstract class CommonUtils {
 	public static final int MEM_TOTAL_COUNT = 0;	//토탈카운트	모든 글의 갯수
 
 	// 맵 페이징 상수
-	public static final int MAP_PAGE_SIZE = 50;		//페이지사이즈	1페이지당 표시글갯수
-	public static final int MAP_GROUP_SIZE = 3;		//그룹사이즈	1페이지당 그룹 갯수
+	public static final int MAP_PAGE_SIZE = 10;		//페이지사이즈	1페이지당 표시글갯수
+	public static final int MAP_GROUP_SIZE = 5;		//그룹사이즈	1페이지당 그룹 갯수
 	public static final int MAP_CUR_PAGE = 1;		//현재페이지	초기설정 현재페이지
 	public static final int MAP_TOTAL_COUNT = 0;	//토탈카운트	모든 글의 갯수
 	
@@ -43,4 +43,9 @@ public abstract class CommonUtils {
 	public static final String NOTICE_IMG_UPLOAD_PATH = PETCENTER_IMG_UPLOAD_PATH + "notice";
 	public static final int NOTICE_IMG_FILE_SIZE = 10*1024*1024; //2이미지파일사이즈, 10MB
 	public static final String NOTICE_EN_CODE = "UTF-8";//3인코딩
+	
+	// 박람회
+	public static final String PHOTO_IMG_UPLOAD_PATH = PETCENTER_IMG_UPLOAD_PATH + "photo";
+	public static final int PHOTO_IMG_FILE_SIZE = 10*1024*1024; //2이미지파일사이즈, 10MB
+	public static final String PHOTO_EN_CODE = "UTF-8";//3인코딩
 }

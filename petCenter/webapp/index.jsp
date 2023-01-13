@@ -31,7 +31,7 @@
 
 
 		<a href="mainPage.pc">메인페이지</a><br>
-		<a href="rssPage.pc">rss테스트페이지</a><br>
+		<a href="photoMain.pc">사진메인테스트페이지</a><br>
 		<a href="logout.pc">로그아웃</a><br>
 		<a href="memInsertForm.pc">회원가입</a><br>
 		<a href="memSelectAll.pc">회원목록</a><br>
@@ -49,9 +49,13 @@
 		<br>
 		<br>
 		<a href="comInsForm.pc">커뮤니티글쓰기(ex)</a><br>
+		<a href="chartdata.pc">rss</a><br>
+		
 		
 		<br>
 		<br>
+		<a href="photoInsForm.pc">사진</a><br>
+		<a href="photoSelAll.pc">사진목록</a><br>
 		<br>
 		<a href="noticeInsertForm.pc">공지사항 글쓰기</a><br>
 		<a href="noticeSelectAll.pc">공지사항 목록조회</a><br>

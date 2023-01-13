@@ -17,6 +17,7 @@ import main.pc.reply.vo.ReplyVO;
 import main.pc.member.vo.MemberVO;
 import main.pc.notice.vo.NoticeVO;
 import main.pc.order.vo.OrderVO;
+import main.pc.photo.vo.PhotoVO;
 import main.pc.product.vo.ProductVO;
 
 @Service
@@ -98,6 +99,12 @@ public class ChabunUtilServiceImpl implements ChabunUtilService {
 		// TODO Auto-generated method stub
 		logger.info("getNoticeChabun 함수 진입");
 		return chabunUtilDAO.getNoticeChabun();
+	}
+	@Override
+	public PhotoVO getPhotoChabun() {
+		// TODO Auto-generated method stub
+		logger.info("getPhotoChabun 함수 진입");
+		return chabunUtilDAO.getPhotoChabun();
 	}
 
 	

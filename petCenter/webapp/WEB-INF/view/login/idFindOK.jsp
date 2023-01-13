@@ -35,13 +35,24 @@
 </style>
 
 </head>
+
 <body>
+<jsp:include page="../include/header.jsp" flush="true">
+	<jsp:param name="url" value="produectSelectAll.jsp"/>
+</jsp:include>
+<br><br><br><br><br><br>
+
 <div class="container">
+<div class="row">
+<div class="col">
+</div>
+<div class="col-3">
+
 	<form name="idFindForm" id="idFindForm">
 		<table border="1" class="table table-bordered w-auto" align="center">
 			<thead>
 				<tr>
-					<td colspan="2"><h1 align="center">IdFind OK</h1></td>
+					<td colspan="2"><h1 align="center">Id찾기 완료</h1></td>
 				</tr>
 			</thead>
 			
@@ -69,5 +80,14 @@
 		</table>
 	</form>
 </div>
+<div class="col">
+</div>
+</div>
+</div>
+
+<br><br><br><br><br><br>
+<jsp:include page="../include/footer.jsp" flush="true">
+		<jsp:param name="url" value="produectSelectAll.jsp"/>
+</jsp:include>
 </body>
 </html>

@@ -3,6 +3,14 @@
 <%@ page import="main.pc.member.vo.MemberVO" %>
 <%@ page import="main.pc.notice.vo.NoticeVO"%>
 <%@ page import="java.util.List"%>
+<%@ page import="org.apache.log4j.LogManager" %>
+<%@ page import="org.apache.log4j.Logger" %>
+
+<%
+	Logger logger = LogManager.getLogger(this.getClass());
+	logger.info("noticeSelectAll.jsp >>> : ");
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,6 +25,15 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		
+
+		$(document).on("click", "#bntitle", function(){
+			
+			if($(this).prop('checked')){
+				$('.bntitle').prop('checked', false);
+				$(this).prop('checked', true);
+			}
+		});
+		
 		$("#insertBtn").on("click", function() {
 			
 			$("#nsForm").attr({
@@ -26,13 +43,13 @@
 			}).submit();
 		});
 		$("#selectallBtn").on("click", function() {
-			alert("새로고침>>> : ");
 			$("#nsForm").attr({
 				"action" : "noticeSelectAll.pc",
 				"method" : "GET",
 				"enctype" : "application/x-www-form-urlencoded"
 			}).submit();
 		});
+		
 		$("#selectformBtn").on("click", function() {
 	
 			$("#nsForm").attr({
@@ -52,7 +69,7 @@
 	
 </style>
 </head>
-<body class="container">
+<body>
 <% 
 request.setCharacterEncoding("UTF-8");
 Object obj = request.getAttribute("listAll");
@@ -61,8 +78,14 @@ List<NoticeVO> list = (List<NoticeVO>)obj;
 int nCnt = list.size();
 %>
 
+<jsp:include page="../include/header.jsp" flush="true">
+		<jsp:param name="url" value="produectSelectAll.jsp"/>
+	</jsp:include>
+	<br><br><br><br><br><br>
 <form action="nsForm" id="nsForm" name="nsForm">
-<table border="1" align="center" class="table table-sm table-bordered w-auto" >
+	
+<div class="container">
+<table border="1" align="center" class="table table-sm table-striped table-hover table-bordered" >
 <thead>
 <tr>
 <td colspan="5" >
@@ -70,7 +93,6 @@ int nCnt = list.size();
 </td>
 </tr>
 <th class="align-middle">
-<input type="checkbox" id="chkAll" name="chkAll" class="chkAll"/>
 </th>
 <th class="align-middle">순번</th>
 <th class="align-middle">글제목</th>
@@ -102,13 +124,28 @@ if(nCnt>0) {
 }
 %>
 <td colspan="5">
+<%
+	String admin = "";
+	Object objAdmin = session.getAttribute("KNUM");
+	if (objAdmin != null) {
+		admin = (String)objAdmin;
+		logger.info("mnum >>> : " + admin);
+		if(admin.equals("M0000000001")){
+%>
 <input type="button" id="insertBtn" value="등록" class="btn btn-success btn-sm"/>
+<%
+		}
+	}
+%>
 <input type="button" id="selectallBtn" value="전체조회" class="btn btn-secondary btn-sm"/>
 <input type="button" id="selectformBtn" value="내용확인" class="btn btn-warning btn-sm"/>
 </td>
 </table>
+</div>
+	<br><br><br><br><br><br>
+	<jsp:include page="../include/footer.jsp" flush="true">
+		<jsp:param name="url" value="produectSelectAll.jsp"/>
+	</jsp:include> 
 </form>
-
-
 </body>
 </html>

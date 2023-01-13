@@ -15,11 +15,11 @@
 			.distanceInfo {position:relative;top:5px;left:5px;list-style:none;margin:0;}
 			.distanceInfo .label {display:inline-block;width:50px;}
 			.distanceInfo:after {content:none;}
-			
-			#menu_wrap {position:absolute;top:20px;left:820px;bottom:0;width:250px;height:60px;margin:10px 0 30px 10px;padding:5px;overflow-y:auto;background:rgba(255, 255, 255, 0.7);z-index: 1;font-size:40px;font-weight:bold;border-radius: 10px;}
-			.bg_white {background:#FF0000;}
-			#menu_wrap .timeDisplay{text-align: center;}
-			#map {width:1000px;height:900px;}
+		
+			.bg_white {position:absolute;top:220px;left:820px;bottom:0;width:250px;height:50px;margin:10px 0 30px 10px;padding:5px;overflow-y:auto;background:rgba(255, 255, 255, 0.7);z-index: 1;font-size:40px;font-weight:bold;border-radius: 10px;}
+			.bg_white .timeDisplay{text-align: center;}
+
+			#map {width:700px;height:600px;}
 			
 		</style>
 		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -158,6 +158,29 @@
 		</script>
 	</head>
 	<body>
+	<%
+		Object mnum_ = session.getAttribute("KNUM");
+		Object mid_ = session.getAttribute("KID");
+		
+		String mnum = null;
+		String mid = null;
+		
+		if(mnum_ != null) mnum = (String)mnum_;
+		if(mid_ != null) mid = (String)mid_;
+
+	%>
+	<script>
+		if(<%=mid%> === null || "<%=mid%>" === ""){
+			alert("먼저 로그인 해주세요 ");
+			location.href="loginForm.pc";
+		}
+	</script>
+	
+	<jsp:include page="../include/header.jsp" flush="true">
+		<jsp:param name="url" value="produectSelectAll.jsp"/>
+	</jsp:include>
+	<br><br>
+	<div>
 		<div id="map" style="margin-left: auto; margin-right: auto;border:5px double #000;border-radius: 10px;"></div>
 	    <div id="menu_wrap" class="bg_white" >
 	        <div class="timeDisplay">
@@ -170,13 +193,17 @@
 	    </div>
 	    <br>
 	    <div style="text-align:center;">
-	    	<input type="text" name="mid" id="mid" placeholder="아이디"/>	    
+	    	<input type="text" name="mid" id="mid" value='<%= mid %>' readonly/>	    
 	    	<button type="button" id="start">산책시작</button>
 	    	<button type="button" id="stop">산책종료</button>
 	    	<button type="button" id="reset">초기화</button>
 	    	
 	    </div>
-		    
+	</div>
+	<br><br><br>
+	<jsp:include page="../include/footer.jsp" flush="true">
+		<jsp:param name="url" value="produectSelectAll.jsp"/>
+	</jsp:include>     
 		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e2a549944561293fdf3d307b172230ec"></script>
 		
 		<script>

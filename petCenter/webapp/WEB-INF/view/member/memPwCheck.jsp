@@ -37,36 +37,52 @@
 		});
 	});
 	
+	function moveFocus(next){
+		if(event.keyCode==13){
+			document.getElementById(next).focus();
+		}
+	}
 	
 </script>
 </head>
 <body>
-<div id="container">
-<form name="pwForm" id="pwForm">
-	<table class="table table-sm table-bordered w-auto" align="center">
+<jsp:include page="../include/header.jsp" flush="true">
+	<jsp:param name="url" value="produectSelectAll.jsp"/>
+</jsp:include>
+<br><br><br><br><br><br><br><br><br>
+
+<div class="container">
+<div class="row">
+<div class="col">
+</div>
+<div class="col-6">
+
+
+<form name="pwForm" id="pwForm" >
+	<table border="1" align="center" class="table table-sm table-striped table-hover table-bordered" >
 		<thead>
 			<tr>
 				<td >
-					<h2 style="text-align:center;">Pet Center 현재 비밀번호 입력</h2>
+					<h2 style="text-align:center;">Pet Center <br>현재 비밀번호 입력</h2>
 				</td>
 			</tr>
 		</thead>
 		
 		<tbody>
 			<tr>
-				<td>
+				<td align="center">
 					<input type="hidden" name="mid" id="mid" value="<%= mid %>" />
 					<input type="hidden" name="memail" id="memail" value="<%= memail %>" />
-					<input type="password" name="mpw" id="mpw" /><br/>
-					<span id="mpw_condi"style="color:Red;" hidden>8~20자 영문, 숫자, 특수문자</span>
+					<input type="text" style="display:none;">
+					<input type="password" name="mpw" id="mpw" onkeydown=moveFocus("updateBtn")/><br/>
 				</td>
 			</tr>
 		</tbody>
 		
 		<tfoot>
 			<tr >
-				<td colspan="2">
-					<button type="button" id="updateBtn" class="btn btn-primary btn-lg">수정하기</button>
+				<td colspan="2" align="right">
+					<input type="button" id="updateBtn" class="btn btn-primary btn-lg" value="수정하기"/>
 				</td>
 			</tr>
 		</tfoot>
@@ -74,5 +90,14 @@
 	</table>
 </form>
 </div>
+<div class="col">
+</div>
+</div>
+</div>
+
+<br><br><br><br><br><br><br><br><br>
+<jsp:include page="../include/footer.jsp" flush="true">
+		<jsp:param name="url" value="produectSelectAll.jsp"/>
+</jsp:include>
 </body>
 </html>

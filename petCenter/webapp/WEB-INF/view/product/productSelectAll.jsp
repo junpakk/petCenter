@@ -36,7 +36,7 @@ getAttribute()의 경우 setAttribute()속성을 통한 설정이 없으면 무�
 	List<ProductVO> list = (List<ProductVO>)obj;
 	int nCnt = list.size();
 	logger.info("list.size(): "+ list.size());
-// 	logger.info("list.get(0).getPnum(): "+ list.get(0).getPnum());
+ 	logger.info("list.get(0).getPcategory(): "+ list.get(0).getPcategory());
 %>
 
 <!DOCTYPE html>
@@ -49,11 +49,10 @@ getAttribute()의 경우 setAttribute()속성을 통한 설정이 없으면 무�
 
 	function cartPlz(){
 		const mnum = "<%= mnum %>";
-		alert("mnum: "+ mnum);
 		if (confirm("장바구니 목록을 확인하시겠습니까?")){
 		
 			if(mnum == null || mnum == "null" || typeof(mnum)== "undefined" || mnum== ""){
-				alert("로그인을 먼저 해주세요!");
+				alert("먼저 로그인을 해주세요");
 	//				location.href="productSelectAll.pc?pcategory=21";
 				return;
 			}else{
@@ -67,13 +66,37 @@ getAttribute()의 경우 setAttribute()속성을 통한 설정이 없으면 무�
 		$("#pcategory").change(function(){
 	        const mnum = '<%= mnum %>';
 			const pcategory = $("#pcategory").val();
-	        alert("pcategory : "+ pcategory);
 	        
-	        location.href="productSelectAll.pc?pcategory="+pcategory;
+<%-- 	        if(<%= list.get(0).getPcategory() %> == '21'){ --%>
+// 	        	$("input:checkbox[value='21']").prop("checked",true);
+	        	
+// 	        }
+	        
+<%-- 	        if(<%= list.get(0).getPcategory() %> == '11'){ --%>
+// 	        	$("input:checkbox[value='11']").prop("checked",true);
+// 	        }
+	        
+	        
+	        location.href = "productSelectAll.pc?pcategory="+pcategory;
 // 	        location.href="productSelectAll.pc?mnum="+mnum+"&pcategory="+pcategory;
 <%-- 	        location.href="cartInsert.pc?pname=<%= pname %>&pprice=<%= pprice %>&pphoto=<%= pphoto %>&ccnt="+cCnt; --%>
 		});
-
+		
+		$("#cBtn1").click(function(){
+			
+			const pcategory = $(this).val();
+			location.href = "productSelectAll.pc?pcategory="+pcategory;
+		});
+		$("#cBtn2").click(function(){
+			
+			const pcategory = $(this).val();
+			location.href = "productSelectAll.pc?pcategory="+pcategory;
+		});
+		$("#cBtn3").click(function(){
+			
+			const pcategory = $(this).val();
+			location.href = "productSelectAll.pc?pcategory="+pcategory;
+		});
 	});
 	//end of ready
 </script>
@@ -97,30 +120,32 @@ ul	{
 </style>
 </head>
 <body>
-<h3 align="center">PetCenter가 추천하는 내 아이 취향저격 상품</h3>
 <form name="productList" id="productList">
-<table border="1" align="center">
+	<jsp:include page="../include/header.jsp" flush="true">
+		<jsp:param name="url" value="produectSelectAll.jsp"/>
+	</jsp:include>
+<h2 align="center" style="margin:20px;">PetCenter가 추천하는 내 아이 취향저격 상품</h2>
+<table border="1" style="margin:0 auto;">
 
 	<thead>
 		<tr>
 			<th>
 				<ul>
-				    <li>
+				    <li style="padding:10px;">
 					      <select id="pcategory">
-							  <option id="pcategory" value="00">우리아이</option>
 							  <option id="pcategory" value="21">고양이</option>
-							  <option id="pcategory" value="11">강아지</option>
+							  <option id="pcategory" value="11" selected>강아지</option>
 						  </select>
-					      <input type="button" class="" id="pc21" value="사료"><!-- 카테고리 11 -->
-					      <input type="button" class="" id="pc21" value="간식"><!-- 카테고리 12 -->
-					      <input type="button" class="" id="pc21" value="용품"><!-- 카테고리 13 -->
+					      <button type="button" class="" id="cBtn1" value="11" >강아지사료</button><!-- 카테고리 11 -->
+					      <button type="button" class="" id="cBtn2" value="12">강아지간식</button><!-- 카테고리 12 -->
+					      <button type="button" class="" id="cBtn3" value="13">강아지용품</button><!-- 카테고리 13 -->
 				    </li>
 	  			</ul>
 			</th>
 		</tr>
 	</thead>
 	
-	
+	<tbody>
 <%
 
 	String pcategory = "";
@@ -159,13 +184,13 @@ ul	{
 				</td>
 			</tr>
 			<tr>
-				<td>
-					<%= pname %>
+				<td style="text-align:left;">
+					&nbsp;&nbsp;&nbsp;<%= pname %>
 				</td>
 			</tr>
 			<tr>
-				<td>
-					가격: <%= pprice %> 원
+				<td style="text-align:right">
+					가격: <%= pprice %> 원&nbsp;&nbsp;&nbsp;
 				</td>
 			</tr>
 		</table>
@@ -176,11 +201,12 @@ ul	{
 		}
 	}//end of for
 %>
+	</tbody>
 </table>
-<table>	
-	<tfoot>
-	</tfoot>
-</table>
+	<br/>
+	<jsp:include page="../include/footer.jsp" flush="true">
+		<jsp:param name="url" value="produectSelectAll.jsp"/>
+	</jsp:include> 
 </form>
 </body>
 </html>

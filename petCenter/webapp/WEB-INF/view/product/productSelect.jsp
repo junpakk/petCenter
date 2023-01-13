@@ -78,34 +78,44 @@
 	div.a, .b{
 		position: relative;
 		width: 500px;
-		height: 500px;
-		border: 1px solid black;
+		height: 450px;
+/* 		border: 1px solid black; */
+	}
+	
+	div.b{
+		margin-top: 100px;
 	}
 	
 	div.c, .d{
 		position: relative;
 		width: 500px;
 		height: 200px;
-		border: 1px solid black;
+/* 		border: 1px solid black; */
 	}
 	
 	div.b1{
 		
-		margin-top: 30px;
+		margin: 30px 50px 30px 50px;
 		position: relative;
 		font:24px bold;
-		left: 50px;
 		width: 400px;
 		height: 80px;
-		border: 1px solid black;
+/* 		border: 1px dotted black; */
 	}
 	
 	div.b2{
 		position: relative;
-		left: 50px;
+		margin: 8px 50px 8px 50px;
 		width: 400px;
 		height: 60px;
-		border: 1px solid black;
+/* 		border: 1px dotted black; */
+	}
+	
+	table.t{
+/* 		background:#faf8b9; */
+/* background-color:rgba(61, 183, 204, 0.3); */
+/* 		background-color:rgba(255, 195, 54, 0.1); */
+		background-color:rgba(0,0,0,0.05);
 	}
 	
 </style>
@@ -114,21 +124,25 @@
 
 <body>
 <form id="selectForm" name="selectForm" style="align:center;">
-	<table align="center">
+	<jsp:include page="../include/header.jsp" flush="true">
+		<jsp:param name="url" value="produectSelectAll.jsp"/>
+	</jsp:include>
+	<h2 align="center"><br/>상품상세정보보기<br/></h2><br/>
+	<table class="t" style="margin:0 auto;">
+		<tr>
+			<td colspan="2"><hr></td>
+		</tr>
 		<tr>
 			<td>
-				<div class="a"><img width="500px;" height="500px;" src="/petCenter/fileupload/product/<%= pvo.getPphoto() %>"/></div>
+				<div class="a"><img style="margin:50px;" width="400px;" height="400px;" src="/petCenter/fileupload/product/<%= pvo.getPphoto() %>"/></div>
 			</td>
 			<td>
 				<div class="b">
-					<div class="b1" ><%= pvo.getPname() %></div>
-					<div class="b1" ><%= pprice %> 원</div>			
-					<hr>
-					<div class="b2">연관태그<br/> #<%= pvo.getPname() %><br/> #반려동물 #사료</div>
-					<hr>
-					<div class="b2">배송정보<br/> 배송비 2,500원 (30,000원 이상 무료배송)</div>
-					<hr>
-					<div class="b2">취소/교환/환불 팝업창</div>
+					<div class="b1"><h2><%= pvo.getPname() %></h2></div>
+					<div class="b1" align="right";><h3><%= pprice %> 원 &nbsp;</h3></div>			
+					<div class="b2"><hr>연관태그<br/>&nbsp;&nbsp;&nbsp; #<%= pvo.getPname() %><br/>&nbsp;&nbsp;&nbsp; #반려동물 #사료<hr></div>
+					<div class="b2">배송정보<br/>&nbsp;&nbsp;&nbsp; 배송비 2,500원 (30,000원 이상 무료배송)<hr></div>
+					<div class="b2">취소/교환/환불 팝업창<hr></div>
 				</div>
 			</td>
 		</tr>
@@ -138,33 +152,51 @@
 		<tr>
 			<td >
 				<div class="c">
-<%-- 					<img src="/petCenter/fileupload/product/<%= pvo.getPphoto() %>" width="40px" height="40px"/> --%>
-					<div class=""><%= pvo.getPname() %></div>
-					<div style="display: inline-block">
-						<input type="button" onclick="count('minus')" value="-"/>
-						<div id="result" style="display: inline-block">1</div>
-						<input type="button" onclick="count('plus')" value="+"/>
+					<div style="margin: 50px 50px 30px 50px; /*border: 1px dotted black;*/">
+						<div class=""><h3><%= pvo.getPname() %></h3></div><br/>
+						<div align="right">
+							<div style="display: inline-block">
+								<input type="button" onclick="count('minus')" value="-" style="width:20px; background:rgba(0,0,0,0.2); border:0px; "/>
+								&nbsp;<div id="result" style="display: inline-block">1</div>&nbsp;
+								<input type="button" onclick="count('plus')" value="+" style="width:20px; background:rgba(0,0,0,0.2); border:0px; "/>&nbsp;
+							</div>
+							<div id="totalPrice" style="display: inline-block"><h3><%= pvo.getPprice() %></h3></div><h3 style="display: inline-block">&nbsp;원</h3>
+						</div>
+						<br/>
+						<hr>
 					</div>
-					<div id="totalPrice" style="display: inline-block"  align="right"><%= pvo.getPprice() %></div> 원
 				</div>
 			</td>
 			<td>
 				<div class="d">
-					총수량<div id="cCnt" style="display: inline-block">1</div> 개<br/>
-					합계	<div id="tPrice" style="display: inline-block"><%= pvo.getPprice() %></div> 원
-						<div></div>
-						<div>
-							<div style="display: inline-block">
-								<input type="button" id="cartBtn" value="장바구니">
+					<div style="margin: 30px 50px 30px 50px; /*border: 1px dotted black;*/">
+						<h3><div align="right">총수량&nbsp;<div id="cCnt" style="display: inline-block;">1</div> 개&nbsp;&nbsp;&nbsp;<br/><br/></div></h3>
+						<h3><div align="right">합계	<div id="tPrice" style="display: inline-block;"><%= pvo.getPprice() %></div> 원&nbsp;&nbsp;&nbsp;<br/><br/></div></h3>
+							<div align="center">
+								<div style="display: inline-block">
+									<input type="button" id="cartBtn" class="cartBtn" value="장바구니" 
+									style="width:90px; background:rgba(0,0,0,0.2);  font-size:20px; padding:5px; border:0px;">
+								</div>
+								&nbsp;&nbsp;
+								<div style="display: inline-block">
+									<input type="button" id="orderBtn" class="orderBtn" value="구매하기" 
+									style="width:90px; background:rgba(0,0,0,0.2);  font-size:20px; padding:5px; border:0px;">
+								</div>
 							</div>
-							<div style="display: inline-block">
-								<input type="button" id="orderBtn" value="구매하기">
-							</div>
-						</div>
+							<br/>
+							<hr/>
+					</div>
 				</div>
 			</td>
 		</tr>
+		<tr>
+			<td colspan="2"><hr></td>
+		</tr>
 	</table>
+	<br>
+	<jsp:include page="../include/footer.jsp" flush="true">
+		<jsp:param name="url" value="produectSelectAll.jsp"/>
+	</jsp:include> 	
 </form>
 
 <script>

@@ -55,4 +55,8 @@ FROM    PC_MEMBER A
 	SELECT /*+ INDEX_DESC(A SYS_C0011280) */ NVL(MAX(SUBSTR(A.BNNUM, -4)), 0) + 1  BNNUM FROM PC_NOTICE A
 </select>
 
+<select id="getPhotoChabun" resultType="photovo">
+	SELECT /*+ INDEX_DESC(A SYS_C0011669) */ NVL(MAX(SUBSTR(A.BPNUM, -4)), 0) + 1  BPNUM FROM PC_PHOTO A
+</select>
+
 </mapper>
