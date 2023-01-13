@@ -28,6 +28,10 @@
 	$(document).ready(function() {
 		//alert("jQuery");
 		
+		$("#minfo").keyup(function(){
+			cut_300(this);
+		});
+		
 		// 아이디 중복체크, 올바른 아이디
 		$("#midbtn").on("click", function(){
 			console.log("idCheck >>> : ");
@@ -101,6 +105,7 @@
 				'method':'POST',
 				'enctype':'application/x-www-form-urlencoded'
 			}).submit();
+			
 			
 		});
 	});
@@ -189,12 +194,37 @@
 		
 	}
 	
+	//한글 포함 문자열 길이
+	function getTextLength(s){
+		var len = 0;
+		for(var i=0; i < s.length; i++){
+			if(escape(s.charAt(i)).length == 6){
+				len++;
+			}
+			len++;
+		}
+		return len;
+	}
+	function cut_300(obj){
+		var t = $(obj).val();
+		var l = t.length;
+		while(getTextLength(t) > 300){
+			l--;
+			t= t.substring(0, l);
+		}
+		$(obj).val(t);
+	}
+	
 	
 </script>
 
 <style type="text/css">
 
-	.align-middle{ text-align: center;}
+	.align-middle{ 
+		text-align: center;
+		white-space:nowrap;
+		font-size: 22px;
+	}
 	#notNull{ color: red; }
 	
 </style>
@@ -226,74 +256,132 @@
 
 <tr>
 	<td class="align-middle" id="notNull" style="width:120px;">아이디</td>
-	<td>
-		<input type="text" name="mid" id="mid" placeholder="아이디" maxlength="20" />
-		<input type="button" name="midbtn" id="midbtn" value="아이디확인" class="btn btn-success btn-sm" />
-		<br><span id="mid_condi" style="color:red" hidden>&nbsp;&nbsp;5~20자 영문 또는 숫자</span>
+	<td style="width:420px;">
+		<div class="form-row">
+			<div class=" col-6 " >
+				<input type="text" name="mid" id="mid" placeholder="5~20자 영문 또는 숫자" maxlength="20" class="form-control" />
+			</div>
+			<div class=" col-2">
+				<input type="button" name="midbtn" id="midbtn" value=" 아이디확인 " class="btn btn-success " />
+			</div>
+		</div>
+		<span id="mid_condi" style="color:red" hidden>&nbsp;&nbsp;5~20자 영문 또는 숫자</span>
 	</td>
 </tr>
 
 <tr>
 	<td class="align-middle" id="notNull">비밀번호</td>
 	<td>
-		<input type="password" name="mpw" id="mpw" placeholder="8 ~ 20자리" maxlength="20" /><br/><br>
-		<input type="password" id="mpw_r" name="mpw_r" placeholder="영문 숫자 특수문자" maxlength="20" />
-		<input type="button" value="비밀번호확인" id="pwCheck" class="btn btn-success btn-sm"/><br/>
+		<div class="form-row">
+			<div class=" col-6 " >
+				<input type="password" name="mpw" id="mpw" placeholder="8 ~ 20자리" maxlength="20" class="form-control"/>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class=" col-6 " >
+				<input type="password" id="mpw_r" name="mpw_r" placeholder="영문 숫자 특수문자 포함" maxlength="20" class="form-control"/>
+			</div>
+			<div class=" col-2">
+				<input type="button" value="비밀번호확인" id="pwCheck" class="btn btn-success btn"/>
+			</div>
+		</div>
 		<span id="mpw_condi"style="color:Red;" hidden>8~20자 영문, 숫자, 특수문자</span>
 	</td>
 </tr>
 
 <tr>
 	<td class="align-middle">이름</td>
-	<td><input type="text" name="mname" id="mname" /></td>
+	<td>
+		<div class="form-row">
+			<div class=" col-6 " >
+				<input type="text" name="mname" id="mname" class="form-control"/>
+			</div>
+		</div>
+	</td>
 </tr>
 
 <tr>
 	<td class="align-middle" id="notNull">이메일</td>
 	<td>
-		<input type="text" name="memail1" id="memail1" style="width:150px" />
-		@ <input type="text" name="memail2" id="memail2" style="width:100px" placeholder="직접입력" />
-		<select name="memail3" id="memail3" class="custom-select" style="width:115px; margin-right:10px">
-			<option value="1" selected>직접입력</option>
-			<option value="naver.com" >naver.com</option>
-			<option value="gmail.com" >gmail.com</option>
-			<option value="daum.net" >daum.net</option>
-			<option value="kakao.com" >kakao.com</option>
-		</select>
+		<div class="form-row">
+			<div class=" col-4 "  >
+				<input type="text" name="memail1" id="memail1" placeholder="필수입력" style="width:150px" class="form-control"/>
+			</div>
+			<div class=" col-1 align-middle" >
+				<span style="font-size:22px; vertical-align: middle;" >&nbsp;&nbsp;@&nbsp;</span>
+			</div>
+			<div class=" col-3 " >
+				<input type="text" name="memail2" id="memail2" style="width:100px" placeholder="직접입력" class="form-control"/>
+			</div>
+			<div class=" col-3 " >
+				<select name="memail3" id="memail3" class="custom-select" style="width:115px; margin-right:10px">
+					<option value="1" selected>직접입력</option>
+					<option value="naver.com" >naver.com</option>
+					<option value="gmail.com" >gmail.com</option>
+					<option value="daum.net" >daum.net</option>
+					<option value="kakao.com" >kakao.com</option>
+				</select>
+			</div>
+			</div>
 		<span id="memail_condi"style="color:Red;" hidden>필수입력정보</span>
 	</td>
 </tr>
 
 <tr>
 	<td class="align-middle" >휴대폰</td>
-	<td>
-		<select name="mhp1" id="mhp1" class="custom-select" style="width:70px">
-			<option value="010" selected>010</option>
-			<option value="011">011</option>
-			<option value="016">016</option>
-			<option value="017">017</option>
-			<option value="018">018</option>
-			<option value="019">019</option>
-		</select>
-		- <input type="text" name="mhp2" id="mhp2" maxlength="4" size="4"/>
-		- <input type="text" name="mhp3" id="mhp3" maxlength="4" size="4"/>
+	<td >
+		<div class="form-row">
+			<div class=" col-3 " style="padding-right:0; ">
+				<select name="mhp1" id="mhp1" class="custom-select" >
+					<option value="010" selected>010</option>
+					<option value="011">011</option>
+					<option value="016">016</option>
+					<option value="017">017</option>
+					<option value="018">018</option>
+					<option value="019">019</option>
+				</select>
+			</div>
+			<div class=" col-1 align-middle"  >
+				<span style="font-size:22px; vertical-align: middle;" >-</span>
+			</div>
+			<div class=" col-3 " style="padding:0;" >
+				<input type="text" name="mhp2" id="mhp2" maxlength="4"  class="form-control"/>
+			</div>
+			<div class=" col-1 align-middle" >
+				<span style="font-size:22px; vertical-align: middle;" >-</span>
+			</div>
+			<div class=" col-3 " style="padding:0;" >
+				<input type="text" name="mhp3" id="mhp3" maxlength="4"  class="form-control"/>
+			</div>
+		</div>
 	</td>
 </tr>
 
 <tr>
 	<td class="align-middle">기호동물</td>
-	<td>
-		<input type="checkbox" name="mpetArr" value="mp0" />강아지
-		<input type="checkbox" name="mpetArr" value="mp1" />고양이
-		<input type="checkbox" name="mpetArr" value="mp2" />조류
-		<input type="checkbox" name="mpetArr" value="mp3" />파충류
+	<td >
+		<div class="form-check form-check-inline">
+		&nbsp;&nbsp;
+		<input type="checkbox" name="mpetArr" value="mp0" class="form-check-input " />
+		<span style="font-size:22px; vertical-align: middle;" >강아지&nbsp;&nbsp;</span>
+		<input type="checkbox" name="mpetArr" value="mp1" class="form-check-input"/>
+		<span style="font-size:22px; vertical-align: middle;" >고양이&nbsp;&nbsp;</span>
+		<input type="checkbox" name="mpetArr" value="mp2" class="form-check-input"/>
+		<span style="font-size:22px; vertical-align: middle;" >새&nbsp;&nbsp;</span>
+		<input type="checkbox" name="mpetArr" value="mp3" class="form-check-input"/>
+		<span style="font-size:22px; vertical-align: middle;" >파충류</span>
+		</div>
 	</td>
 </tr>
 
 <tr>
 	<td class="align-middle">자기소개</td>
 	<td>
-		<textarea name="minfo" id="minfo" rows="5" cols="47" placeholder="자기소개글 작성해주세요"></textarea>
+		<div class="form-row" style="margin:0 auto;">
+			<div>
+			<textarea name="minfo" id="minfo" rows="6" cols="47" placeholder="자기소개글 작성해주세요" class="form-control"></textarea>
+			</div>
+		</div>
 	</td>
 </tr>
 
@@ -302,7 +390,7 @@
 <tfoot>
 <tr >
 	<td colspan="2" align="right">
-		<button type="button" id="btn" class="btn btn-primary btn-lg">가입하기</button>
+		<button type="button" id="btn" class="btn btn-info btn-lg">가입하기</button>
 	</td>
 </tr>
 </tfoot>
