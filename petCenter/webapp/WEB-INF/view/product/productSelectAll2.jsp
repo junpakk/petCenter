@@ -12,7 +12,7 @@
 <% request.setCharacterEncoding("UTF-8");%> 
 <%
 	Logger logger = LogManager.getLogger(this.getClass());
-	logger.info("productSelectAll.jsp 진입: ");
+	logger.info("productSelectAll2.jsp 진입: ");
 	
 /*
 일단 가장 큰 차이점은 둘의 리턴 타입이다.
@@ -66,7 +66,7 @@ getAttribute()의 경우 setAttribute()속성을 통한 설정이 없으면 무�
 		
 		$("#pcategory").change(function(){
 	        const mnum = '<%= mnum %>';
-			const pcategory = $("#pcategory").val();
+			const pcategory = $(this).val();
 	        alert("pcategory : "+ pcategory);
 	        
 <%-- 	        if(<%= list.get(0).getPcategory() %> == '21'){ --%>
@@ -102,6 +102,7 @@ getAttribute()의 경우 setAttribute()속성을 통한 설정이 없으면 무�
 			alert("::" + pcategory);
 			location.href = "productSelectAll.pc?pcategory="+pcategory;
 		});
+	
 	});
 	//end of ready
 </script>
@@ -139,12 +140,12 @@ ul	{
 				    <li style="padding:10px;">
 					      <select id="pcategory">
 				      		  <option id="pcategory" value="00">우리아이</option>	
-							  <option id="pcategory" value="21">고양이</option>
-							  <option id="pcategory" value="11" selected>강아지</option>
+							  <option id="pcategory" value="21" selected>고양이</option>
+							  <option id="pcategory" value="11">강아지</option>
 						  </select>
-					      <button type="button" class="" id="cBtn1" value="11" >강아지사료</button><!-- 카테고리 11 -->
-					      <button type="button" class="" id="cBtn2" value="12">강아지간식</button><!-- 카테고리 12 -->
-					      <button type="button" class="" id="cBtn3" value="13">강아지용품</button><!-- 카테고리 13 -->
+					      <button type="button" class="" id="cBtn1" value="21" >고양이사료</button><!-- 카테고리 11 -->
+					      <button type="button" class="" id="cBtn2" value="22">고양이간식</button><!-- 카테고리 12 -->
+					      <button type="button" class="" id="cBtn3" value="23">고양이용품</button><!-- 카테고리 13 -->
 				    </li>
 	  			</ul>
 			</th>
