@@ -53,12 +53,13 @@ var newEvent = function (start, end, eventType) {
             mid: 'test_id'
         };
 
-        if (eventData.start > eventData.end) {
+
+		if (eventData.cal_startdate > eventData.cal_enddate) {
             alert('끝나는 날짜가 앞설 수 없습니다.');
             return false;
         }
 
-        if (eventData.title === '') {
+        if (eventData.cal_title === '') {
             alert('일정명은 필수입니다.');
             return false;
         }

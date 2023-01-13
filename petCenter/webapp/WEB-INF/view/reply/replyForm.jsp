@@ -39,6 +39,9 @@
 		$("#brcontent").keydown(function(){
 			cut_200(this);
 		});
+		$("#brcontent").keyup(function(){
+			cut_200(this);
+		});
 		
 		// 댓글 전체 불러오기 
 		selectAll();
@@ -75,7 +78,7 @@
 			});
 			
 			function whenSuccess(resData){	
-				alert("resData : " + resData);	
+				console.log("resData : " + resData);	
 				if ("GOOD" == resData){
 					// 입력데이터 초기화 함수호출 
 					rboardFormData();
@@ -284,9 +287,9 @@
 			</td>
 		</tr>
 		<tr>
-			<td>댓글 내용</td>
+			<td style="white-space:nowrap;">댓글 내용</td>
 			<td>
-				<textarea name="brcontent" id="brcontent" rows="5" cols="50" style="resize: none"></textarea>	
+				<textarea name="brcontent" id="brcontent" rows="5" cols="123" style="resize: none"></textarea>	
 				<span class="bytes">0</span>bytes
 			</td>	
 		</tr>
