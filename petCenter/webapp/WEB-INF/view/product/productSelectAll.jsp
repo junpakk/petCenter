@@ -49,11 +49,10 @@ getAttribute()의 경우 setAttribute()속성을 통한 설정이 없으면 무�
 
 	function cartPlz(){
 		const mnum = "<%= mnum %>";
-		alert("mnum: "+ mnum);
 		if (confirm("장바구니 목록을 확인하시겠습니까?")){
 		
 			if(mnum == null || mnum == "null" || typeof(mnum)== "undefined" || mnum== ""){
-				alert("로그인을 먼저 해주세요!");
+				alert("먼저 로그인을 해주세요");
 	//				location.href="productSelectAll.pc?pcategory=21";
 				return;
 			}else{
@@ -67,7 +66,6 @@ getAttribute()의 경우 setAttribute()속성을 통한 설정이 없으면 무�
 		$("#pcategory").change(function(){
 	        const mnum = '<%= mnum %>';
 			const pcategory = $("#pcategory").val();
-	        alert("pcategory : "+ pcategory);
 	        
 <%-- 	        if(<%= list.get(0).getPcategory() %> == '21'){ --%>
 // 	        	$("input:checkbox[value='21']").prop("checked",true);
@@ -87,19 +85,16 @@ getAttribute()의 경우 setAttribute()속성을 통한 설정이 없으면 무�
 		$("#cBtn1").click(function(){
 			
 			const pcategory = $(this).val();
-			alert("::" + pcategory);
 			location.href = "productSelectAll.pc?pcategory="+pcategory;
 		});
 		$("#cBtn2").click(function(){
 			
 			const pcategory = $(this).val();
-			alert("::" + pcategory);
 			location.href = "productSelectAll.pc?pcategory="+pcategory;
 		});
 		$("#cBtn3").click(function(){
 			
 			const pcategory = $(this).val();
-			alert("::" + pcategory);
 			location.href = "productSelectAll.pc?pcategory="+pcategory;
 		});
 	});
@@ -138,7 +133,6 @@ ul	{
 				<ul>
 				    <li style="padding:10px;">
 					      <select id="pcategory">
-				      		  <option id="pcategory" value="00">우리아이</option>	
 							  <option id="pcategory" value="21">고양이</option>
 							  <option id="pcategory" value="11" selected>강아지</option>
 						  </select>
