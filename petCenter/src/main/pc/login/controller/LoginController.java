@@ -307,6 +307,76 @@ public class LoginController {
 	
 	// 카카오 로그인 ================================================== end
 	
+	// 구글 로그인 ================================================== start
+	@PostMapping("googleLogin")
+	public String googleLogin(HttpServletRequest req, MemberVO mvo) {
+		logger.info("googleLogin 함수 진입 >>> : ");
+		logger.info("googleLogin mvo.getSnstype() >>> : " + mvo.getSnstype());
+		logger.info("googleLogin mvo.getSnsid() >>> : " + mvo.getSnsid());
+		logger.info("googleLogin mvo.getSnsemail() >>> : " + mvo.getSnsemail());
+		
+		// sns 입력시 기존 not null 컬럼을 처리하기 
+		String mid = "";
+		String mpw = "";
+		String memail = "";
+		
+		List<MemberVO> gList = loginService.snsLogin(mvo);
+		int gCnt = gList.size();
+		logger.info("googleLogin gCnt >>> : " + gCnt);
+		int insertCnt = 0;
+		
+		if(gCnt == 0) {// 셀렉트 0 -> 회원아님 -> 회원가입
+			
+			while(true) {
+				mid = "google" + PasswordUtil.randomPW(14);
+				mvo.setMid(mid);
+				List<MemberVO> list = memberService.memIdCheck(mvo);
+				if(list.size() == 0) {
+					break;
+				}
+			}
+			
+			mpw = EncryptSHA.encryptSHA256(EncryptSHA.encryptSHA256(PasswordUtil.tempPW(8)));
+			mvo.setMpw(mpw);
+			
+			memail = mvo.getSnsemail();
+			mvo.setMemail(memail);
+			
+			logger.info("googleLogin mvo.getMid() >>> : " + mvo.getMid());
+			logger.info("googleLogin mvo.getMpw() >>> : " + mvo.getMpw());
+			logger.info("googleLogin mvo.getMemail() >>> : " + mvo.getMemail());
+			
+			insertCnt = loginService.snsInsert(mvo);
+			logger.info("googleLogin insertCnt >>> : " + insertCnt);
+			
+			// 회원가입후 다시 셀렉트
+			gList = loginService.snsLogin(mvo);
+			gCnt = gList.size();
+			logger.info("googleLogin gCnt after >>> : " + gCnt);
+		}
+		
+		if (gCnt == 1) {
+			
+			K_Session ks = K_Session.getInstance();
+			String kID = ks.getSession(req);
+			
+			logger.info("googleLogin kID >>> : " + kID);
+			
+			if (kID != null && kID.equals(gList.get(0).getMid())) {
+				logger.info("loginCheck login >>> : 로그인 중 >>> : " + kID);
+				return "main/mainPage";
+			}else {
+				ks.setSession(req, gList.get(0).getMid(), gList.get(0).getMnum() );
+				logger.info("loginCheck login >>> : 세션부여 >>> : " + mvo.getMid());
+				return "main/mainPage";
+			}
+		}
+		
+		logger.info("googleLogin() >>> : 로그인실패");
+		return "login/loginForm";
+	}
+	// 구글 로그인 ================================================== end
+	
 	// 네이버 로그인 ================================================== start
 	@GetMapping("naverCallback")
 	public String naverCallback() {
@@ -402,12 +472,12 @@ public class LoginController {
 			if(mname != null && mname.length() > 0) mvo.setMname(mname);
 			
 			insertCnt = loginService.snsInsert(mvo);
-			logger.info("kakaoLogin insertCnt >>> : " + insertCnt);
+			logger.info("naverLogin insertCnt >>> : " + insertCnt);
 		
 			// 회원가입후 다시 셀렉트
 			nList = loginService.snsLogin(mvo);
 			nCnt = nList.size();
-			logger.info("kakaoLogin kCnt after >>> : " + nCnt);
+			logger.info("naverLogin kCnt after >>> : " + nCnt);
 		}
 		
 		if (nCnt == 1) {
@@ -415,7 +485,7 @@ public class LoginController {
 			K_Session ks = K_Session.getInstance();
 			String kID = ks.getSession(req);
 			
-			logger.info("kakaoLogin kID >>> : " + kID);
+			logger.info("naverLogin kID >>> : " + kID);
 			
 			if (kID != null && kID.equals(nList.get(0).getMid())) {
 				logger.info("loginCheck login >>> : 로그인 중 >>> : " + kID);

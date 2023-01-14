@@ -16,7 +16,7 @@
 		   apiURL += "&client_id=" + clientId;
 		   apiURL += "&redirect_uri=" + redirectURI;
 		   apiURL += "&state=" + state;
-	System.out.println("apiURL >>> : " + apiURL);
+	//System.out.println("apiURL >>> : " + apiURL);
 	session.setAttribute("state", state);
 %>
 
@@ -33,6 +33,10 @@
 
 <!-- 카카오 로그인 api  -->
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+
+<!-- 구글로그인 -->
+<!-- <meta name="referrer" content="no-referrer-when-downgrade" /> -->
+<script src="https://accounts.google.com/gsi/client" async defer></script>
 
 <%
 	Object obj = session.getAttribute("KID");
@@ -160,7 +164,6 @@
 // 		function whenError(e){
 // 			alert("e >>> : " + e.responseText);
 // 		}
-		
 	}
 	
 	//카카오 로그인 ====================================================
@@ -170,6 +173,41 @@
 			document.getElementById(next).focus();
 		}
 	}
+	
+	//구글 로그인 ====================================================
+	function handleCredentialResponse(response) {
+		// decodeJwtResponse() is a custom function defined by you
+		// to decode the credential response.
+		const responsePayload = parseJwt(response.credential);
+
+		console.log("ID: " + responsePayload.sub);
+// 		console.log('Full Name: ' + responsePayload.name);
+// 		console.log('Given Name: ' + responsePayload.given_name);
+// 		console.log('Family Name: ' + responsePayload.family_name);
+// 		console.log("Image URL: " + responsePayload.picture);
+		console.log("Email: " + responsePayload.email);
+		
+		$("#snstype").val('03');
+		$("#snsid").val(responsePayload.sub);
+		$("#snsemail").val(responsePayload.email);
+		
+		$('#loginForm').attr({
+			'action':'googleLogin.pc',
+			'method':'POST',
+			'enctype':'application/x-www-form-urlencoded'
+		}).submit();
+	};
+
+	function parseJwt (token) {
+		var base64Url = token.split('.')[1];
+		var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+		var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+			return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+		}).join(''));
+
+		return JSON.parse(jsonPayload);
+	};
+	//구글 로그인 ====================================================
 	
 </script>
 <style type="text/css">
@@ -223,13 +261,21 @@
 					<input type="hidden" name="snsid" id="snsid" />
 					<input type="hidden" name="snsemail" id="snsemail" />
 					<input type="hidden" name="mname" id="mname" />
-					<a href="javascript:kakaoLoginApi()">
-						<img height="55" width="55" src="/petCenter/img/login/kakao_login_circle.png" />
-					</a>
-					&nbsp;&nbsp;&nbsp;&nbsp;
-					<a href="<%= apiURL %>">
-						<img height="55" width="55" src="/petCenter/img/login/btnG_icon_circle.png" />
-					</a>
+					<div class="form-row">
+						<div class="col" >
+							<div class="g_id_signin" data-type="icon" data-shape="circle" ></div>
+						</div>
+						<div class="col" >
+							<a href="javascript:kakaoLoginApi()">
+								<img height="40" width="40" src="/petCenter/img/login/kakao_login_circle.png" />
+							</a>
+						</div>
+						<div class="col" >
+							<a href="<%= apiURL %>">
+								<img height="40" width="40" src="/petCenter/img/login/btnG_icon_circle.png" />
+							</a>
+						</div>
+					</div>
 				</td>
 			</tr>
 			
@@ -239,6 +285,13 @@
 <div class="col">
 </div>
 </div>
+</div>
+
+<div id="g_id_onload"
+		data-client_id="746917974555-nrnjepua5q068n73p1747adnuld44poq.apps.googleusercontent.com"
+		data-callback="handleCredentialResponse"
+		data-auto_select="false" 
+		data-auto_prompt="false">
 </div>
 
 <br><br><br><br><br><br>
