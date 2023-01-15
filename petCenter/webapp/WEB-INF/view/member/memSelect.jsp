@@ -36,7 +36,7 @@
 	
 	String mpet = mvo.getMpet();
 	logger.info("mpet >>> : " + mpet);
-	String[] mpetArr = {"강아지", "고양이", "조류", "파충류"};
+	String[] mpetArr = {"강아지", "고양이", "새", "파충류"};
 	
 	if (mpet != null && mpet.length() > 0){
 		for(int i=0; i < mpetArr.length; i++) {
