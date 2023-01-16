@@ -160,7 +160,7 @@
 			
 			if($(".mnum:checked").length == 1){
 				$("#memSelectAll").attr({
-					'action':'memDelete.pc',
+					'action':'memDeleteAdmin.pc',
 					'method':'POST',
 					'enctype':'application/x-www-form-urlencoded'
 				}).submit();

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import main.pc.common.ChabunUtil;
 import main.pc.common.CommonUtils;
 import main.pc.common.EncryptSHA;
+import main.pc.common.K_Session;
 import main.pc.common.chabun.service.ChabunUtilService;
 import main.pc.member.service.MemberService;
 import main.pc.member.vo.ChartVO;
@@ -242,15 +243,35 @@ public class MemberController {
 		return "member/memError";
 	}
 	
+	@PostMapping("memDeleteAdmin")
+	public String memDeleteAdmin(MemberVO mvo, Model model) {
+		logger.info("memDeleteAdmin 함수 진입 >>> :");
+		
+		int dCnt = memberService.memDelete(mvo);
+		if (dCnt > 0) {
+			logger.info("memDeleteAdmin dCnt >>> : " + dCnt);
+			model.addAttribute("cnt", dCnt);
+			model.addAttribute("result", "삭제");
+			return "member/memResult";
+		}
+		
+		logger.info("memDelete fail");
+		return "member/memError";
+	}
+	
 	@PostMapping("memDelete")
-	public String memDelete(MemberVO mvo, Model model) {
+	public String memDelete(MemberVO mvo, Model model, HttpServletRequest req) {
 		logger.info("memDelete 함수 진입 >>> :");
 		
 		int dCnt = memberService.memDelete(mvo);
 		if (dCnt > 0) {
 			logger.info("memDelete dCnt >>> : " + dCnt);
+			
+			K_Session ks = K_Session.getInstance();
+			ks.killSession(req);
+			
 			model.addAttribute("cnt", dCnt);
-			model.addAttribute("result", "삭제");
+			model.addAttribute("result", "탈퇴");
 			return "member/memResult";
 		}
 		

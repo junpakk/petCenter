@@ -48,6 +48,14 @@
 	
 	String snstype = mvo.getSnstype();
 	logger.info("snstype >>> : " + snstype);
+	
+	String admin = "";
+	Object objAdmin = session.getAttribute("KNUM");
+	if (objAdmin != null) {
+		admin = (String)objAdmin;
+		logger.info("mnum >>> : " + admin);
+	}
+
 %>
 <!DOCTYPE html>
 <html>
@@ -158,8 +166,14 @@
 		// 폼태그 데이터 컨트롤러에 보내기 탈퇴
 		$("#deleteBtn").on("click", function() {
 			
+			let action = 'memDelete.pc';
+			let admin = '<%= admin %>';
+			if (admin == 'M0000000001') {
+				action = 'memDeleteAdmin.pc';
+			}
+			
 			$("#memForm").attr({
-				'action':'memDelete.pc',
+				'action': action,
 				'method':'POST',
 				'enctype':'application/x-www-form-urlencoded'
 			}).submit();
