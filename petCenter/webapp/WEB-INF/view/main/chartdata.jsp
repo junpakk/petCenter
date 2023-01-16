@@ -35,10 +35,11 @@
 	
 	StringBuffer sb = new StringBuffer();
 	sb.append("SELECT ");
-	sb.append("COUNT(CASE WHEN A.MPET LIKE '%mp0%' THEN 1 END) AS DOG, ");
-	sb.append("COUNT(CASE WHEN A.MPET LIKE '%mp1%' THEN 1 END) AS CAT, ");
-	sb.append("COUNT(CASE WHEN A.MPET LIKE '%mp2%' THEN 1 END) AS BIRD, ");
-	sb.append("COUNT(CASE WHEN A.MPET LIKE '%mp3%' THEN 1 END) AS REPTILE ");
+	sb.append("COUNT(CASE WHEN A.MPET LIKE '%mp0%' AND A.DELYN = 'Y' THEN 1 END) AS DOG, ");
+	sb.append("COUNT(CASE WHEN A.MPET LIKE '%mp1%' AND A.DELYN = 'Y' THEN 1 END) AS CAT, ");
+	sb.append("COUNT(CASE WHEN A.MPET LIKE '%mp2%' AND A.DELYN = 'Y' THEN 1 END) AS BIRD, ");
+	sb.append("COUNT(CASE WHEN A.MPET LIKE '%mp3%' AND A.DELYN = 'Y' THEN 1 END) AS REPTILE, ");
+	sb.append("COUNT(CASE WHEN A.DELYN = 'Y' THEN 1 END) AS COUNT ");
 	sb.append("FROM PC_MEMBER A");
 	
 	logger.info(sb.toString());
