@@ -66,5 +66,14 @@
 							,#{mid, jdbcType=VARCHAR}							
  					) 	
 	</insert>
+	
+	
+	<update id="calendarDelete"   parameterType="calendarVO">
+			UPDATE   		PC_CALENDAR
+					SET      DELYN     = 'N'
+					        ,UDATE     = SYSDATE
+					WHERE    DELYN     = 'Y'
+					AND      CAL_NO      = #{cal_no}
+	</update>
 		
 </mapper>	

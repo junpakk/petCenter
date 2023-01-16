@@ -86,4 +86,15 @@ public class CalendarController {
 		
 		return "calendar/calendarData";
 	}
+	
+	// 캘린더 삭제
+		@GetMapping("calendarDelete")
+		public String calendarDelete(CalendarVO cvo, Model model) {
+			logger.info("calendarDelete");
+			
+			int nCnt = calendarService.calendarDelete(cvo);
+			logger.info("calendarDelete2");
+			
+			return "calendar/calendarData";
+		}
 }

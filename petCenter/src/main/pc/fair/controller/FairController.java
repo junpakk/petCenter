@@ -75,9 +75,9 @@ public class FairController {
 			int nCnt = fairService.fairInsert(fvo);
 			logger.info("fairInsert nCnt: "+ nCnt);
 			if(nCnt > 0) {
-				return "fair/fairSelectAll";
+				return "main/mainPage";
 			}
-			return "fair/fairSelectAll";
+			return "main/mainPage";
 		}
 	
 	

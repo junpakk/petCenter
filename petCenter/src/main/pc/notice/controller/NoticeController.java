@@ -55,10 +55,10 @@ public class NoticeController {
 		
 		int insertnCnt = noticeService.noticeInsert(nvo);
 		if(insertnCnt>0) {
-			return "notice/noticeInsert";
+			return "main/mainPage";
 			
 		}
-		return "notice/noticeInsertForm";
+		return "main/mainPage";
 	}
 	
 	//listAll

@@ -243,15 +243,15 @@
 <tr>
 	<td class="align-middle" id="notNull">이메일</td>
 	<td>
-		<input type="text" name="memail1" id="memail1" style="width:150px" />
-		@ <input type="text" name="memail2" id="memail2" style="width:100px" placeholder="직접입력"/>
-		<select name="memail3" id="memail3" class="custom-select" style="width:115px; margin-right:10px">
+		<input type="text" name="memail1" id="memail1" style="width:150px" readonly/>
+		@ <input type="text" name="memail2" id="memail2" style="width:100px" placeholder="직접입력" readonly/>
+		<!-- <select name="memail3" id="memail3" class="custom-select" style="width:115px; margin-right:10px">
 			<option value="1" selected>직접입력</option>
 			<option value="naver.com" >naver.com</option>
 			<option value="gmail.com" >gmail.com</option>
 			<option value="daum.net" >daum.net</option>
 			<option value="kakao.com" >kakao.com</option>
-		</select>
+		</select> -->
 	</td>
 </tr>
 

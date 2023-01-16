@@ -22,7 +22,7 @@ public class CalendarDAOImpl implements CalendarDAO {
 		// TODO Auto-generated method stub
 		logger.info("calendarSelectAll 진입 성공 >>> :");
 	
-		return sqlSession.selectList("calendarSelectAll");
+		return sqlSession.selectList("calendarSelectAll", cvo);
 	}
 
 	@Override
@@ -30,7 +30,15 @@ public class CalendarDAOImpl implements CalendarDAO {
 		// TODO Auto-generated method stub
 		logger.info("calendarInsert 진입 성공 >>> :");
 		
-		return sqlSession.insert("calendarInsert");
+		return sqlSession.insert("calendarInsert", cvo);
+	}
+
+	@Override
+	public int calendarDelete(CalendarVO cvo) {
+		// TODO Auto-generated method stub
+		logger.info("calendarDelete 진입 성공 >>> :");
+		
+		return sqlSession.update("calendarDelete", cvo);
 	}
 
 }

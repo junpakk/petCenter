@@ -73,9 +73,9 @@ public class ProductController {
 		int nCnt = productService.productInsert(pvo);
 		logger.info("productInsert nCnt: "+ nCnt);
 		if(nCnt > 0) {
-			return "product/productInsertForm";
+			return "main/mainPage";
 		}
-		return "product/productInsertForm";
+		return "main/mainPage";
 	}//end of productInsert
 	
 	//상품 전체목록 조회

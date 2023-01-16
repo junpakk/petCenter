@@ -35,4 +35,12 @@ public class CalendarServiceImpl implements CalendarService {
 		return calendarDAO.calendarInsert(cvo);
 	}
 
+	@Override
+	public int calendarDelete(CalendarVO cvo) {
+		// TODO Auto-generated method stub
+		logger.info("CalendarServiceImpl calendarDelete 진입 성공 >>> : ");
+		
+		return calendarDAO.calendarDelete(cvo);
+	}
+
 }

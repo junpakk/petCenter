@@ -220,7 +220,6 @@
 		if(confirm("해당 상품을 장바구니에 담으시겠습니까?")){
 			const mnum = '<%= mnum %>';
 			const cCnt = document.getElementById("cCnt").innerText;
-			alert("cCnt, mnum: "+ cCnt +" , "+ mnum);
 					
 			if(mnum == null || mnum == "null" || typeof(mnum) == "undefined" || mnum == ""){
 				alert("로그인을 먼저 해주세요!");
@@ -237,7 +236,6 @@
 		if(confirm("해당 상품을 주문하시겠습니까?")){
 			const mnum = '<%= mnum %>';
 			const cCnt = document.getElementById("cCnt").innerText;
-			alert("cCnt, mnum: "+ cCnt +" , "+ mnum);
 			
 			if(mnum == null || mnum == "null" || typeof(mnum) == "undefined" || mnum == ""){
 				alert("로그인을 먼저 해주세요!");
